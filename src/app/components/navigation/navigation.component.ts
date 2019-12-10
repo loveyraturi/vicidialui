@@ -11,9 +11,13 @@ import {Login} from "../../models/login";
 })
 export class Navigation implements OnInit {
     @Input() loginInfo:Login;
+    public username;
     constructor( private router: Router) { }
 
-    ngOnInit() { }
+    ngOnInit() { 
+        this.username=this.loginInfo.user_name;
+      //  console.log(this.loginInfo)
+    }
     activeRoute(routename: string): boolean{
         return this.router.url.indexOf(routename) > -1;
     }

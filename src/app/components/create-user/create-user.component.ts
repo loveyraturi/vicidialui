@@ -7,15 +7,20 @@ import { Login } from 'app/models/login';
   styleUrls: ['./create-user.component.css']
 })
 export class CreateUserComponent implements OnInit {
-  loginInfo:Login = {
-    first_name:'Andrew',
-    last_name:'Yang',
-    avatar:'ay.jpeg',
-    title:'Senior Developer'
-};
-  constructor() { }
-
+  public username;
+  loginInfo:Login={user_name:null,
+}
+  constructor() { 
+    
+   
+   // this.phonenumber=localStorage.getItem("phone_number")
+    
+  }
   ngOnInit() {
+     
+      this.username= localStorage.getItem("user_name")
+      this.loginInfo.user_name=this.username;
+      console.log(this.username)
   }
 
 }
