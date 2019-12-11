@@ -1,11 +1,16 @@
 .login-box {
-    position: absolute;
     z-index: 15;
-    left: 35%;
+    /* left: 35%; */
+    margin: 0;
+    margin-left: 75%;
 }
 .buttonleft{
     padding-left: 5%;
 }
 body{
     background-color: #2f4050 !important;
+}
+.logoimg {
+margin: 0;
+margin-left: 10%;
 }

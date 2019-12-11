@@ -1,5 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Login } from 'app/models/login';
+import { UserService } from 'app/services/user.service';
+import { GroupService } from 'app/services/group.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-show-users',
@@ -8,10 +11,12 @@ import { Login } from 'app/models/login';
 })
 export class ShowUsersComponent implements OnInit {
   public username;
+  public currentElementIndex=1;
   loginInfo:Login={user_name:null,
 }
-  constructor() { 
-    
+public users;
+  constructor(private userService: UserService, private groupService: GroupService, private router: Router) { 
+    this.fetchUsers();
    
    // this.phonenumber=localStorage.getItem("phone_number")
     
@@ -22,6 +27,23 @@ export class ShowUsersComponent implements OnInit {
       this.loginInfo.user_name=this.username;
       console.log(this.username)
 
+  }
+
+  fetchUsers(){
+    this.userService.fetchUser().subscribe(
+      data => {
+        this.users=data
+        console.log(data)
+
+      })
+  }
+  updateUser(id){
+    console.log("%$#@%$@#$",id)
+    localStorage.setItem("update_id",id);
+    this.router.navigateByUrl("/updateUser")
+  }
+  addNew(){
+    this.router.navigateByUrl("/createUser")
   }
 
 }

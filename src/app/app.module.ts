@@ -16,6 +16,9 @@ import { DefaultComponent } from './components/default/default.component';
 import { PlatformService } from './services/platform.service';
 import { AuthService } from './services/auth.service';
 import { HttpClientModule } from '@angular/common/http';
+import { UserService } from './services/user.service';
+import { GroupService } from './services/group.service';
+import { UpdateUserComponent } from './components/update-user/update-user.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +29,8 @@ import { HttpClientModule } from '@angular/common/http';
     LoginComponent,
     CreateUserComponent,
     ShowUsersComponent,
-    DefaultComponent
+    DefaultComponent,
+    UpdateUserComponent
   ],
   imports: [
     BrowserModule,
@@ -36,7 +40,7 @@ import { HttpClientModule } from '@angular/common/http';
     HttpClientModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [PlatformService,AuthService],
+  providers: [PlatformService,AuthService,UserService,GroupService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
