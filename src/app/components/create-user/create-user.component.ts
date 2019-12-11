@@ -3,6 +3,7 @@ import { Login } from 'app/models/login';
 import { UserService } from 'app/services/user.service';
 import { GroupService } from 'app/services/group.service';
 import { Router } from '@angular/router';
+import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-create-user',
@@ -10,19 +11,21 @@ import { Router } from '@angular/router';
   styleUrls: ['./create-user.component.css']
 })
 export class CreateUserComponent implements OnInit {
+  public registerform: any = FormGroup;
   public username;
   loginInfo: Login = {
     user_name: null,
   }
   public groups;
-  constructor(private userService: UserService, private groupService: GroupService, private router: Router) {
+  constructor(private userService: UserService, private groupService: GroupService, private router: Router, private formBuilder: FormBuilder) {
     this.fetchGroups()
   }
   ngOnInit() {
-
+    
     this.username = localStorage.getItem("user_name")
     this.loginInfo.user_name = this.username;
     console.log(this.username)
+    this.createForm();
   }
   create(value: any) {
     this.userService.createUser(value).subscribe(
@@ -44,6 +47,22 @@ export class CreateUserComponent implements OnInit {
         console.log(data)
 
       })
+  }
+
+  private createForm(): void {
+
+    this.registerform = this.formBuilder.group({
+      name: new FormControl('', [Validators.required]),
+      group: new FormControl('', Validators.required),
+      phonenumber: new FormControl('', Validators.required),
+      status: new FormControl('', Validators.required),
+      password: new FormControl('', Validators.required),
+      confpass: new FormControl('', Validators.required),
+    });
+
+  }
+  submit({data}){
+console.log(data)
   }
 
 }
