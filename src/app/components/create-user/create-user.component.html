@@ -24,7 +24,7 @@
                 <div class="form-group">
                   <label for="email">Name</label>
                   <div class="input-group">
-                    <div class="input-group-addon"><i class="glyphicon glyphicon-tasks"></i></div>
+                    <div class="input-group-addon"><i class="glyphicon glyphicon-book"></i></div>
                     <input autofocus required type="text" formControlName="name" name="name" id="name"
                       class="form-control" placeholder="Your Name" tabindex="1">
                   </div>
@@ -32,7 +32,7 @@
                 <div class="form-group">
                   <label for="group">Group</label>
                   <div class="input-group">
-                    <div class="input-group-addon"><i class="glyphicon glyphicon-tasks"></i></div>
+                    <div class="input-group-addon"><i class="glyphicon glyphicon-user"></i></div>
                     <select class="mdb-select md-form form-control" formControlName="group">
                       <option value="" disabled selected>Choose your option</option>
                       <option *ngFor="let group of groups" value="group.id">{{group.name}}</option>
@@ -42,7 +42,7 @@
                 <div class="form-group">
                     <label for="level">User Level</label>
                     <div class="input-group">
-                      <div class="input-group-addon"><i class="glyphicon glyphicon-tasks"></i></div>
+                      <div class="input-group-addon"><i class="glyphicon glyphicon-level-up"></i></div>
                       <select class="mdb-select md-form form-control" formControlName="level">
                         <option value="" disabled selected>Choose user level</option>
                         <option  value="0">0</option>

@@ -64,7 +64,7 @@ export class UserService {
 
   updateUser(request): Observable<any> {
     return this.http
-      .get('http://192.168.100.126:4011/api/user/updateuser', request)
+      .put('http://192.168.100.126:4011/api/user/updateuser', request)
       .map(
         res => {
           return res;
