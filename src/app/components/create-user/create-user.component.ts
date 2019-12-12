@@ -33,10 +33,8 @@ export class CreateUserComponent implements OnInit {
   public createUser(value: any): void {
     this.userService.createUser(value).subscribe(
       data => {
-        localStorage.setItem("user_name", data.name);
-        localStorage.setItem("phone_number", data.phoneNumber);
         if (data.status) {
-          this.router.navigateByUrl('showUser');
+          this.router.navigateByUrl('/showUser');
 
         }
 
