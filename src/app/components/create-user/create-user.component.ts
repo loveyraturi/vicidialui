@@ -4,7 +4,6 @@ import { UserService } from 'app/services/user.service';
 import { GroupService } from 'app/services/group.service';
 import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
-import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-create-user',
@@ -18,7 +17,7 @@ export class CreateUserComponent implements OnInit {
     user_name: null,
   }
   public groups;
-  constructor(private _snackBar: MatSnackBar,private userService: UserService, private groupService: GroupService, private router: Router, private formBuilder: FormBuilder) {
+  constructor(private userService: UserService, private groupService: GroupService, private router: Router, private formBuilder: FormBuilder) {
     this.fetchGroups()
   }
   ngOnInit() {
@@ -27,9 +26,9 @@ export class CreateUserComponent implements OnInit {
     this.loginInfo.user_name = this.username;
     console.log(this.username)
     this.createForm();
-    this._snackBar.open("User Created","close",{
-      duration: 3000
-    });
+    // this._snackBar.open("User Created","close",{
+    //   duration: 3000
+    // });
   }
   public createUser(value: any): void {
     this.userService.createUser(value).subscribe(
