@@ -22,7 +22,7 @@ export class CreateUserComponent implements OnInit {
     this.fetchGroups()
   }
   ngOnInit() {
-    
+
     this.username = localStorage.getItem("user_name")
     this.loginInfo.user_name = this.username;
     console.log(this.username)
@@ -31,7 +31,7 @@ export class CreateUserComponent implements OnInit {
       duration: 3000
     });
   }
-  create(value: any) {
+  public createUser(value: any): void {
     this.userService.createUser(value).subscribe(
       data => {
         localStorage.setItem("user_name", data.name);
@@ -44,10 +44,10 @@ export class CreateUserComponent implements OnInit {
       })
   }
 
-  fetchGroups(){
+  fetchGroups() {
     this.groupService.fetchGroups().subscribe(
       data => {
-        this.groups=data
+        this.groups = data
         console.log(data)
 
       })
@@ -64,8 +64,8 @@ export class CreateUserComponent implements OnInit {
       level: new FormControl('', Validators.required),
     });
   }
-  submit({data}){
-console.log(data)
+  submit({ value }: any): void {
+    this.createUser(value);
+    
   }
-
 }
