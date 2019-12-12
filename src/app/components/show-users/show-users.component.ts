@@ -42,6 +42,11 @@ public users;
     localStorage.setItem("update_id",id);
     this.router.navigateByUrl("/updateUser")
   }
+  cloneUser(id){
+    console.log("%$#@%$@#$",id)
+    localStorage.setItem("clone_id",id);
+    this.router.navigateByUrl("/cloneUser")
+  }
   addNew(){
     this.router.navigateByUrl("/createUser")
   }

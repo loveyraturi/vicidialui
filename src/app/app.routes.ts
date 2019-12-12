@@ -3,6 +3,7 @@ import { LoginComponent } from "./components/login/login.component";
 import { CreateUserComponent } from "./components/create-user/create-user.component";
 import { ShowUsersComponent } from "./components/show-users/show-users.component";
 import { UpdateUserComponent } from "./components/update-user/update-user.component";
+import { CloneUserComponent } from "./components/clone-user/clone-user.component";
 
 export const appRoutes=[
     {
@@ -21,6 +22,10 @@ export const appRoutes=[
     {
         path: 'createUser',
         component: CreateUserComponent
+    },
+    {
+        path: 'cloneUser',
+        component: CloneUserComponent
     },
     {
         path: 'updateUser',

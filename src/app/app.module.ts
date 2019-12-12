@@ -19,6 +19,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { UserService } from './services/user.service';
 import { GroupService } from './services/group.service';
 import { UpdateUserComponent } from './components/update-user/update-user.component';
+import { CloneUserComponent } from './components/clone-user/clone-user.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { UpdateUserComponent } from './components/update-user/update-user.compon
     CreateUserComponent,
     ShowUsersComponent,
     DefaultComponent,
-    UpdateUserComponent
+    UpdateUserComponent,
+    CloneUserComponent
   ],
   imports: [
     BrowserModule,

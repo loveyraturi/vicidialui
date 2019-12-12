@@ -47,6 +47,10 @@
                 <a [routerLink]="['/showUser']"><i class="fa fa-dashboard"></i> <span class="nav-label">Show
                     User</span></a>
               </li>
+              <li [ngClass]="{active: activeRoute('cloneUser')}">
+                    <a [routerLink]="['/cloneUser']"><i class="fa fa-dashboard"></i> <span class="nav-label">Clone
+                        User</span></a>
+                  </li>
             </ul>
           </div>
         </a>
