@@ -36,29 +36,39 @@
         </a>
       </li>
       <li [ngClass]="{active: activeRoute('createUser')}">
-        <a class="drops"><i class="fa fa-dashboard"></i> <span class="nav-label">User</span>
+        <a class="drops"><i class="fa fa-user"></i> <span class="nav-label">User</span><i class="fa fa-caret-down" style="    margin-left: 55%;"></i>
           <div class="drop">
             <ul class="nav metismenu" id="side-menu">
               <li [ngClass]="{active: activeRoute('createUser')}">
-                <a [routerLink]="['/createUser']"><i class="fa fa-dashboard"></i> <span class="nav-label">Create
-                    User</span></a>
+                <a [routerLink]="['/createUser']"><i class="fa fa-book"></i> <span class="nav-label">Create
+                    </span></a>
               </li>
               <li [ngClass]="{active: activeRoute('showUser')}">
-                <a [routerLink]="['/showUser']"><i class="fa fa-dashboard"></i> <span class="nav-label">Show
-                    User</span></a>
+                <a [routerLink]="['/showUser']"><i class="fa fa-folder-open"></i> <span class="nav-label">Show
+                    </span></a>
               </li>
-              <li [ngClass]="{active: activeRoute('cloneUser')}">
-                    <a [routerLink]="['/cloneUser']"><i class="fa fa-dashboard"></i> <span class="nav-label">Clone
-                        User</span></a>
-                  </li>
             </ul>
           </div>
         </a>
       </li>
+      <li [ngClass]="{active: activeRoute('campaing')}">
+          <a class="drops"><i class="fa fa-dashboard"></i> <span class="nav-label">Campaing</span><i class="fa fa-caret-down" style="    margin-left: 36%;"></i>
+            <div class="drop">
+              <ul class="nav metismenu" id="side-menu">
+                <li [ngClass]="{active: activeRoute('createCampaing')}">
+                  <a [routerLink]="['/createCampaing']"><i class="fa fa-book"></i> <span class="nav-label">Create</span></a>
+                </li>
+                <li [ngClass]="{active: activeRoute('showCampaing')}">
+                  <a [routerLink]="['/showCampaing']"><i class="fa fa-folder-open"></i> <span class="nav-label">Show
+                      </span></a>
+                </li>
+              </ul>
+            </div>
+          </a>
+        </li>
       <li [ngClass]="{active: activeRoute('others')}">
         <a [routerLink]="['./others']"><i class="fa fa-desktop"></i> <span class="nav-label">Others</span></a>
       </li>
     </ul>
-
   </div>
 </nav>

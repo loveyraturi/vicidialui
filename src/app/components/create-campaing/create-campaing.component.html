@@ -1,0 +1,167 @@
+<div id="wrapper">
+  <navigation [loginInfo]="loginInfo" *ngIf="loginInfo"></navigation>
+
+  <div id="page-wrapper" class="gray-bg">
+
+    <topnavbar></topnavbar>
+    <div class="container">
+      <div class="row">
+        <div
+          class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-3 col-md-5 col-md-offset-4 col-lg-4 col-lg-offset-4 createuser">
+
+          <h3>Create Campaing</h3>
+
+          <div class="panel panel-default box-shadow">
+            <div class="panel-heading">
+              <span class="text-primary">Create</span>
+              <span class="text-muted pull-right today" title="Today"></span>
+            </div>
+            <!--.panel-heading-->
+
+            <div class="panel-body">
+              <form [formGroup]="registerform" (submit)="submit(registerform)" method="POST">
+
+                <div class="form-group">
+                  <label for="name">Name</label>
+                  <div class="input-group">
+                    <div class="input-group-addon"><i class="glyphicon glyphicon-tasks"></i></div>
+                    <input autofocus required type="text" formControlName="name" name="name" id="name"
+                      class="form-control" placeholder="Your Name" tabindex="1">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="Description">Description</label>
+                  <div class="input-group">
+                    <div class="input-group-addon"><i class="glyphicon glyphicon-bookmark"></i></div>
+                    <textarea autofocus required type="text" formControlName="description" name="description"
+                      id="description" class="form-control" placeholder="Your description" tabindex="1"></textarea>
+                  </div>
+                </div>
+                <div class="form-group col-xs-6">
+                  <label for="adminusergroup">Admin User Group</label>
+                  <div class="input-group">
+                    <div class="input-group-addon"><i class="glyphicon glyphicon-user"></i></div>
+                    <select class="mdb-select md-form form-control" formControlName="adminusergroup">
+                      <option value="" disabled selected>Choose your option</option>
+                      <option *ngFor="let group of groups" value="group.id">{{group.name}}</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-group col-xs-6">
+                  <label for="webform">Web Form</label>
+                  <div class="input-group">
+                    <div class="input-group-addon"><i class="glyphicon glyphicon-globe"></i></div>
+                    <input autofocus required type="text" formControlName="webform" name="webform" id="webform"
+                      class="form-control" placeholder="Your webform" tabindex="1">
+                  </div>
+                </div>
+                <div class="form-group col-xs-6">
+                  <label for="closers">Allow Closers</label>
+                  <div class="input-group">
+                    <div class="input-group-addon"><i class="glyphicon glyphicon-tasks"></i></div>
+                    <select class="mdb-select md-form form-control" formControlName="closers">
+                      <option value="" disabled selected>Choose your option</option>
+                      <option *ngFor="let group of groups" value="group.id">{{group.name}}</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-group col-xs-6">
+                  <label for="hopperlevel">Mimimum Hopper Level</label>
+                  <div class="input-group">
+                    <div class="input-group-addon"><i class="glyphicon glyphicon-level-up"></i></div>
+                    <select class="mdb-select md-form form-control" formControlName="hopperlevel">
+                      <option value="" disabled selected>Choose your option</option>
+                      <option *ngFor="let group of groups" value="group.id">{{group.name}}</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-group col-xs-6">
+                  <label for="autodiallevel">Auto Dial Level</label>
+                  <div class="input-group">
+                    <div class="input-group-addon"><i class="glyphicon glyphicon-bell"></i></div>
+                    <select class="mdb-select md-form form-control" formControlName="autodiallevel">
+                      <option value="" disabled selected>Choose your option</option>
+                      <option *ngFor="let group of groups" value="group.id">{{group.name}}</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-group col-xs-6">
+                  <label for="nextcall">Next Agent Call</label>
+                  <div class="input-group">
+                    <div class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></div>
+                    <select class="mdb-select md-form form-control" formControlName="nextcall">
+                      <option value="" disabled selected>Choose your option</option>
+                      <option *ngFor="let group of groups" value="group.id">{{group.name}}</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-group col-xs-6">
+                  <label for="localtimecall">Local Call Time</label>
+                  <div class="input-group">
+                    <div class="input-group-addon"><i class="glyphicon glyphicon-time"></i></div>
+                    <select class="mdb-select md-form form-control" formControlName="localtimecall">
+                      <option value="" disabled selected>Choose your option</option>
+                      <option *ngFor="let group of groups" value="group.id">{{group.name}}</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="script">Script</label>
+                  <div class="input-group">
+                    <div class="input-group-addon"><i class="glyphicon glyphicon-barcode"></i></div>
+                    <select class="mdb-select md-form form-control" formControlName="script">
+                      <option value="" disabled selected>Choose your option</option>
+                      <option *ngFor="let group of groups" value="group.id">{{group.name}}</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="getcalllaunch">Get Call Launch</label>
+                  <div class="input-group">
+                    <div class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></div>
+                    <select class="mdb-select md-form form-control" formControlName="getcalllaunch">
+                      <option value="" disabled selected>Choose your option</option>
+                      <option *ngFor="let group of groups" value="group.id">{{group.name}}</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="group">Group</label>
+                  <div class="input-group">
+                    <div class="input-group-addon"><i class="glyphicon glyphicon-user"></i></div>
+                    <input autofocus required type="text" formControlName="group" name="group" id="group"
+                      class="form-control" placeholder="Your Group" tabindex="1">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="groupdiscription">Group Discription</label>
+                  <div class="input-group">
+                    <div class="input-group-addon"><i class="glyphicon glyphicon-book"></i></div>
+                    <input autofocus required type="text" formControlName="groupdiscription" name="groupdescription"
+                      id="groupdiscription" class="form-control" placeholder="Your Group Discription" tabindex="1">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="Active">Active</label>
+                  <div class="input-group">
+                    <div class="input-group-addon"><i class="glyphicon glyphicon-star"></i></div>
+                    <input autofocus required type="text" formControlName="active" name="active" id="active"
+                      class="form-control" placeholder="Your status" tabindex="1">
+                  </div>
+                </div>
+                <button type="submit" class="btn btn-block btn-success" tabindex="5">Create account</button>
+              </form>
+            </div>
+          </div>
+          <!--.panel-->
+
+        </div>
+      </div>
+    </div>
+    <div class="footer">
+      <div>
+        <strong>Copyright</strong> vici dial &copy; 2019
+      </div>
+    </div>
+  </div>
+</div>

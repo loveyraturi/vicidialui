@@ -4,6 +4,10 @@ import { CreateUserComponent } from "./components/create-user/create-user.compon
 import { ShowUsersComponent } from "./components/show-users/show-users.component";
 import { UpdateUserComponent } from "./components/update-user/update-user.component";
 import { CloneUserComponent } from "./components/clone-user/clone-user.component";
+import { ShowCampaingComponent } from "./components/show-campaing/show-campaing.component";
+import { CreateCampaingComponent } from "./components/create-campaing/create-campaing.component";
+import { CloneCampaingComponent } from "./components/clone-campaing/clone-campaing.component";
+import { UpdateCampaingComponent } from "./components/update-campaing/update-campaing.component";
 
 export const appRoutes=[
     {
@@ -34,6 +38,22 @@ export const appRoutes=[
     {
         path: 'showUser',
         component: ShowUsersComponent
+    },
+    {
+        path: 'createCampaing',
+        component: CreateCampaingComponent
+    },
+    {
+        path: 'showCampaing',
+        component: ShowCampaingComponent
+    },
+    {
+        path: 'cloneCampaing',
+        component: CloneCampaingComponent
+    },
+    {
+        path: 'updateCampaing',
+        component: UpdateCampaingComponent
     },
     {
         path: 'others',

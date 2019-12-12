@@ -1,0 +1,61 @@
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<div id="wrapper">
+  <navigation [loginInfo]="loginInfo" *ngIf="loginInfo"></navigation>
+
+  <div id="page-wrapper" class="gray-bg">
+
+    <topnavbar></topnavbar>
+
+    <div class="container">
+      <div class="table-wrapper">
+        <div class="table-title">
+          <div class="row">
+            <div class="col-sm-8">
+              <h2>Campaing <b>Details</b></h2>
+            </div>
+            <div class="col-sm-4">
+              <button type="button" (click)="addNew()" class="btn btn-info add-new"><i class="fa fa-plus"></i> Add
+                New</button>
+            </div>
+          </div>
+        </div>
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>Id</th>
+              <th>Name</th>
+              <th>Phone</th>
+              <th>Status</th>
+              <th>Actions</th>
+              <th>Delete</th>
+
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let user of users">
+              <td>{{user.id}}</td>
+              <td>{{user.name}}</td>
+              <td>{{user.phonenumber}}</td>
+              <td>{{user.status}}</td>
+              <td>
+                <a class="edit" (click)="updateUser(user.id)" title="Edit" data-toggle="tooltip"><i
+                    class="material-icons">&#xE254;</i></a>
+
+                <a class="edit" (click)="cloneUser(user.id)" title="Edit" data-toggle="tooltip"><i
+                    class="material-icons content_copy">&#xe14d;</i></a>
+                </td>
+                <td>
+                <a class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="footer">
+      <div>
+        <strong>Copyright</strong> vici dial &copy; 2019
+      </div>
+    </div>
+  </div>
+</div>

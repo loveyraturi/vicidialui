@@ -20,7 +20,12 @@ import { UserService } from './services/user.service';
 import { GroupService } from './services/group.service';
 import { UpdateUserComponent } from './components/update-user/update-user.component';
 import { CloneUserComponent } from './components/clone-user/clone-user.component';
-
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CreateCampaingComponent } from './components/create-campaing/create-campaing.component';
+import { ShowCampaingComponent } from './components/show-campaing/show-campaing.component';
+import { UpdateCampaingComponent } from './components/update-campaing/update-campaing.component';
+import { CloneCampaingComponent } from './components/clone-campaing/clone-campaing.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,7 +37,11 @@ import { CloneUserComponent } from './components/clone-user/clone-user.component
     ShowUsersComponent,
     DefaultComponent,
     UpdateUserComponent,
-    CloneUserComponent
+    CloneUserComponent,
+    CreateCampaingComponent,
+    ShowCampaingComponent,
+    UpdateCampaingComponent,
+    CloneCampaingComponent
   ],
   imports: [
     BrowserModule,
@@ -40,6 +49,8 @@ import { CloneUserComponent } from './components/clone-user/clone-user.component
     HttpModule,
     ReactiveFormsModule,
     HttpClientModule,
+    BrowserAnimationsModule,
+    MatSnackBarModule,
     RouterModule.forRoot(appRoutes)
   ],
   providers: [PlatformService,AuthService,UserService,GroupService],

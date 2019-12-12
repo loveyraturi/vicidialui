@@ -7,11 +7,11 @@ import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms'
 import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
-  selector: 'app-create-user',
-  templateUrl: './create-user.component.html',
-  styleUrls: ['./create-user.component.css']
+  selector: 'app-create-campaing',
+  templateUrl: './create-campaing.component.html',
+  styleUrls: ['./create-campaing.component.css']
 })
-export class CreateUserComponent implements OnInit {
+export class CreateCampaingComponent implements OnInit {
   public registerform: any = FormGroup;
   public username;
   loginInfo: Login = {
@@ -58,10 +58,18 @@ export class CreateUserComponent implements OnInit {
     this.registerform = this.formBuilder.group({
       name: new FormControl('', [Validators.required]),
       group: new FormControl('', Validators.required),
-      phonenumber: new FormControl('', Validators.required),
-      status: new FormControl('', Validators.required),
-      password: new FormControl('', Validators.required),
-      confpass: new FormControl('', Validators.required),
+      description: new FormControl('', Validators.required),
+      webform: new FormControl('', Validators.required),
+      adminusergroup: new FormControl('', Validators.required),
+      hopperlevel: new FormControl('', Validators.required),
+      closers: new FormControl('', Validators.required),
+      autodiallevel: new FormControl('', Validators.required),
+      localtimecall: new FormControl('', Validators.required),
+      nextcall: new FormControl('', Validators.required),
+      getcalllaunch: new FormControl('', Validators.required),
+      script: new FormControl('', Validators.required),
+      groupdiscription: new FormControl('', Validators.required),
+      active: new FormControl('', Validators.required),
     });
 
   }
