@@ -39,16 +39,16 @@ public users;
   }
   updateUser(id){
     console.log("%$#@%$@#$",id)
-    localStorage.setItem("update_id",id);
-    this.router.navigateByUrl("/updateUser")
+    localStorage.setItem("update_campaing_id",id);
+    this.router.navigateByUrl("/updateCampaing")
   }
   cloneUser(id){
     console.log("%$#@%$@#$",id)
-    localStorage.setItem("clone_id",id);
-    this.router.navigateByUrl("/cloneUser")
+    localStorage.setItem("clone_campaing_id",id);
+    this.router.navigateByUrl("/cloneCampaing")
   }
   addNew(){
-    this.router.navigateByUrl("/createUser")
+    this.router.navigateByUrl("/createCampaing")
   }
 
 }

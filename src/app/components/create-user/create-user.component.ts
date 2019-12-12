@@ -54,7 +54,6 @@ export class CreateUserComponent implements OnInit {
   }
 
   private createForm(): void {
-
     this.registerform = this.formBuilder.group({
       name: new FormControl('', [Validators.required]),
       group: new FormControl('', Validators.required),
@@ -62,8 +61,8 @@ export class CreateUserComponent implements OnInit {
       status: new FormControl('', Validators.required),
       password: new FormControl('', Validators.required),
       confpass: new FormControl('', Validators.required),
+      level: new FormControl('', Validators.required),
     });
-
   }
   submit({data}){
 console.log(data)

@@ -23,7 +23,7 @@ export class CloneCampaingComponent implements OnInit {
   public groupsById;
   constructor(private userService: UserService, private groupService: GroupService, private router: Router) {
     this.fetchGroups()
-    this.fetchusersById(localStorage.getItem("update_id"));
+    this.fetchusersById(localStorage.getItem("clone_campaing_id"));
   }
   ngOnInit() {
 
