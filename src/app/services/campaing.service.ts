@@ -9,13 +9,13 @@ const httpOptions = {
 };
 
 @Injectable()
-export class UserService {
+export class CampaingService {
 
   constructor(private http: HttpClient) { }
 
-  createUser(request): Observable<any> {
+  createCampaing(request): Observable<any> {
     return this.http
-      .post('http://192.168.100.126:4011/api/user/createuser', request)
+      .post('http://localhost:4011/api/campaing/createcampaing', request)
       .map(
         res => {
           return res;
@@ -25,9 +25,9 @@ export class UserService {
         }
       )
   }
-  fetchUser(): Observable<any> {
+  fetchCampaing(): Observable<any> {
     return this.http
-      .get('http://192.168.100.126:4011/api/user/fetchusers')
+      .get('http://localhost:4011/api/campaing/fetchcampaing')
       .map(
         res => {
           return res;
@@ -37,9 +37,9 @@ export class UserService {
         }
       )
   }
-  fetchusersById(id): Observable<any> {
+  fetchCampaingsById(id): Observable<any> {
     return this.http
-      .get('http://192.168.100.126:4011/api/user/fetchusersById/'+id)
+      .get('http://localhost:4011/api/campaing/fetchCampaingById/'+id)
       .map(
         res => {
           return res;
@@ -49,9 +49,9 @@ export class UserService {
         }
       )
   }
-  deleteUser(id): Observable<any> {
+  deleteCampaing(id): Observable<any> {
     return this.http
-      .get('http://192.168.100.126:4011/api/user/deleteuser/' + id)
+      .get('http://localhost:4011/api/campaing/deletecampaing/' + id)
       .map(
         res => {
           return res;
@@ -62,9 +62,9 @@ export class UserService {
       )
   }
 
-  updateUser(request): Observable<any> {
+  updateCampaing(request): Observable<any> {
     return this.http
-      .put('http://192.168.100.126:4011/api/user/updateuser', request)
+      .put('http://localhost:4011/api/campaing/updatecampaing', request)
       .map(
         res => {
           return res;

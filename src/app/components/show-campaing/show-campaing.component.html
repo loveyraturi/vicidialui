@@ -24,7 +24,7 @@
             <tr>
               <th>Id</th>
               <th>Name</th>
-              <th>Phone</th>
+              <th>Lead order</th>
               <th>Status</th>
               <th>Actions</th>
               <th>Delete</th>
@@ -32,20 +32,20 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let user of users">
-              <td>{{user.id}}</td>
-              <td>{{user.name}}</td>
-              <td>{{user.phonenumber}}</td>
-              <td>{{user.status}}</td>
+            <tr *ngFor="let campaing of campaings">
+              <td>{{campaing.campaign_id}}</td>
+              <td>{{campaing.campaign_name}}</td>
+              <td>{{campaing.lead_order}}</td>
+              <td>{{campaing.active}}</td>
               <td>
-                <a class="edit" (click)="updateUser(user.id)" title="Edit" data-toggle="tooltip"><i
+                <a class="edit" (click)="updateCampaing(campaing.campaign_id)" title="Edit" data-toggle="tooltip"><i
                     class="material-icons">&#xE254;</i></a>
 
-                <a class="edit" (click)="cloneUser(user.id)" title="Edit" data-toggle="tooltip"><i
+                <a class="edit" (click)="cloneCampaing(campaing.campaign_id)" title="Edit" data-toggle="tooltip"><i
                     class="material-icons content_copy">&#xe14d;</i></a>
                 </td>
                 <td>
-                <a class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
+                <a class="delete" (click)="deleteCampaing(campaing.campaign_id)" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
               </td>
             </tr>
           </tbody>

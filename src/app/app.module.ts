@@ -24,6 +24,7 @@ import { CreateCampaingComponent } from './components/create-campaing/create-cam
 import { ShowCampaingComponent } from './components/show-campaing/show-campaing.component';
 import { UpdateCampaingComponent } from './components/update-campaing/update-campaing.component';
 import { CloneCampaingComponent } from './components/clone-campaing/clone-campaing.component';
+import { CampaingService } from './services/campaing.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -49,7 +50,7 @@ import { CloneCampaingComponent } from './components/clone-campaing/clone-campai
     HttpClientModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [PlatformService,AuthService,UserService,GroupService],
+  providers: [PlatformService,AuthService,UserService,GroupService,CampaingService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

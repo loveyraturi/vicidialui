@@ -13,96 +13,100 @@
   
             <div class="panel panel-default box-shadow">
               <div class="panel-heading">
-                <span class="text-primary">Create</span>
+                <span class="text-primary">Update</span>
                 <span class="text-muted pull-right today" title="Today"></span>
               </div>
               <!--.panel-heading-->
   
               <div class="panel-body">
-                <form method="POST">
+                <form [formGroup]="registerform" (submit)="submit(registerform)" method="POST">
   
                   <div class="form-group">
-                    <label for="email">Name</label>
+                    <label for="name">Name</label>
                     <div class="input-group">
-                      <div class="input-group-addon"><i class="glyphicon glyphicon-tasks"></i></div>
-                      <input autofocus required type="email" id="email" class="form-control" placeholder="Your email"
-                        tabindex="1" name="email" [(ngModel)]="name">
+                      <div class="input-group-addon"><i class="glyphicon glyphicon-book"></i></div>
+                      <input autofocus required type="text" formControlName="name" name="name" id="name"
+                        class="form-control" placeholder="Your Name" tabindex="1" [(ngModel)]="name">
+                    </div>
+                  </div>
+                         <input autofocus required type="hidden" formControlName="id" name="id" id="id"
+                          class="form-control" placeholder="Your id" tabindex="1" [(ngModel)]="id">
+                      
+                  <div class="form-group">
+                    <label for="group">Group</label>
+                    <div class="input-group">
+                      <div class="input-group-addon"><i class="glyphicon glyphicon-user"></i></div>
+                      <select class="mdb-select md-form form-control"  [(ngModel)]="groupId" formControlName="group">
+                        <option value="" disabled selected>Choose your option</option>
+                        <option *ngFor="let group of groups" value="{{group.name}}">{{group.name}}</option>
+                      </select>
                     </div>
                   </div>
                   <div class="form-group">
-                      <label for="group">Group</label>
+                      <label for="level">User Level</label>
                       <div class="input-group">
-                        <div class="input-group-addon"><i class="glyphicon glyphicon-tasks"></i></div>
-                        <select  class="mdb-select md-form form-control" name="group" [(ngModel)]="groupId"  >
-                            <!-- <option value="" disabled selected>Choose your option</option> -->
-                            <option *ngFor="let group of groups" value="group.id" >{{group.id}}{{group.name}}</option>
-                          </select>
+                        <div class="input-group-addon"><i class="glyphicon glyphicon-level-up"></i></div>
+                        <select class="mdb-select md-form form-control" [(ngModel)]="level" formControlName="level">
+                          <option value="" disabled selected>Choose user level</option>
+                          <option  value="0">0</option>
+                          <option  value="1">1</option>
+                          <option  value="2">2</option>
+                          <option  value="3">3</option>
+                          <option  value="4">4</option>
+                          <option  value="5">5</option>
+                          <option  value="6">6</option>
+                          <option  value="7">7</option>
+                          <option  value="8">8</option>
+                          <option  value="9">9</option>
+                        </select>
                       </div>
                     </div>
-                    <div class="form-group">
-                        <label for="level">User Level</label>
-                        <div class="input-group">
-                          <div class="input-group-addon"><i class="glyphicon glyphicon-tasks"></i></div>
-                          <select class="mdb-select md-form form-control" formControlName="level">
-                            <option value="" disabled selected>Choose user level</option>
-                            <option  value="0">0</option>
-                            <option  value="1">1</option>
-                            <option  value="2">2</option>
-                            <option  value="3">3</option>
-                            <option  value="4">4</option>
-                            <option  value="5">5</option>
-                            <option  value="6">6</option>
-                            <option  value="7">7</option>
-                            <option  value="8">8</option>
-                            <option  value="9">9</option>
-                          </select>
-                        </div>
-                      </div>
                   <div class="form-group">
                     <label for="Number">Phone Number</label>
                     <div class="input-group">
                       <div class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></div>
-                      <input autofocus required type="text" name="phonenumber" [(ngModel)]="phonenumber" id="email" class="form-control" placeholder="Your phone number"
-                        tabindex="1">
+                      <input autofocus required type="text" [(ngModel)]="phonenumber" formControlName="phonenumber" name="phonenumber"
+                        id="phonenumber" class="form-control" placeholder="Your phone number" tabindex="1">
                     </div>
                   </div>
                   <div class="form-group">
                     <label for="email">Status</label>
                     <div class="input-group">
                       <div class="input-group-addon"><i class="glyphicon glyphicon-tasks"></i></div>
-                      <input autofocus required type="text" name="status"  [(ngModel)]="status" id="status" class="form-control" placeholder="Your status"
-                        tabindex="1">
+                      <input autofocus required type="text" formControlName="status" [(ngModel)]="status" name="status" id="status"
+                        class="form-control" placeholder="Your status" tabindex="1">
                     </div>
                   </div>
                   <div class="form-group">
                     <label for="password">Password</label>
                     <div class="input-group">
                       <div class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></div>
-                      <input required type="text" class="form-control" placeholder="Your password" tabindex="2">
+                      <input required type="text" [(ngModel)]="password" formControlName="password" class="form-control"
+                        placeholder="Your password" tabindex="2">
                     </div>
                   </div>
                   <div class="form-group">
                     <label for="password">Retype Password</label>
                     <div class="input-group">
                       <div class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></div>
-                      <input required type="text" class="form-control" placeholder="Retype Your password" tabindex="2">
+                      <input required type="text" [(ngModel)]="password" formControlName="confpass" class="form-control"
+                        placeholder="Retype Your password" tabindex="2">
                     </div>
                   </div>
-                  <a href="#create-account" class="btn btn-block btn-success" tabindex="5">Create account</a>
+                  <button type="submit" class="btn btn-block btn-success" tabindex="5">Create account</button>
                 </form>
               </div>
             </div>
             <!--.panel-->
-            
+  
           </div>
         </div>
       </div>
       <div class="footer">
-          <div>
-            <strong>Copyright</strong> vici dial &copy; 2019
-          </div>
+        <div>
+          <strong>Copyright</strong> vici dial &copy; 2019
         </div>
+      </div>
     </div>
-    
   </div>
   
