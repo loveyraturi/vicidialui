@@ -25,6 +25,7 @@ import { ShowCampaingComponent } from './components/show-campaing/show-campaing.
 import { UpdateCampaingComponent } from './components/update-campaing/update-campaing.component';
 import { CloneCampaingComponent } from './components/clone-campaing/clone-campaing.component';
 import { CampaingService } from './services/campaing.service';
+import { UiSwitchModule } from 'ngx-toggle-switch';
 @NgModule({
   declarations: [
     AppComponent,
@@ -48,6 +49,7 @@ import { CampaingService } from './services/campaing.service';
     HttpModule,
     ReactiveFormsModule,
     HttpClientModule,
+    UiSwitchModule,
     RouterModule.forRoot(appRoutes)
   ],
   providers: [PlatformService,AuthService,UserService,GroupService,CampaingService],

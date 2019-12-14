@@ -36,7 +36,7 @@
               <td>{{user.user_id}}</td>
               <td>{{user.full_name}}</td>
               <td>{{user.phone_login}}</td>
-              <td>{{user.active}}</td>
+              <td><ui-switch size="small" [(ngModel)]="user.enable" (change)="onChange($event,user.user_id)"></ui-switch></td>
               <td>
                 <a class="edit" (click)="updateUser(user.user_id)" title="Edit" data-toggle="tooltip"><i
                     class="material-icons">&#xE254;</i></a>

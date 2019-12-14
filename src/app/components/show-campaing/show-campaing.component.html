@@ -36,7 +36,7 @@
               <td>{{campaing.campaign_id}}</td>
               <td>{{campaing.campaign_name}}</td>
               <td>{{campaing.lead_order}}</td>
-              <td>{{campaing.active}}</td>
+              <td><ui-switch size="small" [(ngModel)]="campaing.enable" (change)="onChange($event,campaing.campaign_id)"></ui-switch></td>
               <td>
                 <a class="edit" (click)="updateCampaing(campaing.campaign_id)" title="Edit" data-toggle="tooltip"><i
                     class="material-icons">&#xE254;</i></a>

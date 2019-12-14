@@ -61,7 +61,18 @@ export class CampaingService {
         }
       )
   }
-
+  updateCampaingStatus(request): Observable<any> {
+    return this.http
+      .put('http://localhost:4011/api/campaing/updatecampaingstatus', request)
+      .map(
+        res => {
+          return res;
+        },
+        err => {
+          return err;
+        }
+      )
+  }
   updateCampaing(request): Observable<any> {
     return this.http
       .put('http://localhost:4011/api/campaing/updatecampaing', request)

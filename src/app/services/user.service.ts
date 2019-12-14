@@ -15,7 +15,7 @@ export class UserService {
 
   createUser(request): Observable<any> {
     return this.http
-      .post('http://192.168.100.126:4011/api/user/createuser', request)
+      .post('http://localhost:4011/api/user/createuser', request)
       .map(
         res => {
           return res;
@@ -27,7 +27,7 @@ export class UserService {
   }
   fetchUser(): Observable<any> {
     return this.http
-      .get('http://192.168.100.126:4011/api/user/fetchusers')
+      .get('http://localhost:4011/api/user/fetchusers')
       .map(
         res => {
           return res;
@@ -39,7 +39,7 @@ export class UserService {
   }
   fetchusersById(id): Observable<any> {
     return this.http
-      .get('http://192.168.100.126:4011/api/user/fetchusersById/'+id)
+      .get('http://localhost:4011/api/user/fetchusersById/'+id)
       .map(
         res => {
           return res;
@@ -51,7 +51,7 @@ export class UserService {
   }
   deleteUser(id): Observable<any> {
     return this.http
-      .get('http://192.168.100.126:4011/api/user/deleteuser/' + id)
+      .get('http://localhost:4011/api/user/deleteuser/' + id)
       .map(
         res => {
           return res;
@@ -64,7 +64,20 @@ export class UserService {
 
   updateUser(request): Observable<any> {
     return this.http
-      .put('http://192.168.100.126:4011/api/user/updateuser', request)
+      .put('http://localhost:4011/api/user/updateuser', request)
+      .map(
+        res => {
+          return res;
+        },
+        err => {
+          return err;
+        }
+      )
+  }
+
+  updateUserStatus(request): Observable<any> {
+    return this.http
+      .put('http://localhost:4011/api/user/updateuserstatus', request)
       .map(
         res => {
           return res;

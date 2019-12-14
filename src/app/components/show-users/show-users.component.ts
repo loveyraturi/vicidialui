@@ -10,44 +10,71 @@ import { Router } from '@angular/router';
   styleUrls: ['./show-users.component.css']
 })
 export class ShowUsersComponent implements OnInit {
+  public active;
   public username;
-  public currentElementIndex=1;
-  loginInfo:Login={user_name:null,
-}
-public users;
-  constructor(private userService: UserService, private groupService: GroupService, private router: Router) { 
+  public currentElementIndex = 1;
+  loginInfo: Login = {
+    user_name: null,
+  }
+  public users;
+  constructor(private userService: UserService, private groupService: GroupService, private router: Router) {
     this.fetchUsers();
-   
-   // this.phonenumber=localStorage.getItem("phone_number")
-    
+
+    // this.phonenumber=localStorage.getItem("phone_number")
+
   }
   ngOnInit() {
-     
-      this.username= localStorage.getItem("user_name")
-      this.loginInfo.user_name=this.username;
-      console.log(this.username)
+
+    this.username = localStorage.getItem("user_name")
+    this.loginInfo.user_name = this.username;
+    console.log(this.username)
 
   }
 
-  fetchUsers(){
+  fetchUsers() {
     this.userService.fetchUser().subscribe(
       data => {
-        this.users=data
-        console.log(data)
+        this.users = data
+        this.users = this.users.map(item => {
+          if (item.active == "Y") {
+            item.enable = true
+          } else {
+            item.enable = false
+          }
+          return item
+        })
+        console.log(this.users)
 
       })
   }
-  updateUser(id){
-    console.log("%$#@%$@#$",id)
-    localStorage.setItem("update_id",id);
+  updateUser(id) {
+    console.log(this.active, "%$#@%$@#$", id)
+    localStorage.setItem("update_id", id);
     this.router.navigateByUrl("/updateUser")
   }
-  cloneUser(id){
-    console.log("%$#@%$@#$",id)
-    localStorage.setItem("clone_id",id);
+  onChange(event,id) {
+    console.log("###############", event)
+    if (event) {
+      this.active = "Y"
+    } else {
+      this.active = "N"
+    }
+    var req={
+      user_id: id,
+      active: this.active
+    }
+    this.userService.updateUserStatus(req).subscribe(
+      data => {
+        this.fetchUsers()
+      })
+     
+  }
+  cloneUser(id) {
+    console.log("%$#@%$@#$", id)
+    localStorage.setItem("clone_id", id);
     this.router.navigateByUrl("/cloneUser")
   }
-  addNew(){
+  addNew() {
     this.router.navigateByUrl("/createUser")
   }
 
