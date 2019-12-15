@@ -70,12 +70,12 @@ export class CreateCampaingComponent implements OnInit {
       next_agent_call: new FormControl('', Validators.required),
       get_call_launch: new FormControl('', Validators.required),
       campaign_script: new FormControl('', Validators.required),
-           active: new FormControl('', Validators.required),
+      active: new FormControl('', Validators.required),
 
     }),
     group: new FormGroup({
-      group: new FormControl('', Validators.required),
-      groupdiscription: new FormControl('', Validators.required),
+      user_group: new FormControl('', Validators.required),
+      group_name: new FormControl('', Validators.required),
     allowed_campaigns: new FormControl('', Validators.required),
     
     })

@@ -1,7 +1,9 @@
+
+import {map} from 'rxjs/operators';
 import {Injectable} from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/toPromise';
+
+
 import { Observable } from 'rxjs';
 
 const httpOptions = {
@@ -15,14 +17,14 @@ export class AuthService {
 
     validateLogin(ruleConf): Observable<any> {
         return this.http
-          .post('http://localhost:4011/api/user/auth', ruleConf)
-          .map(
+          .post('http://localhost:4011/api/user/auth', ruleConf).pipe(
+          map(
             res => {
                 return res;
               },
               err => {
                 return err;
               }
-          )
+          ))
     }
 }

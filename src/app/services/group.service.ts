@@ -1,7 +1,9 @@
+
+import {map} from 'rxjs/operators';
 import {Injectable} from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/toPromise';
+
+
 import { Observable } from 'rxjs';
 
 const httpOptions = {
@@ -15,27 +17,27 @@ export class GroupService {
 
     fetchGroups(): Observable<any> {
         return this.http
-          .get('http://localhost:4011/api/user/fetchgroups')
-          .map(
+          .get('http://localhost:4011/api/user/fetchgroups').pipe(
+          map(
             res => {
                 return res;
               },
               err => {
                 return err;
               }
-          )
+          ))
     }
 
     fetchGroupsById(id): Observable<any> {
         return this.http
-          .get('http://localhost:4011/api/user/fetchgroupsbyuser/'+id)
-          .map(
+          .get('http://localhost:4011/api/user/fetchgroupsbyuser/'+id).pipe(
+          map(
             res => {
                 return res;
               },
               err => {
                 return err;
               }
-          )
+          ))
     }
 }
