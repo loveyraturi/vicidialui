@@ -38,9 +38,9 @@ export class UpdateCampaingComponent implements OnInit {
   public groups;
   public groupName;
   public campaingById;
-  constructor(private campaingService: CampaingService, private groupService: GroupService, private router: Router,private formBuilder: FormBuilder) {
+  constructor(private campaingService: CampaingService, private groupService: GroupService, private router: Router, private formBuilder: FormBuilder) {
     this.fetchGroups()
-    
+
     this.fetchCampaingById(localStorage.getItem("update_campaing_id"));
   }
   ngOnInit() {
@@ -62,7 +62,7 @@ export class UpdateCampaingComponent implements OnInit {
     this.groupService.fetchGroups().subscribe(
       data => {
         this.groups = data
-        console.log("groupdata#######",data)
+        console.log("groupdata#######", data)
 
       })
   }
@@ -85,30 +85,44 @@ export class UpdateCampaingComponent implements OnInit {
         this.campaign_script = this.campaingById.campaign_script
         this.get_call_launch = this.campaingById.get_call_launch
         this.active = this.campaingById.active
+        console.log(this.campaign_id,"camoaingdi")
       })
-      
+     
+
   }
   private createForm(): void {
 
-    this.registerform = this.formBuilder.group({
-      name: new FormControl('', [Validators.required]),
-      group: new FormControl('', Validators.required),
-      description: new FormControl('', Validators.required),
-      webform: new FormControl('', Validators.required),
-      adminusergroup: new FormControl('', Validators.required),
-      hopperlevel: new FormControl('', Validators.required),
-      closers: new FormControl('', Validators.required),
-      autodiallevel: new FormControl('', Validators.required),
-      localtimecall: new FormControl('', Validators.required),
-      nextcall: new FormControl('', Validators.required),
-      getcalllaunch: new FormControl('', Validators.required),
-      script: new FormControl('', Validators.required),
-      groupdiscription: new FormControl('', Validators.required),
-      active: new FormControl('', Validators.required),
+    this.registerform = new FormGroup({
+      campaign: new FormGroup({
+        campaign_id:  new FormControl('', [Validators.required]),
+        campaign_name: new FormControl('', [Validators.required]),
+        campaign_description: new FormControl('', Validators.required),
+        web_form_address: new FormControl('', Validators.required),
+        user_group: new FormControl('', Validators.required),
+        hopper_level: new FormControl('', Validators.required),
+        allow_closers: new FormControl('', Validators.required),
+        auto_dial_level: new FormControl('', Validators.required),
+        local_call_time: new FormControl('', Validators.required),
+        next_agent_call: new FormControl('', Validators.required),
+        get_call_launch: new FormControl('', Validators.required),
+        campaign_script: new FormControl('', Validators.required),
+        active: new FormControl('', Validators.required),
+
+      }),
+      group: new FormGroup({
+        user_group: new FormControl('', Validators.required),
+        group_name: new FormControl('', Validators.required),
+        allowed_campaigns: new FormControl('', Validators.required),
+
+      })
     });
 
   }
-  submit({data}){
-console.log(data)
+
+  submit({ value }: any): void {
+    console.log(value)
+    this.update(value);
+    
   }
+
 }

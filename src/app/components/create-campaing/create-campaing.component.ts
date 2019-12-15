@@ -103,7 +103,6 @@ export class CreateCampaingComponent implements OnInit {
 
   // }
   submit({ value }: any): void {
-    debugger;
     this.createCampaign(value);
     
   }

@@ -20,212 +20,219 @@
 
             <div class="panel-body">
               <form [formGroup]="registerform" (submit)="submit(registerform)" method="POST">
-
-                <div class="form-group">
-                  <label for="name">Name</label>
-                  <div class="input-group">
-                    <div class="input-group-addon"><i class="glyphicon glyphicon-tasks"></i></div>
-                    <input autofocus required type="text" [(ngModel)]="campaign_name" formControlName="name" name="name"
-                      id="name" class="form-control" placeholder="Your Name" tabindex="1">
+                <div formGroupName="campaign">
+                  <div class="form-group">
+                    <label for="name">Name</label>
+                    <div class="input-group">
+                      <div class="input-group-addon"><i class="glyphicon glyphicon-tasks"></i></div>
+                      <input autofocus required type="text" [(ngModel)]="campaign_name" formControlName="campaign_name"
+                        name="name" id="name" class="form-control" placeholder="Your Name" tabindex="1">
+                    </div>
+                  </div>
+                  <input type="hidden" [(ngModel)]="campaign_id" formControlName="campaign_id"
+                  name="id" id="id" class="form-control" tabindex="1">
+            
+                  <div class="form-group">
+                    <label for="Description">Description</label>
+                    <div class="input-group">
+                      <div class="input-group-addon"><i class="glyphicon glyphicon-bookmark"></i></div>
+                      <textarea autofocus required type="text" [(ngModel)]="campaign_description"
+                        formControlName="campaign_description" name="description" id="description" class="form-control"
+                        placeholder="Your description" tabindex="1"></textarea>
+                    </div>
+                  </div>
+                  <div class="form-group col-xs-6">
+                    <label for="adminusergroup">Admin User Group</label>
+                    <div class="input-group">
+                      <div class="input-group-addon"><i class="glyphicon glyphicon-user"></i></div>
+                      <select class="mdb-select md-form form-control" [(ngModel)]="user_group"
+                        formControlName="user_group">
+                        <option value="" disabled selected>Choose your option</option>
+                        <option *ngFor="let group of groups" value="{{group.user_group}}">{{group.user_group}}</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="form-group col-xs-6">
+                    <label for="webform">Web Form</label>
+                    <div class="input-group">
+                      <div class="input-group-addon"><i class="glyphicon glyphicon-globe"></i></div>
+                      <input autofocus required type="text" [(ngModel)]="web_form_address"
+                        formControlName="web_form_address" name="webform" id="webform" class="form-control"
+                        placeholder="Your webform" tabindex="1">
+                    </div>
+                  </div>
+                  <div class="form-group col-xs-6">
+                    <label for="closers">Allow Closers</label>
+                    <div class="input-group">
+                      <div class="input-group-addon"><i class="glyphicon glyphicon-tasks"></i></div>
+                      <select class="mdb-select md-form form-control" [(ngModel)]="allow_closers"
+                        formControlName="allow_closers">
+                        <option value="" disabled selected>Choose your option</option>
+                        <option value="Y">Y</option>
+                        <option value="N">N</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="form-group col-xs-6">
+                    <label for="hopperlevel">Mimimum Hopper Level</label>
+                    <div class="input-group">
+                      <div class="input-group-addon"><i class="glyphicon glyphicon-level-up"></i></div>
+                      <select class="mdb-select md-form form-control" [(ngModel)]="hopper_level"
+                        formControlName="hopper_level">
+                        <option value="" disabled selected>Choose your option</option>
+                        <option value="1">1</option>
+                        <option value="5">5</option>
+                        <option value="10">10</option>
+                        <option value="20">20</option>
+                        <option value="50">50</option>
+                        <option value="100">100</option>
+                        <option value="200">200</option>
+                        <option value="500">500</option>
+                        <option value="700">700</option>
+                        <option value="1000">1000</option>
+                        <option value="2000">2000</option>
+                        <option value="5000">5000</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="form-group col-xs-6">
+                    <label for="autodiallevel">Auto Dial Level</label>
+                    <div class="input-group">
+                      <div class="input-group-addon"><i class="glyphicon glyphicon-bell"></i></div>
+                      <select class="mdb-select md-form form-control" [(ngModel)]="auto_dial_level"
+                        formControlName="auto_dial_level">
+                        <option value="" disabled selected>Choose your option</option>
+                        <option value="1">1</option>
+                        <option value="1.5">1.5</option>
+                        <option value="2">2</option>
+                        <option value="2.5">2.5</option>
+                        <option value="3">3</option>
+                        <option value="3.5">3.5</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="8">8</option>
+                        <option value="10">10</option>
+                        <option value="12">12</option>
+                        <option value="16">16</option>
+                        <option value="20">20</option>
+                        <option value="25">25</option>
+                        <option value="30">30</option>
+                        <option value="33">33</option>
+                        <option value="35">35</option>
+                        <option value="40">40</option>
+                        <option value="50">50</option>
+                        <option value="60">60</option>
+                        <option value="70">70</option>
+                        <option value="80">80</option>
+                        <option value="90">90</option>
+                        <option value="100">100</option>
+                        <option value="110">110</option>
+                        <option value="120">120</option>
+                        <option value="130">130</option>
+                        <option value="140">140</option>
+                        <option value="150">150</option>
+                        <option value="160">160</option>
+                        <option value="170">170</option>
+                        <option value="180">180</option>
+                        <option value="190">190</option>
+                        <option value="200">200</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="form-group col-xs-6">
+                    <label for="nextcall">Next Agent Call</label>
+                    <div class="input-group">
+                      <div class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></div>
+                      <select class="mdb-select md-form form-control" [(ngModel)]="next_agent_call"
+                        formControlName="next_agent_call">
+                        <option value="" disabled selected>Choose your option</option>
+                        <option value='random'>random</option>
+                        <option value='oldest_call_start'>oldest_call_start</option>
+                        <option value='oldest_call_finish'>oldest_call_finish</option>
+                        <option value='overall_user_level'>overall_user_level</option>
+                        <option value='campaign_rank'>campaign_rank</option>
+                        <option value='campaign_grade_random'>campaign_grade_random</option>
+                        <option value='fewest_calls'>fewest_calls</option>
+                        <option value='longest_wait_time'>longest_wait_time</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="form-group col-xs-6">
+                    <label for="localtimecall">Local Call Time</label>
+                    <div class="input-group">
+                      <div class="input-group-addon"><i class="glyphicon glyphicon-time"></i></div>
+                      <select class="mdb-select md-form form-control" [(ngModel)]="local_call_time"
+                        formControlName="local_call_time">
+                        <option value="" disabled selected>Choose your option</option>
+                        <option value="12pm-5pm">12pm-5pm - default 12pm to 5pm calling</option>
+                        <option value="12pm-9pm">12pm-9pm - default 12pm to 9pm calling</option>
+                        <option value="24hours">24hours - default 24 hours calling</option>
+                        <option value="5pm-9pm">5pm-9pm - default 5pm to 9pm calling</option>
+                        <option value="9am-5pm">9am-5pm - default 9am to 5pm calling</option>
+                        <option value="9am-9pm">9am-9pm - default 9am to 9pm calling</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="script">Script</label>
+                    <div class="input-group">
+                      <div class="input-group-addon"><i class="glyphicon glyphicon-barcode"></i></div>
+                      <select class="mdb-select md-form form-control" [(ngModel)]="campaign_script"
+                        formControlName="campaign_script">
+                        <option value="" disabled selected>Choose your option</option>
+                        <option value="">NONE</option>
+                        <option value="CALLNOTES">CALLNOTES - Call Notes and Appointment Setting</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="getcalllaunch">Get Call Launch</label>
+                    <div class="input-group">
+                      <div class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></div>
+                      <select class="mdb-select md-form form-control" [(ngModel)]="get_call_launch"
+                        formControlName="get_call_launch">
+                        <option value="" disabled selected>Choose your option</option>
+                        <option value="NONE">NONE</option>
+                        <option value="SCRIPT">SCRIPT</option>
+                        <option value="WEBFORM">WEBFORM</option>
+                        <option value="WEBFORMTWO">WEBFORMTWO</option>
+                        <option value="WEBFORMTHREE">WEBFORMTHREE</option>
+                        <option value="FORM">FORM</option>
+                        <option value="PREVIEW_WEBFORM">PREVIEW_WEBFORM</option>
+                        <option value="PREVIEW_WEBFORMTWO">PREVIEW_WEBFORMTWO</option>
+                        <option value="PREVIEW_WEBFORMTHREE">PREVIEW_WEBFORMTHREE</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="Active">Active</label>
+                    <div class="input-group">
+                      <div class="input-group-addon"><i class="glyphicon glyphicon-star"></i></div>
+                      <select class="mdb-select md-form form-control" formControlName="active" [(ngModel)]="active"
+                        name="active" id="active">
+                        <option value="" disabled selected>Choose your option</option>
+                        <option value="Y">Y</option>
+                        <option value="N">N</option>
+                      </select>
+                    </div>
                   </div>
                 </div>
-                <div class="form-group">
-                  <label for="Description">Description</label>
-                  <div class="input-group">
-                    <div class="input-group-addon"><i class="glyphicon glyphicon-bookmark"></i></div>
-                    <textarea autofocus required type="text" [(ngModel)]="campaign_description"
-                      formControlName="description" name="description" id="description" class="form-control"
-                      placeholder="Your description" tabindex="1"></textarea>
+                <div formGroupName="group">
+                  <div class="form-group">
+                    <label for="group">Group</label>
+                    <div class="input-group">
+                      <div class="input-group-addon"><i class="glyphicon glyphicon-user"></i></div>
+                      <input autofocus required type="text" formControlName="user_group" name="group" id="group"
+                        class="form-control" placeholder="Your Group" tabindex="1">
+                    </div>
                   </div>
-                </div>
-                <div class="form-group col-xs-6">
-                  <label for="adminusergroup">Admin User Group</label>
-                  <div class="input-group">
-                    <div class="input-group-addon"><i class="glyphicon glyphicon-user"></i></div>
-                    <select class="mdb-select md-form form-control" [(ngModel)]="user_group"
-                      formControlName="adminusergroup">
-                      <option value="" disabled selected>Choose your option</option>
-                      <option *ngFor="let group of groups" value="group.user_group">{{group.user_group}}</option>
-                    </select>
-                  </div>
-                </div>
-                <div class="form-group col-xs-6">
-                  <label for="webform">Web Form</label>
-                  <div class="input-group">
-                    <div class="input-group-addon"><i class="glyphicon glyphicon-globe"></i></div>
-                    <input autofocus required type="text" [(ngModel)]="web_form_address" formControlName="webform"
-                      name="webform" id="webform" class="form-control" placeholder="Your webform" tabindex="1">
-                  </div>
-                </div>
-                <div class="form-group col-xs-6">
-                  <label for="closers">Allow Closers</label>
-                  <div class="input-group">
-                    <div class="input-group-addon"><i class="glyphicon glyphicon-tasks"></i></div>
-                    <select class="mdb-select md-form form-control" [(ngModel)]="allow_closers"
-                      formControlName="closers">
-                      <option value="" disabled selected>Choose your option</option>
-                      <option value="Y">Y</option>
-                      <option value="N">N</option>
-                    </select>
-                  </div>
-                </div>
-                <div class="form-group col-xs-6">
-                  <label for="hopperlevel">Mimimum Hopper Level</label>
-                  <div class="input-group">
-                    <div class="input-group-addon"><i class="glyphicon glyphicon-level-up"></i></div>
-                    <select class="mdb-select md-form form-control" [(ngModel)]="hopper_level"
-                      formControlName="hopperlevel">
-                      <option value="" disabled selected>Choose your option</option>
-                      <option value="1">1</option>
-                      <option value="5">5</option>
-                      <option value="10">10</option>
-                      <option value="20">20</option>
-                      <option value="50">50</option>
-                      <option value="100">100</option>
-                      <option value="200">200</option>
-                      <option value="500">500</option>
-                      <option value="700">700</option>
-                      <option value="1000">1000</option>
-                      <option value="2000">2000</option>
-                      <option value="5000">5000</option>
-                    </select>
-                  </div>
-                </div>
-                <div class="form-group col-xs-6">
-                  <label for="autodiallevel">Auto Dial Level</label>
-                  <div class="input-group">
-                    <div class="input-group-addon"><i class="glyphicon glyphicon-bell"></i></div>
-                    <select class="mdb-select md-form form-control" [(ngModel)]="auto_dial_level"
-                      formControlName="autodiallevel">
-                      <option value="" disabled selected>Choose your option</option>
-                      <option value="1">1</option>
-                      <option value="1.5">1.5</option>
-                      <option value="2">2</option>
-                      <option value="2.5">2.5</option>
-                      <option value="3">3</option>
-                      <option value="3.5">3.5</option>
-                      <option value="4">4</option>
-                      <option value="5">5</option>
-                      <option value="8">8</option>
-                      <option value="10">10</option>
-                      <option value="12">12</option>
-                      <option value="16">16</option>
-                      <option value="20">20</option>
-                      <option value="25">25</option>
-                      <option value="30">30</option>
-                      <option value="33">33</option>
-                      <option value="35">35</option>
-                      <option value="40">40</option>
-                      <option value="50">50</option>
-                      <option value="60">60</option>
-                      <option value="70">70</option>
-                      <option value="80">80</option>
-                      <option value="90">90</option>
-                      <option value="100">100</option>
-                      <option value="110">110</option>
-                      <option value="120">120</option>
-                      <option value="130">130</option>
-                      <option value="140">140</option>
-                      <option value="150">150</option>
-                      <option value="160">160</option>
-                      <option value="170">170</option>
-                      <option value="180">180</option>
-                      <option value="190">190</option>
-                      <option value="200">200</option>
-                    </select>
-                  </div>
-                </div>
-                <div class="form-group col-xs-6">
-                  <label for="nextcall">Next Agent Call</label>
-                  <div class="input-group">
-                    <div class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></div>
-                    <select class="mdb-select md-form form-control" [(ngModel)]="next_agent_call"
-                      formControlName="nextcall">
-                      <option value="" disabled selected>Choose your option</option>
-                      <option value='random'>random</option>
-                      <option value='oldest_call_start'>oldest_call_start</option>
-                      <option value='oldest_call_finish'>oldest_call_finish</option>
-                      <option value='overall_user_level'>overall_user_level</option>
-                      <option value='campaign_rank'>campaign_rank</option>
-                      <option value='campaign_grade_random'>campaign_grade_random</option>
-                      <option value='fewest_calls'>fewest_calls</option>
-                      <option value='longest_wait_time'>longest_wait_time</option> 
-                    </select>
-                  </div>
-                </div>
-                <div class="form-group col-xs-6">
-                  <label for="localtimecall">Local Call Time</label>
-                  <div class="input-group">
-                    <div class="input-group-addon"><i class="glyphicon glyphicon-time"></i></div>
-                    <select class="mdb-select md-form form-control" [(ngModel)]="local_call_time"
-                      formControlName="localtimecall">
-                      <option value="" disabled selected>Choose your option</option>
-                      <option value="12pm-5pm">12pm-5pm - default 12pm to 5pm calling</option>
-                      <option value="12pm-9pm">12pm-9pm - default 12pm to 9pm calling</option>
-                      <option value="24hours">24hours - default 24 hours calling</option>
-                      <option value="5pm-9pm">5pm-9pm - default 5pm to 9pm calling</option>
-                      <option value="9am-5pm">9am-5pm - default 9am to 5pm calling</option>
-                      <option value="9am-9pm">9am-9pm - default 9am to 9pm calling</option> 
-                    </select>
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label for="script">Script</label>
-                  <div class="input-group">
-                    <div class="input-group-addon"><i class="glyphicon glyphicon-barcode"></i></div>
-                    <select class="mdb-select md-form form-control" [(ngModel)]="campaign_script"
-                      formControlName="script">
-                      <option value="" disabled selected>Choose your option</option>
-                      <option value="">NONE</option>
-                      <option value="CALLNOTES">CALLNOTES - Call Notes and Appointment Setting</option> 
-                    </select>
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label for="getcalllaunch">Get Call Launch</label>
-                  <div class="input-group">
-                    <div class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></div>
-                    <select class="mdb-select md-form form-control" [(ngModel)]="get_call_launch"
-                      formControlName="getcalllaunch">
-                      <option value="" disabled selected>Choose your option</option>
-                      <option value="NONE">NONE</option>
-                      <option value="SCRIPT">SCRIPT</option>
-                      <option value="WEBFORM">WEBFORM</option>
-                      <option value="WEBFORMTWO">WEBFORMTWO</option>
-                      <option value="WEBFORMTHREE">WEBFORMTHREE</option>
-                      <option value="FORM">FORM</option>
-                      <option value="PREVIEW_WEBFORM">PREVIEW_WEBFORM</option>
-                      <option value="PREVIEW_WEBFORMTWO">PREVIEW_WEBFORMTWO</option>
-                      <option value="PREVIEW_WEBFORMTHREE">PREVIEW_WEBFORMTHREE</option>
-                    </select>
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label for="group">Group</label>
-                  <div class="input-group">
-                    <div class="input-group-addon"><i class="glyphicon glyphicon-user"></i></div>
-                    <input autofocus required type="text" formControlName="group" name="group" id="group"
-                      class="form-control" placeholder="Your Group" tabindex="1">
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label for="groupdiscription">Group Discription</label>
-                  <div class="input-group">
-                    <div class="input-group-addon"><i class="glyphicon glyphicon-book"></i></div>
-                    <input autofocus required type="text" formControlName="groupdiscription" name="groupdescription"
-                      id="groupdiscription" class="form-control" placeholder="Your Group Discription" tabindex="1">
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label for="Active">Active</label>
-                  <div class="input-group">
-                    <div class="input-group-addon"><i class="glyphicon glyphicon-star"></i></div>
-                    <select class="mdb-select md-form form-control" formControlName="active" [(ngModel)]="active"
-                      name="active" id="active">
-                      <option value="" disabled selected>Choose your option</option>
-                      <option value="Y">Y</option>
-                      <option value="N">N</option>
-                    </select>
+                  <div class="form-group">
+                    <label for="groupdiscription">Group Discription</label>
+                    <div class="input-group">
+                      <div class="input-group-addon"><i class="glyphicon glyphicon-book"></i></div>
+                      <input autofocus required type="text" formControlName="group_name" name="groupdescription"
+                        id="groupdiscription" class="form-control" placeholder="Your Group Discription" tabindex="1">
+                    </div>
                   </div>
                 </div>
                 <button type="submit" class="btn btn-block btn-success" tabindex="5">Create account</button>
