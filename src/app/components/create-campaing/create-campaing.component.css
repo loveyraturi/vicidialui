@@ -12,3 +12,6 @@ body {
     width: 90%;
     margin-left: 2%;
 }
+.hidden {
+    display: none
+}
