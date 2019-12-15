@@ -32,8 +32,8 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let campaing of campaings">
-              <td>{{campaing.campaign_id}}</td>
+            <tr *ngFor="let campaing of campaings;  let i = index">
+              <td>{{id+1}}</td>
               <td>{{campaing.campaign_name}}</td>
               <td>{{campaing.lead_order}}</td>
               <td><ui-switch size="small" [(ngModel)]="campaing.enable" (change)="onChange($event,campaing.campaign_id)"></ui-switch></td>

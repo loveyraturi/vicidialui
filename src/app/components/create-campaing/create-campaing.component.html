@@ -43,7 +43,7 @@
                     <div class="input-group-addon"><i class="glyphicon glyphicon-user"></i></div>
                     <select class="mdb-select md-form form-control" formControlName="adminusergroup">
                       <option value="" disabled selected>Choose your option</option>
-                      <option *ngFor="let group of groups" value="group.id">{{group.name}}</option>
+                      <option *ngFor="let group of groups" value="group.user_group">{{group.group_name}}</option>
                     </select>
                   </div>
                 </div>
@@ -61,7 +61,8 @@
                     <div class="input-group-addon"><i class="glyphicon glyphicon-tasks"></i></div>
                     <select class="mdb-select md-form form-control" formControlName="closers">
                       <option value="" disabled selected>Choose your option</option>
-                      <option *ngFor="let group of groups" value="group.id">{{group.name}}</option>
+                      <option value="Y">Y</option>
+                      <option value="N">N</option>
                     </select>
                   </div>
                 </div>
@@ -71,7 +72,18 @@
                     <div class="input-group-addon"><i class="glyphicon glyphicon-level-up"></i></div>
                     <select class="mdb-select md-form form-control" formControlName="hopperlevel">
                       <option value="" disabled selected>Choose your option</option>
-                      <option *ngFor="let group of groups" value="group.id">{{group.name}}</option>
+                      <option value="1">1</option>
+                      <option value="5">5</option>
+                      <option value="10">10</option>
+                      <option value="20">20</option>
+                      <option value="50">50</option>
+                      <option value="100">100</option>
+                      <option value="200">200</option>
+                      <option value="500">500</option>
+                      <option value="700">700</option>
+                      <option value="1000">1000</option>
+                      <option value="2000">2000</option>
+                      <option value="5000">5000</option>
                     </select>
                   </div>
                 </div>
@@ -81,7 +93,40 @@
                     <div class="input-group-addon"><i class="glyphicon glyphicon-bell"></i></div>
                     <select class="mdb-select md-form form-control" formControlName="autodiallevel">
                       <option value="" disabled selected>Choose your option</option>
-                      <option *ngFor="let group of groups" value="group.id">{{group.name}}</option>
+                      <option value="1">1</option>
+                      <option value="1.5">1.5</option>
+                      <option value="2">2</option>
+                      <option value="2.5">2.5</option>
+                      <option value="3">3</option>
+                      <option value="3.5">3.5</option>
+                      <option value="4">4</option>
+                      <option value="5">5</option>
+                      <option value="8">8</option>
+                      <option value="10">10</option>
+                      <option value="12">12</option>
+                      <option value="16">16</option>
+                      <option value="20">20</option>
+                      <option value="25">25</option>
+                      <option value="30">30</option>
+                      <option value="33">33</option>
+                      <option value="35">35</option>
+                      <option value="40">40</option>
+                      <option value="50">50</option>
+                      <option value="60">60</option>
+                      <option value="70">70</option>
+                      <option value="80">80</option>
+                      <option value="90">90</option>
+                      <option value="100">100</option>
+                      <option value="110">110</option>
+                      <option value="120">120</option>
+                      <option value="130">130</option>
+                      <option value="140">140</option>
+                      <option value="150">150</option>
+                      <option value="160">160</option>
+                      <option value="170">170</option>
+                      <option value="180">180</option>
+                      <option value="190">190</option>
+                      <option value="200">200</option>
                     </select>
                   </div>
                 </div>
@@ -91,7 +136,14 @@
                     <div class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></div>
                     <select class="mdb-select md-form form-control" formControlName="nextcall">
                       <option value="" disabled selected>Choose your option</option>
-                      <option *ngFor="let group of groups" value="group.id">{{group.name}}</option>
+                      <option value='random'>random</option>
+                      <option value='oldest_call_start'>oldest_call_start</option>
+                      <option value='oldest_call_finish'>oldest_call_finish</option>
+                      <option value='overall_user_level'>overall_user_level</option>
+                      <option value='campaign_rank'>campaign_rank</option>
+                      <option value='campaign_grade_random'>campaign_grade_random</option>
+                      <option value='fewest_calls'>fewest_calls</option>
+                      <option value='longest_wait_time'>longest_wait_time</option> 
                     </select>
                   </div>
                 </div>
@@ -101,7 +153,12 @@
                     <div class="input-group-addon"><i class="glyphicon glyphicon-time"></i></div>
                     <select class="mdb-select md-form form-control" formControlName="localtimecall">
                       <option value="" disabled selected>Choose your option</option>
-                      <option *ngFor="let group of groups" value="group.id">{{group.name}}</option>
+                      <option value="12pm-5pm">12pm-5pm - default 12pm to 5pm calling</option>
+                      <option value="12pm-9pm">12pm-9pm - default 12pm to 9pm calling</option>
+                      <option value="24hours">24hours - default 24 hours calling</option>
+                      <option value="5pm-9pm">5pm-9pm - default 5pm to 9pm calling</option>
+                      <option value="9am-5pm">9am-5pm - default 9am to 5pm calling</option>
+                      <option value="9am-9pm">9am-9pm - default 9am to 9pm calling</option> 
                     </select>
                   </div>
                 </div>
@@ -111,7 +168,8 @@
                     <div class="input-group-addon"><i class="glyphicon glyphicon-barcode"></i></div>
                     <select class="mdb-select md-form form-control" formControlName="script">
                       <option value="" disabled selected>Choose your option</option>
-                      <option *ngFor="let group of groups" value="group.id">{{group.name}}</option>
+                      <option value="">NONE</option>
+                      <option value="CALLNOTES">CALLNOTES - Call Notes and Appointment Setting</option> 
                     </select>
                   </div>
                 </div>
@@ -121,7 +179,15 @@
                     <div class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></div>
                     <select class="mdb-select md-form form-control" formControlName="getcalllaunch">
                       <option value="" disabled selected>Choose your option</option>
-                      <option *ngFor="let group of groups" value="group.id">{{group.name}}</option>
+                      <option value="NONE">NONE</option>
+                      <option value="SCRIPT">SCRIPT</option>
+                      <option value="WEBFORM">WEBFORM</option>
+                      <option value="WEBFORMTWO">WEBFORMTWO</option>
+                      <option value="WEBFORMTHREE">WEBFORMTHREE</option>
+                      <option value="FORM">FORM</option>
+                      <option value="PREVIEW_WEBFORM">PREVIEW_WEBFORM</option>
+                      <option value="PREVIEW_WEBFORMTWO">PREVIEW_WEBFORMTWO</option>
+                      <option value="PREVIEW_WEBFORMTHREE">PREVIEW_WEBFORMTHREE</option>
                     </select>
                   </div>
                 </div>
@@ -145,8 +211,11 @@
                   <label for="Active">Active</label>
                   <div class="input-group">
                     <div class="input-group-addon"><i class="glyphicon glyphicon-star"></i></div>
-                    <input autofocus required type="text" formControlName="active" name="active" id="active"
-                      class="form-control" placeholder="Your status" tabindex="1">
+                    <select class="mdb-select md-form form-control" formControlName="active">
+                        <option value="" disabled selected>Choose your option</option>
+                        <option value="Y">Y</option>
+                        <option value="N">N</option>
+                      </select>
                   </div>
                 </div>
                 <button type="submit" class="btn btn-block btn-success" tabindex="5">Create account</button>

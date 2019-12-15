@@ -62,7 +62,7 @@ export class UpdateCampaingComponent implements OnInit {
     this.groupService.fetchGroups().subscribe(
       data => {
         this.groups = data
-        console.log(data)
+        console.log("groupdata#######",data)
 
       })
   }
@@ -86,6 +86,7 @@ export class UpdateCampaingComponent implements OnInit {
         this.get_call_launch = this.campaingById.get_call_launch
         this.active = this.campaingById.active
       })
+      
   }
   private createForm(): void {
 

@@ -26,6 +26,7 @@ import { UpdateCampaingComponent } from './components/update-campaing/update-cam
 import { CloneCampaingComponent } from './components/clone-campaing/clone-campaing.component';
 import { CampaingService } from './services/campaing.service';
 import { UiSwitchModule } from 'ngx-toggle-switch';
+
 @NgModule({
   declarations: [
     AppComponent,

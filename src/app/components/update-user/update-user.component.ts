@@ -54,7 +54,7 @@ export class UpdateUserComponent implements OnInit {
     this.groupService.fetchGroups().subscribe(
       data => {
         this.groups=data
-        console.log(data)
+        console.log("groupdata###############3333",data)
 
       })
   }

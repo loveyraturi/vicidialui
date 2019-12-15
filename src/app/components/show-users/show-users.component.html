@@ -32,8 +32,8 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let user of users">
-              <td>{{user.user_id}}</td>
+            <tr *ngFor="let user of users; let i = index">
+              <td>{{i+1}}</td>
               <td>{{user.full_name}}</td>
               <td>{{user.phone_login}}</td>
               <td><ui-switch size="small" [(ngModel)]="user.enable" (change)="onChange($event,user.user_id)"></ui-switch></td>
