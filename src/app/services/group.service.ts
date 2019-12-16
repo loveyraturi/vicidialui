@@ -28,7 +28,7 @@ export class GroupService {
           ))
     }
 
-    fetchGroupsById(id): Observable<any> {
+    fetchGroupsByUser(id): Observable<any> {
         return this.http
           .get('http://localhost:4011/api/user/fetchgroupsbyuser/'+id).pipe(
           map(

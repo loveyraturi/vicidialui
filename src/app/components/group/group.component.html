@@ -1,0 +1,44 @@
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<div id="wrapper">
+  <navigation [loginInfo]="loginInfo" *ngIf="loginInfo"></navigation>
+
+  <div id="page-wrapper" class="gray-bg">
+
+    <topnavbar></topnavbar>
+
+    <div class="container">
+      <div class="table-wrapper">
+        <div class="table-title">
+          <div class="row">
+            <div class="col-sm-8">
+              <h2>Group <b>Details</b></h2>
+            </div>
+          </div>
+        </div>
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>Id</th>
+              <th>Name</th>
+              <th>Description</th>
+              <th>Allowed campaings</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let group of groups;  let i = index">
+              <td>{{i+1}}</td>
+              <td>{{group.user_group}}</td>
+              <td>{{group.group_name}}</td>
+              <td>{{group.allowed_campaigns}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="footer">
+      <div>
+        <strong>Copyright</strong> vici dial &copy; 2019
+      </div>
+    </div>
+  </div>
+</div>

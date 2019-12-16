@@ -54,7 +54,7 @@ export class UpdateCampaingComponent implements OnInit {
     this.campaingService.updateCampaing(value).subscribe(
       data => {
         console.log(data)
-
+        this.router.navigateByUrl("showCampaing")
       })
   }
 
@@ -120,7 +120,7 @@ export class UpdateCampaingComponent implements OnInit {
   }
 
   submit({ value }: any): void {
-    console.log(value)
+    console.log(value.campaign)
     this.update(value);
     
   }

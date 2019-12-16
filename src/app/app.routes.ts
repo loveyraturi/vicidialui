@@ -8,6 +8,7 @@ import { ShowCampaingComponent } from "./components/show-campaing/show-campaing.
 import { CreateCampaingComponent } from "./components/create-campaing/create-campaing.component";
 import { CloneCampaingComponent } from "./components/clone-campaing/clone-campaing.component";
 import { UpdateCampaingComponent } from "./components/update-campaing/update-campaing.component";
+import { GroupComponent } from "./components/group/group.component";
 
 export const appRoutes=[
     {
@@ -46,6 +47,10 @@ export const appRoutes=[
     {
         path: 'showCampaing',
         component: ShowCampaingComponent
+    },
+    {
+        path: 'showGroups',
+        component: GroupComponent
     },
     {
         path: 'cloneCampaing',

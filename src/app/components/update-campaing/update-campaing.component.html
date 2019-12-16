@@ -19,7 +19,7 @@
             <!--.panel-heading-->
 
             <div class="panel-body">
-              <form [formGroup]="registerform" (submit)="submit(registerform)" method="POST">
+              <form [formGroup]="registerform" (submit)="submit(registerform)">
                 <div formGroupName="campaign">
                   <div class="form-group">
                     <label for="name">Name</label>
@@ -217,7 +217,7 @@
                     </div>
                   </div>
                 </div>
-                <div formGroupName="group">
+                <div formGroupName="group" class="hidden">
                   <div class="form-group">
                     <label for="group">Group</label>
                     <div class="input-group">
@@ -234,6 +234,10 @@
                         id="groupdiscription" class="form-control" placeholder="Your Group Discription" tabindex="1">
                     </div>
                   </div>
+                  
+                    <input autofocus required type="hidden" [(ngModel)]="campaign_id" formControlName="allowed_campaigns"
+                      name="name" id="name" class="form-control" placeholder="Your Name" tabindex="1">
+                
                 </div>
                 <button type="submit" class="btn btn-block btn-success" tabindex="5">Create account</button>
               </form>

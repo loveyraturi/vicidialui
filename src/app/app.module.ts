@@ -26,6 +26,8 @@ import { UpdateCampaingComponent } from './components/update-campaing/update-cam
 import { CloneCampaingComponent } from './components/clone-campaing/clone-campaing.component';
 import { CampaingService } from './services/campaing.service';
 import { UiSwitchModule } from 'ngx-ui-switch';
+import { AngularMultiSelectModule } from 'angular4-multiselect-dropdown/angular4-multiselect-dropdown';
+import { GroupComponent } from './components/group/group.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +44,8 @@ import { UiSwitchModule } from 'ngx-ui-switch';
     CreateCampaingComponent,
     ShowCampaingComponent,
     UpdateCampaingComponent,
-    CloneCampaingComponent
+    CloneCampaingComponent,
+    GroupComponent
   ],
   imports: [
     BrowserModule,
@@ -51,6 +54,7 @@ import { UiSwitchModule } from 'ngx-ui-switch';
     ReactiveFormsModule,
     HttpClientModule,
     UiSwitchModule,
+    AngularMultiSelectModule,
     RouterModule.forRoot(appRoutes)
   ],
   providers: [PlatformService,AuthService,UserService,GroupService,CampaingService],
