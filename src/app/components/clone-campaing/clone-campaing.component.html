@@ -48,7 +48,7 @@
                       <select class="mdb-select md-form form-control" [(ngModel)]="user_group"
                         formControlName="user_group">
                         <option value="" disabled selected>Choose your option</option>
-                        <option *ngFor="let group of groups" value="{{group.user_group}}">{{group.user_group}}</option>
+                        <option *ngFor="let group of groups" value="{{group.user_group}}">{{group.group_name}}</option>
                       </select>
                     </div>
                   </div>
@@ -146,14 +146,14 @@
                       <select class="mdb-select md-form form-control" [(ngModel)]="next_agent_call"
                         formControlName="next_agent_call">
                         <option value="" disabled selected>Choose your option</option>
-                        <option value='random'>random</option>
-                        <option value='oldest_call_start'>oldest_call_start</option>
-                        <option value='oldest_call_finish'>oldest_call_finish</option>
-                        <option value='overall_user_level'>overall_user_level</option>
-                        <option value='campaign_rank'>campaign_rank</option>
-                        <option value='campaign_grade_random'>campaign_grade_random</option>
-                        <option value='fewest_calls'>fewest_calls</option>
-                        <option value='longest_wait_time'>longest_wait_time</option>
+                        <option value="random">random</option>
+                        <option value="oldest_call_start">oldest_call_start</option>
+                        <option value="oldest_call_finish">oldest_call_finish</option>
+                        <option value="overall_user_level">overall_user_level</option>
+                        <option value="campaign_rank">campaign_rank</option>
+                        <option value="campaign_grade_random">campaign_grade_random</option>
+                        <option value="fewest_calls">fewest_calls</option>
+                        <option value="longest_wait_time">longest_wait_time</option>
                       </select>
                     </div>
                   </div>
@@ -180,7 +180,7 @@
                       <select class="mdb-select md-form form-control" [(ngModel)]="campaign_script"
                         formControlName="campaign_script">
                         <option value="" disabled selected>Choose your option</option>
-                        <option value="">NONE</option>
+                        <option value="NONE">NONE</option>
                         <option value="CALLNOTES">CALLNOTES - Call Notes and Appointment Setting</option>
                       </select>
                     </div>
