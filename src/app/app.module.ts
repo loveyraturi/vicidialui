@@ -28,6 +28,7 @@ import { CampaingService } from './services/campaing.service';
 import { UiSwitchModule } from 'ngx-ui-switch';
 import { AngularMultiSelectModule } from 'angular4-multiselect-dropdown/angular4-multiselect-dropdown';
 import { GroupComponent } from './components/group/group.component';
+import { DashboardService } from './services/dashboard.service';
 
 @NgModule({
   declarations: [
@@ -57,7 +58,7 @@ import { GroupComponent } from './components/group/group.component';
     AngularMultiSelectModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [PlatformService,AuthService,UserService,GroupService,CampaingService],
+  providers: [PlatformService,AuthService,UserService,GroupService,CampaingService, DashboardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
