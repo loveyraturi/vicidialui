@@ -17,7 +17,7 @@ export class AuthService {
 
     validateLogin(ruleConf): Observable<any> {
         return this.http
-          .post('http://103.66.232.186:4011/api/user/auth', ruleConf).pipe(
+          .post('http://localhost:4011/api/user/auth', ruleConf).pipe(
           map(
             res => {
                 return res;

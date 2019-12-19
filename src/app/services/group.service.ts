@@ -17,7 +17,7 @@ export class GroupService {
 
     fetchGroups(): Observable<any> {
         return this.http
-          .get('http://103.66.232.186:4011/api/user/fetchgroups').pipe(
+          .get('http://localhost:4011/api/user/fetchgroups').pipe(
           map(
             res => {
                 return res;
@@ -30,7 +30,7 @@ export class GroupService {
 
     fetchGroupsByUser(id): Observable<any> {
         return this.http
-          .get('http://103.66.232.186:4011/api/user/fetchgroupsbyuser/'+id).pipe(
+          .get('http://localhost:4011/api/user/fetchgroupsbyuser/'+id).pipe(
           map(
             res => {
                 return res;

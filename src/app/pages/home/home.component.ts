@@ -33,53 +33,61 @@ export class HomeComponent implements OnInit {
         this.username= localStorage.getItem("user_name")
         this.loginInfo.user_name=this.username;
         console.log(this.username)
-       // this.fetchAgentsCounts();
+       this.fetchAgentsCounts();
+       this.liveAgentsCounts();
+       this.pausedAgentsCounts();
+       this.holdAgentsCounts();
+       this.activeUsersCounts();
+       this.activeCampaignsCounts();
+       this.allUsersCounts();
+       this.allCampaignCounts();
+
     }
 
     fetchAgentsCounts() {
         this.dashboardService.fetchAgentsCounts().subscribe(
           data => {
               console.log("hello")
-            this.agentscount = data
+            this.agentscount = data[0].count
     console.log("agents areeeeee", this.agentscount)
           })
       }
 
       liveAgentsCounts() {
           this.dashboardService.liveAgentsCounts().subscribe(data=>{
-              this.liveagents= data
+              this.liveagents= data[0].count
           })
       }
-      usedAgentsCounts() {
+      pausedAgentsCounts() {
         this.dashboardService.pausedAgentsCounts().subscribe(data=>{
-            this.pausedagents= data
+            this.pausedagents= data[0].count
         })
     }
-    oldAgentsCounts() {
+    holdAgentsCounts() {
         this.dashboardService.holdAgentsCounts().subscribe(data=>{
-            this.holdagents= data
+            this.holdagents= data[0].count
         })
     }
     activeUsersCounts() {
         this.dashboardService.activeUsersCounts().subscribe(data=>{
-            this.activeusers= data
+            this.activeusers= data[0].count
         })
     }
     activeCampaignsCounts() {
         this.dashboardService.activeCampaignCounts().subscribe(data=>{
-            this.activecampaigns= data
+            this.activecampaigns= data[0].count
         })
     }
 
     allUsersCounts() {
         this.dashboardService.allUsersCounts().subscribe(data=>{
-            this.allUsersCounts= data
+            this.allUsersCounts= data[0].count
         })
     }
 
     allCampaignCounts() {
         this.dashboardService.allCampaignCounts().subscribe(data=>{
-            this.allCampaignCounts= data
+            this.allCampaignCounts= data[0].count
         })
     }
 }
