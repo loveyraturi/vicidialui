@@ -77,7 +77,7 @@ export class DashboardService {
 
   activeCampaignCounts(): Observable<any> {
     return this.http
-      .get('http://localhost:4011/api/agents/fetchactivecampaingscount').pipe(
+      .get('http://localhost:4011/api/agents/fetchactivecampaignscount').pipe(
       map(
         res => {
           return res;
