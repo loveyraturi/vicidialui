@@ -17,7 +17,7 @@ export class UserService {
 
   createUser(request): Observable<any> {
     return this.http
-      .post('http://103.66.232.186:4011/api/user/createuser', request).pipe(
+      .post('http://192.168.1.222:4011/api/user/createuser', request).pipe(
       map(
         res => {
           return res;
@@ -29,7 +29,7 @@ export class UserService {
   }
   fetchUser(): Observable<any> {
     return this.http
-      .get('http://103.66.232.186:4011/api/user/fetchusers').pipe(
+      .get('http://192.168.1.222:4011/api/user/fetchusers').pipe(
       map(
         res => {
           return res;
@@ -41,7 +41,7 @@ export class UserService {
   }
   fetchusersById(id): Observable<any> {
     return this.http
-      .get('http://103.66.232.186:4011/api/user/fetchusersById/'+id).pipe(
+      .get('http://192.168.1.222:4011/api/user/fetchusersById/'+id).pipe(
       map(
         res => {
           return res;
@@ -53,7 +53,7 @@ export class UserService {
   }
   deleteUser(id): Observable<any> {
     return this.http
-      .get('http://103.66.232.186:4011/api/user/deleteuser/' + id).pipe(
+      .get('http://192.168.1.222:4011/api/user/deleteuser/' + id).pipe(
       map(
         res => {
           return res;
@@ -66,7 +66,7 @@ export class UserService {
 
   updateUser(request): Observable<any> {
     return this.http
-      .put('http://103.66.232.186:4011/api/user/updateuser', request).pipe(
+      .put('http://192.168.1.222:4011/api/user/updateuser', request).pipe(
       map(
         res => {
           return res;
@@ -79,7 +79,7 @@ export class UserService {
 
   updateUserStatus(request): Observable<any> {
     return this.http
-      .put('http://103.66.232.186:4011/api/user/updateuserstatus', request).pipe(
+      .put('http://192.168.1.222:4011/api/user/updateuserstatus', request).pipe(
       map(
         res => {
           return res;
