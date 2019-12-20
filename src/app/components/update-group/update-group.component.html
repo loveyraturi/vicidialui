@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 <div id="wrapper">
   <navigation [loginInfo]="loginInfo" *ngIf="loginInfo"></navigation>
 
@@ -22,28 +23,36 @@
               <form [formGroup]="registerform" (submit)="submit(registerform)" method="POST">
 
                 <div class="form-group">
-                  <label for="name">Name</label>
-                  <div class="input-group">
-                    <div class="input-group-addon"><i class="glyphicon glyphicon-book"></i></div>
-                    <input autofocus required type="text" formControlName="name" name="name" id="name"
-                      class="form-control" placeholder="Your Name" tabindex="1" [(ngModel)]="name">
-                  </div>
-                </div>
-                <div class="form-group">
                   <label for="name">Group Name</label>
                   <div class="input-group">
                     <div class="input-group-addon"><i class="glyphicon glyphicon-book"></i></div>
+                    <input autofocus required type="text" formControlName="name" name="name" id="name"
+                      class="form-control" placeholder="Your Name" tabindex="1" [(ngModel)]="user_group">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="name">Group Description</label>
+                  <div class="input-group">
+                    <div class="input-group-addon"><i class="glyphicon glyphicon-book"></i></div>
                     <input autofocus required type="text" formControlName="groupName" name="groupName" id="groupName"
-                      class="form-control" placeholder="Your Name" tabindex="1" [(ngModel)]="groupName">
+                      class="form-control" placeholder="Your Name" tabindex="1" [(ngModel)]="group_name">
                   </div>
                 </div>
                               
                 <div class="form-group">
-                  <label for="name">Allowed Campaigns</label>
+                  <label for="campaings">Assign campaings</label>
                   <div class="input-group">
                     <div class="input-group-addon"><i class="glyphicon glyphicon-book"></i></div>
-                    <input autofocus required type="text" formControlName="allowedCampaign" name="allowedCampaign" id="allowedCampaign"
-                      class="form-control" placeholder="Your Name" tabindex="1" [(ngModel)]="allowedCampaign">
+                    <angular4-multiselect [data]="dropdownList" formControlName="allowed_campaigns" name="campaings"
+                      [(ngModel)]="selectedItems" (onSelect)="onItemSelect($event)"
+                      (onDeSelect)="OnItemDeSelect($event)" (onSelectAll)="onSelectAll($event)"
+                      (onDeSelectAll)="onDeSelectAll($event)" [settings]="dropdownSettings">
+                      <c-badge>
+                        <ng-template let-item="item">
+                          <label style="margin: 0px;">{{item.itemName}}</label>
+                        </ng-template>
+                      </c-badge>
+                    </angular4-multiselect>
                   </div>
                 </div>
                               

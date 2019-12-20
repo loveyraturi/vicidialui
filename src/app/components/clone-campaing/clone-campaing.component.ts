@@ -31,6 +31,7 @@ export class CloneCampaingComponent implements OnInit {
   public campaign_script;
   public get_call_launch;
   public active;
+  public dropdownlength;
 
   loginInfo: Login = {
     user_name: null,
@@ -111,7 +112,7 @@ export class CloneCampaingComponent implements OnInit {
           }
           this.dropdownList.push(dropdownListLocal)
         });
-
+        this.dropdownlength =this.dropdownList.length;
         console.log(this.dropdownList, "#$@$#@$#")
 
       })
@@ -212,8 +213,9 @@ export class CloneCampaingComponent implements OnInit {
     var campaing_name = value.campaign.campaign_name
     value.campaign.campaign_id = campaing_name.replace(/ /g, "_");
     var localvar = ""
+    console.log("##########CHELK lemngth",this.dropdownlength ,value.group.allowed_campaigns.length)
     if (this.isChecked) {
-      if (this.dropdownList.length == value.group.allowed_campaigns.length) {
+      if (this.dropdownlength == value.group.allowed_campaigns.length) {
         value.group.allowed_campaigns = "-ALL-CAMPAIGNS-"
       } else {
         value.group.allowed_campaigns.forEach(element => {
