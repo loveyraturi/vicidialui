@@ -41,6 +41,19 @@ export class GroupService {
           ))
     }
 
+    updateGroupByName(request): Observable<any> {
+      return this.http
+        .put('http://103.66.232.186:4011/api/user/updategroup', request).pipe(
+        map(
+          res => {
+            return res;
+          },
+          err => {
+            return err;
+          }
+        ))
+    }
+
     updateGroup(request): Observable<any> {
       return this.http
         .put('http://103.66.232.186:4011/api/user/updateuserstatus', request).pipe(
