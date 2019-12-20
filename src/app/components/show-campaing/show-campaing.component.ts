@@ -47,7 +47,6 @@ public campaings;
       })
   }
   updateCampaing(id){
-    console.log("%$#@%$@#$",id)
     localStorage.setItem("update_campaing_id",id);
     this.router.navigateByUrl("/updateCampaing")
   }

@@ -9,6 +9,7 @@ import { CreateCampaingComponent } from "./components/create-campaing/create-cam
 import { CloneCampaingComponent } from "./components/clone-campaing/clone-campaing.component";
 import { UpdateCampaingComponent } from "./components/update-campaing/update-campaing.component";
 import { GroupComponent } from "./components/group/group.component";
+import { UpdateGroupComponent } from "./components/update-group/update-group.component";
 
 export const appRoutes=[
     {
@@ -61,7 +62,12 @@ export const appRoutes=[
         component: UpdateCampaingComponent
     },
     {
+        path: 'updateGroup',
+        component: UpdateGroupComponent
+    },
+    {
         path: 'others',
         loadChildren:'./pages/others/others.module#OthersModule',
     },
+  
 ];
