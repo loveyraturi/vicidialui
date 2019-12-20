@@ -33,4 +33,10 @@ export class GroupComponent implements OnInit {
 
       })
   }
+
+  updateGroup(id){
+    console.log("theiddddd", id)
+    localStorage.setItem("update_group_id",id);
+    this.router.navigateByUrl("/updateGroup")
+  }
 }

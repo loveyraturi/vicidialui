@@ -29,6 +29,7 @@ import { UiSwitchModule } from 'ngx-ui-switch';
 import { AngularMultiSelectModule } from 'angular4-multiselect-dropdown/angular4-multiselect-dropdown';
 import { GroupComponent } from './components/group/group.component';
 import { DashboardService } from './services/dashboard.service';
+import { UpdateGroupComponent } from './components/update-group/update-group.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { DashboardService } from './services/dashboard.service';
     ShowCampaingComponent,
     UpdateCampaingComponent,
     CloneCampaingComponent,
-    GroupComponent
+    GroupComponent,
+    UpdateGroupComponent
   ],
   imports: [
     BrowserModule,
