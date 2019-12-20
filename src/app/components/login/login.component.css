@@ -4,6 +4,14 @@
     margin: 0;
     margin-left: 75%;
 }
+@media (max-width: 768px)
+{
+  .login-box[_ngcontent-c1] {
+    z-index: 15;
+    margin: 0;
+    margin-left: 5%;
+}
+}
 .buttonleft{
     padding-left: 5%;
 }
