@@ -1,11 +1,12 @@
 /**
  * Created by andrew.yang on 5/18/2017.
  */
-import { OnInit, Component, Input } from "@angular/core";
+import { OnInit, Component, Input, ViewContainerRef } from "@angular/core";
 import { Login } from "app/models/login";
 import { DashboardService } from "app/services/dashboard.service";
 import { CampaingService } from "app/services/campaing.service";
 import { UserService } from "app/services/user.service";
+import { ModalDialogService, SimpleModalComponent } from "ngx-modal-dialog";
 
 @Component({
     selector: 'home',
@@ -23,15 +24,19 @@ export class HomeComponent implements OnInit {
     public allcampaignscounts;
     public campaings
     public users;
+    public actionButtons;
+    public modelClass = "modal";
+    public usersbycampaing;
     loginInfo: Login = {
         user_name: null,
     }
-    constructor(private userService: UserService,private campaingService: CampaingService, private dashboardService: DashboardService) {
+    constructor(private userService: UserService, private campaingService: CampaingService, private dashboardService: DashboardService) {
 
-
+        //  this.openNewDialog();
         // this.phonenumber=localStorage.getItem("phone_number")
 
     }
+
     ngOnInit() {
 
         this.username = localStorage.getItem("user_name")
@@ -47,24 +52,50 @@ export class HomeComponent implements OnInit {
         this.allCampaignCounts();
         this.fetchCampaing();
         this.fetchUsers();
+
+
+    }
+    fetchUserFromCampaing(id) {
+        this.userService.fetchUserFromCampaing(id).subscribe(
+            data => {
+                this.usersbycampaing = data
+                this.usersbycampaing = this.usersbycampaing.map(item => {
+                    if (item.active == "Y") {
+                        item.enable = true
+                    } else {
+                        item.enable = false
+                    }
+                    return item
+                })
+                console.log(this.usersbycampaing)
+
+            })
     }
     fetchUsers() {
         this.userService.fetchUser().subscribe(
-          data => {
-            this.users = data
-            this.users = this.users.map(item => {
-              if (item.active == "Y") {
-                item.enable = true
-              } else {
-                item.enable = false
-              }
-              return item
-            })
-            console.log(this.users)
-    
-          })
-      }
+            data => {
+                this.users = data
+                this.users = this.users.map(item => {
+                    if (item.active == "Y") {
+                        item.enable = true
+                    } else {
+                        item.enable = false
+                    }
+                    return item
+                })
+                console.log(this.users)
 
+            })
+    }
+    modelClick(id) {
+        console.log("model id is ", id)
+        this.fetchUserFromCampaing(id);
+        this.modelClass = "modalDisplay"
+
+    }
+    closeModal() {
+        this.modelClass = "modal"
+    }
     fetchCampaing() {
         this.campaingService.fetchCampaing().subscribe(
             data => {

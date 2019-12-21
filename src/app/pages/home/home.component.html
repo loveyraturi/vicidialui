@@ -1,240 +1,201 @@
+<style>
+  /* The Modal (background) */
+  .modal {
+    display: none;
+    /* Hidden by default */
+    position: fixed;
+    /* Stay in place */
+    z-index: 1;
+    /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%;
+    /* Full width */
+    height: 100%;
+    /* Full height */
+    overflow: auto;
+    /* Enable scroll if needed */
+    background-color: rgb(0, 0, 0);
+    /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.4);
+    /* Black w/ opacity */
+  }
+
+  /* Modal Content/Box */
+  .modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    height: 400px;
+    overflow: scroll;
+    width: 700px !important;
+    /* Could be more or less, depending on screen size */
+  }
+
+  /* The Close Button */
+  .close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+
+  .close:hover,
+  .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  .modalDisplay {
+    display: block;
+    position: absolute;
+    z-index: 1;
+    left: 30%;
+    top: 0%;
+  }
+
+</style>
 <div id="wrapper">
-        <navigation [loginInfo]="loginInfo" *ngIf="loginInfo"></navigation>
-      
-        <div id="page-wrapper" class="gray-bg">
-      
-          <topnavbar></topnavbar>
-<div class="wrapper wrapper-content">
-    <div class="row">
+  <navigation [loginInfo]="loginInfo" *ngIf="loginInfo"></navigation>
+
+  <div id="page-wrapper" class="gray-bg">
+
+    <topnavbar></topnavbar>
+    <div class="wrapper wrapper-content">
+      <div class="row">
         <div class="col-lg-3">
-            <div class="ibox float-e-margins">
-                <div class="ibox-title">
-                    <span class="label label-success pull-right">Agent(s)</span>
-                    <h5>Agent(s) On call</h5>
-                </div>
-                <div class="ibox-content">
-                    <h1 class="no-margins">{{liveagents}}</h1>
-                    <div class="stat-percent font-bold text-success">98% <i class="fa fa-bolt"></i></div>
-                    <small>Agents</small>
-                </div>
+          <div class="ibox float-e-margins">
+            <div class="ibox-title">
+              <span class="label label-success pull-right">Agent(s)</span>
+              <h5>Agent(s) On call</h5>
             </div>
+            <div class="ibox-content">
+              <h1 class="no-margins">{{liveagents}}</h1>
+              <div class="stat-percent font-bold text-success">98% <i class="fa fa-bolt"></i></div>
+              <small>Agents</small>
+            </div>
+          </div>
         </div>
         <div class="col-lg-3">
-            <div class="ibox float-e-margins">
-                <div class="ibox-title">
-                    <span class="label label-info pull-right">Annual</span>
-                    <h5>Agent(s) Wating</h5>
-                </div>
-                <div class="ibox-content">
-                    <h1 class="no-margins">{{holdagents}}</h1>
-                    <div class="stat-percent font-bold text-info">20% <i class="fa fa-level-up"></i></div>
-                    <small>Agents</small>
-                </div>
+          <div class="ibox float-e-margins">
+            <div class="ibox-title">
+              <span class="label label-info pull-right">Annual</span>
+              <h5>Agent(s) Wating</h5>
             </div>
+            <div class="ibox-content">
+              <h1 class="no-margins">{{holdagents}}</h1>
+              <div class="stat-percent font-bold text-info">20% <i class="fa fa-level-up"></i></div>
+              <small>Agents</small>
+            </div>
+          </div>
         </div>
         <div class="col-lg-3">
-            <div class="ibox float-e-margins">
-                <div class="ibox-title">
-                    <span class="label label-primary pull-right">Today</span>
-                    <h5>Agents on pause</h5>
-                </div>
-                <div class="ibox-content">
-                    <h1 class="no-margins">{{pausedagents}}</h1>
-                    <div class="stat-percent font-bold text-navy">44% <i class="fa fa-level-up"></i></div>
-                    <small>Agents</small>
-                </div>
+          <div class="ibox float-e-margins">
+            <div class="ibox-title">
+              <span class="label label-primary pull-right">Today</span>
+              <h5>Agents on pause</h5>
             </div>
+            <div class="ibox-content">
+              <h1 class="no-margins">{{pausedagents}}</h1>
+              <div class="stat-percent font-bold text-navy">44% <i class="fa fa-level-up"></i></div>
+              <small>Agents</small>
+            </div>
+          </div>
         </div>
         <div class="col-lg-3">
-            <div class="ibox float-e-margins">
-                <div class="ibox-title">
-                    <span class="label label-danger pull-right">users</span>
-                    <h5>Total Users</h5>
-                </div>
-                <div class="ibox-content">
-                    <h1 class="no-margins">{{allUsersCounts}}</h1>
-                    <div class="stat-percent font-bold text-danger">38% <i class="fa fa-level-down"></i></div>
-                    <small>users</small>
-                </div>
+          <div class="ibox float-e-margins">
+            <div class="ibox-title">
+              <span class="label label-danger pull-right">users</span>
+              <h5>Total Users</h5>
             </div>
+            <div class="ibox-content">
+              <h1 class="no-margins">{{allUsersCounts}}</h1>
+              <div class="stat-percent font-bold text-danger">38% <i class="fa fa-level-down"></i></div>
+              <small>users</small>
+            </div>
+          </div>
         </div>
-    </div>
-    <div class="row">
+      </div>
+      <div class="row">
 
         <div class="col-lg-12">
-
-            <div class="row">
-                <div class="col-lg-6">
-                    <div class="ibox float-e-margins">
-                        <div class="ibox-title">
-                            <h5>Campaing list</h5>
-                            <div class="ibox-tools">
-                                <a class="collapse-link">
-                                    <i class="fa fa-chevron-up"></i>
-                                </a>
-                                <a class="close-link">
-                                    <i class="fa fa-times"></i>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="ibox-content" style="overflow-y: scroll;
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                  <h5>Campaing list</h5>
+                  <div class="ibox-tools">
+                    <a class="collapse-link">
+                      <i class="fa fa-chevron-up"></i>
+                    </a>
+                    <a class="close-link">
+                      <i class="fa fa-times"></i>
+                    </a>
+                  </div>
+                </div>
+                <div class="ibox-content" style="overflow-y: scroll;
                         height: 300px;">
-                            <table class="table table-hover no-margins">
-                                <thead>
-                                    <tr>
-                                        <th>Id</th>
-                                        <th>Name</th>
-                                        <th>Lead order</th>
-                                        <th>Actions</th>
-                                      </tr>
-                                </thead>
-                                <tbody>
-                                    <tr *ngFor="let campaing of campaings;  let i = index">
-                                        <td>{{i+1}}</td>
-                                        <td>{{campaing.campaign_name}}</td>
-                                        <td>{{campaing.lead_order}}</td>
-                                        <td>
-                                          <a class="edit" (click)="updateCampaing(campaing.campaign_id)" title="Edit" data-toggle="tooltip"><i
-                                              class="material-icons">&#xE254;</i></a>
-                          
-                                        </td>
-                                      </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
+                  <table class="table table-hover no-margins">
+                    <thead>
+                      <tr>
+                        <th>Id</th>
+                        <th>Name</th>
+                        <th>Lead order</th>
+                        <th>Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let campaing of campaings;  let i = index">
+                        <td><a (click)="modelClick(campaing.campaign_id)">{{i+1}}</a></td>
+                        <td><a (click)="modelClick(campaing.campaign_id)">{{campaing.campaign_name}}</a></td>
+                        <td>{{campaing.lead_order}}</td>
+                        <td>
+                          <a class="edit" (click)="updateCampaing(campaing.campaign_id)" title="Edit"
+                            data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
+
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
                 </div>
-                <div class="col-lg-6">
-                    <div class="ibox float-e-margins">
-                        <div class="ibox-title">
-                            <h5>User list</h5>
-                            <div class="ibox-tools">
-                                <a class="collapse-link">
-                                    <i class="fa fa-chevron-up"></i>
-                                </a>
-                                <a class="close-link">
-                                    <i class="fa fa-times"></i>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="ibox-content" style="overflow-y: scroll;
-                        height: 300px;">
-                            <table class="table table-hover no-margins">
-                                <thead>
-                                    <tr>
-                                        <th>Id</th>
-                                        <th>Name</th>
-                                        <th>Phone</th>
-                                        <th>Actions</th>
-                                      </tr>
-                                </thead>
-                                <tbody>
-                                    <tr *ngFor="let user of users; let i = index">
-                                        <td>{{i+1}}</td>
-                                        <td>{{user.full_name}}</td>
-                                        <td>{{user.phone_login}}</td>
-                                        <td>
-                                          <a class="edit" (click)="updateUser(user.user_id)" title="Edit" data-toggle="tooltip"><i
-                                              class="material-icons">&#xE254;</i></a>
-                                       </td>
-                                      </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
+              </div>
             </div>
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="ibox float-e-margins">
-                        <div class="ibox-title">
-                            <h5>Transactions worldwide</h5>
-                            <div class="ibox-tools">
-                                <a class="collapse-link">
-                                    <i class="fa fa-chevron-up"></i>
-                                </a>
-                                <a class="close-link">
-                                    <i class="fa fa-times"></i>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="ibox-content">
-
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    <table class="table table-hover margin bottom">
-                                        <thead>
-                                        <tr>
-                                            <th style="width: 1%" class="text-center">No.</th>
-                                            <th>Transaction</th>
-                                            <th class="text-center">Date</th>
-                                            <th class="text-center">Amount</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        <tr>
-                                            <td class="text-center">1</td>
-                                            <td> Security doors
-                                            </td>
-                                            <td class="text-center small">16 Jun 2014</td>
-                                            <td class="text-center"><span class="label label-primary">$483.00</span></td>
-
-                                        </tr>
-                                        <tr>
-                                            <td class="text-center">2</td>
-                                            <td> Wardrobes
-                                            </td>
-                                            <td class="text-center small">10 Jun 2014</td>
-                                            <td class="text-center"><span class="label label-primary">$327.00</span></td>
-
-                                        </tr>
-                                        <tr>
-                                            <td class="text-center">3</td>
-                                            <td> Set of tools
-                                            </td>
-                                            <td class="text-center small">12 Jun 2014</td>
-                                            <td class="text-center"><span class="label label-warning">$125.00</span></td>
-
-                                        </tr>
-                                        <tr>
-                                            <td class="text-center">4</td>
-                                            <td> Panoramic pictures</td>
-                                            <td class="text-center small">22 Jun 2013</td>
-                                            <td class="text-center"><span class="label label-primary">$344.00</span></td>
-                                        </tr>
-                                        <tr>
-                                            <td class="text-center">5</td>
-                                            <td>Phones</td>
-                                            <td class="text-center small">24 Jun 2013</td>
-                                            <td class="text-center"><span class="label label-primary">$235.00</span></td>
-                                        </tr>
-                                        <tr>
-                                            <td class="text-center">6</td>
-                                            <td>Monitors</td>
-                                            <td class="text-center small">26 Jun 2013</td>
-                                            <td class="text-center"><span class="label label-primary">$100.00</span></td>
-                                        </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div id="world-map" style="height: 300px;"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-
-
-    </div>
-</div>
-<div class="footer">
-        <div>
-          <strong>Copyright</strong> Vici dial &copy; 2019
+          </div>
         </div>
       </div>
     </div>
+    <div class="footer">
+      <div>
+        <strong>Copyright</strong> Vici dial &copy; 2019
+      </div>
     </div>
+  </div>
+</div>
+<div id="myModal" class="{{modelClass}}">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="close" (click)="closeModal()">&times;</span>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Id</th>
+          <th>Name</th>
+          <th>Phone</th>
+
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of usersbycampaing; let i = index">
+          <td>{{i+1}}</td>
+          <td>{{user.full_name}}</td>
+          <td>{{user.phone_login}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>

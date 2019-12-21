@@ -51,6 +51,18 @@ export class UserService {
         }
       ))
   }
+  fetchUserFromCampaing(id): Observable<any> {
+    return this.http
+      .get('http://103.66.232.186:4011/api/user/fetchuserfromcampaing/'+id).pipe(
+      map(
+        res => {
+          return res;
+        },
+        err => {
+          return err;
+        }
+      ))
+  }
   deleteUser(id): Observable<any> {
     return this.http
       .get('http://103.66.232.186:4011/api/user/deleteuser/' + id).pipe(
