@@ -30,6 +30,7 @@ import { AngularMultiSelectModule } from 'angular4-multiselect-dropdown/angular4
 import { GroupComponent } from './components/group/group.component';
 import { DashboardService } from './services/dashboard.service';
 import { UpdateGroupComponent } from './components/update-group/update-group.component';
+import { ServeyComponent } from './components/servey/servey.component';
 
 @NgModule({
   declarations: [
@@ -48,6 +49,7 @@ import { UpdateGroupComponent } from './components/update-group/update-group.com
     UpdateCampaingComponent,
     CloneCampaingComponent,
     GroupComponent,
+    ServeyComponent,
     UpdateGroupComponent
   ],
   imports: [
