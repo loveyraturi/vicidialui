@@ -1,1 +1,270 @@
-<p>gjhgjhghj</p>
+<div id="wrapper">
+  <navigation [loginInfo]="loginInfo" *ngIf="loginInfo"></navigation>
+
+  <div id="page-wrapper" class="gray-bg">
+
+    <topnavbar></topnavbar>
+    <div class="container">
+      <div class="row">
+        <div
+          class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-3 col-md-5 col-md-offset-4 col-lg-4 col-lg-offset-4 createuser">
+
+          <h3>Create Survey</h3>
+
+          <div class="panel panel-default box-shadow">
+            <div class="panel-heading">
+              <span class="text-primary">Create</span>
+              <span class="text-muted pull-right today" title="Today"></span>
+            </div>
+            <!--.panel-heading-->
+
+            <div class="panel-body">
+              <form [formGroup]="registerform" (submit)="submit(registerform)" method="POST">
+
+                <div class="form-group">
+                  <label for="email">Survey First Audio File: </label>
+                  <div class="input-group">
+                    <div class="input-group-addon"><i class="glyphicon glyphicon-book"></i></div>
+                    <input autofocus required type="text" formControlName="name" name="name" id="name"
+                      class="form-control" placeholder="Your Name" tabindex="1">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="email">Survey DTMF Digits:</label>
+                  <div class="input-group">
+                    <div class="input-group-addon"><i class="glyphicon glyphicon-book"></i></div>
+                    <input autofocus required type="text" formControlName="name" name="name" id="name"
+                      class="form-control" placeholder="Your Name" tabindex="1">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="email">Survey Not Interested Digit: </label>
+                  <div class="input-group">
+                    <div class="input-group-addon"><i class="glyphicon glyphicon-book"></i></div>
+                    <input autofocus required type="text" formControlName="name" name="name" id="name"
+                      class="form-control" placeholder="Your Name" tabindex="1">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="email">Survey Wait Seconds:</label>
+                  <div class="input-group">
+                    <div class="input-group-addon"><i class="glyphicon glyphicon-book"></i></div>
+                    <input autofocus required type="text" formControlName="name" name="name" id="name"
+                      class="form-control" placeholder="Your Name" tabindex="1">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="email">Survey Opt-in Audio File:</label>
+                  <div class="input-group">
+                    <div class="input-group-addon"><i class="glyphicon glyphicon-book"></i></div>
+                    <input autofocus required type="text" formControlName="name" name="name" id="name"
+                      class="form-control" placeholder="Your Name" tabindex="1">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="email">Survey Not Interested Audio File:</label>
+                  <div class="input-group">
+                    <div class="input-group-addon"><i class="glyphicon glyphicon-book"></i></div>
+                    <input autofocus required type="text" formControlName="name" name="name" id="name"
+                      class="form-control" placeholder="Your Name" tabindex="1">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="group">Survey Method: </label>
+                  <div class="input-group">
+                    <div class="input-group-addon"><i class="glyphicon glyphicon-user"></i></div>
+                    <select class="mdb-select md-form form-control" formControlName="group">
+                      <option value="" disabled selected>Choose your option</option>
+                      <option *ngFor="let group of groups" value="group.user_group">{{group.group_name}}</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="level">Survey No-Response Action: </label>
+                  <div class="input-group">
+                    <div class="input-group-addon"><i class="glyphicon glyphicon-level-up"></i></div>
+                    <select class="mdb-select md-form form-control" formControlName="level">
+                      <option value="" disabled selected>Choose user level</option>
+                      <option value="0">0</option>
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+                      <option value="5">5</option>
+                      <option value="6">6</option>
+                      <option value="7">7</option>
+                      <option value="8">8</option>
+                      <option value="9">9</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="level">Survey Not Interested Status: </label>
+                  <div class="input-group">
+                    <div class="input-group-addon"><i class="glyphicon glyphicon-level-up"></i></div>
+                    <select class="mdb-select md-form form-control" formControlName="level">
+                      <option value="" disabled selected>Choose user level</option>
+                      <option value="0">0</option>
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+                      <option value="5">5</option>
+                      <option value="6">6</option>
+                      <option value="7">7</option>
+                      <option value="8">8</option>
+                      <option value="9">9</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="Number">Survey Third Digit: </label>
+                  <div class="input-group">
+                    <div class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></div>
+                    <input autofocus required type="text" formControlName="phonenumber" name="phonenumber"
+                      id="phonenumber" class="form-control" placeholder="Your phone number" tabindex="1">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="Number">Survey Third Audio File: </label>
+                  <div class="input-group">
+                    <div class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></div>
+                    <input autofocus required type="text" formControlName="phonenumber" name="phonenumber"
+                      id="phonenumber" class="form-control" placeholder="Your phone number" tabindex="1">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="Number">Survey Third Status: </label>
+                  <div class="input-group">
+                    <div class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></div>
+                    <input autofocus required type="text" formControlName="phonenumber" name="phonenumber"
+                      id="phonenumber" class="form-control" placeholder="Your phone number" tabindex="1">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="email">Survey Third Extension: </label>
+                  <div class="input-group">
+                    <div class="input-group-addon"><i class="glyphicon glyphicon-tasks"></i></div>
+                    <input autofocus required type="text" formControlName="status" name="status" id="status"
+                      class="form-control" placeholder="Your status" tabindex="1">
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="email">Survey Fourth Digit: </label>
+                  <div class="input-group">
+                    <div class="input-group-addon"><i class="glyphicon glyphicon-tasks"></i></div>
+                    <input autofocus required type="text" formControlName="status" name="status" id="status"
+                      class="form-control" placeholder="Your status" tabindex="1">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="email">Survey Fourth Audio File: </label>
+                  <div class="input-group">
+                    <div class="input-group-addon"><i class="glyphicon glyphicon-tasks"></i></div>
+                    <input autofocus required type="text" formControlName="status" name="status" id="status"
+                      class="form-control" placeholder="Your status" tabindex="1">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="password">Survey Fourth Status: </label>
+                  <div class="input-group">
+                    <div class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></div>
+                    <input required type="text" formControlName="password" class="form-control"
+                      placeholder="Your password" tabindex="2">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="password">Survey Fourth Extension: </label>
+                  <div class="input-group">
+                    <div class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></div>
+                    <input required type="text" formControlName="confpass" class="form-control"
+                      placeholder="Retype Your password" tabindex="2">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="email">Survey Response Digit Map: </label>
+                  <div class="input-group">
+                    <div class="input-group-addon"><i class="glyphicon glyphicon-tasks"></i></div>
+                    <input autofocus required type="text" formControlName="status" name="status" id="status"
+                      class="form-control" placeholder="Your status" tabindex="1">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="email">Survey Survey Xfer Extension: </label>
+                  <div class="input-group">
+                    <div class="input-group-addon"><i class="glyphicon glyphicon-tasks"></i></div>
+                    <input autofocus required type="text" formControlName="status" name="status" id="status"
+                      class="form-control" placeholder="Your status" tabindex="1">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="email">Survey Campaign Recording Directory: </label>
+                  <div class="input-group">
+                    <div class="input-group-addon"><i class="glyphicon glyphicon-tasks"></i></div>
+                    <input autofocus required type="text" formControlName="status" name="status" id="status"
+                      class="form-control" placeholder="Your status" tabindex="1">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="email">Voicemail: </label>
+                  <div class="input-group">
+                    <div class="input-group-addon"><i class="glyphicon glyphicon-tasks"></i></div>
+                    <input autofocus required type="text" formControlName="status" name="status" id="status"
+                      class="form-control" placeholder="Your status" tabindex="1">
+                  </div>
+                </div>
+                <div class="form-group">
+                    <label for="level">Survey Call Menu:</label>
+                    <div class="input-group">
+                      <div class="input-group-addon"><i class="glyphicon glyphicon-level-up"></i></div>
+                      <select class="mdb-select md-form form-control" formControlName="level">
+                        <option value="" disabled selected>Choose user level</option>
+                        <option value="0">0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                      <label for="level">Survey Recording:	</label>
+                      <div class="input-group">
+                        <div class="input-group-addon"><i class="glyphicon glyphicon-level-up"></i></div>
+                        <select class="mdb-select md-form form-control" formControlName="level">
+                          <option value="" disabled selected>Choose user level</option>
+                          <option value="0">0</option>
+                          <option value="1">1</option>
+                          <option value="2">2</option>
+                          <option value="3">3</option>
+                          <option value="4">4</option>
+                          <option value="5">5</option>
+                          <option value="6">6</option>
+                          <option value="7">7</option>
+                          <option value="8">8</option>
+                          <option value="9">9</option>
+                        </select>
+                      </div>
+                    </div>
+                <button type="submit" class="btn btn-block btn-success" tabindex="5">Create User</button>
+              </form>
+            </div>
+          </div>
+          <!--.panel-->
+
+        </div>
+      </div>
+    </div>
+    <div class="footer">
+      <div>
+        <strong>Copyright</strong> vici dial &copy; 2019
+      </div>
+    </div>
+  </div>
+</div>
