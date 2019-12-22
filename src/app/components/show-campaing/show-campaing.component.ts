@@ -46,6 +46,10 @@ public campaings;
 
       })
   }
+  showSurvey(id){
+    localStorage.setItem("survey_campaing_id",id);
+    this.router.navigateByUrl("/surveyCampaing")
+  }
   updateCampaing(id){
     localStorage.setItem("update_campaing_id",id);
     this.router.navigateByUrl("/updateCampaing")

@@ -28,6 +28,7 @@
               <th>Dial prefix</th>
               <th>Lead order</th>
               <th>Status</th>
+              <th>Survey</th>
               <th>Actions</th>
               <th>Delete</th>
             </tr>
@@ -38,16 +39,24 @@
               <td>{{campaing.campaign_name}}</td>
               <td>{{campaing.dial_prefix}}</td>
               <td>{{campaing.lead_order}}</td>
-              <td><ui-switch size="small" [(ngModel)]="campaing.enable" (change)="onChange($event,campaing.campaign_id)"></ui-switch></td>
+              <td>
+                <ui-switch size="small" [(ngModel)]="campaing.enable" (change)="onChange($event,campaing.campaign_id)">
+                </ui-switch>
+              </td>
+              <td>
+                <a class="edit" (click)="showSurvey(campaing.campaign_id)" title="Edit" data-toggle="tooltip"><i
+                    class="material-icons add_chart">&#xe97b;</i></a>
+              </td>
               <td>
                 <a class="edit" (click)="updateCampaing(campaing.campaign_id)" title="Edit" data-toggle="tooltip"><i
                     class="material-icons">&#xE254;</i></a>
 
                 <a class="edit" (click)="cloneCampaing(campaing.campaign_id)" title="Edit" data-toggle="tooltip"><i
                     class="material-icons content_copy">&#xe14d;</i></a>
-                </td>
-                <td>
-                <a class="delete" (click)="deleteCampaing(campaing.campaign_id)" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
+              </td>
+              <td>
+                <a class="delete" (click)="deleteCampaing(campaing.campaign_id)" title="Delete" data-toggle="tooltip"><i
+                    class="material-icons">&#xE872;</i></a>
               </td>
             </tr>
           </tbody>

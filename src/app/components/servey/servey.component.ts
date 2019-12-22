@@ -14,6 +14,34 @@ import { Login } from 'app/models/login';
 export class ServeyComponent implements OnInit {
   public registerform: any = FormGroup;
   public username;
+  public recordings = [];
+  public selectedRecording;
+  public audio = new Audio();
+  public survey_first_audio_file
+  public survey_dtmf_digits
+  public survey_ni_digit
+  public survey_wait_sec
+  public survey_opt_in_audio_file
+  public survey_ni_audio_file
+  public survey_method
+  public survey_no_response_action
+  public survey_ni_status
+  public survey_third_digit
+  public survey_third_audio_file
+  public survey_third_status
+  public survey_third_exten
+  public survey_fourth_digit
+  public survey_fourth_audio_file
+  public survey_fourth_status
+  public survey_fourth_exten
+  public survey_response_digit_map
+  public survey_xfer_exten
+  public survey_camp_record_dir
+  public voicemail_ext
+  public survey_menu_id
+  public survey_recording
+
+
   loginInfo: Login = {
     user_name: null,
   }
@@ -23,34 +51,126 @@ export class ServeyComponent implements OnInit {
   ngOnInit() {
     this.username = localStorage.getItem("user_name")
     this.loginInfo.user_name = this.username;
-    this.createForm
+    this.createForm()
+    this.fetchRecordings()
+    this.fetchCampaingById(localStorage.getItem("survey_campaing_id"));
   }
+  fetchCampaingById(id) {
+    this.campaignService.fetchCampaingsById(id).subscribe(
+      dataresp => {
+        var data = dataresp[0]
+        console.log(data, "camoaingdi")
+        this.survey_first_audio_file = data.survey_first_audio_file
+        this.survey_dtmf_digits = data.survey_dtmf_digits
+        this.survey_ni_digit = data.survey_ni_digit
+        this.survey_wait_sec = data.survey_wait_sec
+        this.survey_opt_in_audio_file = data.survey_opt_in_audio_file
+        this.survey_ni_audio_file = data.survey_ni_audio_file
+        this.survey_method = data.survey_method
+        this.survey_no_response_action = data.survey_no_response_action
+        this.survey_ni_status = data.survey_ni_status
+        this.survey_third_digit = data.survey_third_digit
+        this.survey_third_audio_file = data.survey_third_audio_file
+        this.survey_third_status = data.survey_third_status
+        this.survey_third_exten = data.survey_third_exten
+        this.survey_fourth_digit = data.survey_fourth_digit
+        this.survey_fourth_audio_file = data.survey_fourth_audio_file
+        this.survey_fourth_status = data.survey_fourth_status
+        this.survey_fourth_exten = data.survey_fourth_exten
+        this.survey_response_digit_map = data.survey_response_digit_map
+        this.survey_xfer_exten = data.survey_xfer_exten
+        this.survey_camp_record_dir = data.survey_camp_record_dir
+        this.voicemail_ext = data.voicemail_ext
+        this.survey_menu_id = data.survey_menu_id
+        this.survey_recording = data.survey_recording
+
+
+        console.log(this.survey_first_audio_file)
+        console.log(this.survey_dtmf_digits)
+        console.log(this.survey_ni_digit)
+        console.log(this.survey_wait_sec)
+        console.log(this.survey_opt_in_audio_file)
+        console.log(this.survey_ni_audio_file)
+        console.log(this.survey_method)
+        console.log(this.survey_no_response_action)
+        console.log("ni status#####################", this.survey_ni_status)
+        console.log(this.survey_third_digit)
+        console.log(this.survey_third_audio_file)
+        console.log(this.survey_third_status)
+        console.log(this.survey_third_exten)
+        console.log(this.survey_fourth_digit)
+        console.log(this.survey_fourth_audio_file)
+        console.log(this.survey_fourth_status)
+        console.log(this.survey_fourth_exten)
+        console.log(this.survey_response_digit_map)
+        console.log(this.survey_xfer_exten)
+        console.log(this.survey_camp_record_dir)
+        console.log(this.voicemail_ext)
+        console.log("survey call menu##################", this.survey_menu_id)
+        console.log(this.survey_recording)
+
+      })
+
+
+  }
+  playPauseAudio(file, option) {
+    console.log(option)
+    if (option == true) {
+      this.audio.src = "assets/recording/" + file;
+      this.audio.load();
+      this.audio.play();
+    } else {
+      this.audio.pause();
+    }
+
+  }
+
+  selectRecording(recording) {
+    console.log(recording)
+    this.selectedRecording = recording
+  }
+  fetchRecordings() {
+    this.campaignService.fetchRecordings().subscribe(
+      data => {
+        data.forEach(element => {
+          var extension = element.substr(element.lastIndexOf('.') + 1);
+          if (extension == "mp3" || extension == "wav" || extension == "gsm") {
+            this.recordings.push({ value: element.split('.').slice(0, -1).join('.'), file: element })
+          }
+        });
+        console.log(data)
+      })
+  }
+
 
   private createForm(): void {
 
-    // this.registerform = new FormGroup({
-    //   campaign: new FormGroup({
-    //     campaign_name: new FormControl('', [Validators.required]),
-    //     campaign_description: new FormControl('', Validators.required),
-    //     web_form_address: new FormControl('', Validators.required),
-    //     user_group: new FormControl('', Validators.required),
-    //     hopper_level: new FormControl('', Validators.required),
-    //     allow_closers: new FormControl('', Validators.required),
-    //     auto_dial_level: new FormControl('', Validators.required),
-    //     local_call_time: new FormControl('', Validators.required),
-    //     next_agent_call: new FormControl('', Validators.required),
-    //     get_call_launch: new FormControl('', Validators.required),
-    //     campaign_script: new FormControl('', Validators.required),
-    //     active: new FormControl('', Validators.required),
+    this.registerform = new FormGroup({
+      survey_first_audio_file: new FormControl('', [Validators.required]),
+      survey_dtmf_digits: new FormControl('', [Validators.required]),
+      survey_ni_digit: new FormControl('', [Validators.required]),
+      survey_wait_sec: new FormControl('', [Validators.required]),
+      survey_opt_in_audio_file: new FormControl('', [Validators.required]),
+      survey_ni_audio_file: new FormControl('', [Validators.required]),
+      survey_method: new FormControl('', [Validators.required]),
+      survey_no_response_action: new FormControl('', [Validators.required]),
+      survey_ni_status: new FormControl('', [Validators.required]),
+      survey_third_digit: new FormControl('', [Validators.required]),
+      survey_third_audio_file: new FormControl('', [Validators.required]),
+      survey_third_status: new FormControl('', [Validators.required]),
+      survey_third_exten: new FormControl('', [Validators.required]),
+      survey_fourth_digit: new FormControl('', [Validators.required]),
+      survey_fourth_audio_file: new FormControl('', [Validators.required]),
+      survey_fourth_status: new FormControl('', [Validators.required]),
+      survey_fourth_exten: new FormControl('', [Validators.required]),
+      survey_response_digit_map: new FormControl('', [Validators.required]),
+      survey_xfer_exten: new FormControl('', [Validators.required]),
+      survey_camp_record_dir: new FormControl('', [Validators.required]),
+      voicemail_ext: new FormControl('', [Validators.required]),
+      survey_menu_id: new FormControl('', [Validators.required]),
+      survey_recording: new FormControl('', [Validators.required]),
 
-    //   }),
-    //   group: new FormGroup({
-    //     user_group: new FormControl('', Validators.required),
-    //     group_name: new FormControl('', Validators.required),
-    //     allowed_campaigns: new FormControl('', Validators.required)
-
-    //   })
-    // });
+    });
   }
 
 }

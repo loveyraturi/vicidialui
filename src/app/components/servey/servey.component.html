@@ -22,236 +22,322 @@
               <form [formGroup]="registerform" (submit)="submit(registerform)" method="POST">
 
                 <div class="form-group">
-                  <label for="email">Survey First Audio File: </label>
+                  <label for="survey_first_audio_file">Survey First Audio File: </label>
                   <div class="input-group">
                     <div class="input-group-addon"><i class="glyphicon glyphicon-book"></i></div>
-                    <input autofocus required type="text" formControlName="name" name="name" id="name"
-                      class="form-control" placeholder="Your Name" tabindex="1">
+                    <div class="col-lg-10">
+                    <select class="mdb-select md-form form-control"
+                      (change)="selectRecording($event.target.value)" [(ngModel)]="survey_first_audio_file" name="survey_first_audio_file"
+                      formControlName="survey_first_audio_file">
+                      <option value="" disabled selected>Choose audio file</option>
+                      <option *ngFor="let recording of recordings" value="{{recording.file}}">{{recording.value}}</option>
+                    </select>
+                    </div>
+                    <div class="col-lg-2">
+                      <i (click)="playPauseAudio(selectedRecording,true)" class="glyphicon glyphicon-play"></i><i
+                        (click)="playPauseAudio(selectedRecording,false)" class="glyphicon glyphicon-pause"></i>
+                    </div>
                   </div>
                 </div>
-                <div class="form-group">
-                  <label for="email">Survey DTMF Digits:</label>
+                <div class="form-group col-lg-6">
+                  <label for="survey_dtmf_digits">Survey DTMF Digits:</label>
                   <div class="input-group">
                     <div class="input-group-addon"><i class="glyphicon glyphicon-book"></i></div>
-                    <input autofocus required type="text" formControlName="name" name="name" id="name"
-                      class="form-control" placeholder="Your Name" tabindex="1">
+                    <input autofocus required type="text" [(ngModel)]="survey_dtmf_digits" formControlName="survey_dtmf_digits" name="survey_dtmf_digits"
+                      id="survey_dtmf_digits" class="form-control" placeholder="Your survey dtmf digits" tabindex="1">
                   </div>
                 </div>
-                <div class="form-group">
-                  <label for="email">Survey Not Interested Digit: </label>
+                <div class="form-group col-lg-6">
+                  <label for="survey_ni_digit">Survey Not Interested Digit: </label>
                   <div class="input-group">
                     <div class="input-group-addon"><i class="glyphicon glyphicon-book"></i></div>
-                    <input autofocus required type="text" formControlName="name" name="name" id="name"
-                      class="form-control" placeholder="Your Name" tabindex="1">
+                    <input autofocus required type="text" [(ngModel)]="survey_ni_digit" formControlName="survey_ni_digit" name="survey_ni_digit"
+                      id="survey_ni_digit" class="form-control" placeholder="Your not insterested digits" tabindex="1">
                   </div>
                 </div>
-                <div class="form-group">
-                  <label for="email">Survey Wait Seconds:</label>
+                <div class="form-group col-lg-6">
+                  <label for="survey_wait_sec">Survey Wait Seconds:</label>
                   <div class="input-group">
                     <div class="input-group-addon"><i class="glyphicon glyphicon-book"></i></div>
-                    <input autofocus required type="text" formControlName="name" name="name" id="name"
-                      class="form-control" placeholder="Your Name" tabindex="1">
+                    <input autofocus required type="text" [(ngModel)]="survey_wait_sec" formControlName="survey_wait_sec" name="survey_wait_sec"
+                      id="survey_wait_sec" class="form-control" placeholder="Your wait seconds" tabindex="1">
                   </div>
                 </div>
-                <div class="form-group">
-                  <label for="email">Survey Opt-in Audio File:</label>
+                <div class="form-group col-lg-6">
+                  <label for="survey_opt_in_audio_file">Survey Opt-in Audio File:</label>
                   <div class="input-group">
                     <div class="input-group-addon"><i class="glyphicon glyphicon-book"></i></div>
-                    <input autofocus required type="text" formControlName="name" name="name" id="name"
-                      class="form-control" placeholder="Your Name" tabindex="1">
-                  </div>
+                    <div class="col-lg-10">
+                    <select class="mdb-select md-form form-control" [(ngModel)]="survey_opt_in_audio_file" (change)="selectRecording($event.target.value)"
+                      name="survey_opt_in_audio_file" formControlName="survey_opt_in_audio_file">
+                      <option value="" disabled selected>Choose audio file</option>
+                      <option *ngFor="let recording of recordings" value="{{recording.file}}">{{recording.value}}</option>
+                    </select>
+                    </div>
+                    <div class="col-lg-2">
+                    <i (click)="playPauseAudio(selectedRecording,true)" class="glyphicon glyphicon-play"></i><i
+                      (click)="playPauseAudio(selectedRecording,false)" class="glyphicon glyphicon-pause"></i>
+                    </div>
+                    </div>
                 </div>
-                <div class="form-group">
-                  <label for="email">Survey Not Interested Audio File:</label>
+                <div class="form-group col-lg-6">
+                  <label for="survey_ni_audio_file">Survey Not Interested Audio File:</label>
                   <div class="input-group">
                     <div class="input-group-addon"><i class="glyphicon glyphicon-book"></i></div>
-                    <input autofocus required type="text" formControlName="name" name="name" id="name"
-                      class="form-control" placeholder="Your Name" tabindex="1">
+                    <div class="col-lg-10">
+                    <select class="mdb-select md-form form-control" [(ngModel)]="survey_ni_audio_file" (change)="selectRecording($event.target.value)"
+                      name="survey_ni_audio_file" formControlName="survey_ni_audio_file">
+                      <option value="" disabled selected>Choose audio file</option>
+                      <option *ngFor="let recording of recordings" value="{{recording.file}}">{{recording.value}}</option>
+                    </select>
+                    </div>
+                    <div class="col-lg-2">
+                    <i (click)="playPauseAudio(selectedRecording,true)" class="glyphicon glyphicon-play"></i><i
+                      (click)="playPauseAudio(selectedRecording,false)" class="glyphicon glyphicon-pause"></i>
+                  </div>
                   </div>
                 </div>
-                <div class="form-group">
-                  <label for="group">Survey Method: </label>
+                <div class="form-group col-lg-6">
+                  <label for="survey_method">Survey Method: </label>
                   <div class="input-group">
                     <div class="input-group-addon"><i class="glyphicon glyphicon-user"></i></div>
-                    <select class="mdb-select md-form form-control" formControlName="group">
+                    <select class="mdb-select md-form form-control" [(ngModel)]="survey_method" name="survey_method"
+                      formControlName="survey_method">
                       <option value="" disabled selected>Choose your option</option>
-                      <option *ngFor="let group of groups" value="group.user_group">{{group.group_name}}</option>
+                      <option value="AGENT_XFER">AGENT_XFER</option>
+                      <option value="VOICEMAIL">VOICEMAIL</option>
+                      <option value="VMAIL_NO_INST">VMAIL_NO_INST</option>
+                      <option value="EXTENSION">EXTENSION</option>
+                      <option value="HANGUP">HANGUP</option>
+                      <option value="CAMPREC_60_WAV">CAMPREC_60_WAV</option>
+                      <option value="CALLMENU">CALLMENU</option>
                     </select>
                   </div>
                 </div>
-                <div class="form-group">
-                  <label for="level">Survey No-Response Action: </label>
+                <div class="form-group col-lg-6">
+                  <label for="survey_no_response_action">Survey No-Response Action: </label>
                   <div class="input-group">
                     <div class="input-group-addon"><i class="glyphicon glyphicon-level-up"></i></div>
-                    <select class="mdb-select md-form form-control" formControlName="level">
+                    <select class="mdb-select md-form form-control"  [(ngModel)]="survey_no_response_action" name="survey_no_response_action"
+                      formControlName="survey_no_response_action">
                       <option value="" disabled selected>Choose user level</option>
-                      <option value="0">0</option>
-                      <option value="1">1</option>
-                      <option value="2">2</option>
-                      <option value="3">3</option>
-                      <option value="4">4</option>
-                      <option value="5">5</option>
-                      <option value="6">6</option>
-                      <option value="7">7</option>
-                      <option value="8">8</option>
-                      <option value="9">9</option>
+                      <option value="OPTIN">OPTIN</option>
+                      <option value="OPTOUT">OPTOUT</option>
+                      <option value="DROP">DROP</option>
                     </select>
                   </div>
                 </div>
-                <div class="form-group">
-                  <label for="level">Survey Not Interested Status: </label>
+                <div class="form-group col-lg-6">
+                  <label for="survey_ni_status">Survey Not Interested Status: </label>
                   <div class="input-group">
                     <div class="input-group-addon"><i class="glyphicon glyphicon-level-up"></i></div>
-                    <select class="mdb-select md-form form-control" formControlName="level">
+                    <select class="mdb-select md-form form-control" [(ngModel)]="survey_ni_status" name="survey_ni_status"
+                      formControlName="survey_ni_status">
                       <option value="" disabled selected>Choose user level</option>
-                      <option value="0">0</option>
-                      <option value="1">1</option>
-                      <option value="2">2</option>
-                      <option value="3">3</option>
-                      <option value="4">4</option>
-                      <option value="5">5</option>
-                      <option value="6">6</option>
-                      <option value="7">7</option>
-                      <option value="8">8</option>
-                      <option value="9">9</option>
+                      <option value="A">A - Answering Machine</option>
+                      <option value="AA">AA - Answering Machine Auto</option>
+                      <option value="AB">AB - Busy Auto</option>
+                      <option value="ADC">ADC - Disconnected Number Auto</option>
+                      <option value="ADCT">ADCT - Disconnected Number Temporary</option>
+                      <option value="AFAX">AFAX - Fax Machine Auto</option>
+                      <option value="AFTHRS">AFTHRS - Inbound After Hours Drop</option>
+                      <option value="AL">AL - Answering Machine Msg Played</option>
+                      <option value="AM">AM - Answering Machine SentToMesg</option>
+                      <option value="B">B - Busy</option>
+                      <option value="CALLBK">CALLBK - Call Back</option>
+                      <option value="DC">DC - Disconnected Number</option>
+                      <option value="DEC">DEC - Declined Sale</option>
+                      <option value="DNC">DNC - DO NOT CALL</option>
+                      <option value="DNCC">DNCC - DO NOT CALL Hopper Camp Match</option>
+                      <option value="DNCL">DNCL - DO NOT CALL Hopper Sys Match</option>
+                      <option value="DROP">DROP - Agent Not Available</option>
+                      <option value="ERI">ERI - Agent Error</option>
+                      <option value="INCALL">INCALL - Lead Being Called</option>
+                      <option value="IVRXFR">IVRXFR - Outbound drop to Call Menu</option>
+                      <option value="LRERR">LRERR - Outbound Local Channel Res Err</option>
+                      <option value="LSMERG">LSMERG - Agent lead search old lead mrg</option>
+                      <option value="MAXCAL">MAXCAL - Inbound Max Calls Drop</option>
+                      <option value="MLINAT">MLINAT - Multi-Lead auto-alt set inactv</option>
+                      <option value="N">N - No Answer</option>
+                      <option value="NA">NA - No Answer AutoDial</option>
+                      <option value="NANQUE">NANQUE - Inbound No Agent No Queue Drop</option>
+                      <option value="NEW">NEW - New Lead</option>
+                      <option value="NICM">NICM - Not Interested CM</option>
+                      <option value="NP">NP - No Pitch No Price</option>
+                      <option value="PDROP">PDROP - Outbound Pre-Routing Drop</option>
+                      <option value="PM">PM - Played Message</option>
+                      <option value="PU">PU - Call Picked Up</option>
+                      <option value="QCFAIL">QCFAIL - QC_FAIL_CALLBK</option>
+                      <option value="QUEUE">QUEUE - Lead To Be Called</option>
+                      <option value="QVMAIL">QVMAIL - Queue Abandon Voicemail Left</option>
+                      <option value="RQXFER">RQXFER - Re-Queue</option>
+                      <option value="SALE">SALE - Sale Made</option>
+                      <option value="SVYCLM">SVYCLM - Survey sent to Call Menu</option>
+                      <option value="SVYEXT">SVYEXT - Survey sent to Extension</option>
+                      <option value="SVYHU">SVYHU - Survey Hungup</option>
+                      <option value="SVYREC">SVYREC - Survey sent to Record</option>
+                      <option value="SVYVM">SVYVM - Survey sent to Voicemail</option>
+                      <option value="TIMEOT">TIMEOT - Inbound Queue Timeout Drop</option>
+                      <option value="XDROP">XDROP - Agent Not Available IN</option>
+                      <option value="XFER">XFER - Call Transferred</option>
                     </select>
                   </div>
                 </div>
-                <div class="form-group">
-                  <label for="Number">Survey Third Digit: </label>
+                <div class="form-group col-lg-6">
+                  <label for="survey_third_digit">Survey Third Digit: </label>
                   <div class="input-group">
                     <div class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></div>
-                    <input autofocus required type="text" formControlName="phonenumber" name="phonenumber"
-                      id="phonenumber" class="form-control" placeholder="Your phone number" tabindex="1">
+                    <input autofocus required type="text" [(ngModel)]="survey_third_digit" formControlName="survey_third_digit" name="survey_third_digit"
+                      id="phonenumber" class="form-control" placeholder="Your third digits" tabindex="1">
                   </div>
                 </div>
-                <div class="form-group">
-                  <label for="Number">Survey Third Audio File: </label>
+                <div class="form-group col-lg-6">
+                  <label for="survey_third_audio_file">Survey Third Audio File: </label>
                   <div class="input-group">
                     <div class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></div>
-                    <input autofocus required type="text" formControlName="phonenumber" name="phonenumber"
-                      id="phonenumber" class="form-control" placeholder="Your phone number" tabindex="1">
+                    <div class="col-lg-10">
+                    <select class="mdb-select md-form form-control" [(ngModel)]="survey_third_audio_file" (change)="selectRecording($event.target.value)"
+                      name="survey_third_audio_file" formControlName="survey_third_audio_file">
+                      <option value="" disabled selected>Choose audio file</option>
+                      <option *ngFor="let recording of recordings" value="{{recording.file}}">{{recording.value}}</option>
+                    </select>
+                    </div>
+                    <div class="col-lg-2">
+                    <i (click)="playPauseAudio(selectedRecording,true)" class="glyphicon glyphicon-play"></i><i
+                      (click)="playPauseAudio(selectedRecording,false)" class="glyphicon glyphicon-pause"></i>
+                  </div>
                   </div>
                 </div>
-                <div class="form-group">
-                  <label for="Number">Survey Third Status: </label>
+                <div class="form-group col-lg-6">
+                  <label for="survey_third_status">Survey Third Status: </label>
                   <div class="input-group">
                     <div class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></div>
-                    <input autofocus required type="text" formControlName="phonenumber" name="phonenumber"
-                      id="phonenumber" class="form-control" placeholder="Your phone number" tabindex="1">
+                    <input autofocus required type="text" [(ngModel)]="survey_third_status" formControlName="survey_third_status"
+                      name="survey_third_status" id="survey_third_status" class="form-control"
+                      placeholder="Your third status" tabindex="1">
                   </div>
                 </div>
-                <div class="form-group">
-                  <label for="email">Survey Third Extension: </label>
+                <div class="form-group col-lg-6">
+                  <label for="survey_third_exten">Survey Third Extension: </label>
                   <div class="input-group">
                     <div class="input-group-addon"><i class="glyphicon glyphicon-tasks"></i></div>
-                    <input autofocus required type="text" formControlName="status" name="status" id="status"
-                      class="form-control" placeholder="Your status" tabindex="1">
+                    <input autofocus required type="text" [(ngModel)]="survey_third_exten" formControlName="survey_third_exten" name="survey_third_exten"
+                      id="	survey_third_exten" class="form-control" placeholder="Your third exten" tabindex="1">
                   </div>
                 </div>
 
-                <div class="form-group">
-                  <label for="email">Survey Fourth Digit: </label>
+                <div class="form-group col-lg-6">
+                  <label for="survey_fourth_digit">Survey Fourth Digit: </label>
                   <div class="input-group">
                     <div class="input-group-addon"><i class="glyphicon glyphicon-tasks"></i></div>
-                    <input autofocus required type="text" formControlName="status" name="status" id="status"
-                      class="form-control" placeholder="Your status" tabindex="1">
+                    <input autofocus required type="text" [(ngModel)]="survey_fourth_digit" formControlName="survey_fourth_digit"
+                      name="survey_fourth_digit" id="survey_fourth_digit" class="form-control"
+                      placeholder="Your fourth digit" tabindex="1">
                   </div>
                 </div>
-                <div class="form-group">
-                  <label for="email">Survey Fourth Audio File: </label>
+                <div class="form-group col-lg-6">
+                  <label for="survey_fourth_audio_file">Survey Fourth Audio File: </label>
                   <div class="input-group">
                     <div class="input-group-addon"><i class="glyphicon glyphicon-tasks"></i></div>
-                    <input autofocus required type="text" formControlName="status" name="status" id="status"
-                      class="form-control" placeholder="Your status" tabindex="1">
+                    <div class="col-lg-10">
+                    <select class="mdb-select md-form form-control" [(ngModel)]="survey_fourth_audio_file" (change)="selectRecording($event.target.value)"
+                      name="survey_fourth_audio_file" formControlName="survey_fourth_audio_file">
+                      <option value="" disabled selected>Choose audio file</option>
+                      <option *ngFor="let recording of recordings" value="{{recording.file}}">{{recording.value}}</option>
+                    </select>
+                    </div>
+                    <div class="col-lg-2">
+                    <i (click)="playPauseAudio(selectedRecording,true)" class="glyphicon glyphicon-play"></i><i
+                      (click)="playPauseAudio(selectedRecording,false)" class="glyphicon glyphicon-pause"></i>
+                  </div>
                   </div>
                 </div>
-                <div class="form-group">
-                  <label for="password">Survey Fourth Status: </label>
+                <div class="form-group col-lg-6">
+                  <label for="survey_fourth_status">Survey Fourth Status: </label>
                   <div class="input-group">
                     <div class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></div>
-                    <input required type="text" formControlName="password" class="form-control"
-                      placeholder="Your password" tabindex="2">
+                    <input required type="text" [(ngModel)]="survey_fourth_status" formControlName="survey_fourth_status" name="survey_fourth_status"
+                      class="form-control" placeholder="Your fourth status" tabindex="2">
                   </div>
                 </div>
-                <div class="form-group">
-                  <label for="password">Survey Fourth Extension: </label>
+                <div class="form-group col-lg-6">
+                  <label for="survey_fourth_exten">Survey Fourth Extension: </label>
                   <div class="input-group">
                     <div class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></div>
-                    <input required type="text" formControlName="confpass" class="form-control"
-                      placeholder="Retype Your password" tabindex="2">
+                    <input required type="text" [(ngModel)]="survey_fourth_exten" formControlName="survey_fourth_exten" name="survey_fourth_exten"
+                      class="form-control" placeholder="Your fourth extension" tabindex="2">
                   </div>
                 </div>
-                <div class="form-group">
-                  <label for="email">Survey Response Digit Map: </label>
+                <div class="form-group col-lg-6">
+                  <label for="survey_response_digit_map">Survey Response Digit Map: </label>
                   <div class="input-group">
                     <div class="input-group-addon"><i class="glyphicon glyphicon-tasks"></i></div>
-                    <input autofocus required type="text" formControlName="status" name="status" id="status"
-                      class="form-control" placeholder="Your status" tabindex="1">
+                    <input autofocus required type="text" [(ngModel)]="survey_response_digit_map" formControlName="survey_response_digit_map"
+                      name="survey_response_digit_map" id="survey_response_digit_map" class="form-control"
+                      placeholder="Your response digit map" tabindex="1">
                   </div>
                 </div>
-                <div class="form-group">
-                  <label for="email">Survey Survey Xfer Extension: </label>
+                <div class="form-group col-lg-6">
+                  <label for="survey_xfer_exten">Survey Xfer Extension: </label>
                   <div class="input-group">
                     <div class="input-group-addon"><i class="glyphicon glyphicon-tasks"></i></div>
-                    <input autofocus required type="text" formControlName="status" name="status" id="status"
-                      class="form-control" placeholder="Your status" tabindex="1">
+                    <input autofocus required type="text" [(ngModel)]="survey_xfer_exten" formControlName="survey_xfer_exten" name="survey_xfer_exten"
+                      id="survey_xfer_exten" class="form-control" placeholder="Your Xfer extension" tabindex="1">
                   </div>
                 </div>
-                <div class="form-group">
-                  <label for="email">Survey Campaign Recording Directory: </label>
+                <div class="form-group col-lg-6">
+                  <label for="survey_camp_record_dir">Survey Campaign Recording Directory: </label>
                   <div class="input-group">
                     <div class="input-group-addon"><i class="glyphicon glyphicon-tasks"></i></div>
-                    <input autofocus required type="text" formControlName="status" name="status" id="status"
-                      class="form-control" placeholder="Your status" tabindex="1">
+                    <input autofocus required type="text" [(ngModel)]="survey_camp_record_dir" formControlName="survey_camp_record_dir"
+                      name="survey_camp_record_dir" id="survey_camp_record_dir" class="form-control"
+                      placeholder="Your campain recording directory" tabindex="1">
                   </div>
                 </div>
-                <div class="form-group">
-                  <label for="email">Voicemail: </label>
+                <div class="form-group col-lg-6">
+                  <label for="voicemail_ext">Voicemail: </label>
                   <div class="input-group">
                     <div class="input-group-addon"><i class="glyphicon glyphicon-tasks"></i></div>
-                    <input autofocus required type="text" formControlName="status" name="status" id="status"
-                      class="form-control" placeholder="Your status" tabindex="1">
-                  </div>
-                </div>
-                <div class="form-group">
-                    <label for="level">Survey Call Menu:</label>
-                    <div class="input-group">
-                      <div class="input-group-addon"><i class="glyphicon glyphicon-level-up"></i></div>
-                      <select class="mdb-select md-form form-control" formControlName="level">
-                        <option value="" disabled selected>Choose user level</option>
-                        <option value="0">0</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                        <option value="6">6</option>
-                        <option value="7">7</option>
-                        <option value="8">8</option>
-                        <option value="9">9</option>
-                      </select>
+                    <div class="col-lg-10">                   
+                    <select class="mdb-select md-form form-control" [(ngModel)]="voicemail_ext" (change)="selectRecording($event.target.value)"
+                      name="voicemail_ext" formControlName="voicemail_ext">
+                      <option value="" disabled selected>Choose audio file</option>
+                      {{recordings | json}}
+                      <option *ngFor="let recording of recordings" value="{{recording.file}}">{{recording.value}}</option>
+                    </select>
                     </div>
+                    <div class="col-lg-2">
+                    <i (click)="playPauseAudio(selectedRecording,true)" class="glyphicon glyphicon-play"></i><i
+                      (click)="playPauseAudio(selectedRecording,false)" class="glyphicon glyphicon-pause"></i>
                   </div>
-                  <div class="form-group">
-                      <label for="level">Survey Recording:	</label>
-                      <div class="input-group">
-                        <div class="input-group-addon"><i class="glyphicon glyphicon-level-up"></i></div>
-                        <select class="mdb-select md-form form-control" formControlName="level">
-                          <option value="" disabled selected>Choose user level</option>
-                          <option value="0">0</option>
-                          <option value="1">1</option>
-                          <option value="2">2</option>
-                          <option value="3">3</option>
-                          <option value="4">4</option>
-                          <option value="5">5</option>
-                          <option value="6">6</option>
-                          <option value="7">7</option>
-                          <option value="8">8</option>
-                          <option value="9">9</option>
-                        </select>
-                      </div>
                     </div>
+                </div>
+                <div class="form-group col-lg-6">
+                  <label for="survey_menu_id">Survey Call Menu:</label>
+                  <div class="input-group">
+                    <div class="input-group-addon"><i class="glyphicon glyphicon-level-up"></i></div>
+                    <select class="mdb-select md-form form-control" [(ngModel)]="survey_menu_id"  name="survey_menu_id"
+                      formControlName="survey_menu_id">
+                      <option value="" disabled selected>Choose user level</option>
+                      <option value="default---agent">default---agent - agent phones restricted to only internal
+                        extensions</option>
+                      <option value="defaultlog">defaultlog - logging of all outbound calls from agent phones</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-group col-lg-6">
+                  <label for="survey_recording">Survey Recording: </label>
+                  <div class="input-group">
+                    <div class="input-group-addon"><i class="glyphicon glyphicon-level-up"></i></div>
+                    <select class="mdb-select md-form form-control" [(ngModel)]="survey_recording" name="survey_recording"
+                      formControlName="survey_recording">
+                      <option value="" disabled selected>Choose user level</option>
+                      <option value="Y">Y</option>
+                      <option value="N">N</option>
+                      <option value="Y_WITH_AMD">Y_WITH_AMD</option>
+                    </select>
+                  </div>
+                </div>
                 <button type="submit" class="btn btn-block btn-success" tabindex="5">Create User</button>
               </form>
             </div>
