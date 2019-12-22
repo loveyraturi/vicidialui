@@ -39,6 +39,18 @@ export class CampaingService {
         }
       ))
   }
+  fetchRecordings(): Observable<any>{
+    return this.http
+    .get('http://103.66.232.186:4011/api/campaing/fetchallfiles').pipe(
+    map(
+      res => {
+        return res;
+      },
+      err => {
+        return err;
+      }
+    ))
+  }
   fetchCampaingsById(id): Observable<any> {
     return this.http
       .get('http://103.66.232.186:4011/api/campaing/fetchCampaingById/'+id).pipe(
