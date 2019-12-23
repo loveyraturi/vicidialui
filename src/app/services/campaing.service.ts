@@ -63,6 +63,18 @@ export class CampaingService {
         }
       ))
   }
+  fetchActiveCampaing(): Observable<any> {
+    return this.http
+      .get('http://103.66.232.186:4011/api/campaing/fetchactivecampaing').pipe(
+      map(
+        res => {
+          return res;
+        },
+        err => {
+          return err;
+        }
+      ))
+  }
   deleteCampaing(id): Observable<any> {
     return this.http
       .get('http://103.66.232.186:4011/api/campaing/deletecampaing/' + id).pipe(
