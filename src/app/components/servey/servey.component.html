@@ -30,12 +30,12 @@
                       (change)="selectRecording($event.target.value)" [(ngModel)]="survey_first_audio_file" name="survey_first_audio_file"
                       formControlName="survey_first_audio_file">
                       <option value="" disabled selected>Choose audio file</option>
-                      <option *ngFor="let recording of recordings" value="{{recording.file}}">{{recording.value}}</option>
+                      <option *ngFor="let recording of recordings" value="{{recording.value}}">{{recording.value}}</option>
                     </select>
                     </div>
                     <div class="col-lg-2">
-                      <i (click)="playPauseAudio(selectedRecording,true)" class="glyphicon glyphicon-play"></i><i
-                        (click)="playPauseAudio(selectedRecording,false)" class="glyphicon glyphicon-pause"></i>
+                      <i (click)="playPauseAudio(selectedRecording.file,true)" class="glyphicon glyphicon-play"></i><i
+                        (click)="playPauseAudio(selectedRecording.file,false)" class="glyphicon glyphicon-pause"></i>
                     </div>
                   </div>
                 </div>
@@ -45,6 +45,8 @@
                     <div class="input-group-addon"><i class="glyphicon glyphicon-book"></i></div>
                     <input autofocus required type="text" [(ngModel)]="survey_dtmf_digits" formControlName="survey_dtmf_digits" name="survey_dtmf_digits"
                       id="survey_dtmf_digits" class="form-control" placeholder="Your survey dtmf digits" tabindex="1">
+                      <input autofocus required type="hidden" [(ngModel)]="campaign_id" formControlName="campaign_id" name="campaign_id"
+                      id="campaign_id" class="form-control" tabindex="1">
                   </div>
                 </div>
                 <div class="form-group col-lg-6">
@@ -71,12 +73,12 @@
                     <select class="mdb-select md-form form-control" [(ngModel)]="survey_opt_in_audio_file" (change)="selectRecording($event.target.value)"
                       name="survey_opt_in_audio_file" formControlName="survey_opt_in_audio_file">
                       <option value="" disabled selected>Choose audio file</option>
-                      <option *ngFor="let recording of recordings" value="{{recording.file}}">{{recording.value}}</option>
+                      <option *ngFor="let recording of recordings" value="{{recording.value}}">{{recording.value}}</option>
                     </select>
                     </div>
                     <div class="col-lg-2">
-                    <i (click)="playPauseAudio(selectedRecording,true)" class="glyphicon glyphicon-play"></i><i
-                      (click)="playPauseAudio(selectedRecording,false)" class="glyphicon glyphicon-pause"></i>
+                    <i (click)="playPauseAudio(selectedRecording.file,true)" class="glyphicon glyphicon-play"></i><i
+                      (click)="playPauseAudio(selectedRecording.file,false)" class="glyphicon glyphicon-pause"></i>
                     </div>
                     </div>
                 </div>
@@ -88,12 +90,12 @@
                     <select class="mdb-select md-form form-control" [(ngModel)]="survey_ni_audio_file" (change)="selectRecording($event.target.value)"
                       name="survey_ni_audio_file" formControlName="survey_ni_audio_file">
                       <option value="" disabled selected>Choose audio file</option>
-                      <option *ngFor="let recording of recordings" value="{{recording.file}}">{{recording.value}}</option>
+                      <option *ngFor="let recording of recordings" value="{{recording.value}}">{{recording.value}}</option>
                     </select>
                     </div>
                     <div class="col-lg-2">
-                    <i (click)="playPauseAudio(selectedRecording,true)" class="glyphicon glyphicon-play"></i><i
-                      (click)="playPauseAudio(selectedRecording,false)" class="glyphicon glyphicon-pause"></i>
+                    <i (click)="playPauseAudio(selectedRecording.file,true)" class="glyphicon glyphicon-play"></i><i
+                      (click)="playPauseAudio(selectedRecording.file,false)" class="glyphicon glyphicon-pause"></i>
                   </div>
                   </div>
                 </div>
@@ -199,12 +201,12 @@
                     <select class="mdb-select md-form form-control" [(ngModel)]="survey_third_audio_file" (change)="selectRecording($event.target.value)"
                       name="survey_third_audio_file" formControlName="survey_third_audio_file">
                       <option value="" disabled selected>Choose audio file</option>
-                      <option *ngFor="let recording of recordings" value="{{recording.file}}">{{recording.value}}</option>
+                      <option *ngFor="let recording of recordings" value="{{recording.value}}">{{recording.value}}</option>
                     </select>
                     </div>
                     <div class="col-lg-2">
-                    <i (click)="playPauseAudio(selectedRecording,true)" class="glyphicon glyphicon-play"></i><i
-                      (click)="playPauseAudio(selectedRecording,false)" class="glyphicon glyphicon-pause"></i>
+                    <i (click)="playPauseAudio(selectedRecording.file,true)" class="glyphicon glyphicon-play"></i><i
+                      (click)="playPauseAudio(selectedRecording.file,false)" class="glyphicon glyphicon-pause"></i>
                   </div>
                   </div>
                 </div>
@@ -243,12 +245,12 @@
                     <select class="mdb-select md-form form-control" [(ngModel)]="survey_fourth_audio_file" (change)="selectRecording($event.target.value)"
                       name="survey_fourth_audio_file" formControlName="survey_fourth_audio_file">
                       <option value="" disabled selected>Choose audio file</option>
-                      <option *ngFor="let recording of recordings" value="{{recording.file}}">{{recording.value}}</option>
+                      <option *ngFor="let recording of recordings" value="{{recording.value}}">{{recording.value}}</option>
                     </select>
                     </div>
                     <div class="col-lg-2">
-                    <i (click)="playPauseAudio(selectedRecording,true)" class="glyphicon glyphicon-play"></i><i
-                      (click)="playPauseAudio(selectedRecording,false)" class="glyphicon glyphicon-pause"></i>
+                    <i (click)="playPauseAudio(selectedRecording.file,true)" class="glyphicon glyphicon-play"></i><i
+                      (click)="playPauseAudio(selectedRecording.file,false)" class="glyphicon glyphicon-pause"></i>
                   </div>
                   </div>
                 </div>
@@ -302,13 +304,12 @@
                     <select class="mdb-select md-form form-control" [(ngModel)]="voicemail_ext" (change)="selectRecording($event.target.value)"
                       name="voicemail_ext" formControlName="voicemail_ext">
                       <option value="" disabled selected>Choose audio file</option>
-                      {{recordings | json}}
-                      <option *ngFor="let recording of recordings" value="{{recording.file}}">{{recording.value}}</option>
+                      <option *ngFor="let recording of recordings" value="{{recording.value}}">{{recording.value}}</option>
                     </select>
                     </div>
                     <div class="col-lg-2">
-                    <i (click)="playPauseAudio(selectedRecording,true)" class="glyphicon glyphicon-play"></i><i
-                      (click)="playPauseAudio(selectedRecording,false)" class="glyphicon glyphicon-pause"></i>
+                    <i (click)="playPauseAudio(selectedRecording.file,true)" class="glyphicon glyphicon-play"></i><i
+                      (click)="playPauseAudio(selectedRecording.file,false)" class="glyphicon glyphicon-pause"></i>
                   </div>
                     </div>
                 </div>

@@ -99,5 +99,17 @@ export class CampaingService {
         }
       ))
   }
+  updateSurvey(request): Observable<any> {
+    return this.http
+      .put('http://103.66.232.186:4011/api/campaing/updatesurvey', request).pipe(
+      map(
+        res => {
+          return res;
+        },
+        err => {
+          return err;
+        }
+      ))
+  }
 
 }

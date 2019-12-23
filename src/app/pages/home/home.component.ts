@@ -6,7 +6,6 @@ import { Login } from "app/models/login";
 import { DashboardService } from "app/services/dashboard.service";
 import { CampaingService } from "app/services/campaing.service";
 import { UserService } from "app/services/user.service";
-import { ModalDialogService, SimpleModalComponent } from "ngx-modal-dialog";
 
 @Component({
     selector: 'home',

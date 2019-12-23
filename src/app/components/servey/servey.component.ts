@@ -40,6 +40,7 @@ export class ServeyComponent implements OnInit {
   public voicemail_ext
   public survey_menu_id
   public survey_recording
+  public campaign_id
 
 
   loginInfo: Login = {
@@ -59,7 +60,8 @@ export class ServeyComponent implements OnInit {
     this.campaignService.fetchCampaingsById(id).subscribe(
       dataresp => {
         var data = dataresp[0]
-        console.log(data, "camoaingdi")
+        console.log(data, "camoaingdi#####################")
+        this.campaign_id= data.campaign_id
         this.survey_first_audio_file = data.survey_first_audio_file
         this.survey_dtmf_digits = data.survey_dtmf_digits
         this.survey_ni_digit = data.survey_ni_digit
@@ -83,32 +85,6 @@ export class ServeyComponent implements OnInit {
         this.voicemail_ext = data.voicemail_ext
         this.survey_menu_id = data.survey_menu_id
         this.survey_recording = data.survey_recording
-
-
-        console.log(this.survey_first_audio_file)
-        console.log(this.survey_dtmf_digits)
-        console.log(this.survey_ni_digit)
-        console.log(this.survey_wait_sec)
-        console.log(this.survey_opt_in_audio_file)
-        console.log(this.survey_ni_audio_file)
-        console.log(this.survey_method)
-        console.log(this.survey_no_response_action)
-        console.log("ni status#####################", this.survey_ni_status)
-        console.log(this.survey_third_digit)
-        console.log(this.survey_third_audio_file)
-        console.log(this.survey_third_status)
-        console.log(this.survey_third_exten)
-        console.log(this.survey_fourth_digit)
-        console.log(this.survey_fourth_audio_file)
-        console.log(this.survey_fourth_status)
-        console.log(this.survey_fourth_exten)
-        console.log(this.survey_response_digit_map)
-        console.log(this.survey_xfer_exten)
-        console.log(this.survey_camp_record_dir)
-        console.log(this.voicemail_ext)
-        console.log("survey call menu##################", this.survey_menu_id)
-        console.log(this.survey_recording)
-
       })
 
 
@@ -127,25 +103,56 @@ export class ServeyComponent implements OnInit {
 
   selectRecording(recording) {
     console.log(recording)
-    this.selectedRecording = recording
+    console.log(this.recordings,"##################")
+    var selected={}
+    this.recordings.forEach(item => {
+      if (item.value == recording) {
+        selected=item;
+      }
+    })
+    console.log(selected,"#@#@#@#@#@#@#@#@#@#@#@#@#@#@selected")
+    this.selectedRecording = selected
+
   }
   fetchRecordings() {
     this.campaignService.fetchRecordings().subscribe(
       data => {
+        console.log(data,"$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$")
         data.forEach(element => {
           var extension = element.substr(element.lastIndexOf('.') + 1);
+          var fileName=element.split('.').slice(0, -1).join('.')
           if (extension == "mp3" || extension == "wav" || extension == "gsm") {
-            this.recordings.push({ value: element.split('.').slice(0, -1).join('.'), file: element })
+            console.log(fileName,"###########$$$$$$$$$$$$$$$$############",element)
+            this.recordings.push({ value: fileName, file: element })
           }
         });
-        console.log(data)
+        console.log(this.recordings,"@@@@@@@@@@@@@@@@@##################$$$$$$$$$$$@@@@@@@@@@@@")
       })
   }
+  updateSurvey(data) {
+    this.campaignService.updateSurvey(data).subscribe(
+      data => {
+        console.log(data)
+        if(data.status==true){
+          this.router.navigateByUrl("/showCampaing")
+        }else{
+          console.log(data,"error")
+        }
+      })
+  }
+  submit({ value }: any): void {
+    console.log(value, "@@@@@@@@@@@@@@@@@@")
+    // this.createUser(value);
+    this.updateSurvey(value)
 
-
+  }
+  optionClick(event) {
+    console.log("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@", event)
+  }
   private createForm(): void {
 
     this.registerform = new FormGroup({
+      campaign_id: new FormControl('', [Validators.required]),
       survey_first_audio_file: new FormControl('', [Validators.required]),
       survey_dtmf_digits: new FormControl('', [Validators.required]),
       survey_ni_digit: new FormControl('', [Validators.required]),
