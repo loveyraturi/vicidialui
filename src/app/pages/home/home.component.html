@@ -179,23 +179,27 @@
   <!-- Modal content -->
   <div class="modal-content">
     <span class="close" (click)="closeModal()">&times;</span>
-    <table class="table table-bordered">
+    <table class="table table-bordered" *ngIf="usersbycampaingempty">
       <thead>
         <tr>
           <th>Id</th>
           <th>Name</th>
-          <th>Phone</th>
+          <th>Status</th>
+          <th>Conf Exten</th>
 
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let user of usersbycampaing; let i = index">
           <td>{{i+1}}</td>
-          <td>{{user.full_name}}</td>
-          <td>{{user.phone_login}}</td>
+          <td>{{user.user}}</td>
+          <td>{{user.status}}</td>
+          <td>{{user.conf_exten}}</td>
         </tr>
       </tbody>
     </table>
+    <div *ngIf="!usersbycampaingempty"> No active user found for this campaing</div>
+
   </div>
 
 </div>

@@ -26,6 +26,7 @@ export class HomeComponent implements OnInit {
     public actionButtons;
     public modelClass = "modal";
     public usersbycampaing;
+    public usersbycampaingempty
     loginInfo: Login = {
         user_name: null,
     }
@@ -49,24 +50,21 @@ export class HomeComponent implements OnInit {
         this.activeCampaignsCounts();
         this.allUsersCounts();
         this.allCampaignCounts();
-        this.fetchCampaing();
+        this.fetchActiveCampaing();
         this.fetchUsers();
 
 
     }
-    fetchUserFromCampaing(id) {
+    fetchLiveUserFromCampaing(id) {
         this.userService.fetchUserFromCampaing(id).subscribe(
             data => {
+                if(data.length==0){
+                    this.usersbycampaingempty=false
+                }else{
+                this.usersbycampaingempty=true
                 this.usersbycampaing = data
-                this.usersbycampaing = this.usersbycampaing.map(item => {
-                    if (item.active == "Y") {
-                        item.enable = true
-                    } else {
-                        item.enable = false
-                    }
-                    return item
-                })
                 console.log(this.usersbycampaing)
+                }
 
             })
     }
@@ -88,15 +86,15 @@ export class HomeComponent implements OnInit {
     }
     modelClick(id) {
         console.log("model id is ", id)
-        this.fetchUserFromCampaing(id);
+        this.fetchLiveUserFromCampaing(id);
         this.modelClass = "modalDisplay"
 
     }
     closeModal() {
         this.modelClass = "modal"
     }
-    fetchCampaing() {
-        this.campaingService.fetchCampaing().subscribe(
+    fetchActiveCampaing() {
+        this.campaingService.fetchActiveCampaing().subscribe(
             data => {
                 this.campaings = data
                 this.campaings = this.campaings.map(item => {
