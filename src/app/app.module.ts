@@ -31,6 +31,10 @@ import { GroupComponent } from './components/group/group.component';
 import { DashboardService } from './services/dashboard.service';
 import { UpdateGroupComponent } from './components/update-group/update-group.component';
 import { ServeyComponent } from './components/servey/servey.component';
+import { ReportingComponent } from './components/reporting/reporting.component';
+import { ExportService } from './services/export.service';
+import { AngularDateTimePickerModule } from 'angular2-datetimepicker';
+ 
 
 @NgModule({
   declarations: [
@@ -39,6 +43,7 @@ import { ServeyComponent } from './components/servey/servey.component';
     Topnavbar,
     HomeComponent,
     LoginComponent,
+    ReportingComponent,
     CreateUserComponent,
     ShowUsersComponent,
     DefaultComponent,
@@ -54,6 +59,7 @@ import { ServeyComponent } from './components/servey/servey.component';
   ],
   imports: [
     BrowserModule,
+    AngularDateTimePickerModule,
     FormsModule,
     HttpModule,
     ReactiveFormsModule,
@@ -62,7 +68,7 @@ import { ServeyComponent } from './components/servey/servey.component';
     AngularMultiSelectModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [PlatformService,AuthService,UserService,GroupService,CampaingService, DashboardService],
+  providers: [PlatformService,ExportService,AuthService,UserService,GroupService,CampaingService, DashboardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

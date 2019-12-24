@@ -11,6 +11,7 @@ import { UpdateCampaingComponent } from "./components/update-campaing/update-cam
 import { GroupComponent } from "./components/group/group.component";
 import { UpdateGroupComponent } from "./components/update-group/update-group.component";
 import { ServeyComponent } from "./components/servey/servey.component";
+import { ReportingComponent } from "./components/reporting/reporting.component";
 
 export const appRoutes=[
     {
@@ -41,6 +42,10 @@ export const appRoutes=[
     {
         path: 'showUser',
         component: ShowUsersComponent
+    },
+    {
+        path: 'misReport',
+        component: ReportingComponent
     },
     {
         path: 'createCampaing',

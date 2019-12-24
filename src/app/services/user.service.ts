@@ -51,6 +51,30 @@ export class UserService {
         }
       ))
   }
+  fetchReportData(): Observable<any> {
+    return this.http
+      .get('http://103.66.232.186:4011/api/user/fetchreportdata').pipe(
+      map(
+        res => {
+          return res;
+        },
+        err => {
+          return err;
+        }
+      ))
+  }
+  fetchReportDataBetween(datefrom,dateto): Observable<any> {
+    return this.http
+      .get('http://103.66.232.186:4011/api/user/fetchreportdatabetween/'+datefrom+'/'+dateto).pipe(
+      map(
+        res => {
+          return res;
+        },
+        err => {
+          return err;
+        }
+      ))
+  }
   fetchUserFromCampaing(id): Observable<any> {
     return this.http
       .get('http://103.66.232.186:4011/api/user/fetchuserfromcampaing/'+id).pipe(

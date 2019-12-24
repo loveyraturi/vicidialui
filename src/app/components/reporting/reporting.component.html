@@ -1,0 +1,79 @@
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<div id="wrapper">
+  <navigation [loginInfo]="loginInfo" *ngIf="loginInfo"></navigation>
+
+  <div id="page-wrapper" class="gray-bg">
+
+    <topnavbar></topnavbar>
+
+    <div class="container">
+      <div class="table-wrapper" style="height: 600px;width: 90%;
+      overflow-y: scroll;">
+        <div class="table-title">
+          <div class="row">
+            <div class="col-sm-8">
+              <h2>MIS <b>Report</b></h2> <button style="float: inherit; margin-top: 2%;" type="button"
+                (click)="export()" class="btn btn-info add-new"><i class="fa fa-plus"></i>
+                Export</button>
+
+            </div>
+          </div>
+          <div class="row" style="margin-top: 2%;">
+            <div class="col-sm-1">
+              From
+            </div>
+            <div class="col-sm-5">
+              <angular2-date-picker [(ngModel)]="datefrom" (onDateSelect)="fromDateSelect($event)"
+                [settings]="settings"></angular2-date-picker>
+            </div>
+            <div class="col-sm-1">
+              To
+            </div>
+            <div class="col-sm-5">
+              <angular2-date-picker [(ngModel)]="dateto" (onDateSelect)="toDateSelect($event)" [settings]="settings">
+              </angular2-date-picker>
+
+            </div>
+            <div class="col-sm-2">
+              <button class="btn btn-info" (click)="fetchResult()">SUBMIT</button>
+            </div>
+          </div>
+        </div>
+        <table class="table table-bordered " style="width: 1900px;">
+          <thead>
+            <tr>
+              <td *ngFor="let header of headers;" scope="col">{{header.value}}<i (click)="removeColumn(header.key)"
+                  class="material-icons close">&#xe5cd;</i></td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let data of reportData; let i = index;">
+
+              <td scope="row">{{i+1}}</td>
+              <td *ngIf="data.lead_id!=undefined">{{data.lead_id}}</td>
+              <td *ngIf="data.list_id!=undefined">{{data.list_id}}</td>
+              <td *ngIf="data.campaign_id!=undefined">{{data.campaign_id}}</td>
+              <td *ngIf="data.call_date!=undefined">{{data.call_date}}</td>
+              <td *ngIf="data.length_in_sec!=undefined">{{data.length_in_sec}}</td>
+              <td *ngIf="data.status!=undefined">{{data.status}}</td>
+              <td *ngIf="data.phone_code!=undefined">{{data.phone_code}}</td>
+              <td *ngIf="data.phone_number!=undefined">{{data.phone_number}}</td>
+              <td *ngIf="data.user!=undefined">{{data.user}}</td>
+              <td *ngIf="data.comments!=undefined">{{data.comments}}</td>
+              <td *ngIf="data.processed!=undefined">{{data.processed}}</td>
+              <td *ngIf="data.user_group!=undefined">{{data.user_group}}</td>
+              <td *ngIf="data.term_reason!=undefined">{{data.term_reason}}</td>
+              <td *ngIf="data.alt_dial!=undefined">{{data.alt_dial}}</td>
+              <td *ngIf="data.called_count!=undefined">{{data.called_count}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="footer">
+      <div>
+        <strong>Copyright</strong> vici dial &copy; 2019
+      </div>
+    </div>
+  </div>
+</div>
