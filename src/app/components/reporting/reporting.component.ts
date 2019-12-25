@@ -30,6 +30,7 @@ export class ReportingComponent implements OnInit {
       defaultOpen: false,
       closeOnSelect:true
   }
+  public datapresent
   constructor(private exportService: ExportService, private userService: UserService) { }
 
   ngOnInit() {
@@ -39,8 +40,23 @@ export class ReportingComponent implements OnInit {
     //   this.customers.push({firstName: `first${i}`, lastName: `last${i}`,
     //   email: `abc${i}@gmail.com`, address: `000${i} street city, ST`, zipcode: `0000${i}`});
     // }
-    this.fetchReportData()
-
+    // this.fetchReportData()
+    this.datapresent=false;
+    this.headers = [{ key: '#', value: '#' }, { key: 'lead_id', value: 'Lead Id' },
+    { key: 'list_id', value: 'List Id' },
+    { key: 'campaign_id', value: 'Campaign Id' },
+    { key: 'call_date', value: 'Call Date' },
+    { key: 'length_in_sec', value: 'Length' },
+    { key: 'status', value: 'Status' },
+    { key: 'phone_code', value: 'Phone Code' },
+    { key: 'phone_number', value: 'Contact' },
+    { key: 'user', value: 'User' },
+    { key: 'comments', value: 'Comments' },
+    { key: 'processed', value: 'Processed' },
+    { key: 'user_group', value: 'User Group' },
+    { key: 'term_reason', value: 'Term Reason' },
+    { key: 'alt_dial', value: 'Alt Dial' },
+    { key: 'called_count', value: 'Called Count' }]
   }
   fromDateSelect(event){
     console.log(event)
@@ -70,7 +86,7 @@ export class ReportingComponent implements OnInit {
 
     this.userService.fetchReportDataBetween(datefrom,dateto).subscribe(
       data => {
-       
+       this.datapresent= data.length==0?false:true
         this.reportData =data.map((item) => {
           if (item.lead_id == null) { item.lead_id = this.valuenull }
           if (item.list_id == null) { item.list_id = this.valuenull }
@@ -122,21 +138,7 @@ export class ReportingComponent implements OnInit {
         })
         console.log(this.reportData)
       })
-    this.headers = [{ key: '#', value: '#' }, { key: 'lead_id', value: 'Lead Id' },
-    { key: 'list_id', value: 'List Id' },
-    { key: 'campaign_id', value: 'Campaign Id' },
-    { key: 'call_date', value: 'Call Date' },
-    { key: 'length_in_sec', value: 'Length' },
-    { key: 'status', value: 'Status' },
-    { key: 'phone_code', value: 'Phone Code' },
-    { key: 'phone_number', value: 'Contact' },
-    { key: 'user', value: 'User' },
-    { key: 'comments', value: 'Comments' },
-    { key: 'processed', value: 'Processed' },
-    { key: 'user_group', value: 'User Group' },
-    { key: 'term_reason', value: 'Term Reason' },
-    { key: 'alt_dial', value: 'Alt Dial' },
-    { key: 'called_count', value: 'Called Count' }]
+
 
   }
   export() {

@@ -39,7 +39,8 @@
             </div>
           </div>
         </div>
-        <table class="table table-bordered " style="width: 1900px;">
+        <div *ngIf="!this.datapresent">Please select date</div>
+        <table *ngIf="this.datapresent" class="table table-bordered " style="width: 1900px;">
           <thead>
             <tr>
               <td *ngFor="let header of headers;" scope="col">{{header.value}}<i (click)="removeColumn(header.key)"
