@@ -45,7 +45,7 @@
                   <angular4-multiselect [data]="dropdownUserList" [(ngModel)]="selectedUserItems" [settings]="dropdownUserSettings"></angular4-multiselect>
                 </div>
               <div class="col-sm-3">
-                  <button class="btn btn-info add-new" (click)="fetchReportData(100,100)">Submit</button>
+                  <button class="btn btn-info add-new" (click)="fetchReportData(1000,1000)">Submit</button>
                 </div>
             </div>
             
@@ -80,11 +80,11 @@
         </table>
       </div>
       <ul *ngIf="!defaultPagination"class="pagination" style="padding-left: 40%;margin:0;">
-          <li *ngFor="let data of paginationLength; let i = index;" (click)="fetchReportData(100,i*100)"><a >{{i}}</a></li>
+          <li *ngFor="let data of paginationLength; let i = index;" (click)="fetchReportData(1000,i*1000)"><a >{{i}}</a></li>
           
         </ul>
         <ul *ngIf="defaultPagination"class="pagination" style="padding-left: 40%;margin:0;">
-            <li *ngFor="let data of paginationLength; let i = index;" (click)="fetchReportDataStream(100,i*100)"><a >{{i}}</a></li>
+            <li *ngFor="let data of paginationLength; let i = index;" (click)="fetchReportDataStream(1000,i*1000)"><a >{{i}}</a></li>
             
           </ul>
     </div>

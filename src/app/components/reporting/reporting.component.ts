@@ -264,10 +264,10 @@ export class ReportingComponent implements OnInit {
     this.userService.fetchCountOfReport().subscribe(
       data => {
         var count=data[0].count
-        this.paginationLength=Array(Math.ceil(count/100))
+        this.paginationLength=Array(Math.ceil(count/1000))
         this.datapresent = count == 0 ? false : true
         this.defaultPagination=count == 0 ? false : true
-        this.fetchReportDataStream(100,100)
+        this.fetchReportDataStream(1000,1000)
       })
   }
   fetchReportDataStream(limit,offset) {
