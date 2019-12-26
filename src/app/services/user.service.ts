@@ -63,9 +63,9 @@ export class UserService {
         }
       ))
   }
-  fetchReportDataBetween(datefrom,dateto): Observable<any> {
+  fetchReportDataBetween(data): Observable<any> {
     return this.http
-      .get('http://103.66.232.186:4011/api/user/fetchreportdatabetween/'+datefrom+'/'+dateto).pipe(
+    .post('http://103.66.232.186:4011/api/user/fetchreportdatabetween',data).pipe(
       map(
         res => {
           return res;
