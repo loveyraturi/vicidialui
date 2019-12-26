@@ -69,9 +69,19 @@
   
           </a>
         </li>
-      <li [ngClass]="{active: activeRoute('others')}">
-        <a [routerLink]="['./others']"><i class="fa fa-desktop"></i> <span class="nav-label">Others</span></a>
-      </li>
+        <li [ngClass]="{active: activeRoute('misReport')}">
+            <a class="drops"><i class="fa fa-dashboard"></i> <span class="nav-label">Reporting</span><i
+                class="fa fa-caret-down" style="    margin-left: 36%;"></i>
+              <div class="drop">
+                <ul class="nav metismenu" id="side-menu">
+                  <li [ngClass]="{active: activeRoute('misReport')}">
+                    <a [routerLink]="['/misReport']"><i class="fa fa-book"></i> <span
+                        class="nav-label">Mis Report</span></a>
+                  </li>
+                </ul>
+              </div>
+            </a>
+          </li>
       
     </ul>
   </div>
