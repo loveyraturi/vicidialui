@@ -39,9 +39,9 @@ export class UserService {
         }
       ))
   }
-  fetchusersById(id): Observable<any> {
+  fetchCountOfReport(): Observable<any> {
     return this.http
-      .get('http://103.66.232.186:4011/api/user/fetchusersById/'+id).pipe(
+      .get('http://103.66.232.186:4011/api/user/fetchcountofreport').pipe(
       map(
         res => {
           return res;
@@ -51,9 +51,21 @@ export class UserService {
         }
       ))
   }
-  fetchReportData(): Observable<any> {
+  fetchReportData(limit,offset): Observable<any> {
     return this.http
-      .get('http://103.66.232.186:4011/api/user/fetchreportdata').pipe(
+      .get('http://103.66.232.186:4011/api/user/fetchreportdata/'+limit+"/"+offset).pipe(
+      map(
+        res => {
+          return res;
+        },
+        err => {
+          return err;
+        }
+      ))
+  }
+  fetchCountReportDataBetween(data): Observable<any> {
+    return this.http
+      .post('http://103.66.232.186:4011/api/user/fetchcountreportdatabetween',data).pipe(
       map(
         res => {
           return res;
@@ -65,7 +77,19 @@ export class UserService {
   }
   fetchReportDataBetween(data): Observable<any> {
     return this.http
-    .post('http://103.66.232.186:4011/api/user/fetchreportdatabetween',data).pipe(
+      .post('http://103.66.232.186:4011/api/user/fetchreportdatabetween',data).pipe(
+      map(
+        res => {
+          return res;
+        },
+        err => {
+          return err;
+        }
+      ))
+  }
+  fetchusersById(id): Observable<any> {
+    return this.http
+      .get('http://103.66.232.186:4011/api/user/fetchusersById/'+id).pipe(
       map(
         res => {
           return res;
