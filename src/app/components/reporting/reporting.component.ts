@@ -14,7 +14,7 @@ export class ReportingComponent implements OnInit {
 
 
   title = 'angular-exportexcel-example';
-
+  buttonDisabled="disabled"
   customers: any = [];
   public username;
   public reportData;
@@ -235,6 +235,12 @@ export class ReportingComponent implements OnInit {
       limit:start,
       offset:end
     }
+    this.userService.createExcel(requestData).subscribe(
+      data => {
+        console.log("############",data)
+       this.buttonDisabled=data.status?"":"disabled"
+       console.log(this.buttonDisabled)
+      })
     this.userService.fetchReportDataBetween(requestData).subscribe(
       data => {
         this.defaultPagination=data.length==0?true:false
@@ -297,7 +303,25 @@ export class ReportingComponent implements OnInit {
 
   }
   export() {
-    this.exportService.exportExcel(this.reportData, 'MIS_Report');
+    var campaingID = []
+    this.selectedItems.forEach((items => {
+      campaingID.push(items.id)
+    }))
+    var userId = []
+    this.selectedUserItems.forEach((items => {
+      userId.push(items.itemName)
+    }))
+    var requestData = {
+      datefrom: new Date(this.datefrom).getTime() / 1000,
+      dateto: new Date(this.dateto).getTime() / 1000,
+      campaingId: campaingID,
+      userId:userId
+    }
+    this.userService.createExcel(requestData).subscribe(
+      data => {
+       
+      })
+    // this.exportService.exportExcel(this.reportData, 'MIS_Report');
   }
 
 }

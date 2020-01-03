@@ -12,9 +12,9 @@
         <div class="table-title">
           <div class="row">
             <div class="col-sm-8">
-              <h2>MIS <b>Report</b></h2> <button style="float: inherit; margin-top: 2%;" type="button"
-                (click)="export()" class="btn btn-info add-new"><i class="fa fa-plus"></i>
-                Export</button>
+              <h2>MIS <b>Report</b></h2> <a style="float: inherit; margin-top: 2%;" type="button"
+                href="./assets/misReport.xlsx" class="btn btn-info add-new {{buttonDisabled}}"><i class="fa fa-plus"></i>
+                Export</a>
 
             </div>
           </div>
@@ -79,14 +79,6 @@
           </tbody>
         </table>
       </div>
-      <ul *ngIf="!defaultPagination"class="pagination" style="padding-left: 40%;margin:0;">
-          <li *ngFor="let data of paginationLength; let i = index;" (click)="fetchReportData(1000,i*1000)"><a >{{i}}</a></li>
-          
-        </ul>
-        <ul *ngIf="defaultPagination"class="pagination" style="padding-left: 40%;margin:0;">
-            <li *ngFor="let data of paginationLength; let i = index;" (click)="fetchReportDataStream(1000,i*1000)"><a >{{i}}</a></li>
-            
-          </ul>
     </div>
     <div class="footer">
       <div>
