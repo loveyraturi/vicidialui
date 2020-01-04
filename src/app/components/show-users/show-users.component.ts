@@ -13,6 +13,8 @@ export class ShowUsersComponent implements OnInit {
   public active;
   public username;
   public currentElementIndex = 1;
+  public hasAccess = false;
+  public level;
   loginInfo: Login = {
     user_name: null,
   }
@@ -26,6 +28,10 @@ export class ShowUsersComponent implements OnInit {
   ngOnInit() {
 
     this.username = localStorage.getItem("user_name")
+    this.level = localStorage.getItem("level")
+    if (this.level == 9) {
+        this.hasAccess=true;
+    }
     this.loginInfo.user_name = this.username;
     console.log(this.username)
 
@@ -52,14 +58,14 @@ export class ShowUsersComponent implements OnInit {
     localStorage.setItem("update_id", id);
     this.router.navigateByUrl("/updateUser")
   }
-  onChange(event,id) {
+  onChange(event, id) {
     console.log("###############", event)
     if (event) {
       this.active = "Y"
     } else {
       this.active = "N"
     }
-    var req={
+    var req = {
       user_id: id,
       active: this.active
     }
@@ -67,7 +73,7 @@ export class ShowUsersComponent implements OnInit {
       data => {
         this.fetchUsers()
       })
-     
+
   }
   cloneUser(id) {
     console.log("%$#@%$@#$", id)

@@ -14,12 +14,18 @@ export class GroupComponent implements OnInit {
   public username;
   public currentElementIndex = 1;
   public active;
+  public level;
+  public hasAccess=false;
   loginInfo: Login = {
     user_name: null,
   }
   constructor(private campaingService: CampaingService, private groupService: GroupService, private router: Router) { }
 
   ngOnInit() {
+    this.level = localStorage.getItem("level")
+    if (this.level == 9) {
+        this.hasAccess=true;
+    }
     this.username = localStorage.getItem("user_name")
     this.loginInfo.user_name = this.username;
     console.log(this.username)

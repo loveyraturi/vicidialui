@@ -28,7 +28,7 @@
               <th>Phone</th>
               <th>Status</th>
               <th>Actions</th>
-              <th>Delete</th>
+              <th *ngIf="hasAccess">Delete</th>
 
             </tr>
           </thead>
@@ -45,7 +45,7 @@
                 <a class="edit" (click)="cloneUser(user.user_id)" title="Edit" data-toggle="tooltip"><i
                     class="material-icons content_copy">&#xe14d;</i></a>
                 </td>
-                <td>
+                <td *ngIf="hasAccess">
                 <a class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
               </td>
             </tr>
