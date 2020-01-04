@@ -26,6 +26,7 @@ export class ReportingComponent implements OnInit {
   loginInfo: Login = {
     user_name: null,
   }
+  public loading=false;
   dropdownList = [];
   dropdownUserList=[]
   selectedItems = [];
@@ -187,11 +188,14 @@ export class ReportingComponent implements OnInit {
 
     this.userService.fetchReportDataBetween(requestData).subscribe(
       data => {
+        debugger;
+        
         this.responseLength=data.length
        this.paginationLength=Array(Math.ceil(this.responseLength/100))
        console.log(this.paginationLength,"#############$$$$$$$$$$$$$$$$$$$$$$$")
         this.datapresent = this.responseLength == 0 ? false : true
         this.reportData = data.map((item) => {
+         
           if (item.lead_id == null) { item.lead_id = this.valuenull }
           if (item.list_id == null) { item.list_id = this.valuenull }
           if (item.campaign_id == null) { item.campaign_id = this.valuenull }
@@ -206,6 +210,7 @@ export class ReportingComponent implements OnInit {
           if (item.term_reason == null) { item.term_reason = this.valuenull }
           return item
         })
+        this.loading=false;
         console.log(this.reportData)
       })
     // var parts = this.datefrom.match(/(\d{2})\/(\d{2})\/(\d{4}) (\d{2}):(\d{2})/);
@@ -241,8 +246,11 @@ export class ReportingComponent implements OnInit {
        this.buttonDisabled=data.status?"":"disabled"
        console.log(this.buttonDisabled)
       })
+      this.loading=true
     this.userService.fetchReportDataBetween(requestData).subscribe(
       data => {
+        debugger;
+        this.loading=false;
         this.defaultPagination=data.length==0?true:false
         this.reportData = data.map((item) => {
           if (item.lead_id == null) { item.lead_id = this.valuenull }
@@ -259,6 +267,7 @@ export class ReportingComponent implements OnInit {
           if (item.term_reason == null) { item.term_reason = this.valuenull }
           return item
         })
+       
       })
   }
 
