@@ -4,6 +4,7 @@ import { ExportService } from 'app/services/export.service';
 import { Login } from 'app/models/login';
 import { UserService } from 'app/services/user.service';
 import { CampaingService } from 'app/services/campaing.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-reporting',
@@ -45,7 +46,7 @@ export class ReportingComponent implements OnInit {
     closeOnSelect: true
   }
   public datapresent
-  constructor(private campaingService: CampaingService, private exportService: ExportService, private userService: UserService) {
+  constructor(private router: Router,private campaingService: CampaingService, private exportService: ExportService, private userService: UserService) {
 
     this.dropdownSettings = {
       singleSelection: false,
@@ -168,59 +169,6 @@ export class ReportingComponent implements OnInit {
     })
     console.log(this.headers)
   }
-  fetchResult() {
-    var campaingID = []
-    this.selectedItems.forEach((items => {
-      campaingID.push(items.id)
-    }))
-    var userId = []
-    this.selectedUserItems.forEach((items => {
-      userId.push(items.itemName)
-    }))
-    var requestData = {
-      datefrom: new Date(this.datefrom).getTime() / 1000,
-      dateto: new Date(this.dateto).getTime() / 1000,
-      campaingId: campaingID,
-      userId:userId,
-      limit:0,
-      offset:0
-    }
-
-    this.userService.fetchReportDataBetween(requestData).subscribe(
-      data => {
-        debugger;
-        
-        this.responseLength=data.length
-       this.paginationLength=Array(Math.ceil(this.responseLength/100))
-       console.log(this.paginationLength,"#############$$$$$$$$$$$$$$$$$$$$$$$")
-        this.datapresent = this.responseLength == 0 ? false : true
-        this.reportData = data.map((item) => {
-         
-          if (item.lead_id == null) { item.lead_id = this.valuenull }
-          if (item.list_id == null) { item.list_id = this.valuenull }
-          if (item.campaign_id == null) { item.campaign_id = this.valuenull }
-          if (item.call_date == null) { item.call_date = this.valuenull }
-          if (item.length_in_sec == null) { item.length_in_sec = this.valuenull }
-          if (item.status == null) { item.status = this.valuenull }
-          if (item.phone_code == null) { item.phone_code = this.valuenull }
-          if (item.phone_number == null) { item.phone_number = this.valuenull }
-          if (item.user == null) { item.user = this.valuenull }
-          if (item.comments == null) { item.comments = this.valuenull }
-          if (item.processed == null) { item.processed = this.valuenull }
-          if (item.term_reason == null) { item.term_reason = this.valuenull }
-          return item
-        })
-        this.loading=false;
-        console.log(this.reportData)
-      })
-    // var parts = this.datefrom.match(/(\d{2})\/(\d{2})\/(\d{4}) (\d{2}):(\d{2})/);
-    // return Date.UTC(+parts[3], parts[2]-1, +parts[1], +parts[4], +parts[5])
-    // console.log(this.datefrom.getDate())
-    // console.log(this.datefrom.getMonth())
-    // console.log(this.datefrom.getFullYear())
-    // console.log(this.dateto.getDate()+"/"+this.dateto.getMonth()+"/"+this.dateto.getFullYear())
-  }
-  
   
   
   fetchReportData(start,end) {
@@ -240,34 +188,16 @@ export class ReportingComponent implements OnInit {
       limit:start,
       offset:end
     }
-    this.userService.createExcel(requestData).subscribe(
-      data => {
-        console.log("############",data)
-       this.buttonDisabled=data.status?"":"disabled"
-       console.log(this.buttonDisabled)
-      })
       this.loading=true
     this.userService.fetchReportDataBetween(requestData).subscribe(
       data => {
-        debugger;
+        
+      this.buttonDisabled=""
+      console.log(this.buttonDisabled)
+        console.log(data,"####################33#####@@@$$$$$")
         this.loading=false;
         this.defaultPagination=data.length==0?true:false
-        this.reportData = data.map((item) => {
-          if (item.lead_id == null) { item.lead_id = this.valuenull }
-          if (item.list_id == null) { item.list_id = this.valuenull }
-          if (item.campaign_id == null) { item.campaign_id = this.valuenull }
-          if (item.call_date == null) { item.call_date = this.valuenull }
-          if (item.length_in_sec == null) { item.length_in_sec = this.valuenull }
-          if (item.status == null) { item.status = this.valuenull }
-          if (item.phone_code == null) { item.phone_code = this.valuenull }
-          if (item.phone_number == null) { item.phone_number = this.valuenull }
-          if (item.user == null) { item.user = this.valuenull }
-          if (item.comments == null) { item.comments = this.valuenull }
-          if (item.processed == null) { item.processed = this.valuenull }
-          if (item.term_reason == null) { item.term_reason = this.valuenull }
-          return item
-        })
-       
+        this.reportData=data       
       })
   }
 
@@ -282,7 +212,7 @@ export class ReportingComponent implements OnInit {
         this.paginationLength=Array(Math.ceil(count/1000))
         this.datapresent = count == 0 ? false : true
         this.defaultPagination=count == 0 ? false : true
-        this.fetchReportDataStream(1000,1000)
+        // this.fetchReportDataStream(1000,1000)
       })
   }
   fetchReportDataStream(limit,offset) {
@@ -328,9 +258,9 @@ export class ReportingComponent implements OnInit {
     }
     this.userService.createExcel(requestData).subscribe(
       data => {
-       
+        console.log("############",data)
+        window.open("./assets/misReport.xlsx");
       })
-    // this.exportService.exportExcel(this.reportData, 'MIS_Report');
   }
 
 }

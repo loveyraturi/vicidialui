@@ -28,6 +28,7 @@ export class LoginComponent implements OnInit {
   login(value: any) {
     this.auth.validateLogin(value).subscribe(
       data => {
+        console.log(data,"#############")
         localStorage.setItem("user_name",data.name);
         localStorage.setItem("phone_number",data.phoneNumber);
         localStorage.setItem("level",data.level);
