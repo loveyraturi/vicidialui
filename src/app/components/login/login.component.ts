@@ -30,8 +30,13 @@ export class LoginComponent implements OnInit {
       data => {
         localStorage.setItem("user_name",data.name);
         localStorage.setItem("phone_number",data.phoneNumber);
-        if (data.status) {
-          this._router.navigateByUrl('home');
+        if (data.status ) {
+          if(data.level > 6){
+            this._router.navigateByUrl('home');
+          }else{
+            this.errorMsg = "Invalid level"
+
+          }
 
         } else {
           this.errorMsg = "Invalid Login"
