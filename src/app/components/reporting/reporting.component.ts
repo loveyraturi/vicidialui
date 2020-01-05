@@ -180,9 +180,10 @@ export class ReportingComponent implements OnInit {
     this.selectedUserItems.forEach((items => {
       userId.push(items.itemName)
     }))
+    
     var requestData = {
-      datefrom: new Date(this.datefrom).getTime() / 1000,
-      dateto: new Date(this.dateto).getTime() / 1000,
+      datefrom: (new Date(this.datefrom).getTime())/1000,
+      dateto: (new Date(this.dateto).getTime())/1000,
       campaingId: campaingID,
       userId:userId,
       limit:start,
@@ -251,8 +252,8 @@ export class ReportingComponent implements OnInit {
       userId.push(items.itemName)
     }))
     var requestData = {
-      datefrom: new Date(this.datefrom).getTime() / 1000,
-      dateto: new Date(this.dateto).getTime() / 1000,
+      datefrom: (new Date(this.datefrom).getTime())/1000,
+      dateto: (new Date(this.dateto).getTime())/1000,
       campaingId: campaingID,
       userId:userId
     }
