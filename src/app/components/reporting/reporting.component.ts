@@ -50,7 +50,7 @@ export class ReportingComponent implements OnInit {
 
     this.dropdownSettings = {
       singleSelection: false,
-      text: "Select Campaing",
+      text: "Campaing",
       selectAllText: 'Select All',
       unSelectAllText: 'UnSelect All',
       enableSearchFilter: true,
@@ -59,7 +59,7 @@ export class ReportingComponent implements OnInit {
     };
     this.dropdownUserSettings = {
       singleSelection: false,
-      text: "Select user",
+      text: "User",
       selectAllText: 'Select All',
       unSelectAllText: 'UnSelect All',
       enableSearchFilter: true,
