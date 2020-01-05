@@ -32,6 +32,7 @@ export class LoginComponent implements OnInit {
         localStorage.setItem("user_name",data.name);
         localStorage.setItem("phone_number",data.phoneNumber);
         localStorage.setItem("level",data.level);
+        localStorage.setItem("group",data.group);
         if (data.status ) {
           if(data.level > 6){
             this._router.navigateByUrl('home');

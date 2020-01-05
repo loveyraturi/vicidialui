@@ -64,7 +64,7 @@
           </div>
         </a>
       </li>
-      <li [ngClass]="{active: activeRoute('showGroups')}">
+      <li *ngIf="showGroup" [ngClass]="{active: activeRoute('showGroups')}">
           <a [routerLink]="['/showGroups']"><i class="fa fa-group"></i> <span class="nav-label">Groups</span>
   
           </a>

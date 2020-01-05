@@ -15,6 +15,7 @@ export class ShowUsersComponent implements OnInit {
   public currentElementIndex = 1;
   public hasAccess = false;
   public level;
+  public group;
   loginInfo: Login = {
     user_name: null,
   }
@@ -29,8 +30,9 @@ export class ShowUsersComponent implements OnInit {
 
     this.username = localStorage.getItem("user_name")
     this.level = localStorage.getItem("level")
+    this.group = localStorage.getItem("group")
     if (this.level == 9) {
-        this.hasAccess=true;
+      this.hasAccess = true;
     }
     this.loginInfo.user_name = this.username;
     console.log(this.username)
@@ -41,14 +43,30 @@ export class ShowUsersComponent implements OnInit {
     this.userService.fetchUser().subscribe(
       data => {
         this.users = data
-        this.users = this.users.map(item => {
-          if (item.active == "Y") {
-            item.enable = true
-          } else {
-            item.enable = false
-          }
-          return item
-        })
+        if (this.level == 7) {
+          this.users = this.users.filter(item => {
+            if (item.user_group == this.group) {
+              return item
+            }
+          })
+          this.users = this.users.map(item => {
+            if (item.active == "Y") {
+              item.enable = true
+            } else {
+              item.enable = false
+            }
+            return item
+          })
+        } else {
+          this.users = this.users.map(item => {
+            if (item.active == "Y") {
+              item.enable = true
+            } else {
+              item.enable = false
+            }
+            return item
+          })
+        }
         console.log(this.users)
 
       })

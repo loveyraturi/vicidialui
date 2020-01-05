@@ -12,10 +12,17 @@ import {Login} from "../../models/login";
 export class Navigation implements OnInit {
     @Input() loginInfo:Login;
     public username;
+    public level;
+    public showGroup=true;
     constructor( private router: Router) { }
 
     ngOnInit() { 
+        this.level = localStorage.getItem("level")
         this.username=this.loginInfo.user_name;
+
+        if(this.level==7){
+            this.showGroup=false
+        }
       //  console.log(this.loginInfo)
     }
     activeRoute(routename: string): boolean{
