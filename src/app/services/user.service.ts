@@ -39,6 +39,18 @@ export class UserService {
         }
       ))
   }
+  fetchUserByCampaing(campaing): Observable<any> {
+    return this.http
+      .get('http://103.66.232.186:4011/api/user/fetchusersbycampaing/'+campaing).pipe(
+      map(
+        res => {
+          return res;
+        },
+        err => {
+          return err;
+        }
+      ))
+  }
   fetchCountOfReport(): Observable<any> {
     return this.http
       .get('http://103.66.232.186:4011/api/user/fetchcountofreport').pipe(

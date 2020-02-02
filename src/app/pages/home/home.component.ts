@@ -27,6 +27,8 @@ export class HomeComponent implements OnInit {
     public modelClass = "modal";
     public usersbycampaing;
     public usersbycampaingempty
+    public group;
+    public level;
     loginInfo: Login = {
         user_name: null,
     }
@@ -40,8 +42,12 @@ export class HomeComponent implements OnInit {
     ngOnInit() {
 
         this.username = localStorage.getItem("user_name")
+        this.group=localStorage.getItem("group")
+        this.level = localStorage.getItem("level")
+        
         this.loginInfo.user_name = this.username;
         console.log(this.username)
+        if (this.level == 7) {
         this.fetchAgentsCounts();
         this.liveAgentsCounts();
         this.pausedAgentsCounts();
@@ -52,8 +58,18 @@ export class HomeComponent implements OnInit {
         this.allCampaignCounts();
         this.fetchActiveCampaing();
         this.fetchUsers();
-
-
+        }else{
+            this.fetchAgentsCounts();
+            this.liveAgentsCounts();
+            this.pausedAgentsCounts();
+            this.holdAgentsCounts();
+            this.activeUsersCounts();
+            this.activeCampaignsCounts();
+            this.allUsersCounts();
+            this.allCampaignCounts();
+            this.fetchActiveCampaing();
+            this.fetchUsers();  
+        }
     }
     fetchLiveUserFromCampaing(id) {
         this.userService.fetchUserFromCampaing(id).subscribe(
@@ -94,9 +110,26 @@ export class HomeComponent implements OnInit {
         this.modelClass = "modal"
     }
     fetchActiveCampaing() {
+        
         this.campaingService.fetchActiveCampaing().subscribe(
             data => {
                 this.campaings = data
+                if (this.level == 7) {
+                    this.campaings = this.campaings.filter(item => {
+                      console.log(item.user_group == this.group)
+                      if (item.user_group == this.group) {
+                        return item
+                      }
+                    })
+                    this.campaings = this.campaings.map(item => {
+                      if (item.active == "Y") {
+                        item.enable = true
+                      } else {
+                        item.enable = false
+                      }
+                      return item
+                    })
+                  }else{
                 this.campaings = this.campaings.map(item => {
                     if (item.active == "Y") {
                         item.enable = true
@@ -106,7 +139,7 @@ export class HomeComponent implements OnInit {
                     return item
                 })
                 console.log(this.campaings)
-
+            }
             })
     }
 

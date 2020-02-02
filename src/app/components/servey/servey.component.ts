@@ -41,6 +41,8 @@ export class ServeyComponent implements OnInit {
   public survey_menu_id
   public survey_recording
   public campaign_id
+  public level;
+  public group;
 
 
   loginInfo: Login = {
@@ -51,6 +53,8 @@ export class ServeyComponent implements OnInit {
 
   ngOnInit() {
     this.username = localStorage.getItem("user_name")
+    this.level = localStorage.getItem("level")
+    this.group=localStorage.getItem("group")
     this.loginInfo.user_name = this.username;
     this.createForm()
     this.fetchRecordings()

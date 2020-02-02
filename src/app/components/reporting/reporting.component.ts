@@ -15,11 +15,13 @@ export class ReportingComponent implements OnInit {
 
 
   title = 'angular-exportexcel-example';
-  buttonDisabled="disabled"
+  buttonDisabled = "disabled"
   customers: any = [];
   public username;
   public reportData;
   public campaings;
+  public campaingList;
+  public selectedCampaings = [];
   public users;
   public paginationLength;
   public responseLength;
@@ -27,14 +29,16 @@ export class ReportingComponent implements OnInit {
   loginInfo: Login = {
     user_name: null,
   }
-  public loading=false;
+  public loading = false;
   dropdownList = [];
-  dropdownUserList=[]
+  dropdownUserList = []
   selectedItems = [];
   selectedUserItems = [];
   dropdownSettings = {};
   dropdownUserSettings = {};
   public headers;
+  public level;
+  public group;
   public valuenull = "-"
   datefrom: Date = new Date();
   dateto: Date = new Date();
@@ -46,7 +50,7 @@ export class ReportingComponent implements OnInit {
     closeOnSelect: true
   }
   public datapresent
-  constructor(private router: Router,private campaingService: CampaingService, private exportService: ExportService, private userService: UserService) {
+  constructor(private router: Router, private campaingService: CampaingService, private exportService: ExportService, private userService: UserService) {
 
     this.dropdownSettings = {
       singleSelection: false,
@@ -70,6 +74,8 @@ export class ReportingComponent implements OnInit {
 
   ngOnInit() {
     this.username = localStorage.getItem("user_name")
+    this.level = localStorage.getItem("level")
+    this.group = localStorage.getItem("group")
     this.loginInfo.user_name = this.username;
     this.datapresent = false;
     this.headers = [{ key: '#', value: '#' }, { key: 'lead_id', value: 'Lead Id' },
@@ -85,14 +91,65 @@ export class ReportingComponent implements OnInit {
     { key: 'processed', value: 'Processed' },
     { key: 'term_reason', value: 'Term Reason' }]
     this.fetchCampaing();
-    this.fetchUsers();
+    // this.fetchUsers();
     this.fetchCountOfReport();
   }
-  
+
   fetchUsers() {
     this.userService.fetchUser().subscribe(
       data => {
         this.users = data
+        var dropDownListLocal=[];
+        data.forEach((item) => {
+
+          var dropdownListLocal = {
+            id: item.user_id,
+            itemName: item.user
+          }
+
+          dropDownListLocal.push(dropdownListLocal)
+        })
+        this.dropdownUserList=dropDownListLocal
+
+      })
+  }
+  onItemSelect(item: any) {
+    console.log(item, "################Selected##################", this.users)
+  }
+  OnItemDeSelect(item: any) {
+    console.log(item, "################DeSelected##################", this.users)
+  }
+  onSelectAll(items: any) {
+    console.log(items, "################Selected1##################", this.users)
+  }
+  onDeSelectAll(items: any) {
+    console.log(items, "################DeSelected1##################", this.users)
+  }
+
+
+
+
+
+  onUserItemSelect(item: any) {
+
+  }
+  OnUserItemDeSelect(item: any) {
+  }
+  onUserSelectAll(items: any) {
+
+  }
+
+  onUserDeSelectAll(items: any) {
+
+  }
+
+  populateUser() {
+    this.dropdownUserList=[]
+    console.log(this.selectedItems, "######################");
+    this.selectedItems.forEach((elements) => {
+      this.userService.fetchUserByCampaing(elements.id).subscribe(
+        data => {
+          this.users = data
         data.forEach((item) => {
 
           var dropdownListLocal = {
@@ -102,39 +159,25 @@ export class ReportingComponent implements OnInit {
 
           this.dropdownUserList.push(dropdownListLocal)
         })
-        
+        })
+    })
 
-      })
   }
-  onItemSelect(item: any) {
-  }
-  OnItemDeSelect(item: any) {
-  }
-  onSelectAll(items: any) {
-  }
-  onDeSelectAll(items: any) {
-  }
-
-  
-
-
-
-  onUserItemSelect(item: any) {
-    
-  }
-  OnUserItemDeSelect(item: any) {
-  }
-  onUserSelectAll(items: any) {
-  }
-  onUserDeSelectAll(items: any) {
-  }
-
-
   fetchCampaing() {
     this.campaingService.fetchCampaing().subscribe(
       data => {
         console.log(data)
-        data.forEach((item) => {
+        if (this.level == 7) {
+          this.campaingList = data.filter(item => {
+            console.log(item.user_group == this.group)
+            if (item.user_group == this.group) {
+              return item
+            }
+          })
+        } else {
+          this.campaingList = data
+        }
+        this.campaingList.forEach((item) => {
 
           var dropdownListLocal = {
             id: item.campaign_id,
@@ -152,7 +195,7 @@ export class ReportingComponent implements OnInit {
     console.log(event)
   }
   arrayOne(n: number): any[] {
-    console.log("$$$$$$$$$$$$$$$$$arrayakenken############",Array(n))
+    console.log("$$$$$$$$$$$$$$$$$arrayakenken############", Array(n))
     return Array(n);
   }
   removeColumn(columnName) {
@@ -169,9 +212,9 @@ export class ReportingComponent implements OnInit {
     })
     console.log(this.headers)
   }
-  
-  
-  fetchReportData(start,end) {
+
+
+  fetchReportData(start, end) {
     var campaingID = []
     this.selectedItems.forEach((items => {
       campaingID.push(items.id)
@@ -180,49 +223,49 @@ export class ReportingComponent implements OnInit {
     this.selectedUserItems.forEach((items => {
       userId.push(items.itemName)
     }))
-    
+
     var requestData = {
-      datefrom: (new Date(this.datefrom).getTime())/1000,
-      dateto: (new Date(this.dateto).getTime())/1000,
+      datefrom: (new Date(this.datefrom).getTime()) / 1000,
+      dateto: (new Date(this.dateto).getTime()) / 1000,
       campaingId: campaingID,
-      userId:userId,
-      limit:start,
-      offset:end
+      userId: userId,
+      limit: start,
+      offset: end
     }
-      this.loading=true
+    this.loading = true
     this.userService.fetchReportDataBetween(requestData).subscribe(
       data => {
-        
-      this.buttonDisabled=""
-      console.log(this.buttonDisabled)
-        console.log(data,"####################33#####@@@$$$$$")
-        this.loading=false;
-        this.defaultPagination=data.length==0?true:false
-        this.reportData=data       
+
+        this.buttonDisabled = ""
+        console.log(this.buttonDisabled)
+        console.log(data, "####################33#####@@@$$$$$")
+        this.loading = false;
+        this.defaultPagination = data.length == 0 ? true : false
+        this.reportData = data
       })
   }
 
 
-//DEFAULT STREAM #######################DEFAULT
+  //DEFAULT STREAM #######################DEFAULT
 
 
-  fetchCountOfReport(){
+  fetchCountOfReport() {
     this.userService.fetchCountOfReport().subscribe(
       data => {
-        var count=data[0].count
-        this.paginationLength=Array(Math.ceil(count/1000))
+        var count = data[0].count
+        this.paginationLength = Array(Math.ceil(count / 1000))
         this.datapresent = count == 0 ? false : true
-        this.defaultPagination=count == 0 ? false : true
+        this.defaultPagination = count == 0 ? false : true
         // this.fetchReportDataStream(1000,1000)
       })
   }
-  fetchReportDataStream(limit,offset) {
-    var start=limit
-    var end=offset
-    console.log(start,end)
-    this.userService.fetchReportData(start,end).subscribe(
+  fetchReportDataStream(limit, offset) {
+    var start = limit
+    var end = offset
+    console.log(start, end)
+    this.userService.fetchReportData(start, end).subscribe(
       data => {
-        console.log(data.length,"##################")
+        console.log(data.length, "##################")
         this.reportData = data.map((item) => {
           if (item.lead_id == null) { item.lead_id = this.valuenull }
           if (item.list_id == null) { item.list_id = this.valuenull }
@@ -252,14 +295,14 @@ export class ReportingComponent implements OnInit {
       userId.push(items.itemName)
     }))
     var requestData = {
-      datefrom: (new Date(this.datefrom).getTime())/1000,
-      dateto: (new Date(this.dateto).getTime())/1000,
+      datefrom: (new Date(this.datefrom).getTime()) / 1000,
+      dateto: (new Date(this.dateto).getTime()) / 1000,
       campaingId: campaingID,
-      userId:userId
+      userId: userId
     }
     this.userService.createExcel(requestData).subscribe(
       data => {
-        console.log("############",data)
+        console.log("############", data)
         window.open("./assets/misReport.xlsx");
       })
   }
