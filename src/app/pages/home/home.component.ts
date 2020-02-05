@@ -77,12 +77,9 @@ export class HomeComponent implements OnInit {
             data => {
                 if(data.length==0){
                     this.usersbycampaingempty=false
-                    this.totaluser.push({campaign_id:id,count:0})
                 }else{
                 this.usersbycampaingempty=true
-                this.usersbycampaing = data
-                this.totaluser.push({campaign_id:id,count:data.length})
-               
+                this.usersbycampaing = data               
                 }
                 console.log("$$$$",this.totaluser)
             })
@@ -113,11 +110,10 @@ export class HomeComponent implements OnInit {
         this.modelClass = "modal"
     }
     fetchActiveCampaing() {
-        
         this.campaingService.fetchActiveCampaing().subscribe(
             data => {
                
-                console.log(data,"############DATA")
+                console.log(data[1].user_group,"############DATA",this.group)
                 this.campaings = data
                 if (this.level == 7) {
                     this.campaings = this.campaings.filter(item => {
@@ -126,25 +122,16 @@ export class HomeComponent implements OnInit {
                         return item
                       }
                     })
-                    this.campaings.forEach(element => {
-                        console.log("#####@@@@@@@@@@@",element.campaign_id)
-                        this.fetchLiveUserFromCampaing(element.campaign_id);
-                        
-                     });
                     this.campaings = this.campaings.map(item => {
                       if (item.active == "Y") {
                         item.enable = true
                       } else {
                         item.enable = false
                       }
+
                       return item
                     })
                   }else{
-                    this.campaings.forEach(element => {
-                        console.log("#####@@@@@@@@@@@",element.campaign_id)
-                        this.fetchLiveUserFromCampaing(element.campaign_id);
-                        
-                     });
                 this.campaings = this.campaings.map(item => {
                     if (item.active == "Y") {
                         item.enable = true

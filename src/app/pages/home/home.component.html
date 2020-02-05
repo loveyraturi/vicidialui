@@ -154,11 +154,7 @@
                         <td><a (click)="modelClick(campaing.campaign_id)">{{campaing.campaign_name}}</a></td>
                         <td>{{campaing.lead_order}}</td>
                         <td>{{campaing.dial_prefix}}</td>
-                        <td>
-                          <a class="edit" (click)="updateCampaing(campaing.campaign_id)" title="Edit"
-                            data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
-
-                        </td>
+                        <td>{{campaing.count}}</td>
                       </tr>
                     </tbody>
                   </table>
