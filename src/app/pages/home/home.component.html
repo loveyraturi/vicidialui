@@ -144,7 +144,8 @@
                         <th>Id</th>
                         <th>Name</th>
                         <th>Lead order</th>
-                        <th>Actions</th>
+                        <th>Prefix</th>
+                        <th>TotalUser</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -152,6 +153,7 @@
                         <td><a (click)="modelClick(campaing.campaign_id)">{{i+1}}</a></td>
                         <td><a (click)="modelClick(campaing.campaign_id)">{{campaing.campaign_name}}</a></td>
                         <td>{{campaing.lead_order}}</td>
+                        <td>{{campaing.dial_prefix}}</td>
                         <td>
                           <a class="edit" (click)="updateCampaing(campaing.campaign_id)" title="Edit"
                             data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
@@ -184,8 +186,10 @@
         <tr>
           <th>Id</th>
           <th>Name</th>
+          <th>Phone ID</th>
           <th>Status</th>
           <th>Conf Exten</th>
+          <th>Time</th>
 
         </tr>
       </thead>
@@ -193,7 +197,9 @@
         <tr *ngFor="let user of usersbycampaing; let i = index">
           <td>{{i+1}}</td>
           <td>{{user.user}}</td>
+          <td>{{user.phone_login}}</td>
           <td>{{user.status}}</td>
+          <td>{{user.conf_exten}}</td>
           <td>{{user.conf_exten}}</td>
         </tr>
       </tbody>

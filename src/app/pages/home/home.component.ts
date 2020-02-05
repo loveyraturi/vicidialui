@@ -29,6 +29,7 @@ export class HomeComponent implements OnInit {
     public usersbycampaingempty
     public group;
     public level;
+    public totaluser=[];
     loginInfo: Login = {
         user_name: null,
     }
@@ -76,12 +77,14 @@ export class HomeComponent implements OnInit {
             data => {
                 if(data.length==0){
                     this.usersbycampaingempty=false
+                    this.totaluser.push({campaign_id:id,count:0})
                 }else{
                 this.usersbycampaingempty=true
                 this.usersbycampaing = data
-                console.log(this.usersbycampaing)
+                this.totaluser.push({campaign_id:id,count:data.length})
+               
                 }
-
+                console.log("$$$$",this.totaluser)
             })
     }
     fetchUsers() {
@@ -113,6 +116,8 @@ export class HomeComponent implements OnInit {
         
         this.campaingService.fetchActiveCampaing().subscribe(
             data => {
+               
+                console.log(data,"############DATA")
                 this.campaings = data
                 if (this.level == 7) {
                     this.campaings = this.campaings.filter(item => {
@@ -121,6 +126,11 @@ export class HomeComponent implements OnInit {
                         return item
                       }
                     })
+                    this.campaings.forEach(element => {
+                        console.log("#####@@@@@@@@@@@",element.campaign_id)
+                        this.fetchLiveUserFromCampaing(element.campaign_id);
+                        
+                     });
                     this.campaings = this.campaings.map(item => {
                       if (item.active == "Y") {
                         item.enable = true
@@ -130,6 +140,11 @@ export class HomeComponent implements OnInit {
                       return item
                     })
                   }else{
+                    this.campaings.forEach(element => {
+                        console.log("#####@@@@@@@@@@@",element.campaign_id)
+                        this.fetchLiveUserFromCampaing(element.campaign_id);
+                        
+                     });
                 this.campaings = this.campaings.map(item => {
                     if (item.active == "Y") {
                         item.enable = true
@@ -138,8 +153,10 @@ export class HomeComponent implements OnInit {
                     }
                     return item
                 })
-                console.log(this.campaings)
+                console.log()
             }
+            
+             
             })
     }
 
