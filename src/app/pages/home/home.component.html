@@ -20,6 +20,26 @@
     background-color: rgba(0, 0, 0, 0.4);
     /* Black w/ opacity */
   }
+  .modal1 {
+    display: none;
+    /* Hidden by default */
+    position: fixed;
+    /* Stay in place */
+    z-index: 1;
+    /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%;
+    /* Full width */
+    height: 100%;
+    /* Full height */
+    overflow: auto;
+    /* Enable scroll if needed */
+    background-color: rgb(0, 0, 0);
+    /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.4);
+    /* Black w/ opacity */
+  }
 
   /* Modal Content/Box */
   .modal-content {
@@ -50,6 +70,13 @@
   }
 
   .modalDisplay {
+    display: block;
+    position: absolute;
+    z-index: 1;
+    left: 30%;
+    top: 0%;
+  }
+  .modalDisplay1 {
     display: block;
     position: absolute;
     z-index: 1;
@@ -109,10 +136,11 @@
           <div class="ibox float-e-margins">
             <div class="ibox-title">
               <span class="label label-danger pull-right">users</span>
-              <h5>Total Users</h5>
+              <h5>Live Channels</h5>
             </div>
-            <div class="ibox-content">
-              <h1 class="no-margins">{{allUsersCounts}}</h1>
+            <div (click)="modelClick1()" class="ibox-content">
+                
+              <h1 class="no-margins">{{countOfLiveChannels}}</h1>
               <div class="stat-percent font-bold text-danger">38% <i class="fa fa-level-down"></i></div>
               <small>users</small>
             </div>
@@ -202,6 +230,38 @@
     </table>
     <div *ngIf="!usersbycampaingempty"> No active user found for this campaing</div>
 
+  </div>
+
+</div>
+
+<div id="myModal1" class="{{modelClass1}}">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="close" (click)="closeModal1()">&times;</span>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Id</th>
+          <th>Channel</th>
+          <th>Server_ip</th>
+          <th>Channel_group</th>
+          <th>Extension</th>
+          <th>Channel_data</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let channel of liveChannels; let i = index">
+          <td>{{i+1}}</td>
+          <td>{{channel.channel}}</td>
+          <td>{{channel.server_ip}}</td>
+          <td>{{channel.channel_group}}</td>
+          <td>{{channel.extension}}</td>
+          <td>{{channel.channel_data}}</td>
+        </tr>
+      </tbody>
+    </table>
+    
   </div>
 
 </div>

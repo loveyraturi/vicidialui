@@ -25,11 +25,14 @@ export class HomeComponent implements OnInit {
     public users;
     public actionButtons;
     public modelClass = "modal";
+    public modelClass1 = "modal1";
     public usersbycampaing;
     public usersbycampaingempty
     public group;
     public level;
     public totaluser=[];
+    public countOfLiveChannels
+    public liveChannels;
     loginInfo: Login = {
         user_name: null,
     }
@@ -59,6 +62,8 @@ export class HomeComponent implements OnInit {
         this.allCampaignCounts();
         this.fetchActiveCampaing();
         this.fetchUsers();
+        this.fetchLiveChannelCount();
+        this.fetchLiveChannel();
         }else{
             this.fetchAgentsCounts();
             this.liveAgentsCounts();
@@ -69,8 +74,21 @@ export class HomeComponent implements OnInit {
             this.allUsersCounts();
             this.allCampaignCounts();
             this.fetchActiveCampaing();
-            this.fetchUsers();  
+            this.fetchUsers();
+            this.fetchLiveChannelCount();
+            this.fetchLiveChannel();  
         }
+    }
+    fetchLiveChannelCount(){
+        this.dashboardService.fetchLiveChannelCount().subscribe(resp=>{
+            this.countOfLiveChannels=resp[0].count
+        })
+    }
+    fetchLiveChannel(){
+        this.dashboardService.fetchLiveChannel().subscribe(resp=>{
+            this.liveChannels=resp
+            console.log(this.liveChannels,"#####HAHHAHAH")
+        })
     }
     fetchLiveUserFromCampaing(id) {
         this.userService.fetchUserFromCampaing(id).subscribe(
@@ -106,14 +124,25 @@ export class HomeComponent implements OnInit {
         this.modelClass = "modalDisplay"
 
     }
+
+    modelClick1(id) {
+        console.log("model id is ", id)
+        // this.fetchLiveUserFromCampaing(id);
+        this.modelClass1 = "modalDisplay1"
+
+    }
     closeModal() {
         this.modelClass = "modal"
     }
+    closeModal1() {
+        this.modelClass1 = "modal1"
+    }
+    
     fetchActiveCampaing() {
         this.campaingService.fetchActiveCampaing().subscribe(
             data => {
                
-                console.log(data[1].user_group,"############DATA",this.group)
+                console.log(data,"############DATA",this.group)
                 this.campaings = data
                 if (this.level == 7) {
                     this.campaings = this.campaings.filter(item => {

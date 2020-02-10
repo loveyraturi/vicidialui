@@ -23,6 +23,30 @@ export class DashboardService {
         }
       ))
   }
+  fetchLiveChannelCount(): Observable<any> {
+    return this.http
+      .get('http://103.66.232.186:4011/api/agents/fetchlivechannelcount').pipe(
+      map(
+        res => {
+          return res;
+        },
+        err => {
+          return err;
+        }
+      ))
+  }
+  fetchLiveChannel(): Observable<any> {
+    return this.http
+      .get('http://103.66.232.186:4011/api/agents/fetchlivechannel').pipe(
+      map(
+        res => {
+          return res;
+        },
+        err => {
+          return err;
+        }
+      ))
+  }
   liveAgentsCounts(): Observable<any> {
     return this.http
       .get('http://103.66.232.186:4011/api/agents/fetchliveagentscount').pipe(
