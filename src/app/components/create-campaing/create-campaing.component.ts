@@ -15,6 +15,7 @@ export class CreateCampaingComponent implements OnInit {
   public registerform: any = FormGroup;
   public username;
   public isChecked=false;
+  public cname;
   dropdownList = [];
     selectedItems = [];
     dropdownSettings = {};

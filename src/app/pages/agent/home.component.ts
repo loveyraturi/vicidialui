@@ -125,8 +125,7 @@ export class HomeComponent implements OnInit {
 
     }
 
-    modelClick1(id) {
-        console.log("model id is ", id)
+    modelClick1() {
         // this.fetchLiveUserFromCampaing(id);
         this.modelClass1 = "modalDisplay1"
 
@@ -170,9 +169,7 @@ export class HomeComponent implements OnInit {
                     return item
                 })
                 console.log()
-            }
-            
-             
+            }             
             })
     }
 

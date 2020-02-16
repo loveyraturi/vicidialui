@@ -8,7 +8,7 @@ import {Topnavbar} from "./components/topnavbar/topnavbar.component";
 import {Navigation} from "./components/navigation/navigation.component";
 import {RouterModule} from "@angular/router";
 import {appRoutes} from "./app.routes";
-import {HomeComponent} from "./pages/home/home.component";
+import {AgentComponent} from "./pages/home/agent.component";
 import { LoginComponent } from './components/login/login.component';
 import { CreateUserComponent } from './components/create-user/create-user.component';
 import { ShowUsersComponent } from './components/show-users/show-users.component';
@@ -34,6 +34,7 @@ import { ServeyComponent } from './components/servey/servey.component';
 import { ReportingComponent } from './components/reporting/reporting.component';
 import { ExportService } from './services/export.service';
 import { AngularDateTimePickerModule } from 'angular2-datetimepicker';
+import { HomeComponent } from './pages/agent/home.component';
  
 
 @NgModule({
@@ -42,6 +43,7 @@ import { AngularDateTimePickerModule } from 'angular2-datetimepicker';
     Navigation,
     Topnavbar,
     HomeComponent,
+    AgentComponent,
     LoginComponent,
     ReportingComponent,
     CreateUserComponent,

@@ -37,10 +37,8 @@ export class LoginComponent implements OnInit {
           if(data.level > 6){
             this._router.navigateByUrl('home');
           }else{
-            this.errorMsg = "Invalid level"
-
+            this._router.navigateByUrl('agent');
           }
-
         } else {
           this.errorMsg = "Invalid Login"
         }

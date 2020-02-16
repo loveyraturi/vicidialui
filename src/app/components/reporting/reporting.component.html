@@ -71,17 +71,12 @@
         <table *ngIf="this.datapresent" class="table table-bordered " >
           <thead>
             <tr>
-              <td>Id</td>
-              <td>Status</td>
-              <td>Count</td>
+              <td *ngFor="let data of reportData;"> {{data.status}}</td>
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let data of reportData; let i = index;">
-
-              <td scope="row">{{i+1}}</td>
-              <td>{{data.status}}</td>
-              <td>{{data.count}}</td>
+            <tr>
+              <td *ngFor="let data of reportData;"> {{data.count}}</td>
             </tr>
           </tbody>
         </table>

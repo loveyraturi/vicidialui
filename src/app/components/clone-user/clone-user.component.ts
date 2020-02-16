@@ -16,6 +16,8 @@ export class CloneUserComponent implements OnInit {
   public name;
   public phonenumber;
   public status;
+  public password;
+  public confpass;
   public level;
   public groupId;
   loginInfo: Login = {

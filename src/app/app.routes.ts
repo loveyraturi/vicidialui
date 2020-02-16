@@ -1,4 +1,4 @@
-import {HomeComponent} from "./pages/home/home.component";
+import {AgentComponent} from "./pages/home/agent.component";
 import { LoginComponent } from "./components/login/login.component";
 import { CreateUserComponent } from "./components/create-user/create-user.component";
 import { ShowUsersComponent } from "./components/show-users/show-users.component";
@@ -12,6 +12,7 @@ import { GroupComponent } from "./components/group/group.component";
 import { UpdateGroupComponent } from "./components/update-group/update-group.component";
 import { ServeyComponent } from "./components/servey/servey.component";
 import { ReportingComponent } from "./components/reporting/reporting.component";
+import { HomeComponent } from "./pages/agent/home.component";
 
 export const appRoutes=[
     {
@@ -22,6 +23,10 @@ export const appRoutes=[
     {
         path: 'home',
         component: HomeComponent
+    },
+    {
+        path: 'agent',
+        component: AgentComponent
     },
     {
         path: 'login',
