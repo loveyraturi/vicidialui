@@ -17,7 +17,7 @@ export class GroupService {
 
     fetchGroups(): Observable<any> {
         return this.http
-          .get('http://localhost:6001/microapp/goautodial/fetchAllGroups').pipe(
+          .get('http://103.31.147.252:6001/microapp/goautodial/fetchAllGroups').pipe(
           map(
             res => {
                 return res;
@@ -29,7 +29,7 @@ export class GroupService {
     }
     fetchGroupsWithCampaings(): Observable<any> {
       return this.http
-        .get('http://localhost:6001/microapp/goautodial/fetchGroupsWithCampaings').pipe(
+        .get('http://103.31.147.252:6001/microapp/goautodial/fetchGroupsWithCampaings').pipe(
         map(
           res => {
               return res;
@@ -41,7 +41,7 @@ export class GroupService {
   }
     createGroup(request): Observable<any> {
       return this.http
-        .post('http://localhost:6001/microapp/goautodial/createUserGroup', request).pipe(
+        .post('http://103.31.147.252:6001/microapp/goautodial/createUserGroup', request).pipe(
         map(
           res => {
             return res;
@@ -55,7 +55,7 @@ export class GroupService {
 
     fetchGroupsByUser(id): Observable<any> {
         return this.http
-          .get('http://localhost:4011/api/user/fetchgroupsbyuser/'+id).pipe(
+          .get('http://103.31.147.252:4011/api/user/fetchgroupsbyuser/'+id).pipe(
           map(
             res => {
                 return res;
@@ -68,7 +68,7 @@ export class GroupService {
 
     updateGroupByName(request): Observable<any> {
       return this.http
-        .put('http://localhost:4011/api/user/updategroup', request).pipe(
+        .put('http://103.31.147.252:4011/api/user/updategroup', request).pipe(
         map(
           res => {
             return res;
@@ -81,7 +81,7 @@ export class GroupService {
 
     updateGroup(request): Observable<any> {
       return this.http
-        .put('http://localhost:4011/api/user/updateuserstatus', request).pipe(
+        .put('http://103.31.147.252:4011/api/user/updateuserstatus', request).pipe(
         map(
           res => {
             return res;
