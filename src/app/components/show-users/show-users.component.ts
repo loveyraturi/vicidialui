@@ -42,15 +42,16 @@ export class ShowUsersComponent implements OnInit {
   fetchUsers() {
     this.userService.fetchUser().subscribe(
       data => {
+        console.log(data)
         this.users = data
         if (this.level == 7) {
           this.users = this.users.filter(item => {
-            if (item.user_group == this.group) {
+            if (item.usergroup == this.group) {
               return item
             }
           })
           this.users = this.users.map(item => {
-            if (item.active == "Y") {
+            if (item.status == "Active") {
               item.enable = true
             } else {
               item.enable = false
@@ -59,7 +60,7 @@ export class ShowUsersComponent implements OnInit {
           })
         } else {
           this.users = this.users.map(item => {
-            if (item.active == "Y") {
+            if (item.status == "Active") {
               item.enable = true
             } else {
               item.enable = false

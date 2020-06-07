@@ -17,7 +17,19 @@ export class CampaingService {
 
   createCampaing(request): Observable<any> {
     return this.http
-      .post('http://103.66.232.186:4011/api/campaing/createcampaing', request).pipe(
+      .post('http://localhost:6001/goautodial/createCampaing', request).pipe(
+      map(
+        res => {
+          return res;
+        },
+        err => {
+          return err;
+        }
+      ))
+  }
+  campaingGroupMapping(request): Observable<any> {
+    return this.http
+      .post('http://localhost:6001/goautodial/campaingGroupMapping', request).pipe(
       map(
         res => {
           return res;
@@ -29,7 +41,7 @@ export class CampaingService {
   }
   fetchCampaing(): Observable<any> {
     return this.http
-      .get('http://103.66.232.186:4011/api/campaing/fetchcampaing').pipe(
+      .get('http://localhost:6001/goautodial/fetchcampaings').pipe(
       map(
         res => {
           return res;
@@ -41,7 +53,7 @@ export class CampaingService {
   }
   fetchRecordings(): Observable<any>{
     return this.http
-    .get('http://103.66.232.186:4011/api/campaing/fetchallfiles').pipe(
+    .get('http://localhost:4011/api/campaing/fetchallfiles').pipe(
     map(
       res => {
         return res;
@@ -53,7 +65,7 @@ export class CampaingService {
   }
   fetchCampaingsById(id): Observable<any> {
     return this.http
-      .get('http://103.66.232.186:4011/api/campaing/fetchCampaingById/'+id).pipe(
+      .get('http://localhost:4011/api/campaing/fetchCampaingById/'+id).pipe(
       map(
         res => {
           return res;
@@ -65,7 +77,7 @@ export class CampaingService {
   }
   fetchActiveCampaing(): Observable<any> {
     return this.http
-      .get('http://103.66.232.186:4011/api/campaing/fetchactivecampaing').pipe(
+      .get('http://localhost:4011/api/campaing/fetchactivecampaing').pipe(
       map(
         res => {
           return res;
@@ -77,7 +89,7 @@ export class CampaingService {
   }
   deleteCampaing(id): Observable<any> {
     return this.http
-      .get('http://103.66.232.186:4011/api/campaing/deletecampaing/' + id).pipe(
+      .get('http://localhost:4011/api/campaing/deletecampaing/' + id).pipe(
       map(
         res => {
           return res;
@@ -89,7 +101,7 @@ export class CampaingService {
   }
   updateCampaingStatus(request): Observable<any> {
     return this.http
-      .put('http://103.66.232.186:4011/api/campaing/updatecampaingstatus', request).pipe(
+      .put('http://localhost:4011/api/campaing/updatecampaingstatus', request).pipe(
       map(
         res => {
           return res;
@@ -101,7 +113,7 @@ export class CampaingService {
   }
   updateCampaing(request): Observable<any> {
     return this.http
-      .put('http://103.66.232.186:4011/api/campaing/updatecampaing', request).pipe(
+      .put('http://localhost:4011/api/campaing/updatecampaing', request).pipe(
       map(
         res => {
           return res;
@@ -113,7 +125,7 @@ export class CampaingService {
   }
   updateSurvey(request): Observable<any> {
     return this.http
-      .put('http://103.66.232.186:4011/api/campaing/updatesurvey', request).pipe(
+      .put('http://localhost:4011/api/campaing/updatesurvey', request).pipe(
       map(
         res => {
           return res;

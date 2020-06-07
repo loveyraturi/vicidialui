@@ -17,7 +17,7 @@ export class GroupService {
 
     fetchGroups(): Observable<any> {
         return this.http
-          .get('http://103.66.232.186:4011/api/user/fetchgroups').pipe(
+          .get('http://localhost:6001/goautodial/fetchAllGroups').pipe(
           map(
             res => {
                 return res;
@@ -27,10 +27,35 @@ export class GroupService {
               }
           ))
     }
+    fetchGroupsWithCampaings(): Observable<any> {
+      return this.http
+        .get('http://localhost:6001/goautodial/fetchGroupsWithCampaings').pipe(
+        map(
+          res => {
+              return res;
+            },
+            err => {
+              return err;
+            }
+        ))
+  }
+    createGroup(request): Observable<any> {
+      return this.http
+        .post('http://localhost:6001/goautodial/createUserGroup', request).pipe(
+        map(
+          res => {
+            return res;
+          },
+          err => {
+            return err;
+          }
+        ))
+    }
+
 
     fetchGroupsByUser(id): Observable<any> {
         return this.http
-          .get('http://103.66.232.186:4011/api/user/fetchgroupsbyuser/'+id).pipe(
+          .get('http://localhost:4011/api/user/fetchgroupsbyuser/'+id).pipe(
           map(
             res => {
                 return res;
@@ -43,7 +68,7 @@ export class GroupService {
 
     updateGroupByName(request): Observable<any> {
       return this.http
-        .put('http://103.66.232.186:4011/api/user/updategroup', request).pipe(
+        .put('http://localhost:4011/api/user/updategroup', request).pipe(
         map(
           res => {
             return res;
@@ -56,7 +81,7 @@ export class GroupService {
 
     updateGroup(request): Observable<any> {
       return this.http
-        .put('http://103.66.232.186:4011/api/user/updateuserstatus', request).pipe(
+        .put('http://localhost:4011/api/user/updateuserstatus', request).pipe(
         map(
           res => {
             return res;

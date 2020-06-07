@@ -94,6 +94,19 @@ export class ReportingComponent implements OnInit {
     // this.fetchUsers();
     this.fetchCountOfReport();
   }
+  formatDate(date) {
+    console.log(date)
+    // if(typeof date.getMonth() !== 'function'){
+     date=new Date(date)
+    // }
+    var hours = date.getHours();
+    var minutes = date.getMinutes();
+    hours = hours % 24;
+    hours = hours ? hours : 24; // the hour '0' should be '12'
+    minutes = minutes < 10 ? '0'+minutes : minutes;
+    var strTime = hours + ':' + minutes + ':00';
+    return (date.getFullYear()+"-"+(date.getMonth()+1) + "-" + date.getDate() + " " + strTime);
+  }
 
   fetchUsers() {
     this.userService.fetchUser().subscribe(
@@ -103,8 +116,8 @@ export class ReportingComponent implements OnInit {
         data.forEach((item) => {
 
           var dropdownListLocal = {
-            id: item.user_id,
-            itemName: item.user
+            id: item.id,
+            itemName: item.name
           }
 
           dropDownListLocal.push(dropdownListLocal)
@@ -147,14 +160,14 @@ export class ReportingComponent implements OnInit {
     this.dropdownUserList=[]
     console.log(this.selectedItems, "######################");
     this.selectedItems.forEach((elements) => {
-      this.userService.fetchUserByCampaing(elements.id).subscribe(
+      this.userService.fetchUserByCampaing(elements.itemName).subscribe(
         data => {
           this.users = data
         data.forEach((item) => {
 
           var dropdownListLocal = {
-            id: item.user_id,
-            itemName: item.user
+            id: item.id,
+            itemName: item.name
           }
 
           this.dropdownUserList.push(dropdownListLocal)
@@ -169,8 +182,8 @@ export class ReportingComponent implements OnInit {
         console.log(data)
         if (this.level == 7) {
           this.campaingList = data.filter(item => {
-            console.log(item.user_group == this.group)
-            if (item.user_group == this.group) {
+            console.log(item.name == this.group)
+            if (item.name == this.group) {
               return item
             }
           })
@@ -180,8 +193,8 @@ export class ReportingComponent implements OnInit {
         this.campaingList.forEach((item) => {
 
           var dropdownListLocal = {
-            id: item.campaign_id,
-            itemName: item.campaign_name
+            id: item.id,
+            itemName: item.name
           }
 
           this.dropdownList.push(dropdownListLocal)
@@ -217,7 +230,7 @@ export class ReportingComponent implements OnInit {
   fetchReportData(start, end) {
     var campaingID = []
     this.selectedItems.forEach((items => {
-      campaingID.push(items.id)
+      campaingID.push(items.itemName)
     }))
     var userId = []
     this.selectedUserItems.forEach((items => {
@@ -225,10 +238,10 @@ export class ReportingComponent implements OnInit {
     }))
 
     var requestData = {
-      datefrom: (new Date(this.datefrom).getTime()) / 1000,
-      dateto: (new Date(this.dateto).getTime()) / 1000,
-      campaingId: campaingID,
-      userId: userId,
+      datefrom: this.formatDate(this.datefrom),
+      dateto:  this.formatDate(this.dateto),
+      campaingName: campaingID,
+      userName: userId,
       limit: start,
       offset: end
     }

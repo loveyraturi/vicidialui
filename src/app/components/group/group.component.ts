@@ -23,6 +23,7 @@ export class GroupComponent implements OnInit {
 
   ngOnInit() {
     this.level = localStorage.getItem("level")
+    console.log(this.level,"$#$%$")
     if (this.level == 9) {
         this.hasAccess=true;
     }
@@ -32,10 +33,24 @@ export class GroupComponent implements OnInit {
     this.fetchGroups();
   }
   fetchGroups() {
-    this.groupService.fetchGroups().subscribe(
+    this.groupService.fetchGroupsWithCampaings().subscribe(
       data => {
-        this.groups = data
-        console.log(data)
+        var responseData=[]
+        
+        data.forEach(element => {
+          var campaingAssignes=","
+          element.campaingList.forEach(item => {
+          campaingAssignes= item.campaingname+campaingAssignes
+        });
+           responseData.push({
+            name: element.groupName,
+            status: element.status,
+            campaings: campaingAssignes
+          })
+        });
+       
+        this.groups = responseData
+        console.log(responseData)
 
       })
   }

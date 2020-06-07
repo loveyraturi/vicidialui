@@ -13,7 +13,7 @@ export class DashboardService {
   constructor(private http: HttpClient) { }
   fetchAgentsCounts(): Observable<any> {
     return this.http
-      .get('http://103.66.232.186:4011/api/agents/fetchallagentscount').pipe(
+      .get('http://localhost:6001/goautodial/fetchAllUsers').pipe(
       map(
         res => {
           return res;
@@ -25,7 +25,7 @@ export class DashboardService {
   }
   fetchLiveChannelCount(): Observable<any> {
     return this.http
-      .get('http://103.66.232.186:4011/api/agents/fetchlivechannelcount').pipe(
+      .get('http://localhost:4011/api/agents/fetchlivechannelcount').pipe(
       map(
         res => {
           return res;
@@ -37,7 +37,7 @@ export class DashboardService {
   }
   fetchLiveChannel(): Observable<any> {
     return this.http
-      .get('http://103.66.232.186:4011/api/agents/fetchlivechannel').pipe(
+      .get('http://localhost:4011/api/agents/fetchlivechannel').pipe(
       map(
         res => {
           return res;
@@ -49,7 +49,7 @@ export class DashboardService {
   }
   liveAgentsCounts(): Observable<any> {
     return this.http
-      .get('http://103.66.232.186:4011/api/agents/fetchliveagentscount').pipe(
+      .get('http://localhost:4011/api/agents/fetchliveagentscount').pipe(
       map(
         res => {
           return res;
@@ -62,7 +62,7 @@ export class DashboardService {
 
   pausedAgentsCounts(): Observable<any> {
     return this.http
-      .get('http://103.66.232.186:4011/api/agents/fetchpausedagentscount').pipe(
+      .get('http://localhost:4011/api/agents/fetchpausedagentscount').pipe(
       map(
         res => {
           return res;
@@ -75,7 +75,7 @@ export class DashboardService {
 
   holdAgentsCounts(): Observable<any> {
     return this.http
-      .get('http://103.66.232.186:4011/api/agents/fetchholdagentscount').pipe(
+      .get('http://localhost:4011/api/agents/fetchholdagentscount').pipe(
       map(
         res => {
           return res;
@@ -88,7 +88,7 @@ export class DashboardService {
 
   activeUsersCounts(): Observable<any> {
     return this.http
-      .get('http://103.66.232.186:4011/api/agents/fetchactiveuserscount').pipe(
+      .get('http://localhost:4011/api/agents/fetchactiveuserscount').pipe(
       map(
         res => {
           return res;
@@ -101,7 +101,7 @@ export class DashboardService {
 
   activeCampaignCounts(): Observable<any> {
     return this.http
-      .get('http://103.66.232.186:4011/api/agents/fetchactivecampaignscount').pipe(
+      .get('http://localhost:4011/api/agents/fetchactivecampaignscount').pipe(
       map(
         res => {
           return res;
@@ -114,7 +114,7 @@ export class DashboardService {
 
   allUsersCounts(): Observable<any> {
     return this.http
-      .get('http://103.66.232.186:4011/api/agents/fetchalluserscount').pipe(
+      .get('http://localhost:4011/api/agents/fetchalluserscount').pipe(
       map(
         res => {
           return res;
@@ -127,7 +127,7 @@ export class DashboardService {
 
   allCampaignCounts(): Observable<any> {
     return this.http
-      .get('http://103.66.232.186:4011/api/agents/fetchallcampaingscount').pipe(
+      .get('http://localhost:4011/api/agents/fetchallcampaingscount').pipe(
       map(
         res => {
           return res;

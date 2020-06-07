@@ -26,14 +26,15 @@ export class LoginComponent implements OnInit {
 
   }
   login(value: any) {
+    console.log(value)
     this.auth.validateLogin(value).subscribe(
       data => {
         console.log(data,"#############")
-        localStorage.setItem("user_name",data.name);
-        localStorage.setItem("phone_number",data.phoneNumber);
+        localStorage.setItem("user_name",data.username);
+        // localStorage.setItem("phone_number",data.phoneNumber);
         localStorage.setItem("level",data.level);
-        localStorage.setItem("group",data.group);
-        if (data.status ) {
+        localStorage.setItem("group",data.usergroup);
+        if (data.username!=undefined ) {
           if(data.level > 6){
             this._router.navigateByUrl('home');
           }else{

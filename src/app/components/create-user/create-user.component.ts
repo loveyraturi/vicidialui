@@ -31,9 +31,31 @@ export class CreateUserComponent implements OnInit {
     // });
   }
   public createUser(value: any): void {
-    this.userService.createUser(value).subscribe(
+    console.log(value)
+    var createUser={
+      fullname: value.name,
+      level: value.level,
+      password: value.password,
+      username: value.name,
+      usergroup: value.group,
+      status: value.status
+    }
+    var userGroupMapping={
+       groupname: value.group,
+       username: value.name
+    }
+    
+    this.userService.createUser(createUser).subscribe(
       data => {
         if (data.status) {
+          this.userService.assignUserToGroup(userGroupMapping).subscribe(
+            data => {
+              if (data.status) {
+                this.router.navigateByUrl('/showUser');
+      
+              }
+      
+            })
           this.router.navigateByUrl('/showUser');
 
         }
@@ -45,7 +67,6 @@ export class CreateUserComponent implements OnInit {
     this.groupService.fetchGroups().subscribe(
       data => {
         this.groups = data
-        console.log(data)
 
       })
   }

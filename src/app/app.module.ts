@@ -8,7 +8,7 @@ import {Topnavbar} from "./components/topnavbar/topnavbar.component";
 import {Navigation} from "./components/navigation/navigation.component";
 import {RouterModule} from "@angular/router";
 import {appRoutes} from "./app.routes";
-import {AgentComponent} from "./pages/home/agent.component";
+import {AgentComponent} from "./pages/agent/agent.component";
 import { LoginComponent } from './components/login/login.component';
 import { CreateUserComponent } from './components/create-user/create-user.component';
 import { ShowUsersComponent } from './components/show-users/show-users.component';
@@ -34,7 +34,9 @@ import { ServeyComponent } from './components/servey/servey.component';
 import { ReportingComponent } from './components/reporting/reporting.component';
 import { ExportService } from './services/export.service';
 import { AngularDateTimePickerModule } from 'angular2-datetimepicker';
-import { HomeComponent } from './pages/agent/home.component';
+import { HomeComponent } from './pages/home/home.component';
+import { WhatsappComponent } from './pages/whatsapp/whatsapp.component';
+import { AgentService } from './services/agent.service';
  
 
 @NgModule({
@@ -44,6 +46,7 @@ import { HomeComponent } from './pages/agent/home.component';
     Topnavbar,
     HomeComponent,
     AgentComponent,
+    WhatsappComponent,
     LoginComponent,
     ReportingComponent,
     CreateUserComponent,
@@ -70,7 +73,7 @@ import { HomeComponent } from './pages/agent/home.component';
     AngularMultiSelectModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [PlatformService,ExportService,AuthService,UserService,GroupService,CampaingService, DashboardService],
+  providers: [PlatformService,ExportService,AuthService,AgentService,UserService,GroupService,CampaingService, DashboardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

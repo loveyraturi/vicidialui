@@ -35,7 +35,7 @@
                     <div class="input-group-addon"><i class="glyphicon glyphicon-user"></i></div>
                     <select class="mdb-select md-form form-control" formControlName="group">
                       <option value="" disabled selected>Choose your option</option>
-                      <option *ngFor="let group of groups" value="group.user_group">{{group.group_name}}</option>
+                      <option *ngFor="let group of groups" [value]="group.name">{{group.name}}</option>
                     </select>
                   </div>
                 </div>
@@ -70,8 +70,11 @@
                   <label for="email">Status</label>
                   <div class="input-group">
                     <div class="input-group-addon"><i class="glyphicon glyphicon-tasks"></i></div>
-                    <input autofocus required type="text" formControlName="status" name="status" id="status"
-                      class="form-control" placeholder="Your status" tabindex="1">
+                                        <select class="mdb-select md-form form-control" formControlName="status">
+                        <option value="" disabled selected>Choose Status</option>
+                        <option  value="Active">Active</option>
+                        <option  value="Inactive">Inactive</option>
+                      </select>
                   </div>
                 </div>
                 <div class="form-group">
