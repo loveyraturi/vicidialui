@@ -28,7 +28,7 @@ export class CloneUserComponent implements OnInit {
   public groupsById;
   constructor(private userService: UserService, private groupService: GroupService, private router: Router,private formBuilder: FormBuilder) {
     this.fetchGroups()
-    this.fetchusersById(localStorage.getItem("update_id"));
+    this.fetchusersByName(localStorage.getItem("clone_name"));
   }
   ngOnInit() {
 
@@ -52,24 +52,27 @@ export class CloneUserComponent implements OnInit {
   fetchGroups(){
     this.groupService.fetchGroups().subscribe(
       data => {
+        
         this.groups=data
         console.log(data)
 
       })
   }
 
-  fetchusersById(id) {
-    console.log("id#####",id)
-    this.userService.fetchusersById(id).subscribe(
+  fetchusersByName(name) {
+    console.log("name#####",name)
+    this.userService.fetchusersByName(name).subscribe(
       data => {
-        this.groupsById=data[0]
-        console.log(this.groupsById,"####################33")
-        this.name = this.groupsById.full_name
-        this.phonenumber =this.groupsById.phone_login
-        this.status =this.groupsById.active
-        this.level =this.groupsById.user_level
-        this.groupId=this.groupsById.user_group
-        console.log(this.name,this.phonenumber,this.status,this.level,this.groupId)
+        var user=data[0]
+        console.log("DATATTAT####",user)
+        // this.groupsById=data[0]
+        // console.log(this.groupsById,"####################33")
+        this.name = user.username
+        // this.phonenumber =this.groupsById.phone_login
+        this.status =user.status
+        this.level =user.level
+        this.groupId=user.usergroup
+        // console.log(this.name,this.phonenumber,this.status,this.level,this.groupId)
 
       })
     
@@ -79,7 +82,7 @@ export class CloneUserComponent implements OnInit {
     this.registerform = this.formBuilder.group({
       name: new FormControl('', [Validators.required]),
       group: new FormControl('', Validators.required),
-      phonenumber: new FormControl('', Validators.required),
+      // phonenumber: new FormControl('', Validators.required),
       status: new FormControl('', Validators.required),
       password: new FormControl('', Validators.required),
       confpass: new FormControl('', Validators.required),

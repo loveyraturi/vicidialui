@@ -17,7 +17,7 @@ export class GroupService {
 
     fetchGroups(): Observable<any> {
         return this.http
-          .get('http://103.31.147.252:6001/microapp/goautodial/fetchAllGroups').pipe(
+          .get('http://103.31.147.252:6001/microapp//goautodial/fetchAllGroups').pipe(
           map(
             res => {
                 return res;
@@ -39,9 +39,21 @@ export class GroupService {
             }
         ))
   }
+  fetchGroupByCampaings(campaingName): Observable<any> {
+    return this.http
+      .get('http://103.31.147.252:6001/microapp//goautodial/fetchGroupByCampaings/'+campaingName).pipe(
+      map(
+        res => {
+            return res;
+          },
+          err => {
+            return err;
+          }
+      ))
+}
     createGroup(request): Observable<any> {
       return this.http
-        .post('http://103.31.147.252:6001/microapp/goautodial/createUserGroup', request).pipe(
+        .post('http://103.31.147.252:6001/microapp//goautodial/createUserGroup', request).pipe(
         map(
           res => {
             return res;
@@ -81,7 +93,7 @@ export class GroupService {
 
     updateGroup(request): Observable<any> {
       return this.http
-        .put('http://103.31.147.252:4011/api/user/updateuserstatus', request).pipe(
+        .put('http://103.31.147.252:6001/microapp/goautodial/updateGroup', request).pipe(
         map(
           res => {
             return res;

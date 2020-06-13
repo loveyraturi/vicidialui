@@ -82,6 +82,23 @@
               </div>
             </a>
           </li>
+          <li [ngClass]="{active: activeRoute('createUser')}">
+              <a class="drops"><i class="fa fa-user"></i> <span class="nav-label">Leads</span><i class="fa fa-caret-down"
+                  style="    margin-left: 55%;"></i>
+                <div class="drop">
+                  <ul class="nav metismenu" id="side-menu">
+                    <li [ngClass]="{active: activeRoute('createUser')}">
+                      <a [routerLink]="['/leads']"><i class="fa fa-book"></i> <span class="nav-label">Create
+                        </span></a>
+                    </li>
+                    <li [ngClass]="{active: activeRoute('showUser')}">
+                      <a [routerLink]="['/showleads']"><i class="fa fa-folder-open"></i> <span class="nav-label">Show
+                        </span></a>
+                    </li>
+                  </ul>
+                </div>
+              </a>
+            </li>
       
     </ul>
   </div>

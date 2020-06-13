@@ -17,7 +17,7 @@ export class UserService {
 
   createUser(request): Observable<any> {
     return this.http
-      .post('http://103.31.147.252:6001/microapp/goautodial/createuser', request).pipe(
+      .post('http://103.31.147.252:6001/microapp//goautodial/createuser', request).pipe(
       map(
         res => {
           return res;
@@ -29,7 +29,19 @@ export class UserService {
   }
   assignUserToGroup(request): Observable<any> {
     return this.http
-      .post('http://103.31.147.252:6001/microapp/goautodial/assignUserToGroup', request).pipe(
+      .post('http://103.31.147.252:6001/microapp//goautodial/assignUserToGroup', request).pipe(
+      map(
+        res => {
+          return res;
+        },
+        err => {
+          return err;
+        }
+      ))
+  }
+  updateAssignUserToGroup(request): Observable<any> {
+    return this.http
+      .post('http://103.31.147.252:6001/microapp//goautodial/updateAssignUserToGroup', request).pipe(
       map(
         res => {
           return res;
@@ -41,7 +53,7 @@ export class UserService {
   }
   fetchUser(): Observable<any> {
     return this.http
-      .get('http://103.31.147.252:6001/microapp/goautodial/fetchAllUsers').pipe(
+      .get('http://103.31.147.252:6001/microapp//goautodial/fetchAllUsers').pipe(
       map(
         res => {
           return res;
@@ -89,7 +101,7 @@ export class UserService {
         }
   fetchUserByCampaing(campaing): Observable<any> {
     return this.http
-      .get('http://103.31.147.252:6001/microapp/goautodial/fetchusersbycampaing/'+campaing).pipe(
+      .get('http://103.31.147.252:6001/microapp//goautodial/fetchusersbycampaing/'+campaing).pipe(
       map(
         res => {
           return res;
@@ -123,18 +135,7 @@ export class UserService {
         }
       ))
   }
-  fetchCountReportDataBetween(data): Observable<any> {
-    return this.http
-      .post('http://103.31.147.252:4011/api/user/fetchcountreportdatabetween',data).pipe(
-      map(
-        res => {
-          return res;
-        },
-        err => {
-          return err;
-        }
-      ))
-  }
+  
   createExcel(data): Observable<any> {
     return this.http
       .post('http://103.31.147.252:4011/api/user/createexcel',data).pipe(
@@ -148,6 +149,22 @@ export class UserService {
         }
       ))
   }
+
+  fetchCountReportDataBetween(data): Observable<any> {
+    return this.http
+      .post('http://103.31.147.252:6001/microapp/goautodial/fetchcountreportdatabetween',data,{
+        headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+      }).pipe(
+      map(
+        res => {
+          return res;
+        },
+        err => {
+          return err;
+        }
+      ))
+  }
+  
   fetchReportDataBetween(data): Observable<any> {
     return this.http
       .post('http://103.31.147.252:6001/microapp/goautodial/fetchreportdatabetween',data,{
@@ -162,9 +179,9 @@ export class UserService {
         }
       ))
   }
-  fetchusersById(id): Observable<any> {
+  fetchusersByName(name): Observable<any> {
     return this.http
-      .get('http://103.31.147.252:4011/api/user/fetchusersById/'+id).pipe(
+      .get('http://103.31.147.252:6001/microapp/goautodial/fetchusersByName/'+name).pipe(
       map(
         res => {
           return res;
@@ -213,7 +230,7 @@ export class UserService {
 
   updateUser(request): Observable<any> {
     return this.http
-      .put('http://103.31.147.252:4011/api/user/updateuser', request).pipe(
+      .post('http://103.31.147.252:6001/microapp/goautodial/updateUser', request).pipe(
       map(
         res => {
           return res;

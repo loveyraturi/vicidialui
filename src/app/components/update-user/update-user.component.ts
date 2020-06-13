@@ -28,10 +28,9 @@ export class UpdateUserComponent implements OnInit {
   public groupsById;
   constructor(private userService: UserService, private groupService: GroupService, private router: Router, private formBuilder: FormBuilder) {
     this.fetchGroups()
-    this.fetchusersById(localStorage.getItem("update_id"));
+    this.fetchusersByName(localStorage.getItem("update_name"));
   }
   ngOnInit() {
-
     this.username = localStorage.getItem("user_name")
     this.loginInfo.user_name = this.username;
     console.log(this.username)
@@ -45,8 +44,6 @@ export class UpdateUserComponent implements OnInit {
         if(data.status){
         this.router.navigateByUrl("/showUser")
         }
-      
-
       })
   }
 
@@ -59,20 +56,20 @@ export class UpdateUserComponent implements OnInit {
       })
   }
 
-  fetchusersById(id) {
-    this.id=id;
-    this.userService.fetchusersById(id).subscribe(
+  fetchusersByName(name) {
+    this.userService.fetchusersByName(name).subscribe(
       data => {
-          this.groupsById=data[0]
-          console.log(this.groupsById,"####################33")
-          this.name = this.groupsById.full_name
-          this.phonenumber =this.groupsById.phone_login
-          this.status =this.groupsById.active
-          this.level =this.groupsById.user_level
-          this.groupId=this.groupsById.user_group
-          this.password=this.groupsById.pass
-          console.log(this.name,this.phonenumber,this.status,this.level,this.groupId)
-  
+            var user=data[0]
+            console.log("DATATTAT####",user)
+            // this.groupsById=data[0]
+            // console.log(this.groupsById,"####################33")
+            this.id=user.id
+            this.name = user.username
+            // this.phonenumber =this.groupsById.phone_login
+            this.status =user.status
+            this.level =user.level
+            this.groupId=user.usergroup
+            // console.log(this.name,this.phonenumber,this.status,this.level,this.groupId)
       })
   }
 
@@ -81,7 +78,7 @@ export class UpdateUserComponent implements OnInit {
       id: new FormControl('', [Validators.required]),
       name: new FormControl('', [Validators.required]),
       group: new FormControl('', Validators.required),
-      phonenumber: new FormControl('', Validators.required),
+      // phonenumber: new FormControl('', Validators.required),
       status: new FormControl('', Validators.required),
       password: new FormControl('', Validators.required),
       confpass: new FormControl('', Validators.required),
@@ -89,7 +86,38 @@ export class UpdateUserComponent implements OnInit {
     });
   }
   submit({ value }: any): void {
-    this.update(value);
+    console.log(value)
+    var createUser={
+      id:value.id,
+      fullname: value.name,
+      level: value.level,
+      password: value.password,
+      username: value.name,
+      usergroup: value.group,
+      status: value.status
+    }
+    var userGroupMapping={
+       groupname: value.group,
+       username: value.name
+    }
+    
+    this.userService.updateUser(createUser).subscribe(
+      data => {
+        if (data.status) {
+          this.userService.updateAssignUserToGroup(userGroupMapping).subscribe(
+            data => {
+              if (data.status) {
+                this.router.navigateByUrl('/showUser');
+      
+              }
+      
+            })
+          this.router.navigateByUrl('/showUser');
+
+        }
+
+      })
+    // this.update(value);
     
   }
 }

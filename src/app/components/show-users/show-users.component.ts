@@ -72,12 +72,12 @@ export class ShowUsersComponent implements OnInit {
 
       })
   }
-  updateUser(id) {
-    console.log(this.active, "%$#@%$@#$", id)
-    localStorage.setItem("update_id", id);
+  updateUser(fullName) {
+    console.log(this.active, "%$#@%$@#$", fullName)
+    localStorage.setItem("update_name", fullName);
     this.router.navigateByUrl("/updateUser")
   }
-  onChange(event, id) {
+  onChange(event, fullName) {
     console.log("###############", event)
     if (event) {
       this.active = "Y"
@@ -85,7 +85,7 @@ export class ShowUsersComponent implements OnInit {
       this.active = "N"
     }
     var req = {
-      user_id: id,
+      user_name: fullName,
       active: this.active
     }
     this.userService.updateUserStatus(req).subscribe(
@@ -94,9 +94,9 @@ export class ShowUsersComponent implements OnInit {
       })
 
   }
-  cloneUser(id) {
-    console.log("%$#@%$@#$", id)
-    localStorage.setItem("clone_id", id);
+  cloneUser(fullName) {
+    console.log("%$#@%$@#$", fullName)
+    localStorage.setItem("clone_name", fullName);
     this.router.navigateByUrl("/cloneUser")
   }
   addNew() {

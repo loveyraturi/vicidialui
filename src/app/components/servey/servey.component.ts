@@ -61,35 +61,35 @@ export class ServeyComponent implements OnInit {
     this.fetchCampaingById(localStorage.getItem("survey_campaing_id"));
   }
   fetchCampaingById(id) {
-    this.campaignService.fetchCampaingsById(id).subscribe(
-      dataresp => {
-        var data = dataresp[0]
-        console.log(data, "camoaingdi#####################")
-        this.campaign_id= data.campaign_id
-        this.survey_first_audio_file = data.survey_first_audio_file
-        this.survey_dtmf_digits = data.survey_dtmf_digits
-        this.survey_ni_digit = data.survey_ni_digit
-        this.survey_wait_sec = data.survey_wait_sec
-        this.survey_opt_in_audio_file = data.survey_opt_in_audio_file
-        this.survey_ni_audio_file = data.survey_ni_audio_file
-        this.survey_method = data.survey_method
-        this.survey_no_response_action = data.survey_no_response_action
-        this.survey_ni_status = data.survey_ni_status
-        this.survey_third_digit = data.survey_third_digit
-        this.survey_third_audio_file = data.survey_third_audio_file
-        this.survey_third_status = data.survey_third_status
-        this.survey_third_exten = data.survey_third_exten
-        this.survey_fourth_digit = data.survey_fourth_digit
-        this.survey_fourth_audio_file = data.survey_fourth_audio_file
-        this.survey_fourth_status = data.survey_fourth_status
-        this.survey_fourth_exten = data.survey_fourth_exten
-        this.survey_response_digit_map = data.survey_response_digit_map
-        this.survey_xfer_exten = data.survey_xfer_exten
-        this.survey_camp_record_dir = data.survey_camp_record_dir
-        this.voicemail_ext = data.voicemail_ext
-        this.survey_menu_id = data.survey_menu_id
-        this.survey_recording = data.survey_recording
-      })
+    // this.campaignService.fetchCampaingsById(id).subscribe(
+    //   dataresp => {
+    //     var data = dataresp[0]
+    //     console.log(data, "camoaingdi#####################")
+    //     this.campaign_id= data.campaign_id
+    //     this.survey_first_audio_file = data.survey_first_audio_file
+    //     this.survey_dtmf_digits = data.survey_dtmf_digits
+    //     this.survey_ni_digit = data.survey_ni_digit
+    //     this.survey_wait_sec = data.survey_wait_sec
+    //     this.survey_opt_in_audio_file = data.survey_opt_in_audio_file
+    //     this.survey_ni_audio_file = data.survey_ni_audio_file
+    //     this.survey_method = data.survey_method
+    //     this.survey_no_response_action = data.survey_no_response_action
+    //     this.survey_ni_status = data.survey_ni_status
+    //     this.survey_third_digit = data.survey_third_digit
+    //     this.survey_third_audio_file = data.survey_third_audio_file
+    //     this.survey_third_status = data.survey_third_status
+    //     this.survey_third_exten = data.survey_third_exten
+    //     this.survey_fourth_digit = data.survey_fourth_digit
+    //     this.survey_fourth_audio_file = data.survey_fourth_audio_file
+    //     this.survey_fourth_status = data.survey_fourth_status
+    //     this.survey_fourth_exten = data.survey_fourth_exten
+    //     this.survey_response_digit_map = data.survey_response_digit_map
+    //     this.survey_xfer_exten = data.survey_xfer_exten
+    //     this.survey_camp_record_dir = data.survey_camp_record_dir
+    //     this.voicemail_ext = data.voicemail_ext
+    //     this.survey_menu_id = data.survey_menu_id
+    //     this.survey_recording = data.survey_recording
+    //   })
 
 
   }

@@ -5,6 +5,7 @@ import { Login } from 'app/models/login';
 import { UserService } from 'app/services/user.service';
 import { CampaingService } from 'app/services/campaing.service';
 import { Router } from '@angular/router';
+import * as FileSaver from 'file-saver';
 
 @Component({
   selector: 'app-reporting',
@@ -246,7 +247,7 @@ export class ReportingComponent implements OnInit {
       offset: end
     }
     this.loading = true
-    this.userService.fetchReportDataBetween(requestData).subscribe(
+    this.userService.fetchCountReportDataBetween(requestData).subscribe(
       data => {
 
         this.buttonDisabled = ""
@@ -301,22 +302,24 @@ export class ReportingComponent implements OnInit {
   export() {
     var campaingID = []
     this.selectedItems.forEach((items => {
-      campaingID.push(items.id)
+      campaingID.push(items.itemName)
     }))
     var userId = []
     this.selectedUserItems.forEach((items => {
       userId.push(items.itemName)
     }))
+
     var requestData = {
-      datefrom: (new Date(this.datefrom).getTime()) / 1000,
-      dateto: (new Date(this.dateto).getTime()) / 1000,
-      campaingId: campaingID,
-      userId: userId
+      datefrom: this.formatDate(this.datefrom),
+      dateto:  this.formatDate(this.dateto),
+      campaingName: campaingID,
+      userName: userId
     }
-    this.userService.createExcel(requestData).subscribe(
+    this.userService.fetchReportDataBetween(requestData).subscribe(
       data => {
         console.log("############", data)
-        window.open("./assets/misReport.xlsx");
+        // FileSaver.saveAs(data, "/assets/Filename.xlsx");
+        window.open("./assets/MISReport.xlsx");
       })
   }
 

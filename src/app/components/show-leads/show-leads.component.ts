@@ -5,11 +5,11 @@ import { Router } from '@angular/router';
 import { CampaingService } from 'app/services/campaing.service';
 
 @Component({
-  selector: 'app-show-campaing',
-  templateUrl: './show-campaing.component.html',
-  styleUrls: ['./show-campaing.component.css']
+  selector: 'app-show-leads',
+  templateUrl: './show-leads.component.html',
+  styleUrls: ['./show-leads.component.css']
 })
-export class ShowCampaingComponent implements OnInit {
+export class ShowLeadsComponent implements OnInit {
   public username;
   public currentElementIndex=1;
   public active;

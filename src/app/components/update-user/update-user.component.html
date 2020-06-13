@@ -38,7 +38,7 @@
                       <div class="input-group-addon"><i class="glyphicon glyphicon-user"></i></div>
                       <select class="mdb-select md-form form-control"  [(ngModel)]="groupId" formControlName="group">
                         <option value="" disabled selected>Choose your option</option>
-                        <option *ngFor="let group of groups" value="{{group.user_group}}">{{group.group_name}}</option>
+                        <option *ngFor="let group of groups" value="{{group.name}}">{{group.name}}</option>
                       </select>
                     </div>
                   </div>
@@ -61,22 +61,25 @@
                         </select>
                       </div>
                     </div>
-                  <div class="form-group">
+                  <!-- <div class="form-group">
                     <label for="Number">Phone Number</label>
                     <div class="input-group">
                       <div class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></div>
                       <input autofocus required type="text" [(ngModel)]="phonenumber" formControlName="phonenumber" name="phonenumber"
                         id="phonenumber" class="form-control" placeholder="Your phone number" tabindex="1">
                     </div>
-                  </div>
+                  </div> -->
                   <div class="form-group">
-                    <label for="email">Status</label>
-                    <div class="input-group">
-                      <div class="input-group-addon"><i class="glyphicon glyphicon-tasks"></i></div>
-                      <input autofocus required type="text" formControlName="status" [(ngModel)]="status" name="status" id="status"
-                        class="form-control" placeholder="Your status" tabindex="1">
+                      <label for="email">Status</label>
+                      <div class="input-group">
+                        <div class="input-group-addon"><i class="glyphicon glyphicon-tasks"></i></div>
+                                            <select class="mdb-select md-form form-control"  [(ngModel)]="status" formControlName="status">
+                            <option value="" disabled selected>Choose Status</option>
+                            <option  value="Active">Active</option>
+                            <option  value="Inactive">Inactive</option>
+                          </select>
+                      </div>
                     </div>
-                  </div>
                   <div class="form-group">
                     <label for="password">Password</label>
                     <div class="input-group">

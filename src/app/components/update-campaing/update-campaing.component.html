@@ -32,7 +32,7 @@
                   <input type="hidden" [(ngModel)]="campaign_id" formControlName="campaign_id"
                   name="id" id="id" class="form-control" tabindex="1">
             
-                  <div class="form-group">
+                  <!-- <div class="form-group">
                     <label for="Description">Description</label>
                     <div class="input-group">
                       <div class="input-group-addon"><i class="glyphicon glyphicon-bookmark"></i></div>
@@ -40,7 +40,7 @@
                         formControlName="campaign_description" name="description" id="description" class="form-control"
                         placeholder="Your description" tabindex="1"></textarea>
                     </div>
-                  </div>
+                  </div> -->
                   <div class="form-group col-xs-6">
                     <label for="adminusergroup">Admin User Group</label>
                     <div class="input-group">
@@ -48,11 +48,27 @@
                       <select class="mdb-select md-form form-control" [(ngModel)]="user_group"
                         formControlName="user_group">
                         <option value="" disabled selected>Choose your option</option>
-                        <option *ngFor="let group of groups" value="{{group.user_group}}">{{group.user_group}}</option>
+                        <option *ngFor="let group of groups" value="{{group.name}}">{{group.name}}</option>
                       </select>
                     </div>
                   </div>
-                  <div class="form-group col-xs-6">
+                  <div class="form-group">
+                      <label for="name">Dial Prefix</label>
+                      <div class="input-group">
+                        <div class="input-group-addon"><i class="glyphicon glyphicon-tasks"></i></div>
+                        <input autofocus required type="text" formControlName="dial_prefix" name="dialPrefix" id="dialPrefix"
+                          [(ngModel)]="dialPrefix" class="form-control" placeholder="Enter Dial Prefix" tabindex="1">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="name">Manual Dial Prefix</label>
+                      <div class="input-group">
+                        <div class="input-group-addon"><i class="glyphicon glyphicon-tasks"></i></div>
+                        <input autofocus required type="text"  formControlName="manual_dial_prefix" name="manualDialPrefix" id="manualDialPrefix"
+                          [(ngModel)]="manualDialPrefix" class="form-control" placeholder="Enter Manual Dial Prefix" tabindex="1">
+                      </div>
+                    </div>
+                  <!-- <div class="form-group col-xs-6">
                     <label for="webform">Web Form</label>
                     <div class="input-group">
                       <div class="input-group-addon"><i class="glyphicon glyphicon-globe"></i></div>
@@ -60,8 +76,8 @@
                         formControlName="web_form_address" name="webform" id="webform" class="form-control"
                         placeholder="Your webform" tabindex="1">
                     </div>
-                  </div>
-                  <div class="form-group col-xs-6">
+                  </div> -->
+                  <!-- <div class="form-group col-xs-6">
                     <label for="closers">Allow Closers</label>
                     <div class="input-group">
                       <div class="input-group-addon"><i class="glyphicon glyphicon-tasks"></i></div>
@@ -72,8 +88,8 @@
                         <option value="N">No</option>
                       </select>
                     </div>
-                  </div>
-                  <div class="form-group col-xs-6">
+                  </div> -->
+                  <!-- <div class="form-group col-xs-6">
                     <label for="hopperlevel">Mimimum Hopper Level</label>
                     <div class="input-group">
                       <div class="input-group-addon"><i class="glyphicon glyphicon-level-up"></i></div>
@@ -94,8 +110,8 @@
                         <option value="5000">5000</option>
                       </select>
                     </div>
-                  </div>
-                  <div class="form-group col-xs-6">
+                  </div> -->
+                  <!-- <div class="form-group col-xs-6">
                     <label for="autodiallevel">Auto Dial Level</label>
                     <div class="input-group">
                       <div class="input-group-addon"><i class="glyphicon glyphicon-bell"></i></div>
@@ -138,8 +154,8 @@
                         <option value="200">200</option>
                       </select>
                     </div>
-                  </div>
-                  <div class="form-group col-xs-6">
+                  </div> -->
+                  <!-- <div class="form-group col-xs-6">
                     <label for="nextcall">Next Agent Call</label>
                     <div class="input-group">
                       <div class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></div>
@@ -156,7 +172,7 @@
                         <option value='longest_wait_time'>longest_wait_time</option>
                       </select>
                     </div>
-                  </div>
+                  </div> -->
                   <div class="form-group col-xs-6">
                     <label for="localtimecall">Local Call Time</label>
                     <div class="input-group">
@@ -173,7 +189,7 @@
                       </select>
                     </div>
                   </div>
-                  <div class="form-group">
+                  <!-- <div class="form-group">
                     <label for="script">Script</label>
                     <div class="input-group">
                       <div class="input-group-addon"><i class="glyphicon glyphicon-barcode"></i></div>
@@ -184,8 +200,8 @@
                         <option value="CALLNOTES">CALLNOTES - Call Notes and Appointment Setting</option>
                       </select>
                     </div>
-                  </div>
-                  <div class="form-group">
+                  </div> -->
+                  <!-- <div class="form-group">
                     <label for="getcalllaunch">Get Call Launch</label>
                     <div class="input-group">
                       <div class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></div>
@@ -203,7 +219,7 @@
                         <option value="PREVIEW_WEBFORMTHREE">PREVIEW_WEBFORMTHREE</option>
                       </select>
                     </div>
-                  </div>
+                  </div> -->
                   <div class="form-group">
                     <label for="Active">Active</label>
                     <div class="input-group">

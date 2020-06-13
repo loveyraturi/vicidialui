@@ -17,7 +17,7 @@ export class CampaingService {
 
   createCampaing(request): Observable<any> {
     return this.http
-      .post('http://103.31.147.252:6001/microapp/goautodial/createCampaing', request).pipe(
+      .post('http://103.31.147.252:6001/microapp//goautodial/createCampaing', request).pipe(
       map(
         res => {
           return res;
@@ -39,9 +39,22 @@ export class CampaingService {
         }
       ))
   }
+  updateCampaingGroupMapping(request): Observable<any> {
+    return this.http
+      .post('http://103.31.147.252:6001/microapp//goautodial/updateCampaingGroupMapping', request).pipe(
+      map(
+        res => {
+          return res;
+        },
+        err => {
+          return err;
+        }
+      ))
+  }
+  
   fetchCampaing(): Observable<any> {
     return this.http
-      .get('http://103.31.147.252:6001/microapp/goautodial/fetchcampaings').pipe(
+      .get('http://103.31.147.252:6001/microapp//goautodial/fetchcampaings').pipe(
       map(
         res => {
           return res;
@@ -63,9 +76,9 @@ export class CampaingService {
       }
     ))
   }
-  fetchCampaingsById(id): Observable<any> {
+  fetchCampaingByName(name): Observable<any> {
     return this.http
-      .get('http://103.31.147.252:4011/api/campaing/fetchCampaingById/'+id).pipe(
+      .get('http://103.31.147.252:6001/microapp/goautodial/fetchCampaingByName/'+name).pipe(
       map(
         res => {
           return res;
@@ -77,7 +90,7 @@ export class CampaingService {
   }
   fetchActiveCampaing(): Observable<any> {
     return this.http
-      .get('http://103.31.147.252:4011/api/campaing/fetchactivecampaing').pipe(
+      .get('http://103.31.147.252:6001/microapp/goautodial/fetchactivecampaing').pipe(
       map(
         res => {
           return res;
@@ -113,7 +126,7 @@ export class CampaingService {
   }
   updateCampaing(request): Observable<any> {
     return this.http
-      .put('http://103.31.147.252:4011/api/campaing/updatecampaing', request).pipe(
+      .post('http://103.31.147.252:6001/microapp/goautodial/updateCampaing', request).pipe(
       map(
         res => {
           return res;

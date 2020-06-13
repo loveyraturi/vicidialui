@@ -13,7 +13,7 @@ export class DashboardService {
   constructor(private http: HttpClient) { }
   fetchAgentsCounts(): Observable<any> {
     return this.http
-      .get('http://103.31.147.252:6001/microapp/goautodial/fetchAllUsers').pipe(
+      .get('http://103.31.147.252:6001/microapp//goautodial/fetchAllUsers').pipe(
       map(
         res => {
           return res;

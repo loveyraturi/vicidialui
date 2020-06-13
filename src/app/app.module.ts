@@ -37,6 +37,8 @@ import { AngularDateTimePickerModule } from 'angular2-datetimepicker';
 import { HomeComponent } from './pages/home/home.component';
 import { WhatsappComponent } from './pages/whatsapp/whatsapp.component';
 import { AgentService } from './services/agent.service';
+import { LeadsComponent } from './components/leads/leads.component';
+import { ShowLeadsComponent } from './components/show-leads/show-leads.component';
  
 
 @NgModule({
@@ -57,6 +59,8 @@ import { AgentService } from './services/agent.service';
     CreateCampaingComponent,
     ShowCampaingComponent,
     UpdateCampaingComponent,
+    LeadsComponent,
+    ShowLeadsComponent,
     CloneCampaingComponent,
     GroupComponent,
     ServeyComponent,

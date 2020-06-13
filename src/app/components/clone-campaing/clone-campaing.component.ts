@@ -32,6 +32,8 @@ export class CloneCampaingComponent implements OnInit {
   public get_call_launch;
   public active;
   public dropdownlength;
+  public dialPrefix;
+  public manualDialPrefix;
 
   loginInfo: Login = {
     user_name: null,
@@ -48,7 +50,7 @@ export class CloneCampaingComponent implements OnInit {
     this.fetchCampaing();
     this.fetchGroups()
 
-    this.fetchCampaingById(localStorage.getItem("clone_campaing_id"));
+    this.fetchCampaingByName(localStorage.getItem("clone_campaing_name"));
   }
   ngOnInit() {
     this.selectedItems = [];
@@ -154,47 +156,50 @@ export class CloneCampaingComponent implements OnInit {
 
       })
   }
-  fetchCampaingById(id) {
-    this.campaingService.fetchCampaingsById(id).subscribe(
+  fetchCampaingByName(name) {
+    this.campaingService.fetchCampaingByName(name).subscribe(
       data => {
-        this.campaingById = data[0]
-        console.log("%$#%$#%$", this.campaingById)
-        this.campaign_id = this.campaingById.campaign_id
-        this.campaign_name = this.campaingById.campaign_name
-        this.campaign_description = this.campaingById.campaign_description
-        this.user_group = this.campaingById.user_group
-        this.web_form_address = this.campaingById.web_form_address
-        this.allow_closers = this.campaingById.allow_closers
-        this.hopper_level = this.campaingById.hopper_level
-        this.auto_dial_level = this.campaingById.auto_dial_level
-        this.next_agent_call = this.campaingById.next_agent_call
-        this.local_call_time = this.campaingById.local_call_time
-        this.campaign_script = this.campaingById.campaign_script
-        this.get_call_launch = this.campaingById.get_call_launch
-        this.active = this.campaingById.active
-        console.log(this.campaign_id, "camoaingdi")
-        this.fetchGroupsByUser(this.user_group);
+        this.groupService.fetchGroupByCampaings(data.name)
+        .subscribe(
+          resp => {
+            this.user_group=resp[0]
+          })
+        // this.campaingById = data[0]
+        // console.log("%$#%$#%$", this.campaingById)
+        this.campaign_id = data.id
+        this.campaign_name = data.name
+        this.dialPrefix = data.dialPrefix
+        this.manualDialPrefix = data.manualDialPrefix
+        // this.campaign_description = this.campaingById.campaign_description
+        // this.user_group = this.campaingById.user_group
+        // this.web_form_address = this.campaingById.web_form_address
+        // this.allow_closers = this.campaingById.allow_closers
+        // this.hopper_level = this.campaingById.hopper_level
+        // this.auto_dial_level = this.campaingById.auto_dial_level
+        // this.next_agent_call = this.campaingById.next_agent_call
+        this.local_call_time = data.localCallTime
+        // this.campaign_script = this.campaingById.campaign_script
+        // this.get_call_launch = this.campaingById.get_call_launch
+        this.active = data.active
+        console.log(data,"DATATA#############")
       })
-
-
-
   }
   private createForm(): void {
 
     this.registerform = new FormGroup({
       campaign: new FormGroup({
-        campaign_id: new FormControl('', [Validators.required]),
+        campaign_id:  new FormControl('', [Validators.required]),
         campaign_name: new FormControl('', [Validators.required]),
         campaign_description: new FormControl('', Validators.required),
-        web_form_address: new FormControl('', Validators.required),
+        manual_dial_prefix: new FormControl('', Validators.required),
         user_group: new FormControl('', Validators.required),
-        hopper_level: new FormControl('', Validators.required),
-        allow_closers: new FormControl('', Validators.required),
-        auto_dial_level: new FormControl('', Validators.required),
+        dial_prefix: new FormControl('', Validators.required),
+        // allow_closers: new FormControl('', Validators.required),
+        // auto_dial_level: new FormControl('', Validators.required),
         local_call_time: new FormControl('', Validators.required),
-        next_agent_call: new FormControl('', Validators.required),
-        get_call_launch: new FormControl('', Validators.required),
-        campaign_script: new FormControl('', Validators.required),
+        // next_agent_call: new FormControl('', Validators.required),
+        // get_call_launch: new FormControl('', Validators.required),
+        // campaign_script: new FormControl('', Validators.required),
         active: new FormControl('', Validators.required),
 
       }),
