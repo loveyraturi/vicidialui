@@ -246,24 +246,6 @@
                         id="groupdiscription" class="form-control" placeholder="Your Group Discription" tabindex="1">
                     </div>
                   </div>
-                  <div class="form-group">
-                    <label for="campaings">Assign campaings</label>
-                    <div class="input-group">
-                      <div class="input-group-addon"><i class="glyphicon glyphicon-book"></i></div>
-
-                      <angular4-multiselect [data]="dropdownList" formControlName="allowed_campaigns" name="campaings"
-                        [(ngModel)]="selectedItems" (onSelect)="onItemSelect($event)" 
-                        (onDeSelect)="OnItemDeSelect($event)"
-                        (onSelectAll)="onSelectAll($event)"
-                        (onDeSelectAll)="onDeSelectAll($event)" [settings]="dropdownSettings">
-                        <c-badge>
-                          <ng-template let-item="item">
-                            <label style="margin: 0px;">{{item.itemName}}</label>
-                          </ng-template>
-                        </c-badge>
-                      </angular4-multiselect>
-                    </div>
-                  </div>
 
                 </div>
 

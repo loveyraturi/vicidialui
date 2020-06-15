@@ -125,7 +125,7 @@ onDeSelectAll(items: any){
       group: new FormGroup({
         user_group: new FormControl('', Validators.required),
         group_name: new FormControl('', Validators.required),
-        allowed_campaigns: new FormControl('', Validators.required)
+        // allowed_campaigns: new FormControl('', Validators.required)
 
       })
     });

@@ -70,12 +70,14 @@
         <table  class="table table-bordered " >
           <thead>
             <tr>
+              <td>User </td>
               <td>Status </td>
               <td>Count</td>
             </tr>
           </thead>
           <tbody>
             <tr *ngFor="let data of reportData;">
+              <td > {{data.user}}</td>
               <td > {{data.status}}</td>
               <td > {{data.count}}</td>
             </tr>

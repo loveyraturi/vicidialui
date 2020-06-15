@@ -106,7 +106,7 @@ console.log(id,this.active)
       })
   }
   addNew(){
-    this.router.navigateByUrl("/createCampaing")
+    this.router.navigateByUrl("/leads")
   }
 
 }
