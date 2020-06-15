@@ -77,18 +77,15 @@ export class ShowUsersComponent implements OnInit {
     localStorage.setItem("update_name", fullName);
     this.router.navigateByUrl("/updateUser")
   }
-  onChange(event, fullName) {
+  onChange(event, id) {
     console.log("###############", event)
     if (event) {
-      this.active = "Y"
+      this.active = "Active"
     } else {
-      this.active = "N"
+      this.active = "Inactive"
     }
-    var req = {
-      user_name: fullName,
-      active: this.active
-    }
-    this.userService.updateUserStatus(req).subscribe(
+  
+    this.userService.updateUserStatus(id,this.active).subscribe(
       data => {
         this.fetchUsers()
       })

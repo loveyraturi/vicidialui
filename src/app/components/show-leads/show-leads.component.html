@@ -12,7 +12,7 @@
         <div class="table-title">
           <div class="row">
             <div class="col-sm-8">
-              <h2>Campaing <b>Details</b></h2>
+              <h2>Leads <b>Details</b></h2>
             </div>
             <div class="col-sm-4">
               <button type="button" (click)="addNew()" class="btn btn-info add-new"><i class="fa fa-plus"></i> Add
@@ -24,34 +24,19 @@
           <thead>
             <tr>
               <th>Id</th>
-              <th>Campaing Name</th>
-              <th>Dial prefix</th>
-              <th>Lead order</th>
+              <th>File Name</th>
+              <th>campaing</th>
               <th>Status</th>
-              <th>Actions</th>
-              <th *ngIf="hasAccess">Delete</th>
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let campaing of campaings;  let i = index">
+            <tr *ngFor="let lead of leads;  let i = index">
               <td>{{i+1}}</td>
-              <td>{{campaing.name}}</td>
-              <td>{{campaing.dialPrefix}}</td>
-              <td>{{campaing.localCallTime}}</td>
+              <td>{{lead.filename}}</td>
+              <td>{{lead.campaingName}}</td>
               <td>
-                <ui-switch size="small" [(ngModel)]="campaing.enable" (change)="onChange($event,campaing.name)">
+                <ui-switch size="small" [(ngModel)]="lead.enable" (change)="onChange($event,lead.id)">
                 </ui-switch>
-              </td>
-              <td>
-                <a class="edit" (click)="updateCampaing(campaing.name)" title="Edit" data-toggle="tooltip"><i
-                    class="material-icons">&#xE254;</i></a>
-
-                <a class="edit" (click)="cloneCampaing(campaing.name)" title="Edit" data-toggle="tooltip"><i
-                    class="material-icons content_copy">&#xe14d;</i></a>
-              </td>
-              <td *ngIf="hasAccess">
-                <a class="delete" (click)="deleteCampaing(campaing.name)" title="Delete" data-toggle="tooltip"><i
-                    class="material-icons">&#xE872;</i></a>
               </td>
             </tr>
           </tbody>

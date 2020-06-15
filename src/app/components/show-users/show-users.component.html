@@ -37,7 +37,7 @@
               <td>{{i+1}}</td>
               <td>{{user.fullName}}</td>
               <td>{{user.usergroup}}</td>
-              <td><ui-switch size="small" [(ngModel)]="user.enable" (change)="onChange($event,user.fullName)"></ui-switch></td>
+              <td><ui-switch size="small" [(ngModel)]="user.enable" (change)="onChange($event,user.id)"></ui-switch></td>
               <td>
                 <a class="edit" (click)="updateUser(user.fullName)" title="Edit" data-toggle="tooltip"><i
                     class="material-icons">&#xE254;</i></a>

@@ -62,7 +62,7 @@
                         <select class="mdb-select md-form form-control" formControlName="duplicateAction">
                             <option value="" disabled selected>Select Options</option>
                             <option value="Discard">Discard</option>
-                            <option value="Update">Update</option>
+                            <!-- <option value="Update">Update</option> -->
                           </select>
                       </div>
                     </div>
@@ -70,7 +70,7 @@
                         <label for="leadFile">File to upload</label>
                         <div class="input-group">
                           <div class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></div>
-                          <input autofocus required type="file" formControlName="file" name="leadFile"
+                          <input type="file" formControlName="file" name="leadFile"
                       id="file" class="form-control" (change)="handleFileInput($event)" placeholder="Enter file to upload" tabindex="1">
                         </div>
                       </div>

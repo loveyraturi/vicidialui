@@ -14,6 +14,7 @@ import { CampaingService } from 'app/services/campaing.service';
 export class LeadsComponent implements OnInit {
   public registerform: any = FormGroup;
   public username;
+  public fileName;
   fileToUpload: File = null;
   loginInfo: Login = {
     user_name: null,
@@ -33,7 +34,10 @@ export class LeadsComponent implements OnInit {
     // });
   }
   public createUser(value: any): void {
-    console.log(value)
+   this.campaingService.loadCsvLeadData(value).subscribe(resp=>{
+console.log(resp,"@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
+this.router.navigateByUrl('/showleads');
+   })
     
   }
 
@@ -51,25 +55,30 @@ export class LeadsComponent implements OnInit {
       duplicateCheck: new FormControl('', Validators.required),
       duplicateField: new FormControl('', Validators.required),
       duplicateAction: new FormControl('', Validators.required),
-      file: new FormControl(null, Validators.required)
+      file: new FormControl(null, Validators.required),
+      filename: new FormControl('', Validators.required)
     });
   }
   submit({ value }: any): void {
+    // console.log(value)
     // value.uploadedFile=this.fileToUpload;
-    
-    const formData: FormData = new FormData();
-    formData.append('file', this.fileToUpload, this.fileToUpload.name);
-    formData.append('campaing',value.campaing);
-    formData.append('duplicateAction',value.duplicateAction);
-    formData.append('duplicateCheck',value.duplicateCheck);
-    formData.append('duplicateField',value.duplicateField);
+    console.log(this.registerform.get('campaing').value)
+    const formData = new FormData();
+    formData.append('file', this.registerform.get('file').value);
+    formData.append('filename', this.fileName);
+    formData.append('campaing',this.registerform.get('campaing').value);
+    formData.append('duplicateAction',this.registerform.get('duplicateAction').value);
+    formData.append('duplicateCheck',this.registerform.get('duplicateCheck').value);
+    formData.append('duplicateField',this.registerform.get('duplicateField').value);
     console.log("############",formData)
-    // this.createUser(value);
+    this.createUser(formData);
     
   }
   handleFileInput(event) {
+    console.log(event.target)
     if (event.target.files.length > 0) {
       const file = event.target.files[0];
+      this.fileName=file.name
       this.registerform.get('file').setValue(file);
     }
     

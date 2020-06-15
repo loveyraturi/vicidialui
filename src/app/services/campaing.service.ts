@@ -39,6 +39,19 @@ export class CampaingService {
         }
       ))
   }
+
+  loadCsvLeadData(request): Observable<any> {
+    return this.http
+      .post('http://103.31.147.252:6001/microapp/goautodial/loadCsvLeadData', request).pipe(
+      map(
+        res => {
+          return res;
+        },
+        err => {
+          return err;
+        }
+      ))
+  }
   updateCampaingGroupMapping(request): Observable<any> {
     return this.http
       .post('http://103.31.147.252:6001/microapp//goautodial/updateCampaingGroupMapping', request).pipe(
@@ -55,6 +68,18 @@ export class CampaingService {
   fetchCampaing(): Observable<any> {
     return this.http
       .get('http://103.31.147.252:6001/microapp//goautodial/fetchcampaings').pipe(
+      map(
+        res => {
+          return res;
+        },
+        err => {
+          return err;
+        }
+      ))
+  }
+  fetchLeadVersions(): Observable<any> {
+    return this.http
+      .get('http://103.31.147.252:6001/microapp/goautodial/fetchLeadVersions').pipe(
       map(
         res => {
           return res;
@@ -88,6 +113,19 @@ export class CampaingService {
         }
       ))
   }
+  
+  fetchActiveUserByCampaingName(userName): Observable<any> {
+    return this.http
+      .post('http://103.31.147.252:6001/microapp/goautodial/fetchactivecampaingwithusers',userName).pipe(
+      map(
+        res => {
+          return res;
+        },
+        err => {
+          return err;
+        }
+      ))
+  }
   fetchActiveCampaing(): Observable<any> {
     return this.http
       .get('http://103.31.147.252:6001/microapp/goautodial/fetchactivecampaing').pipe(
@@ -112,9 +150,9 @@ export class CampaingService {
         }
       ))
   }
-  updateCampaingStatus(request): Observable<any> {
+  updateCampaingStatus(id,status): Observable<any> {
     return this.http
-      .put('http://103.31.147.252:4011/api/campaing/updatecampaingstatus', request).pipe(
+      .get('http://103.31.147.252:6001/microapp/goautodial/updatecampaingstatus/'+id+'/'+status).pipe(
       map(
         res => {
           return res;
@@ -124,6 +162,19 @@ export class CampaingService {
         }
       ))
   }
+  updateLeadStatus(id,status): Observable<any> {
+    return this.http
+      .get('http://103.31.147.252:6001/microapp/goautodial/updateleadstatus/'+id+'/'+status).pipe(
+      map(
+        res => {
+          return res;
+        },
+        err => {
+          return err;
+        }
+      ))
+  }
+  
   updateCampaing(request): Observable<any> {
     return this.http
       .post('http://103.31.147.252:6001/microapp/goautodial/updateCampaing', request).pipe(

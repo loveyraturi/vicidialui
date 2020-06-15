@@ -27,6 +27,18 @@ export class UserService {
         }
       ))
   }
+  updateUserStatus(id,status): Observable<any> {
+    return this.http
+      .get('http://103.31.147.252:6001/microapp/goautodial/updateuserstatus/'+id+'/'+status).pipe(
+      map(
+        res => {
+          return res;
+        },
+        err => {
+          return err;
+        }
+      ))
+  }
   assignUserToGroup(request): Observable<any> {
     return this.http
       .post('http://103.31.147.252:6001/microapp//goautodial/assignUserToGroup', request).pipe(
@@ -231,19 +243,6 @@ export class UserService {
   updateUser(request): Observable<any> {
     return this.http
       .post('http://103.31.147.252:6001/microapp/goautodial/updateUser', request).pipe(
-      map(
-        res => {
-          return res;
-        },
-        err => {
-          return err;
-        }
-      ))
-  }
-
-  updateUserStatus(request): Observable<any> {
-    return this.http
-      .put('http://103.31.147.252:4011/api/user/updateuserstatus', request).pipe(
       map(
         res => {
           return res;

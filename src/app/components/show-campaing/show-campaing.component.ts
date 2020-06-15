@@ -84,7 +84,7 @@ public campaings;
     localStorage.setItem("clone_campaing_name",name);
     this.router.navigateByUrl("/cloneCampaing")
   }
-  onChange(event,name) {
+  onChange(event,id) {
     console.log("###############", event)
     if (event) {
       this.active = "Y"
@@ -95,7 +95,7 @@ public campaings;
       campaign_name: name,
       active: this.active
     }
-    this.campaingService.updateCampaingStatus(req).subscribe(
+    this.campaingService.updateCampaingStatus(id,this.active).subscribe(
       data => {
         this.fetchCampaing()
       })

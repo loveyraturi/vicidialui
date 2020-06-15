@@ -18,9 +18,9 @@ export class ShowLeadsComponent implements OnInit {
   public hasAccess=false;
   loginInfo:Login={user_name:null,
 }
-public campaings;
+public leads;
   constructor(private campaingService: CampaingService, private groupService: GroupService, private router: Router) { 
-    this.fetchCampaing();
+    this.fetchLeadVersions();
    
    // this.phonenumber=localStorage.getItem("phone_number")
     
@@ -37,20 +37,20 @@ public campaings;
 
   }
 
-  fetchCampaing(){
-    this.campaingService.fetchCampaing().subscribe(
+  fetchLeadVersions(){
+    this.campaingService.fetchLeadVersions().subscribe(
       data => {
-        this.campaings=data
+        this.leads=data
 
         if (this.level == 7) {
-          this.campaings = this.campaings.filter(item => {
-            console.log(item.user_group == this.group)
-            if (item.user_group == this.group) {
-              return item
-            }
-          })
-          this.campaings = this.campaings.map(item => {
-            if (item.active == "Y") {
+      //     this.leads = this.leads.filter(item => {
+      //       console.log(item.user_group == this.group)
+      //       if (item.user_group == this.group) {
+      //         return item
+      //       }
+      //     })
+          this.leads = this.leads.map(item => {
+            if (item.status == "Y") {
               item.enable = true
             } else {
               item.enable = false
@@ -58,8 +58,8 @@ public campaings;
             return item
           })
         }else{
-        this.campaings = this.campaings.map(item => {
-          if (item.active == "Y") {
+        this.leads = this.leads.map(item => {
+          if (item.status == "Y") {
             item.enable = true
           } else {
             item.enable = false
@@ -67,7 +67,7 @@ public campaings;
           return item
         })
       }
-        console.log(this.campaings)
+        console.log(this.leads)
 
       })
   }
@@ -84,20 +84,17 @@ public campaings;
     localStorage.setItem("clone_campaing_name",name);
     this.router.navigateByUrl("/cloneCampaing")
   }
-  onChange(event,name) {
+  onChange(event,id) {
     console.log("###############", event)
     if (event) {
       this.active = "Y"
     } else {
       this.active = "N"
     }
-    var req={
-      campaign_name: name,
-      active: this.active
-    }
-    this.campaingService.updateCampaingStatus(req).subscribe(
+console.log(id,this.active)
+    this.campaingService.updateLeadStatus(id,this.active).subscribe(
       data => {
-        this.fetchCampaing()
+        this.fetchLeadVersions()
       })
      
   }

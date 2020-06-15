@@ -9,7 +9,8 @@ import { UserService } from "app/services/user.service";
 
 @Component({
     selector: 'home',
-    templateUrl: './home.component.html'
+    templateUrl: './home.component.html',
+    styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
     public username;
@@ -33,6 +34,7 @@ export class HomeComponent implements OnInit {
     public totaluser=[];
     public countOfLiveChannels
     public liveChannels;
+    public userDetails;
     loginInfo: Login = {
         user_name: null,
     }
@@ -118,9 +120,13 @@ export class HomeComponent implements OnInit {
 
             })
     }
-    modelClick(id) {
-        console.log("model id is ", id)
-        this.fetchLiveUserFromCampaing(id);
+    modelClick(campaingName) {
+        console.log("model id is ", campaingName)
+        // this.fetchLiveUserFromCampaing(id);
+       this.usersbycampaing= this.userDetails[campaingName]
+       console.log(this.usersbycampaing)
+       this.usersbycampaingempty= this.usersbycampaing.length>0?true:false
+
         this.modelClass = "modalDisplay"
 
     }
@@ -140,7 +146,7 @@ export class HomeComponent implements OnInit {
     fetchActiveCampaing() {
         this.campaingService.fetchActiveCampaing().subscribe(
             data => {
-               
+var campaingNames=[]
                 console.log(data,"############DATA",this.group)
                 this.campaings = data
                 if (this.level == 7) {
@@ -156,7 +162,7 @@ export class HomeComponent implements OnInit {
                       } else {
                         item.enable = false
                       }
-
+                      campaingNames.push(item.name)
                       return item
                     })
                   }else{
@@ -166,10 +172,26 @@ export class HomeComponent implements OnInit {
                     } else {
                         item.enable = false
                     }
+                    campaingNames.push(item.name)
                     return item
                 })
                 console.log()
-            }             
+            }  
+            this.campaingService.fetchActiveUserByCampaingName(campaingNames).subscribe(
+                respp => {
+                    console.log(respp,"######RERSRRS")
+                    this.userDetails=respp
+                    this.campaings = this.campaings.map(item => {
+                        
+                        var key=item.name
+                        
+                       var usersByCampaing= this.userDetails[key]
+                       item.count=usersByCampaing.length;
+                       return item;
+                    })
+                    // this.userDetails)
+                })
+            
             })
     }
 
