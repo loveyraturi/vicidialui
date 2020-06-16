@@ -106,7 +106,9 @@ export class ReportingComponent implements OnInit {
     hours = hours ? hours : 24; // the hour '0' should be '12'
     minutes = minutes < 10 ? '0'+minutes : minutes;
     var strTime = hours + ':' + minutes + ':00';
-    return (date.getFullYear()+"-"+(date.getMonth()+1) + "-" + date.getDate() + " " + strTime);
+    var month= (date.getMonth()+1).toString().length==1?"0"+(date.getMonth()+1).toString():date.getMonth()+1
+    console.log(month,"############month")
+    return (date.getFullYear()+"-"+month+ "-" + date.getDate() + " " + strTime);
   }
 
   fetchUsers() {
