@@ -71,15 +71,19 @@
           <thead>
             <tr>
               <td>User </td>
-              <td>Status </td>
-              <td>Count</td>
+              <td>BUSY </td>
+              <td>OCCUPIED</td>
+              <td>SWITCHOFF</td>
+              <td>CALLBACK</td>
             </tr>
           </thead>
           <tbody>
             <tr *ngFor="let data of reportData;">
               <td > {{data.user}}</td>
-              <td > {{data.status}}</td>
-              <td > {{data.count}}</td>
+              <td > {{data.BUSY}}</td>
+              <td > {{data.OCCUPIED}}</td>
+              <td > {{data.SWITCHOFF}}</td>
+              <td > {{data.CALLBACK}}</td>
             </tr>
           </tbody>
         </table>

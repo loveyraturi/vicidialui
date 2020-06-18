@@ -256,8 +256,22 @@ export class ReportingComponent implements OnInit {
         console.log(this.buttonDisabled)
         console.log(data, "####################33#####@@@$$$$$")
         this.loading = false;
-        this.defaultPagination = data.length == 0 ? true : false
-        this.reportData = data
+        var userData=[]
+        for(var key in data) {
+          // alert("Key: " + key + " value: " + data[key]);
+          var datamap={}
+          data[key].forEach(element => {
+            console.log(key,element)
+            for(var keyelement in element) {
+            datamap[keyelement]=element[keyelement];
+            }
+          });
+          datamap["user"]=key
+          userData.push(datamap)
+        }
+        console.log(userData,"#################USERDATA###########");
+        this.defaultPagination = userData.length == 0 ? true : false
+        this.reportData = userData
       })
   }
 
