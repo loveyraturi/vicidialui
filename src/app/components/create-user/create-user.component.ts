@@ -75,7 +75,7 @@ export class CreateUserComponent implements OnInit {
     this.registerform = this.formBuilder.group({
       name: new FormControl('', [Validators.required]),
       group: new FormControl('', Validators.required),
-      phonenumber: new FormControl('', Validators.required),
+      // phonenumber: new FormControl('', Validators.required),
       status: new FormControl('', Validators.required),
       password: new FormControl('', Validators.required),
       confpass: new FormControl('', Validators.required),
