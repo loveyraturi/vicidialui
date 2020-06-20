@@ -36,13 +36,13 @@ export class CreateUserComponent implements OnInit {
       fullname: value.name,
       level: value.level,
       password: value.password,
-      username: value.name,
+      username: value.username,
       usergroup: value.group,
       status: value.status
     }
     var userGroupMapping={
        groupname: value.group,
-       username: value.name
+       username: value.username
     }
     
     this.userService.createUser(createUser).subscribe(
@@ -75,7 +75,7 @@ export class CreateUserComponent implements OnInit {
     this.registerform = this.formBuilder.group({
       name: new FormControl('', [Validators.required]),
       group: new FormControl('', Validators.required),
-      // phonenumber: new FormControl('', Validators.required),
+      username: new FormControl('', Validators.required),
       status: new FormControl('', Validators.required),
       password: new FormControl('', Validators.required),
       confpass: new FormControl('', Validators.required),
