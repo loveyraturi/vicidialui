@@ -21,7 +21,6 @@
             <tr>
               <th>Id</th>
               <th>Name</th>
-              <th>Description</th>
               <th>Allowed campaings</th>
               <th>Actions</th>
               <th *ngIf="hasAccess">Delete</th>
@@ -31,7 +30,6 @@
             <tr *ngFor="let group of groups;  let i = index">
               <td>{{i+1}}</td>
               <td>{{group.name}}</td>
-              <td>{{group.status}}</td>
               <td>{{group.campaings}}</td>
               <td>
                 <a class="edit" (click)="updateGroup(group.user_group)" title="Edit" data-toggle="tooltip"><i
