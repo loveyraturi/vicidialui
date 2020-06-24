@@ -27,6 +27,7 @@
               <th>File Name</th>
               <th>campaing</th>
               <th>Status</th>
+              <th>ReChaining</th>
             </tr>
           </thead>
           <tbody>
@@ -37,6 +38,10 @@
               <td>
                 <ui-switch size="small" [(ngModel)]="lead.enable" (change)="onChange($event,lead.id)">
                 </ui-switch>
+              </td>
+              <td>
+               <a class="reChaining" (click)="modelClick(lead.filename)" title="ReChaining" data-toggle="tooltip"><i
+                    class="material-icons content_copy">&#xe14d;</i></a>
               </td>
             </tr>
           </tbody>
@@ -50,3 +55,38 @@
     </div>
   </div>
 </div>
+<div id="myModal" class="{{modelClass}}">
+
+<!-- Modal content -->
+<div class="modal-content">
+  <span class="close" (click)="closeModal()">&times;</span>
+  <div class="panel-body">
+    <form [formGroup]="registerform" (submit)="submit(registerform)" method="POST">
+
+      <div class="form-group">
+          <label for="level">Lead Name</label>
+          <div class="input-group">
+            <div class="input-group-addon"><i class="glyphicon glyphicon-level-up"></i></div>
+            <input type="text" formControlName="selectedleadname" [(ngModel)]="selectedleadname" class="form-control" placeholder="" tabindex="1">
+       
+          </div>
+        </div>
+      <div class="form-group">
+        <label for="duplicateCheck">Select Status</label>
+        <div class="input-group">
+          <div class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></div>
+          <select class="mdb-select md-form form-control" formControlName="status">
+              <option value="" disabled selected>Select Options</option>
+              <option value="BUSY">BUSY</option>
+              <option value="Leads">Leads</option>
+              <option value="OCCUPIED">OCCUPIED</option>
+              <option value="Switch Off">Switch Off</option>
+            </select>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-block btn-success" tabindex="5">Rechain</button>
+    </form>
+  </div>
+</div>  
+</div>
+

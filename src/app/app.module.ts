@@ -39,6 +39,7 @@ import { WhatsappComponent } from './pages/whatsapp/whatsapp.component';
 import { AgentService } from './services/agent.service';
 import { LeadsComponent } from './components/leads/leads.component';
 import { ShowLeadsComponent } from './components/show-leads/show-leads.component';
+import { StatusComponent } from './components/create-status/status.component';
  
 
 @NgModule({
@@ -61,6 +62,7 @@ import { ShowLeadsComponent } from './components/show-leads/show-leads.component
     UpdateCampaingComponent,
     LeadsComponent,
     ShowLeadsComponent,
+    StatusComponent,
     CloneCampaingComponent,
     GroupComponent,
     ServeyComponent,

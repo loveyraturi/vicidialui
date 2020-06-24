@@ -3,28 +3,36 @@ import { Login } from 'app/models/login';
 import { GroupService } from 'app/services/group.service';
 import { Router } from '@angular/router';
 import { CampaingService } from 'app/services/campaing.service';
-
+import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 @Component({
   selector: 'app-show-leads',
   templateUrl: './show-leads.component.html',
   styleUrls: ['./show-leads.component.css']
 })
 export class ShowLeadsComponent implements OnInit {
+  public registerform: any = FormGroup;
   public username;
   public currentElementIndex=1;
   public active;
   public level;
   public group;
   public hasAccess=false;
+  public modelClass = "modal";
+  public selectedleadname;
   loginInfo:Login={user_name:null,
 }
 public leads;
-  constructor(private campaingService: CampaingService, private groupService: GroupService, private router: Router) { 
+  constructor(private formBuilder: FormBuilder,private campaingService: CampaingService, private groupService: GroupService, private router: Router) { 
     this.fetchLeadVersions();
    
    // this.phonenumber=localStorage.getItem("phone_number")
     
   }
+  // cloneCampaing(name){
+  //   console.log("%$#@%$@#$",name)
+  //   localStorage.setItem("clone_campaing_name",name);
+  //   this.router.navigateByUrl("/cloneCampaing")
+  // }
   ngOnInit() {
     this.level = localStorage.getItem("level")
     this.group=localStorage.getItem("group")
@@ -34,9 +42,11 @@ public leads;
       this.username= localStorage.getItem("user_name")
       this.loginInfo.user_name=this.username;
       console.log(this.username)
-
+      this.createForm();
   }
-
+  closeModal() {
+    this.modelClass = "modal"
+}
   fetchLeadVersions(){
     this.campaingService.fetchLeadVersions().subscribe(
       data => {
@@ -79,11 +89,17 @@ public leads;
     localStorage.setItem("update_campaing_name",name);
     this.router.navigateByUrl("/updateCampaing")
   }
-  cloneCampaing(name){
-    console.log("%$#@%$@#$",name)
-    localStorage.setItem("clone_campaing_name",name);
-    this.router.navigateByUrl("/cloneCampaing")
-  }
+  modelClick(leadName) {
+    this.selectedleadname=leadName
+    console.log("model id is ", this.selectedleadname)
+    // this.fetchLiveUserFromCampaing(id);
+  //  this.usersbycampaing= this.userDetails[campaingName]
+  //  console.log(this.usersbycampaing)
+  //  this.usersbycampaingempty= this.usersbycampaing.length>0?true:false
+
+    this.modelClass = "modalDisplay"
+
+}
   onChange(event,id) {
     console.log("###############", event)
     if (event) {
@@ -105,8 +121,17 @@ console.log(id,this.active)
 
       })
   }
+  private createForm(): void {
+    this.registerform = this.formBuilder.group({
+      selectedleadname: new FormControl('', Validators.required),
+      status: new FormControl('', Validators.required),
+    });
+  }
   addNew(){
     this.router.navigateByUrl("/leads")
+  }
+  submit({ value }: any): void {
+    console.log(value,"RECHAIN#################");
   }
 
 }

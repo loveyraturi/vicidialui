@@ -109,6 +109,7 @@ onDeSelectAll(items: any){
     this.registerform = new FormGroup({
       campaign: new FormGroup({
         campaign_name: new FormControl('', [Validators.required]),
+        campaign_status: new FormControl('', [Validators.required]),
         campaign_description: new FormControl('', Validators.required),
         manual_dial_prefix: new FormControl('', Validators.required),
         user_group: new FormControl('', Validators.required),
@@ -158,6 +159,7 @@ onDeSelectAll(items: any){
     var groupcampaingmapping
   var campaign={
     active: value.campaign.active,
+    status: value.campaign.campaign_status,
 	  name: value.campaign.campaign_name,
 		dial_prefix: value.campaign.dial_prefix,
 		local_call_time: value.campaign.local_call_time,
