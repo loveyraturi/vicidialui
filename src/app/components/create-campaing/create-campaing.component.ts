@@ -16,6 +16,20 @@ export class CreateCampaingComponent implements OnInit {
   public username;
   public isChecked=false;
   public cname;
+  public campaign_name;
+  public campaign_status;
+  public campaign_description;
+  public assignmentType;
+  public manual_dial_prefix;
+  public user_group;
+  public dial_prefix;
+  public local_call_time;
+  public active;
+  public group_name;
+  public fieldProps: any[] = [{
+    field: '',
+    label: 'Enter label name'
+  }];
   dropdownList = [];
     selectedItems = [];
     dropdownSettings = {};
@@ -49,7 +63,12 @@ this.dropdownSettings = {
     //   duration: 3000
     // });
   }
-
+more(){
+  this.fieldProps.push({
+    field: '',
+    label: 'Enter label name'
+  });
+}
   onItemSelect(item:any){
     console.log(item);
     console.log(this.selectedItems);
@@ -91,6 +110,7 @@ onDeSelectAll(items: any){
       })
   }
   checkValue(value) {
+    console.log("filedcontent#######",this.fieldProps)
     if(value==this.isChecked){
       if(value){
         this.isChecked=false
@@ -106,30 +126,31 @@ onDeSelectAll(items: any){
 
   private createForm(): void {
 
-    this.registerform = new FormGroup({
-      campaign: new FormGroup({
-        campaign_name: new FormControl('', [Validators.required]),
-        campaign_status: new FormControl('', [Validators.required]),
-        campaign_description: new FormControl('', Validators.required),
-        manual_dial_prefix: new FormControl('', Validators.required),
-        user_group: new FormControl('', Validators.required),
-        dial_prefix: new FormControl('', Validators.required),
-        // allow_closers: new FormControl('', Validators.required),
-        // auto_dial_level: new FormControl('', Validators.required),
-        local_call_time: new FormControl('', Validators.required),
-        // next_agent_call: new FormControl('', Validators.required),
-        // get_call_launch: new FormControl('', Validators.required),
-        // campaign_script: new FormControl('', Validators.required),
-        active: new FormControl('', Validators.required),
+    // this.registerform = new FormGroup({
+    //   campaign: new FormGroup({
+    //     campaign_name: new FormControl('', [Validators.required]),
+    //     campaign_status: new FormControl('', [Validators.required]),
+    //     campaign_description: new FormControl('', Validators.required),
+    //     assignmentType: new FormControl('', Validators.required),
+    //     manual_dial_prefix: new FormControl('', Validators.required),
+    //     user_group: new FormControl('', Validators.required),
+    //     dial_prefix: new FormControl('', Validators.required),
+    //     // allow_closers: new FormControl('', Validators.required),
+    //     // auto_dial_level: new FormControl('', Validators.required),
+    //     local_call_time: new FormControl('', Validators.required),
+    //     // next_agent_call: new FormControl('', Validators.required),
+    //     // get_call_launch: new FormControl('', Validators.required),
+    //     // campaign_script: new FormControl('', Validators.required),
+    //     active: new FormControl('', Validators.required),
 
-      }),
-      group: new FormGroup({
-        user_group: new FormControl('', Validators.required),
-        group_name: new FormControl('', Validators.required),
-        // allowed_campaigns: new FormControl('', Validators.required)
+    //   }),
+    //   group: new FormGroup({
+    //     user_group: new FormControl('', Validators.required),
+    //     group_name: new FormControl('', Validators.required),
+    //     // allowed_campaigns: new FormControl('', Validators.required)
 
-      })
-    });
+    //   })
+    // });
   }
   // private createForm(): void {
 
@@ -152,28 +173,32 @@ onDeSelectAll(items: any){
   //   });
 
   // }
-  submit({ value }: any): void {
-    console.log(value)
+  setLabel(event,i){
+    console.log(i,"###FOCUSLOST",event);
+  }
+  submit() {
 
     var group
     var groupcampaingmapping
   var campaign={
-    active: value.campaign.active,
-    status: value.campaign.campaign_status,
-	  name: value.campaign.campaign_name,
-		dial_prefix: value.campaign.dial_prefix,
-		local_call_time: value.campaign.local_call_time,
+    active: this.active,
+    status: this.campaign_status,
+    assignmentType:  this.assignmentType,
+	  name: this.campaign_name,
+		dial_prefix: this.dial_prefix,
+		local_call_time: this.local_call_time,
 		dial_timeout: "5000",
-		manual_dial_prefix: value.campaign.manual_dial_prefix
+    manual_dial_prefix: this.manual_dial_prefix,
+    additionalFields: this.fieldProps
   }
-  if(value.campaign.user_group!=""){
+  if(this.user_group!=""){
     groupcampaingmapping ={
       campaingname: campaign.name,
-      groupname: value.campaign.user_group
+      groupname: this.user_group
     }
   }else{
     group ={
-      name: value.group.user_group,
+      name: this.user_group,
       active: "Y"
     }
     console.log("CREATING GROUP INFO",group)
@@ -182,7 +207,7 @@ onDeSelectAll(items: any){
         console.log(data.id,"############1")
         groupcampaingmapping ={
           campaingname: campaign.name,
-          groupname: value.group.user_group
+          groupname: this.user_group
         }
       })
   }

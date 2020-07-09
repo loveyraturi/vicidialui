@@ -31,8 +31,10 @@ export class UpdateCampaingComponent implements OnInit {
   public campaign_script;
   public get_call_launch;
   public active;
-  public dialPrefix;
-  public manualDialPrefix;
+  public dial_prefix;
+  public manual_dial_prefix;
+  public assignmentType;
+  public fieldProps: any[]
 
   loginInfo: Login = {
     user_name: null,
@@ -52,13 +54,13 @@ export class UpdateCampaingComponent implements OnInit {
     console.log(this.username)
     this.createForm()
   }
-  update(value: any) {
-    // this.campaingService.updateCampaing(value).subscribe(
-    //   data => {
-    //     console.log(data)
-    //     this.router.navigateByUrl("showCampaing")
-    //   })
-  }
+  // update(value: any) {
+  //   // this.campaingService.updateCampaing(value).subscribe(
+  //   //   data => {
+  //   //     console.log(data)
+  //   //     this.router.navigateByUrl("showCampaing")
+  //   //   })
+  // }
 
   fetchGroups() {
     this.groupService.fetchGroups().subscribe(
@@ -78,12 +80,15 @@ export class UpdateCampaingComponent implements OnInit {
             this.user_group=resp[0]
           })
           console.log(data,"DATATTAT###")
+          this.fieldProps=JSON.parse(data.additionalField)
+          console.log(this.fieldProps)
         // this.campaingById = data[0]
         // console.log("%$#%$#%$", this.campaingById)
         this.campaign_id = data.id.toString()
         this.campaign_name = data.name
-        this.dialPrefix = data.dialPrefix
-        this.manualDialPrefix = data.manualDialPrefix
+        this.dial_prefix = data.dialPrefix
+        this.manual_dial_prefix = data.manualDialPrefix
+        this.assignmentType=data.assignmentType
         // this.campaign_description = this.campaingById.campaign_description
         // this.user_group = this.campaingById.user_group
         // this.web_form_address = this.campaingById.web_form_address
@@ -104,6 +109,7 @@ export class UpdateCampaingComponent implements OnInit {
       campaign: new FormGroup({
         campaign_id:  new FormControl('', [Validators.required]),
         campaign_name: new FormControl('', [Validators.required]),
+        assignmentType: new FormControl('', [Validators.required]),
         campaign_description: new FormControl('', Validators.required),
         manual_dial_prefix: new FormControl('', Validators.required),
         user_group: new FormControl('', Validators.required),
@@ -126,26 +132,35 @@ export class UpdateCampaingComponent implements OnInit {
     });
 
   }
+  more(){
+    this.fieldProps.push({
+      field: '',
+      label: 'Enter label name'
+    });
+  }
 
-  submit({ value }: any): void {
+  submit() {
     // console.log(value.campaign)
-    console.log(value)
+    // console.log(value)
 
     var group
     var groupcampaingmapping
   var campaign={
-    id: value.campaign.campaign_id,
-    active: value.campaign.active,
-	  name: value.campaign.campaign_name,
-		dial_prefix: value.campaign.dial_prefix,
-		local_call_time: value.campaign.local_call_time,
+    id: this.campaign_id,
+    active: this.active,
+    name: this.campaign_name,
+    assignmentType:  this.assignmentType,
+		dial_prefix: this.dial_prefix,
+		local_call_time: this.local_call_time,
 		dial_timeout: "5000",
-		manual_dial_prefix: value.campaign.manual_dial_prefix
+    manual_dial_prefix: this.manual_dial_prefix,
+    additionalFields: this.fieldProps
+    
   }
   // if(value.campaign.user_group!=""){
     groupcampaingmapping ={
       campaingname: campaign.name,
-      groupname: value.campaign.user_group
+      groupname: this.user_group
     }
   // }else{
   //   group ={
@@ -174,7 +189,7 @@ export class UpdateCampaingComponent implements OnInit {
         })
 
     })
-    this.update(value);
+    // this.update(value);
     
   }
 

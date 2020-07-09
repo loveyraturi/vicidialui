@@ -15,19 +15,21 @@
             <div class="panel-heading">
               <span class="text-primary">Create</span>
               <span class="text-muted pull-right today" title="Today"></span>
+              <span class="more" (click)="more()">
+                  <i class="glyphicon glyphicon-plus"></i>
+              </span>
             </div>
             <!--.panel-heading-->
 
             <div class="panel-body">
-              <form [formGroup]="registerform" (submit)="submit(registerform)">
-                <div formGroupName="campaign">
-
+              <!-- <form> -->
+                <div>
                   <div class="form-group">
                     <label for="name">Name</label>
                     <div class="input-group">
                       <div class="input-group-addon"><i class="glyphicon glyphicon-tasks"></i></div>
-                      <input autofocus required type="text" formControlName="campaign_name" name="name" id="name"
-                        [(ngModel)]="cname" class="form-control" placeholder="Your Name" tabindex="1">
+                      <input autofocus required type="text" [(ngModel)]="campaign_name" name="name" id="name"
+                        class="form-control" placeholder="Your Name" tabindex="1">
                     </div>
                   </div>
                   <!-- <div class="form-group">
@@ -42,9 +44,20 @@
                     <label for="adminusergroup">Admin User Group</label>
                     <div class="input-group">
                       <div class="input-group-addon"><i class="glyphicon glyphicon-user"></i></div>
-                      <select class="mdb-select md-form form-control" formControlName="user_group">
+                      <select class="mdb-select md-form form-control"  [(ngModel)]="user_group">
                         <option value="" disabled selected>Choose your option</option>
                         <option *ngFor="let group of groups" [value]="group.name">{{group.name}}</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="form-group col-xs-6" *ngIf="!isChecked">
+                    <label for="assignmentType">Assignment Type</label>
+                    <div class="input-group">
+                      <div class="input-group-addon"><i class="glyphicon glyphicon-user"></i></div>
+                      <select class="mdb-select md-form form-control" [(ngModel)]="assignmentType">
+                        <option value="" disabled selected>Choose your option</option>
+                        <option  value="byUser">By User</option>
+                        <option  value="byCampaing">By Campaing</option>
                       </select>
                     </div>
                   </div>
@@ -52,16 +65,16 @@
                     <label for="name">Dial Prefix</label>
                     <div class="input-group">
                       <div class="input-group-addon"><i class="glyphicon glyphicon-tasks"></i></div>
-                      <input autofocus required type="text" formControlName="dial_prefix" name="dialPrefix" id="dialPrefix"
-                        [(ngModel)]="dialPrefix" class="form-control" placeholder="Enter Dial Prefix" tabindex="1">
+                      <input autofocus required type="text" [(ngModel)]="dial_prefix" name="dialPrefix" id="dialPrefix"
+                        class="form-control" placeholder="Enter Dial Prefix" tabindex="1">
                     </div>
                   </div>
                   <div class="form-group">
                     <label for="name">Manual Dial Prefix</label>
                     <div class="input-group">
                       <div class="input-group-addon"><i class="glyphicon glyphicon-tasks"></i></div>
-                      <input autofocus required type="text" formControlName="manual_dial_prefix" name="manualDialPrefix" id="manualDialPrefix"
-                        [(ngModel)]="manualDialPrefix" class="form-control" placeholder="Enter Manual Dial Prefix" tabindex="1">
+                      <input autofocus required type="text" [(ngModel)]="manual_dial_prefix" name="manualDialPrefix" id="manualDialPrefix"
+                        class="form-control" placeholder="Enter Manual Dial Prefix" tabindex="1">
                     </div>
                   </div>
                   <!-- <div class="form-group col-xs-6">
@@ -168,7 +181,7 @@
                     <label for="localtimecall">Local Call Time</label>
                     <div class="input-group">
                       <div class="input-group-addon"><i class="glyphicon glyphicon-time"></i></div>
-                      <select class="mdb-select md-form form-control" formControlName="local_call_time">
+                      <select class="mdb-select md-form form-control" [(ngModel)]="local_call_time">
                         <option value="" disabled selected>Choose your option</option>
                         <option value="12pm-5pm">12pm-5pm - default 12pm to 5pm calling</option>
                         <option value="12pm-9pm">12pm-9pm - default 12pm to 9pm calling</option>
@@ -212,21 +225,29 @@
                     <label for="status">Status</label>
                     <div class="input-group">
                       <div class="input-group-addon"><i class="glyphicon glyphicon-tasks"></i></div>
-                      <input autofocus required type="text" formControlName="campaign_status" name="status" id="statuss"
-                        [(ngModel)]="status" class="form-control" placeholder="Your Status" tabindex="1">
+                      <input autofocus required type="text" [(ngModel)]="campaign_status" name="status" id="statuss"
+                        class="form-control" placeholder="Your Status" tabindex="1">
                     </div>
                   </div>
                   <div class="form-group">
                     <label for="Active">Active</label>
                     <div class="input-group">
                       <div class="input-group-addon"><i class="glyphicon glyphicon-star"></i></div>
-                      <select class="mdb-select md-form form-control" formControlName="active">
+                      <select class="mdb-select md-form form-control" [(ngModel)]="active">
                         <option value="" disabled selected>Choose your option</option>
                         <option value="Y">Y</option>
                         <option value="N">N</option>
                       </select>
                     </div>
                   </div>
+
+                      <div *ngFor="let prop of fieldProps; let i = index;" class="form-group">
+                        <label contenteditable="true" (input)="prop.label = $event.target.innerText" for="{{prop.label}}">{{prop.label}}</label>
+                        <div class="input-group">
+                          <div class="input-group-addon"><i class="glyphicon glyphicon-level-up"></i></div>
+                          <input type="text" name="{{prop.label}}" class="form-control"   placeholder="Enter value" tabindex="1" [(ngModel)]="prop.field"> 
+                        </div>
+                      </div>
                   <div class="form-group">
                     <div class="input-group">
                       <div class="checkbox">
@@ -236,12 +257,12 @@
                   </div>
                 </div>
 
-                <div formGroupName="group" *ngIf="isChecked">
+                <div *ngIf="isChecked">
                   <div class="form-group">
                     <label for="group">Group</label>
                     <div class="input-group">
                       <div class="input-group-addon"><i class="glyphicon glyphicon-user"></i></div>
-                      <input autofocus required type="text" formControlName="user_group" name="group" id="group"
+                      <input autofocus required type="text" [(ngModel)]="user_group" name="group" id="group"
                         class="form-control" placeholder="Your Group" tabindex="1">
                     </div>
                   </div>
@@ -250,16 +271,16 @@
                     <label for="groupdiscription">Group Discription</label>
                     <div class="input-group">
                       <div class="input-group-addon"><i class="glyphicon glyphicon-book"></i></div>
-                      <input autofocus required type="text" formControlName="group_name" name="groupdescription"
+                      <input  type="text" [(ngModel)]="group_name" name="groupdescription"
                         id="groupdiscription" class="form-control" placeholder="Your Group Discription" tabindex="1">
                     </div>
                   </div>
 
                 </div>
 
-                <button type="submit" class="btn btn-primary btn-lg btn-block">Create Campaing</button>
+                <button type="submit" (click)="submit()" class="btn btn-primary btn-lg btn-block">Create Campaing</button>
                 <!-- <button type="submit" class="btn btn-block btn-success" tabindex="5">Create account</button> -->
-              </form>
+              <!-- </form> -->
             </div>
           </div>
           <!--.panel-->

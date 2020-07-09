@@ -40,6 +40,7 @@ import { AgentService } from './services/agent.service';
 import { LeadsComponent } from './components/leads/leads.component';
 import { ShowLeadsComponent } from './components/show-leads/show-leads.component';
 import { StatusComponent } from './components/create-status/status.component';
+import { FormComponent } from './components/form/form.component';
  
 
 @NgModule({
@@ -66,6 +67,7 @@ import { StatusComponent } from './components/create-status/status.component';
     CloneCampaingComponent,
     GroupComponent,
     ServeyComponent,
+    FormComponent,
     UpdateGroupComponent
   ],
   imports: [
