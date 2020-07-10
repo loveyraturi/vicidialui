@@ -7,11 +7,11 @@ import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms'
 import { CampaingService } from 'app/services/campaing.service';
 
 @Component({
-  selector: 'app-form',
-  templateUrl: './form.component.html',
-  styleUrls: ['./form.component.css']
+  selector: 'app-breaktype',
+  templateUrl: './breaktype.component.html',
+  styleUrls: ['./breaktype.component.css']
 })
-export class FormComponent implements OnInit {
+export class BreakTypeComponent implements OnInit {
   public registerform: any = FormGroup;
   public username;
   public fileName;
@@ -30,7 +30,7 @@ export class FormComponent implements OnInit {
   }
   public campaings;
   constructor(private campaingService: CampaingService, private groupService: GroupService, private router: Router, private formBuilder: FormBuilder) {
-    this.fetchCampaings()
+    // this.fetchBreakTypes()
   }
   ngOnInit() {
 
@@ -38,47 +38,41 @@ export class FormComponent implements OnInit {
     this.loginInfo.user_name = this.username;
     console.log(this.username)
     this.createForm();
+    this.fetchCampaing();
     // this._snackBar.open("User Created","close",{
     //   duration: 3000
     // });
     
   }
-  selectedType(type) {
-    console.log(type, "#############")
-    if (type == "dropdown") {
-      this.isdropdown=true
-    }else{
-      this.isdropdown=false
-      this.content.push("<div class=\"form-group\"><label for=\"dropdowncontent\">DropDown Content</label> <div class=\"input-group\"> <div class=\"input-group-addon\"><i class=\"glyphicon glyphicon-book\"></i></div>        <input autofocus required type=\"text\" formControlName=\"dropdowncontent\" name=\"dropdowncontent\" id=\"dropdowncontent\"          class=\"form-control\" placeholder=\"Comma seperated Values\" tabindex=\"1\" [(ngModel)]=\"dropdowncontent\">      </div></div>")
-    }
-    console.log(this.content)
-  }
-  public createUser(value: any): void {
-    this.campaingService.loadCsvLeadData(value).subscribe(resp => {
-      console.log(resp, "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
-      this.router.navigateByUrl('/showleads');
-    })
+  fetchCampaing(){
+    this.campaingService.fetchCampaing().subscribe(
+      data => {
+        this.campaings=data
+        this.campaings = this.campaings.map(item => {
+          if (item.active == "Y") {
+            item.enable = true
+          } else {
+            item.enable = false
+          }
+          return item
+        })
+        console.log(this.campaings)
 
+      })
   }
 
-  fetchCampaings() {
-    this.campaingService.fetchActiveCampaing().subscribe(
+  createBreakTypes(request) {
+    this.campaingService.createBreakTypes(request).subscribe(
       data => {
         this.campaings = data
 
       })
   }
-  more(){
-    this.count=this.count+1
-    this.fieldProps.push({name:"name"+this.count,isdropdown:false})
-    console.log("more$###############MORE")
-  }
 
   private createForm(): void {
     this.registerform = this.formBuilder.group({
-      campaing: new FormControl('', [Validators.required]),
-      dropdowncontent: new FormControl('', Validators.required),
-      type: new FormControl('', Validators.required)
+      break_type: new FormControl('', [Validators.required]),
+      campaing_name: new FormControl('', Validators.required)
     });
   }
   submit({ value }: any): void {
@@ -93,16 +87,7 @@ export class FormComponent implements OnInit {
     // formData.append('duplicateCheck', this.registerform.get('duplicateCheck').value);
     // formData.append('duplicateField', this.registerform.get('duplicateField').value);
     console.log("############", value)
-    // this.createUser(formData);
-
-  }
-  handleFileInput(event) {
-    console.log(event.target)
-    if (event.target.files.length > 0) {
-      const file = event.target.files[0];
-      this.fileName = file.name
-      this.registerform.get('file').setValue(file);
-    }
+    this.createBreakTypes(value);
 
   }
 }

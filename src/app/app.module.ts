@@ -40,7 +40,8 @@ import { AgentService } from './services/agent.service';
 import { LeadsComponent } from './components/leads/leads.component';
 import { ShowLeadsComponent } from './components/show-leads/show-leads.component';
 import { StatusComponent } from './components/create-status/status.component';
-import { FormComponent } from './components/form/form.component';
+import { BreakTypeComponent } from './components/breaktype/breaktype.component';
+import { ShowBreakTyoesComponent } from './components/show-breakTypes/show-breakTypes.component';
  
 
 @NgModule({
@@ -67,7 +68,8 @@ import { FormComponent } from './components/form/form.component';
     CloneCampaingComponent,
     GroupComponent,
     ServeyComponent,
-    FormComponent,
+    ShowBreakTyoesComponent,
+    BreakTypeComponent,
     UpdateGroupComponent
   ],
   imports: [

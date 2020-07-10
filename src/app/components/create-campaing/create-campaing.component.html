@@ -44,7 +44,7 @@
                     <label for="adminusergroup">Admin User Group</label>
                     <div class="input-group">
                       <div class="input-group-addon"><i class="glyphicon glyphicon-user"></i></div>
-                      <select class="mdb-select md-form form-control"  [(ngModel)]="user_group">
+                      <select class="mdb-select md-form form-control"  [(ngModel)]="assigned_user_group">
                         <option value="" disabled selected>Choose your option</option>
                         <option *ngFor="let group of groups" [value]="group.name">{{group.name}}</option>
                       </select>

@@ -17,7 +17,8 @@ import { WhatsappComponent } from "./pages/whatsapp/whatsapp.component";
 import { LeadsComponent } from "./components/leads/leads.component";
 import { ShowLeadsComponent } from "./components/show-leads/show-leads.component";
 import { StatusComponent } from "./components/create-status/status.component";
-import { FormComponent } from "./components/form/form.component";
+import { BreakTypeComponent } from "./components/breaktype/breaktype.component";
+import { ShowBreakTyoesComponent } from "./components/show-breakTypes/show-breakTypes.component";
 
 export const appRoutes=[
     {
@@ -62,8 +63,12 @@ export const appRoutes=[
         component: CloneUserComponent
     },
     {
-        path: 'form',
-        component:  FormComponent
+        path: 'breaktype',
+        component:  BreakTypeComponent
+    },
+    {
+        path: 'showBreaktype',
+        component:  ShowBreakTyoesComponent
     },
     {
         path: 'updateUser',

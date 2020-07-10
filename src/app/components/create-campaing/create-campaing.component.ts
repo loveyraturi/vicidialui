@@ -21,11 +21,12 @@ export class CreateCampaingComponent implements OnInit {
   public campaign_description;
   public assignmentType;
   public manual_dial_prefix;
-  public user_group;
+  public user_group="";
   public dial_prefix;
   public local_call_time;
   public active;
   public group_name;
+  public assigned_user_group="";
   public fieldProps: any[] = [{
     field: '',
     label: 'Enter label name'
@@ -191,12 +192,13 @@ onDeSelectAll(items: any){
     manual_dial_prefix: this.manual_dial_prefix,
     additionalFields: this.fieldProps
   }
-  if(this.user_group!=""){
+  console.log(this.assigned_user_group,"###########$$$$$$$$USER_group")
+  if(this.assigned_user_group!=""){
     groupcampaingmapping ={
       campaingname: campaign.name,
-      groupname: this.user_group
+      groupname: this.assigned_user_group
     }
-  }else{
+  }else if(this.user_group!=""){
     group ={
       name: this.user_group,
       active: "Y"

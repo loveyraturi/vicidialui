@@ -64,7 +64,30 @@ export class CampaingService {
         }
       ))
   }
-  
+  createBreakTypes(request): Observable<any> {
+    return this.http
+      .post('http://103.31.147.252:6001/microapp/goautodial/createBreakTypes',request).pipe(
+      map(
+        res => {
+          return res;
+        },
+        err => {
+          return err;
+        }
+      ))
+  }
+  fetchBreakTypes(): Observable<any> {
+    return this.http
+      .get('http://103.31.147.252:6001/microapp/goautodial/fetchAllBreakTypes').pipe(
+      map(
+        res => {
+          return res;
+        },
+        err => {
+          return err;
+        }
+      ))
+  }
   fetchCampaing(): Observable<any> {
     return this.http
       .get('http://103.31.147.252:6001/microapp//goautodial/fetchcampaings').pipe(
