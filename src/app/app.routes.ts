@@ -19,6 +19,7 @@ import { ShowLeadsComponent } from "./components/show-leads/show-leads.component
 import { StatusComponent } from "./components/create-status/status.component";
 import { BreakTypeComponent } from "./components/breaktype/breaktype.component";
 import { ShowBreakTyoesComponent } from "./components/show-breakTypes/show-breakTypes.component";
+import { RecordingComponent } from "./components/recording/recording.component";
 
 export const appRoutes=[
     {
@@ -49,6 +50,10 @@ export const appRoutes=[
     {
         path: 'createStatus',
         component: StatusComponent
+    },
+    {
+        path: 'recording',
+        component: RecordingComponent
     },
     {
         path: 'leads',
