@@ -1,0 +1,57 @@
+<div id="wrapper">
+  <navigation [loginInfo]="loginInfo" *ngIf="loginInfo"></navigation>
+
+  <div id="page-wrapper" class="gray-bg">
+
+    <topnavbar></topnavbar>
+    <div class="container">
+      <div class="row">
+        <div
+          class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-3 col-md-5 col-md-offset-4 col-lg-4 col-lg-offset-4 createuser">
+
+          <h3>Recordings</h3>
+
+          <div class="panel panel-default box-shadow">
+            <div class="panel-heading">
+              <span class="text-primary">Recording</span>
+              <span class="text-muted pull-right today" title="Today"></span>
+            </div>
+            <!--.panel-heading-->
+
+            <div class="panel-body">
+                <div class="form-group">
+                  <label for="group">Select Users</label>
+                  <div class="input-group">
+                    <div class="input-group-addon"><i class="glyphicon glyphicon-user"></i></div>
+                    <select class="mdb-select md-form form-control" name="user" (ngModelChange)="userSelected($event)" [(ngModel)]="selectedUser">
+                      <option value="" disabled selected>Choose your option</option>
+                      <option *ngFor="let user of users" [value]="user.username">{{user.fullName}}</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-group">
+                    <label for="level">Select Recordings</label>
+                    <div class="input-group">
+                      <div class="input-group-addon"><i class="glyphicon glyphicon-level-up"></i></div>
+                      <select class="mdb-select md-form form-control"  [(ngModel)]="selectedRecording">
+                        <option value="" disabled selected>Choose Recordings</option>
+                        <option *ngFor="let recording of recordings" [value]="recording.recordingName">{{recording.recordingName}}</option>
+                      </select>
+                    </div>
+                  </div>
+                <button type="submit" (click)="downloadRecording()" class="btn btn-block btn-success" tabindex="5">Download Recording</button>
+            
+            </div>
+          </div>
+          <!--.panel-->
+
+        </div>
+      </div>
+    </div>
+    <div class="footer">
+      <div>
+        <strong>Copyright</strong> vici dial &copy; 2019
+      </div>
+    </div>
+  </div>
+</div>
