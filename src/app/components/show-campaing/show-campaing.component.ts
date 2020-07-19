@@ -15,6 +15,7 @@ export class ShowCampaingComponent implements OnInit {
   public active;
   public level;
   public group;
+  public campaing;
   public hasAccess=false;
   loginInfo:Login={user_name:null,
 }
@@ -28,6 +29,8 @@ public campaings;
   ngOnInit() {
     this.level = localStorage.getItem("level")
     this.group=localStorage.getItem("group")
+    this.campaing=localStorage.getItem("campaing")
+    
     if (this.level == 9) {
         this.hasAccess=true;
     }
@@ -40,15 +43,15 @@ public campaings;
   fetchCampaing(){
     this.campaingService.fetchCampaing().subscribe(
       data => {
+        console.log("#########5",data)
         this.campaings=data
-
-        if (this.level == 7) {
-          this.campaings = this.campaings.filter(item => {
-            console.log(item.user_group == this.group)
-            if (item.user_group == this.group) {
-              return item
-            }
-          })
+        this.campaings = this.campaings.filter(item => {
+          console.log(item.user_group == this.group)
+          if (item.name == this.campaing) {
+            return item
+          }
+        })
+        if (this.level == 7) { 
           this.campaings = this.campaings.map(item => {
             if (item.active == "Y") {
               item.enable = true
@@ -67,7 +70,7 @@ public campaings;
           return item
         })
       }
-        console.log(this.campaings)
+        
 
       })
   }

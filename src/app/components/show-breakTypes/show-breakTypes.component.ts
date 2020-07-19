@@ -15,6 +15,7 @@ export class ShowBreakTyoesComponent implements OnInit {
   public active;
   public level;
   public group;
+  public campaing;
   public hasAccess=false;
   loginInfo:Login={user_name:null,
 }
@@ -27,6 +28,7 @@ public breakTypes;
   }
   ngOnInit() {
     this.level = localStorage.getItem("level")
+    this.campaing=localStorage.getItem("campaing")
     this.group=localStorage.getItem("group")
     if (this.level == 9) {
         this.hasAccess=true;
@@ -41,6 +43,11 @@ public breakTypes;
     this.campaingService.fetchBreakTypes().subscribe(
       data => {
         this.breakTypes=data.breakType
+        this.breakTypes = this.breakTypes.filter(item => {
+          if (item.campaingName == this.campaing) {
+            return item
+          }
+        })
         console.log(this.breakTypes)
 
       })

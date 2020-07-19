@@ -137,6 +137,18 @@ export class CampaingService {
       ))
   }
   
+  fetchCampaingByUserName(userName): Observable<any> {
+    return this.http
+      .get('http://103.31.147.252:6001/microapp/goautodial/fetchCampaingByUserName/'+userName).pipe(
+      map(
+        res => {
+          return res;
+        },
+        err => {
+          return err;
+        }
+      ))
+  }
   fetchActiveUserByCampaingName(userName): Observable<any> {
     return this.http
       .post('http://103.31.147.252:6001/microapp/goautodial/fetchactivecampaingwithusers',userName).pipe(

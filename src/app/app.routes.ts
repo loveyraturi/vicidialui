@@ -20,6 +20,8 @@ import { StatusComponent } from "./components/create-status/status.component";
 import { BreakTypeComponent } from "./components/breaktype/breaktype.component";
 import { ShowBreakTyoesComponent } from "./components/show-breakTypes/show-breakTypes.component";
 import { RecordingComponent } from "./components/recording/recording.component";
+import { AttendanceComponent } from "./components/attendance/attendance.component";
+import { ShowRecordingComponent } from "./components/show-recording/show-recording.component";
 
 export const appRoutes=[
     {
@@ -54,6 +56,14 @@ export const appRoutes=[
     {
         path: 'recording',
         component: RecordingComponent
+    },
+    {
+        path: 'attendance',
+        component: AttendanceComponent
+    },
+        {
+        path: 'showRecordings',
+        component: ShowRecordingComponent
     },
     {
         path: 'leads',

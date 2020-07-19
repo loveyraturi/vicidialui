@@ -13,6 +13,7 @@ import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms'
 export class RecordingComponent implements OnInit {
   public registerform: any = FormGroup;
   public username;
+  public campaing;
   loginInfo: Login = {
     user_name: null,
   }
@@ -24,7 +25,7 @@ export class RecordingComponent implements OnInit {
     
   }
   ngOnInit() {
-
+    this.campaing=localStorage.getItem("campaing")
     this.username = localStorage.getItem("user_name")
     this.loginInfo.user_name = this.username;
     console.log(this.username)

@@ -176,10 +176,52 @@ export class UserService {
         }
       ))
   }
+  fetchcountrecordingreportdatabetween(data): Observable<any> {
+    return this.http
+      .post('http://103.31.147.252:6001/microapp/goautodial/fetchcountrecordingreportdatabetween',data,{
+        headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+      }).pipe(
+      map(
+        res => {
+          return res;
+        },
+        err => {
+          return err;
+        }
+      ))
+  }
+  fetchCountAttendanceReportDataBetween(data): Observable<any> {
+    return this.http
+      .post('http://103.31.147.252:6001/microapp/goautodial/fetchcountattendancereportdatabetween',data,{
+        headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+      }).pipe(
+      map(
+        res => {
+          return res;
+        },
+        err => {
+          return err;
+        }
+      ))
+  }
   
   fetchReportDataBetween(data): Observable<any> {
     return this.http
       .post('http://103.31.147.252:6001/microapp/goautodial/fetchreportdatabetween',data,{
+        headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+      }).pipe(
+      map(
+        res => {
+          return res;
+        },
+        err => {
+          return err;
+        }
+      ))
+  }
+  fetchAttendanceReportDataBetween(data): Observable<any> {
+    return this.http
+      .post('http://103.31.147.252:6001/microapp/goautodial/fetchattendancereportdatabetween',data,{
         headers: new HttpHeaders({ 'Content-Type': 'application/json' })
       }).pipe(
       map(

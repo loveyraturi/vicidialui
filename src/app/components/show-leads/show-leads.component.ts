@@ -12,21 +12,23 @@ import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms'
 export class ShowLeadsComponent implements OnInit {
   public registerform: any = FormGroup;
   public username;
-  public currentElementIndex=1;
+  public currentElementIndex = 1;
   public active;
   public level;
   public group;
-  public hasAccess=false;
+  public campaing;
+  public hasAccess = false;
   public modelClass = "modal";
   public selectedleadname;
-  loginInfo:Login={user_name:null,
-}
-public leads;
-  constructor(private formBuilder: FormBuilder,private campaingService: CampaingService, private groupService: GroupService, private router: Router) { 
+  loginInfo: Login = {
+    user_name: null,
+  }
+  public leads;
+  constructor(private formBuilder: FormBuilder, private campaingService: CampaingService, private groupService: GroupService, private router: Router) {
     this.fetchLeadVersions();
-   
-   // this.phonenumber=localStorage.getItem("phone_number")
-    
+
+    // this.phonenumber=localStorage.getItem("phone_number")
+
   }
   // cloneCampaing(name){
   //   console.log("%$#@%$@#$",name)
@@ -35,30 +37,38 @@ public leads;
   // }
   ngOnInit() {
     this.level = localStorage.getItem("level")
-    this.group=localStorage.getItem("group")
+    this.group = localStorage.getItem("group")
+    this.campaing = localStorage.getItem("campaing")
     if (this.level == 9) {
-        this.hasAccess=true;
+      this.hasAccess = true;
     }
-      this.username= localStorage.getItem("user_name")
-      this.loginInfo.user_name=this.username;
-      console.log(this.username)
-      this.createForm();
+    this.username = localStorage.getItem("user_name")
+    this.loginInfo.user_name = this.username;
+    console.log(this.username)
+    this.createForm();
   }
   closeModal() {
     this.modelClass = "modal"
-}
-  fetchLeadVersions(){
+  }
+  fetchLeadVersions() {
     this.campaingService.fetchLeadVersions().subscribe(
       data => {
-        this.leads=data
+        this.leads = data
 
+        console.log(this.leads, "###############$$$$$$")
+        this.leads = this.leads.filter(item => {
+          console.log(item.campaingName == this.campaing)
+          if (item.campaingName == this.campaing) {
+            return item
+          }
+        })
         if (this.level == 7) {
-      //     this.leads = this.leads.filter(item => {
-      //       console.log(item.user_group == this.group)
-      //       if (item.user_group == this.group) {
-      //         return item
-      //       }
-      //     })
+          //     this.leads = this.leads.filter(item => {
+          //       console.log(item.user_group == this.group)
+          //       if (item.user_group == this.group) {
+          //         return item
+          //       }
+          //     })
           this.leads = this.leads.map(item => {
             if (item.status == "Y") {
               item.enable = true
@@ -67,54 +77,54 @@ public leads;
             }
             return item
           })
-        }else{
-        this.leads = this.leads.map(item => {
-          if (item.status == "Y") {
-            item.enable = true
-          } else {
-            item.enable = false
-          }
-          return item
-        })
-      }
+        } else {
+          this.leads = this.leads.map(item => {
+            if (item.status == "Y") {
+              item.enable = true
+            } else {
+              item.enable = false
+            }
+            return item
+          })
+        }
         console.log(this.leads)
 
       })
   }
-  showSurvey(name){
-    localStorage.setItem("survey_campaing_name",name);
+  showSurvey(name) {
+    localStorage.setItem("survey_campaing_name", name);
     this.router.navigateByUrl("/surveyCampaing")
   }
-  updateCampaing(name){
-    localStorage.setItem("update_campaing_name",name);
+  updateCampaing(name) {
+    localStorage.setItem("update_campaing_name", name);
     this.router.navigateByUrl("/updateCampaing")
   }
   modelClick(leadName) {
-    this.selectedleadname=leadName
+    this.selectedleadname = leadName
     console.log("model id is ", this.selectedleadname)
     // this.fetchLiveUserFromCampaing(id);
-  //  this.usersbycampaing= this.userDetails[campaingName]
-  //  console.log(this.usersbycampaing)
-  //  this.usersbycampaingempty= this.usersbycampaing.length>0?true:false
+    //  this.usersbycampaing= this.userDetails[campaingName]
+    //  console.log(this.usersbycampaing)
+    //  this.usersbycampaingempty= this.usersbycampaing.length>0?true:false
 
     this.modelClass = "modalDisplay"
 
-}
-  onChange(event,id) {
+  }
+  onChange(event, id) {
     console.log("###############", event)
     if (event) {
       this.active = "Y"
     } else {
       this.active = "N"
     }
-console.log(id,this.active)
-    this.campaingService.updateLeadStatus(id,this.active).subscribe(
+    console.log(id, this.active)
+    this.campaingService.updateLeadStatus(id, this.active).subscribe(
       data => {
         this.fetchLeadVersions()
       })
-     
+
   }
-  deleteCampaing(id){
+  deleteCampaing(id) {
     this.campaingService.deleteCampaing(id).subscribe(
       data => {
         console.log(data)
@@ -127,11 +137,11 @@ console.log(id,this.active)
       status: new FormControl('', Validators.required),
     });
   }
-  addNew(){
+  addNew() {
     this.router.navigateByUrl("/leads")
   }
   submit({ value }: any): void {
-    console.log(value,"RECHAIN#################");
+    console.log(value, "RECHAIN#################");
   }
 
 }

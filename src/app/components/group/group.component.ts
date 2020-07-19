@@ -15,6 +15,8 @@ export class GroupComponent implements OnInit {
   public currentElementIndex = 1;
   public active;
   public level;
+  public campaing;
+  public group;
   public hasAccess=false;
   loginInfo: Login = {
     user_name: null,
@@ -23,6 +25,8 @@ export class GroupComponent implements OnInit {
 
   ngOnInit() {
     this.level = localStorage.getItem("level")
+    this.campaing=localStorage.getItem("campaing")
+    this.group=localStorage.getItem("group")
     console.log(this.level,"$#$%$")
     if (this.level == 9) {
         this.hasAccess=true;
@@ -42,6 +46,7 @@ export class GroupComponent implements OnInit {
           element.campaingList.forEach(item => {
           campaingAssignes= item.campaingname+campaingAssignes
         });
+        
            responseData.push({
             name: element.groupName,
             status: element.status,
@@ -50,7 +55,12 @@ export class GroupComponent implements OnInit {
         });
        
         this.groups = responseData
-        console.log(responseData)
+        this.groups = this.groups.filter(item => {
+          if (item.name == this.group) {
+            return item
+          }
+        })
+        console.log(this.groups)
 
       })
   }

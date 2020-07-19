@@ -8,12 +8,11 @@ import { Router } from '@angular/router';
 import * as FileSaver from 'file-saver';
 
 @Component({
-  selector: 'app-reporting',
-  templateUrl: './reporting.component.html',
-  styleUrls: ['./reporting.component.css']
+  selector: 'app-show-recording',
+  templateUrl: './show-recording.component.html',
+  styleUrls: ['./show-recording.component.css']
 })
-export class ReportingComponent implements OnInit {
-
+export class ShowRecordingComponent implements OnInit {
 
   title = 'angular-exportexcel-example';
   buttonDisabled = "disabled"
@@ -26,6 +25,8 @@ export class ReportingComponent implements OnInit {
   public users;
   public paginationLength;
   public responseLength;
+  public campaing;
+  public audio = new Audio();
   public defaultPagination
   loginInfo: Login = {
     user_name: null,
@@ -41,7 +42,6 @@ export class ReportingComponent implements OnInit {
   public level;
   public group;
   public valuenull = "-"
-  public campaing;
   datefrom: Date = new Date();
   dateto: Date = new Date();
   settings = {
@@ -77,8 +77,8 @@ export class ReportingComponent implements OnInit {
   ngOnInit() {
     this.username = localStorage.getItem("user_name")
     this.level = localStorage.getItem("level")
+    this.group = localStorage.getItem("group")
     this.campaing=localStorage.getItem("campaing")
-    this.group=localStorage.getItem("group")
     this.loginInfo.user_name = this.username;
     this.datapresent = false;
     this.headers = [{ key: '#', value: '#' }, { key: 'lead_id', value: 'Lead Id' },
@@ -95,7 +95,7 @@ export class ReportingComponent implements OnInit {
     { key: 'term_reason', value: 'Term Reason' }]
     this.fetchCampaing();
     // this.fetchUsers();
-    this.fetchCountOfReport();
+    // this.fetchCountOfReport();
   }
   formatDate(date) {
     console.log(date)
@@ -144,10 +144,6 @@ export class ReportingComponent implements OnInit {
     console.log(items, "################DeSelected1##################", this.users)
   }
 
-
-
-
-
   onUserItemSelect(item: any) {
 
   }
@@ -184,7 +180,7 @@ export class ReportingComponent implements OnInit {
   fetchCampaing() {
     this.campaingService.fetchCampaing().subscribe(
       data => {
-        console.log("#$$$$$$",data)
+        console.log(data)
         this.campaingList = data.filter(item => {
           console.log(this.campaing)
           if (item.name == this.campaing) {
@@ -247,72 +243,84 @@ export class ReportingComponent implements OnInit {
       offset: end
     }
     this.loading = true
-    this.userService.fetchCountReportDataBetween(requestData).subscribe(
+    this.userService.fetchcountrecordingreportdatabetween(requestData).subscribe(
       data => {
 
         this.buttonDisabled = ""
         console.log(this.buttonDisabled)
         console.log(data, "####################33#####@@@$$$$$")
         this.loading = false;
-        var userData=[]
-        for(var key in data) {
-          // alert("Key: " + key + " value: " + data[key]);
-          var datamap={}
-          data[key].forEach(element => {
-            console.log(key,element)
-            for(var keyelement in element) {
-            datamap[keyelement]=element[keyelement];
-            }
-          });
-          datamap["user"]=key
-          userData.push(datamap)
-        }
-        console.log(userData,"#################USERDATA###########");
-        this.defaultPagination = userData.length == 0 ? true : false
-        this.reportData = userData
+        // var userData=[]
+        // for(var key in data) {
+        //   // alert("Key: " + key + " value: " + data[key]);
+        //   var datamap={}
+        //   data[key].forEach(element => {
+        //     console.log(key,element)
+        //     for(var keyelement in element) {
+        //     datamap[keyelement]=element[keyelement];
+        //     }
+        //   });
+        //   datamap["user"]=key
+        //   userData.push(datamap)
+        // }
+        // console.log(userData,"#################USERDATA###########");
+        // this.defaultPagination = userData.length == 0 ? true : false
+        this.reportData = data
       })
   }
+  playPauseAudio(file, option) {
+    console.log("assets/" + file)
+    if (option == true) {
+      this.audio.src = "assets/" + file;
+      this.audio.load();
+      this.audio.play();
+    } else {
+      this.audio.pause();
+    }
+
+  }
+  
 
 
   //DEFAULT STREAM #######################DEFAULT
 
 
-  fetchCountOfReport() {
-    this.userService.fetchCountOfReport().subscribe(
-      data => {
-        var count = data[0].count
-        this.paginationLength = Array(Math.ceil(count / 1000))
-        this.datapresent = count == 0 ? false : true
-        this.defaultPagination = count == 0 ? false : true
-        // this.fetchReportDataStream(1000,1000)
-      })
-  }
-  fetchReportDataStream(limit, offset) {
-    var start = limit
-    var end = offset
-    console.log(start, end)
-    this.userService.fetchReportData(start, end).subscribe(
-      data => {
-        console.log(data.length, "##################")
-        this.reportData = data.map((item) => {
-          if (item.lead_id == null) { item.lead_id = this.valuenull }
-          if (item.list_id == null) { item.list_id = this.valuenull }
-          if (item.campaign_id == null) { item.campaign_id = this.valuenull }
-          if (item.call_date == null) { item.call_date = this.valuenull }
-          if (item.length_in_sec == null) { item.length_in_sec = this.valuenull }
-          if (item.status == null) { item.status = this.valuenull }
-          if (item.phone_code == null) { item.phone_code = this.valuenull }
-          if (item.phone_number == null) { item.phone_number = this.valuenull }
-          if (item.user == null) { item.user = this.valuenull }
-          if (item.comments == null) { item.comments = this.valuenull }
-          if (item.processed == null) { item.processed = this.valuenull }
-          if (item.term_reason == null) { item.term_reason = this.valuenull }
-          return item
-        })
-      })
+  // fetchCountOfReport() {
+  //   this.userService.fetchCountOfReport().subscribe(
+  //     data => {
+  //       var count = data[0].count
+  //       this.paginationLength = Array(Math.ceil(count / 1000))
+  //       this.datapresent = count == 0 ? false : true
+  //       this.defaultPagination = count == 0 ? false : true
+  //       // this.fetchReportDataStream(1000,1000)
+  //     })
+  // }
+  // fetchReportDataStream(limit, offset) {
+  //   var start = limit
+  //   var end = offset
+  //   console.log(start, end)
+  //   this.userService.fetchReportData(start, end).subscribe(
+  //     data => {
+  //       console.log(data.length, "##################")
+  //       this.reportData = data.map((item) => {
+  //         if (item.lead_id == null) { item.lead_id = this.valuenull }
+  //         if (item.list_id == null) { item.list_id = this.valuenull }
+  //         if (item.campaign_id == null) { item.campaign_id = this.valuenull }
+  //         if (item.call_date == null) { item.call_date = this.valuenull }
+  //         if (item.length_in_sec == null) { item.length_in_sec = this.valuenull }
+  //         if (item.status == null) { item.status = this.valuenull }
+  //         if (item.phone_code == null) { item.phone_code = this.valuenull }
+  //         if (item.phone_number == null) { item.phone_number = this.valuenull }
+  //         if (item.user == null) { item.user = this.valuenull }
+  //         if (item.comments == null) { item.comments = this.valuenull }
+  //         if (item.processed == null) { item.processed = this.valuenull }
+  //         if (item.term_reason == null) { item.term_reason = this.valuenull }
+  //         return item
+  //       })
+  //     })
 
 
-  }
+  // }
   export() {
     var campaingID = []
     this.selectedItems.forEach((items => {
@@ -329,12 +337,11 @@ export class ReportingComponent implements OnInit {
       campaingName: campaingID,
       userName: userId
     }
-    this.userService.fetchReportDataBetween(requestData).subscribe(
+    this.userService.fetchAttendanceReportDataBetween(requestData).subscribe(
       data => {
         console.log("############", data)
         // FileSaver.saveAs(data, "/assets/Filename.xlsx");
-        window.open("./assets/MISReport.xlsx");
+        window.open("./assets/RecordingReport.xlsx");
       })
   }
-
 }

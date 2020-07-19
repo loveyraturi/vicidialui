@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators, FormControl, } from '@angular/forms';
 import { PlatformService } from 'app/services/platform.service';
 import { AuthService } from 'app/services/auth.service';
+import { CampaingService } from 'app/services/campaing.service';
 
 @Component({
   selector: 'app-login',
@@ -12,7 +13,7 @@ import { AuthService } from 'app/services/auth.service';
 export class LoginComponent implements OnInit {
   public registerform: any = FormGroup;
   public errorMsg: string = ''
-  constructor(private _router: Router, private platformService: PlatformService, private formBuilder: FormBuilder, private auth: AuthService) { }
+  constructor(private campaingService:CampaingService,private _router: Router, private platformService: PlatformService, private formBuilder: FormBuilder, private auth: AuthService) { }
   public formValues: any;
   ngOnInit() {
     this.createForm()
@@ -34,6 +35,19 @@ export class LoginComponent implements OnInit {
         // localStorage.setItem("phone_number",data.phoneNumber);
         localStorage.setItem("level",data.level);
         localStorage.setItem("group",data.usergroup);
+        this.campaingService.fetchCampaingByUserName(data.username).subscribe(
+          resp=>{
+            var campaings
+            console.log(resp,"#############ee")
+            if (resp.campaing.indexOf(',') > -1) {
+             var  campaingArray=resp.campaing.split(',') 
+             campaings= campaingArray[0]
+              }else{
+                campaings= resp.campaing;
+              }
+          console.log(campaings,"#############ee")
+          localStorage.setItem("campaing",campaings);
+        });
         if (data.username!=undefined ) {
           if(data.level > 6){
             this._router.navigateByUrl('home');

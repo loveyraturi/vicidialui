@@ -56,7 +56,7 @@ export class BreakTypeComponent implements OnInit {
           }
           return item
         })
-        console.log(this.campaings)
+        console.log("##################3",this.campaings)
 
       })
   }
@@ -65,7 +65,7 @@ export class BreakTypeComponent implements OnInit {
     this.campaingService.createBreakTypes(request).subscribe(
       data => {
         this.campaings = data
-
+        this.router.navigateByUrl('showBreaktype');
       })
   }
 

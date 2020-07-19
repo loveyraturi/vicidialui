@@ -44,12 +44,12 @@ export class ShowUsersComponent implements OnInit {
       data => {
         console.log(data)
         this.users = data
+        this.users = this.users.filter(item => {
+          if (item.usergroup == this.group) {
+            return item
+          }
+        })
         if (this.level == 7) {
-          this.users = this.users.filter(item => {
-            if (item.usergroup == this.group) {
-              return item
-            }
-          })
           this.users = this.users.map(item => {
             if (item.status == "Active") {
               item.enable = true

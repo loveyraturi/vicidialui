@@ -68,6 +68,7 @@
                   
               </li>
               
+              
             </ul>
           </div>
         </a>
@@ -102,6 +103,14 @@
                   <li [ngClass]="{active: activeRoute('misReport')}">
                     <a [routerLink]="['/misReport']"><i class="fa fa-book"></i> <span
                         class="nav-label">Mis Report</span></a>
+                  </li>
+                  <li [ngClass]="{active: activeRoute('attendance')}">
+                    <a [routerLink]="['/attendance']"><i class="fa fa-book"></i> <span
+                        class="nav-label">Attendance Report</span></a>
+                  </li>
+                  <li [ngClass]="{active: activeRoute('showRecordings')}">
+                    <a [routerLink]="['/showRecordings']"><i class="fa fa-book"></i> <span
+                        class="nav-label">Recording Report</span></a>
                   </li>
                 </ul>
               </div>
