@@ -78,6 +78,7 @@
               <td > Call End Date</td>
               <td > Phone_book</td>
               <td > Recording_file</td>
+              <td > Download Recording</td>
               <td > Play Recording</td>
             </tr>
           </thead>
@@ -91,7 +92,8 @@
               <td > {{data.CallEndDate}}</td>
               <td > {{data.Phone_book}}</td>
               <td style="word-wrap: break-word;"> {{data.Recording_file}}</td>
-            <td><div class="col-lg-2">
+              <td><i (click)="downloadRecording(data.Recording_file)" class="glyphicon glyphicon-plus"></i></td>
+              <td><div class="col-lg-2">
               <i (click)="playPauseAudio(data.Recording_file,true)" class="glyphicon glyphicon-play"></i><i
                 (click)="playPauseAudio(data.Recording_file.file,false)" class="glyphicon glyphicon-pause"></i>
             </div></td>

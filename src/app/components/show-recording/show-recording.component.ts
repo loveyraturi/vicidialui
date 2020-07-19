@@ -344,4 +344,8 @@ export class ShowRecordingComponent implements OnInit {
         window.open("./assets/RecordingReport.xlsx");
       })
   }
+  downloadRecording(filename){
+    window.open("./assets/"+filename);
+  }
+
 }
