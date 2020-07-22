@@ -87,6 +87,7 @@
                         <th>Local Call Time</th>
                         <th>Prefix</th>
                         <th>TotalUser</th>
+                        <th>Online</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -96,6 +97,7 @@
                         <td>{{campaing.localCallTime}}</td>
                         <td>{{campaing.dialPrefix}}</td>
                         <td>{{campaing.count}}</td>
+                        <td>{{campaing.online}}</td>
                       </tr>
                     </tbody>
                   </table>
@@ -108,7 +110,7 @@
     </div>
     <div class="footer">
       <div>
-        <strong>Copyright</strong> Vici dial &copy; 2019
+        <strong>Copyright</strong> Microsmart &copy; 2020
       </div>
     </div>
   </div>
@@ -130,10 +132,10 @@
       </thead>
       <tbody>
         <tr *ngFor="let user of usersbycampaing; let i = index">
-          <td>{{i+1}}</td>
-          <td>{{user.fullName}}</td>
-          <td>{{user.username}}</td>
-          <td>{{user.status}}</td>
+          <td *ngIf="user.online==1" >{{i+1}}</td>
+          <td *ngIf="user.online==1">{{user.fullName}}</td>
+          <td *ngIf="user.online==1">{{user.username}}</td>
+          <td *ngIf="user.online==1">{{user.status}}</td>
         </tr>
       </tbody>
     </table>

@@ -124,7 +124,7 @@ export class HomeComponent implements OnInit {
         console.log("model id is ", campaingName)
         // this.fetchLiveUserFromCampaing(id);
        this.usersbycampaing= this.userDetails[campaingName]
-       console.log(this.usersbycampaing)
+       console.log(this.usersbycampaing,"############@@@@@@@@@@@@############")
        this.usersbycampaingempty= this.usersbycampaing.length>0?true:false
 
         this.modelClass = "modalDisplay"
@@ -181,12 +181,18 @@ var campaingNames=[]
                 respp => {
                     console.log(respp,"######RERSRRS")
                     this.userDetails=respp
+                    
                     this.campaings = this.campaings.map(item => {
-                        
+                        var onlineuser=0;
                         var key=item.name
                         
                        var usersByCampaing= this.userDetails[key]
+                       usersByCampaing.forEach(element => {
+                           onlineuser=onlineuser+parseInt(element.online, 10)
+                           console.log(onlineuser,"#ONLINE")
+                       });
                        item.count=usersByCampaing.length;
+                       item.online=onlineuser
                        return item;
                     })
                     // this.userDetails)
