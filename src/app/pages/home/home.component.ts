@@ -187,8 +187,11 @@ var campaingNames=[]
                         var key=item.name
                         
                        var usersByCampaing= this.userDetails[key]
+                       console.log(usersByCampaing,"#usersByCampaing")
                        usersByCampaing.forEach(element => {
+                           if(element!=null){
                            onlineuser=onlineuser+parseInt(element.online, 10)
+                           }
                            console.log(onlineuser,"#ONLINE")
                        });
                        item.count=usersByCampaing.length;
