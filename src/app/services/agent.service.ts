@@ -16,7 +16,7 @@ export class AgentService {
 
     dialCall(ruleConf): Observable<any> {
         return this.http
-          .post('http://103.31.147.252:4011/api/agents/dialcall', ruleConf).pipe(
+          .post('http://157.245.109.0:4011/api/agents/dialcall', ruleConf).pipe(
           map(
             res => {
                 return res;
@@ -28,7 +28,7 @@ export class AgentService {
     }
     feedback(ruleConf): Observable<any> {
         return this.http
-          .post('http://103.31.147.252:4011/api/agents/feedback', ruleConf).pipe(
+          .post('http://157.245.109.0:4011/api/agents/feedback', ruleConf).pipe(
           map(
             res => {
                 return res;

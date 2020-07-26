@@ -17,7 +17,7 @@ export class AuthService {
 
     validateLogin(ruleConf): Observable<any> {
         return this.http
-          .post('http://103.31.147.252:6001/microapp//goautodial/login', ruleConf).pipe(
+          .post('http://157.245.109.0:6001/microapp//goautodial/login', ruleConf).pipe(
           map(
             res => {
                 return res;
