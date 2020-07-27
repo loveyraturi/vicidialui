@@ -149,6 +149,18 @@ export class CampaingService {
         }
       ))
   }
+  fetchStatus(campaingname): Observable<any> {
+    return this.http
+      .get('http://157.245.109.0:8080/microapp/goautodial/fetchStatuByCampaingName/'+campaingname).pipe(
+      map(
+        res => {
+          return res;
+        },
+        err => {
+          return err;
+        }
+      ))
+  }
   fetchActiveUserByCampaingName(userName): Observable<any> {
     return this.http
       .post('http://157.245.109.0:8080/microapp/goautodial/fetchactivecampaingwithusers',userName).pipe(

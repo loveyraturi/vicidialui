@@ -70,24 +70,18 @@
         <table  class="table table-bordered " >
           <thead>
             <tr>
-              <td>User </td>
-              <td>LEAD</td>
+              <td *ngFor="let stat of status;">{{stat}}</td>
+              <!-- <td>LEAD</td>
               <td>BUSY </td>
               <td>OCCUPIED</td>
               <td>SWITCHOFF</td>
               <td>CALLBACK</td>
-              <td>Not Rechable</td>
+              <td>Not Rechable</td> -->
             </tr>
           </thead>
           <tbody>
             <tr *ngFor="let data of reportData;">
-              <td > {{data.user}}</td>
-              <td > {{data.Leads}}</td>
-              <td > {{data.Busy}}</td>
-              <td > {{data.OCCUPIED}}</td>
-              <td > {{data.SwitchOff}}</td>
-              <td > {{data.CALLBACK}}</td>
-              <td > {{data.NotRechable}}</td>
+              <td *ngFor="let stat of status;">{{data[stat]}}</td>
             </tr>
           </tbody>
         </table>

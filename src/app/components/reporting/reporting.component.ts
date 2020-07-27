@@ -14,7 +14,6 @@ import * as FileSaver from 'file-saver';
 })
 export class ReportingComponent implements OnInit {
 
-
   title = 'angular-exportexcel-example';
   buttonDisabled = "disabled"
   customers: any = [];
@@ -25,6 +24,7 @@ export class ReportingComponent implements OnInit {
   public selectedCampaings = [];
   public users;
   public paginationLength;
+  public status=[];
   public responseLength;
   public defaultPagination
   loginInfo: Login = {
@@ -247,6 +247,12 @@ export class ReportingComponent implements OnInit {
       offset: end
     }
     this.loading = true
+    this.campaingService.fetchStatus(campaingID).subscribe(resp=>{
+console.log(resp.statusFeedback.split(','));
+this.status.push("user")
+this.status=this.status.concat(resp.statusFeedback.split(','))
+console.log("#########this.status########",this.status)
+    });
     this.userService.fetchCountReportDataBetween(requestData).subscribe(
       data => {
 
