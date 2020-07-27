@@ -250,7 +250,8 @@ export class ReportingComponent implements OnInit {
     this.campaingService.fetchStatus(campaingID).subscribe(resp=>{
 console.log(resp.statusFeedback.split(','));
 this.status.push("user")
-this.status=this.status.concat(resp.statusFeedback.split(','))
+this.status.push("OCCUPIED")
+this.status=this.status.concat(resp.statusFeedback.split(',')).map(Function.prototype.call, String.prototype.trim)
 console.log("#########this.status########",this.status)
     });
     this.userService.fetchCountReportDataBetween(requestData).subscribe(
@@ -267,7 +268,7 @@ console.log("#########this.status########",this.status)
           data[key].forEach(element => {
             console.log(key,element)
             for(var keyelement in element) {
-            datamap[keyelement]=element[keyelement];
+            datamap[keyelement.trim()]=element[keyelement.trim()];
             }
           });
           datamap["user"]=key
@@ -276,6 +277,19 @@ console.log("#########this.status########",this.status)
         console.log(userData,"#################USERDATA###########");
         this.defaultPagination = userData.length == 0 ? true : false
         this.reportData = userData
+        // this.reportData.forEach(it => {
+                  
+        //   this.status.forEach(el => {
+        //     console.log(/\s/.test(el.trim()),el,"#$#$#$STATUS")
+        //     if(el.trim()=="CALLBACK"){
+        //       // if(it["user"]=="TS12"){
+        //         console.log(it["CALLBACK"],"$$$$$$")
+        //         console.log(el,"###",it[el.trim()])
+        //       // } 
+            
+        //     }
+        //   });
+        // });
       })
   }
 
