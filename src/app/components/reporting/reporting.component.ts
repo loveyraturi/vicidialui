@@ -271,7 +271,6 @@ console.log("#########this.status########",this.status)
           var datamap={}
          
           data[key].forEach(element => {
-            var total=0
             // console.log(key,element)
             for(var keyelement in element) {
             datamap[keyelement.trim()]=element[keyelement.trim()];
@@ -289,9 +288,11 @@ console.log("#########this.status########",this.status)
             }else{
               total=total+parseInt(elem[itm],10)
             }
-            elem["TOTAL"]=total
-            return elem;
+           
           });
+          elem["TOTAL"]=total
+          // console.log(elem.user,"#################",elem.TOTAL);
+          return elem;
           // console.log(total,"##########fffffffffffffffff#########")
         })
         console.log(userData,"#################USERDATA###########");
