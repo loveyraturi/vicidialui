@@ -249,6 +249,12 @@ export class AttendanceComponent implements OnInit {
         console.log(this.buttonDisabled)
         console.log(data, "####################33#####@@@$$$$$")
         this.loading = false;
+        var userAtt=[]
+         data.forEach(element => {
+          userAtt[element.username]=element
+          
+        });
+        console.log(userAtt, "####################userAtt#####@@@$$$$$")
         // var userData=[]
         // for(var key in data) {
         //   // alert("Key: " + key + " value: " + data[key]);
@@ -309,27 +315,8 @@ export class AttendanceComponent implements OnInit {
 
   // }
   export() {
-    var campaingID = []
-    this.selectedItems.forEach((items => {
-      campaingID.push(items.itemName)
-    }))
-    var userId = []
-    this.selectedUserItems.forEach((items => {
-      userId.push(items.itemName)
-    }))
-
-    var requestData = {
-      datefrom: this.formatDate(this.datefrom),
-      dateto:  this.formatDate(this.dateto),
-      campaingName: campaingID,
-      userName: userId
-    }
-    this.userService.fetchAttendanceReportDataBetween(requestData).subscribe(
-      data => {
-        console.log("############", data)
         // FileSaver.saveAs(data, "/assets/Filename.xlsx");
         window.open("./assets/AttendanceReport.xlsx");
-      })
+     
   }
-
 }
