@@ -237,7 +237,7 @@ export class ReportingComponent implements OnInit {
     this.selectedUserItems.forEach((items => {
       userId.push(items.itemName)
     }))
-
+    this.reportData=[]
     var requestData = {
       datefrom: this.formatDate(this.datefrom),
       dateto:  this.formatDate(this.dateto),
@@ -247,6 +247,7 @@ export class ReportingComponent implements OnInit {
       offset: end
     }
     this.loading = true
+    this.status=[]
     this.campaingService.fetchStatus(campaingID).subscribe(resp=>{
 console.log(resp.statusFeedback.split(','));
 
@@ -330,6 +331,7 @@ console.log("#########this.status########",this.status)
     var start = limit
     var end = offset
     console.log(start, end)
+    
     this.userService.fetchReportData(start, end).subscribe(
       data => {
         console.log(data.length, "##################")
