@@ -70,7 +70,7 @@
         <table  class="table table-bordered " >
           <thead>
             <tr>
-              <td *ngFor="let stat of status;">{{stat}}</td>
+              <td  style="word-wrap: break-word;" *ngFor="let stat of status;">{{stat}}</td>
               <!-- <td>LEAD</td>
               <td>BUSY </td>
               <td>OCCUPIED</td>
@@ -81,7 +81,7 @@
           </thead>
           <tbody>
             <tr *ngFor="let data of reportData;">
-              <td *ngFor="let stat of status;">{{data[stat]}}</td>
+              <td style="word-wrap: break-word;" *ngFor="let stat of status;">{{data[stat]}}</td>
             </tr>
           </tbody>
         </table>

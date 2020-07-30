@@ -249,11 +249,14 @@ export class ReportingComponent implements OnInit {
     this.loading = true
     this.campaingService.fetchStatus(campaingID).subscribe(resp=>{
 console.log(resp.statusFeedback.split(','));
+
 this.status.push("user")
 this.status.push("OCCUPIED")
 this.status=this.status.concat(resp.statusFeedback.split(',')).map(Function.prototype.call, String.prototype.trim)
+this.status.push("TOTAL")
 console.log("#########this.status########",this.status)
     });
+    
     this.userService.fetchCountReportDataBetween(requestData).subscribe(
       data => {
 
@@ -265,15 +268,31 @@ console.log("#########this.status########",this.status)
         for(var key in data) {
           // alert("Key: " + key + " value: " + data[key]);
           var datamap={}
+         
           data[key].forEach(element => {
-            console.log(key,element)
+            var total=0
+            // console.log(key,element)
             for(var keyelement in element) {
             datamap[keyelement.trim()]=element[keyelement.trim()];
             }
+           
           });
           datamap["user"]=key
           userData.push(datamap)
         }
+        userData.map(elem=>{
+          var total=0
+          this.status.forEach(itm => {
+            if(isNaN(elem[itm])){
+
+            }else{
+              total=total+parseInt(elem[itm],10)
+            }
+            elem["TOTAL"]=total
+            return elem;
+          });
+          // console.log(total,"##########fffffffffffffffff#########")
+        })
         console.log(userData,"#################USERDATA###########");
         this.defaultPagination = userData.length == 0 ? true : false
         this.reportData = userData
