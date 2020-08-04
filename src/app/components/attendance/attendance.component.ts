@@ -108,8 +108,9 @@ export class AttendanceComponent implements OnInit {
     minutes = minutes < 10 ? '0'+minutes : minutes;
     var strTime = hours + ':' + minutes + ':00';
     var month= (date.getMonth()+1).toString().length==1?"0"+(date.getMonth()+1).toString():date.getMonth()+1
+    var day=(date.getDate()).toString().length==1?"0"+(date.getDate()).toString():date.getDate()
     console.log(month,"############month")
-    return (date.getFullYear()+"-"+month+ "-" + date.getDate() + " " + strTime);
+    return (date.getFullYear()+"-"+month+ "-" + day + " " + strTime);
   }
 
   fetchUsers() {
