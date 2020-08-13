@@ -17,7 +17,7 @@ export class UserService {
 
   createUser(request): Observable<any> {
     return this.http
-      .post('http://localhost:6001/microapp/goautodial/createuser', request).pipe(
+      .post('http://157.245.109.0:8080/microapp/microapp/goautodial/createuser', request).pipe(
       map(
         res => {
           return res;
@@ -29,7 +29,7 @@ export class UserService {
   }
   updateUserStatus(id,status): Observable<any> {
     return this.http
-      .get('http://localhost:6001/goautodial/updateuserstatus/'+id+'/'+status).pipe(
+      .get('http://157.245.109.0:8080/microapp/goautodial/updateuserstatus/'+id+'/'+status).pipe(
       map(
         res => {
           return res;
@@ -41,7 +41,7 @@ export class UserService {
   }
   assignUserToGroup(request): Observable<any> {
     return this.http
-      .post('http://localhost:6001/microapp/goautodial/assignUserToGroup', request).pipe(
+      .post('http://157.245.109.0:8080/microapp/microapp/goautodial/assignUserToGroup', request).pipe(
       map(
         res => {
           return res;
@@ -53,7 +53,7 @@ export class UserService {
   }
   updateAssignUserToGroup(request): Observable<any> {
     return this.http
-      .post('http://localhost:6001/microapp/goautodial/updateAssignUserToGroup', request).pipe(
+      .post('http://157.245.109.0:8080/microapp/microapp/goautodial/updateAssignUserToGroup', request).pipe(
       map(
         res => {
           return res;
@@ -65,7 +65,7 @@ export class UserService {
   }
   fetchUser(): Observable<any> {
     return this.http
-      .get('http://localhost:6001/microapp/goautodial/fetchAllUsers').pipe(
+      .get('http://157.245.109.0:8080/microapp/microapp/goautodial/fetchAllUsers').pipe(
       map(
         res => {
           return res;
@@ -113,7 +113,7 @@ export class UserService {
         }
   fetchUserByCampaing(campaing): Observable<any> {
     return this.http
-      .get('http://localhost:6001/microapp/goautodial/fetchusersbycampaing/'+campaing).pipe(
+      .get('http://157.245.109.0:8080/microapp/microapp/goautodial/fetchusersbycampaing/'+campaing).pipe(
       map(
         res => {
           return res;
@@ -164,7 +164,7 @@ export class UserService {
 
   fetchCountReportDataBetween(data): Observable<any> {
     return this.http
-      .post('http://localhost:6001/goautodial/fetchcountreportdatabetween',data,{
+      .post('http://157.245.109.0:8080/microapp/goautodial/fetchcountreportdatabetween',data,{
         headers: new HttpHeaders({ 'Content-Type': 'application/json' })
       }).pipe(
       map(
@@ -178,7 +178,7 @@ export class UserService {
   }
   fetchcountrecordingreportdatabetween(data): Observable<any> {
     return this.http
-      .post('http://localhost:6001/goautodial/fetchcountrecordingreportdatabetween',data,{
+      .post('http://157.245.109.0:8080/microapp/goautodial/fetchcountrecordingreportdatabetween',data,{
         headers: new HttpHeaders({ 'Content-Type': 'application/json' })
       }).pipe(
       map(
@@ -192,7 +192,7 @@ export class UserService {
   }
   fetchCountAttendanceReportDataBetween(data): Observable<any> {
     return this.http
-      .post('http://localhost:6001/goautodial/fetchcountattendancereportdatabetween',data,{
+      .post('http://157.245.109.0:8080/microapp/goautodial/fetchcountattendancereportdatabetween',data,{
         headers: new HttpHeaders({ 'Content-Type': 'application/json' })
       }).pipe(
       map(
@@ -207,7 +207,7 @@ export class UserService {
   
   fetchReportDataBetween(data): Observable<any> {
     return this.http
-      .post('http://localhost:6001/goautodial/fetchreportdatabetween',data,{
+      .post('http://157.245.109.0:8080/microapp/goautodial/fetchreportdatabetween',data,{
         headers: new HttpHeaders({ 'Content-Type': 'application/json' })
       }).pipe(
       map(
@@ -221,7 +221,7 @@ export class UserService {
   }
   fetchAttendanceReportDataBetween(data): Observable<any> {
     return this.http
-      .post('http://localhost:6001/goautodial/fetchattendancereportdatabetween',data,{
+      .post('http://157.245.109.0:8080/microapp/goautodial/fetchattendancereportdatabetween',data,{
         headers: new HttpHeaders({ 'Content-Type': 'application/json' })
       }).pipe(
       map(
@@ -235,7 +235,7 @@ export class UserService {
   }
   fetchusersByName(name): Observable<any> {
     return this.http
-      .get('http://localhost:6001/goautodial/fetchusersByName/'+name).pipe(
+      .get('http://157.245.109.0:8080/microapp/goautodial/fetchusersByName/'+name).pipe(
       map(
         res => {
           return res;
@@ -284,7 +284,7 @@ export class UserService {
 
   updateUser(request): Observable<any> {
     return this.http
-      .post('http://localhost:6001/goautodial/updateUser', request).pipe(
+      .post('http://157.245.109.0:8080/microapp/goautodial/updateUser', request).pipe(
       map(
         res => {
           return res;

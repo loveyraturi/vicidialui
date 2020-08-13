@@ -17,7 +17,7 @@ export class CampaingService {
 
   createCampaing(request): Observable<any> {
     return this.http
-      .post('http://localhost:6001/microapp/goautodial/createCampaing', request).pipe(
+      .post('http://157.245.109.0:8080/microapp/microapp/goautodial/createCampaing', request).pipe(
       map(
         res => {
           return res;
@@ -29,7 +29,7 @@ export class CampaingService {
   }
   campaingGroupMapping(request): Observable<any> {
     return this.http
-      .post('http://localhost:6001/goautodial/campaingGroupMapping', request).pipe(
+      .post('http://157.245.109.0:8080/microapp/goautodial/campaingGroupMapping', request).pipe(
       map(
         res => {
           return res;
@@ -42,7 +42,7 @@ export class CampaingService {
 
   loadCsvLeadData(request): Observable<any> {
     return this.http
-      .post('http://localhost:6001/goautodial/loadCsvLeadData', request).pipe(
+      .post('http://157.245.109.0:8080/microapp/goautodial/loadCsvLeadData', request).pipe(
       map(
         res => {
           return res;
@@ -54,7 +54,7 @@ export class CampaingService {
   }
   updateCampaingGroupMapping(request): Observable<any> {
     return this.http
-      .post('http://localhost:6001/microapp/goautodial/updateCampaingGroupMapping', request).pipe(
+      .post('http://157.245.109.0:8080/microapp/microapp/goautodial/updateCampaingGroupMapping', request).pipe(
       map(
         res => {
           return res;
@@ -66,7 +66,7 @@ export class CampaingService {
   }
   createBreakTypes(request): Observable<any> {
     return this.http
-      .post('http://localhost:6001/goautodial/createBreakTypes',request).pipe(
+      .post('http://157.245.109.0:8080/microapp/goautodial/createBreakTypes',request).pipe(
       map(
         res => {
           return res;
@@ -78,7 +78,7 @@ export class CampaingService {
   }
   fetchBreakTypes(): Observable<any> {
     return this.http
-      .get('http://localhost:6001/goautodial/fetchAllBreakTypes').pipe(
+      .get('http://157.245.109.0:8080/microapp/goautodial/fetchAllBreakTypes').pipe(
       map(
         res => {
           return res;
@@ -90,7 +90,7 @@ export class CampaingService {
   }
   fetchCampaing(): Observable<any> {
     return this.http
-      .get('http://localhost:6001/microapp/goautodial/fetchcampaings').pipe(
+      .get('http://157.245.109.0:8080/microapp/microapp/goautodial/fetchcampaings').pipe(
       map(
         res => {
           return res;
@@ -102,7 +102,7 @@ export class CampaingService {
   }
   fetchLeadVersions(): Observable<any> {
     return this.http
-      .get('http://localhost:6001/goautodial/fetchLeadVersions').pipe(
+      .get('http://157.245.109.0:8080/microapp/goautodial/fetchLeadVersions').pipe(
       map(
         res => {
           return res;
@@ -126,7 +126,7 @@ export class CampaingService {
   }
   fetchCampaingByName(name): Observable<any> {
     return this.http
-      .get('http://localhost:6001/goautodial/fetchCampaingByName/'+name).pipe(
+      .get('http://157.245.109.0:8080/microapp/goautodial/fetchCampaingByName/'+name).pipe(
       map(
         res => {
           return res;
@@ -139,7 +139,7 @@ export class CampaingService {
   
   fetchCampaingByUserName(userName): Observable<any> {
     return this.http
-      .get('http://localhost:6001/goautodial/fetchCampaingByUserName/'+userName).pipe(
+      .get('http://157.245.109.0:8080/microapp/goautodial/fetchCampaingByUserName/'+userName).pipe(
       map(
         res => {
           return res;
@@ -151,7 +151,7 @@ export class CampaingService {
   }
   fetchStatus(campaingname): Observable<any> {
     return this.http
-      .get('http://localhost:6001/goautodial/fetchStatuByCampaingName/'+campaingname).pipe(
+      .get('http://157.245.109.0:8080/microapp/goautodial/fetchStatuByCampaingName/'+campaingname).pipe(
       map(
         res => {
           return res;
@@ -163,7 +163,7 @@ export class CampaingService {
   }
   fetchActiveUserByCampaingName(userName): Observable<any> {
     return this.http
-      .post('http://localhost:6001/goautodial/fetchactivecampaingwithusers',userName).pipe(
+      .post('http://157.245.109.0:8080/microapp/goautodial/fetchactivecampaingwithusers',userName).pipe(
       map(
         res => {
           return res;
@@ -175,7 +175,7 @@ export class CampaingService {
   }
   fetchActiveCampaing(): Observable<any> {
     return this.http
-      .get('http://localhost:6001/goautodial/fetchactivecampaing').pipe(
+      .get('http://157.245.109.0:8080/microapp/goautodial/fetchactivecampaing').pipe(
       map(
         res => {
           return res;
@@ -199,7 +199,7 @@ export class CampaingService {
   }
   updateCampaingStatus(id,status): Observable<any> {
     return this.http
-      .get('http://localhost:6001/goautodial/updatecampaingstatus/'+id+'/'+status).pipe(
+      .get('http://157.245.109.0:8080/microapp/goautodial/updatecampaingstatus/'+id+'/'+status).pipe(
       map(
         res => {
           return res;
@@ -211,7 +211,7 @@ export class CampaingService {
   }
   updateLeadStatus(id,status): Observable<any> {
     return this.http
-      .get('http://localhost:6001/goautodial/updateleadstatus/'+id+'/'+status).pipe(
+      .get('http://157.245.109.0:8080/microapp/goautodial/updateleadstatus/'+id+'/'+status).pipe(
       map(
         res => {
           return res;
@@ -224,7 +224,7 @@ export class CampaingService {
   
   updateCampaing(request): Observable<any> {
     return this.http
-      .post('http://localhost:6001/goautodial/updateCampaing', request).pipe(
+      .post('http://157.245.109.0:8080/microapp/goautodial/updateCampaing', request).pipe(
       map(
         res => {
           return res;
