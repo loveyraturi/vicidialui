@@ -17,7 +17,7 @@ export class CampaingService {
 
   createCampaing(request): Observable<any> {
     return this.http
-      .post('http://157.245.109.0:8080/microapp/microapp/goautodial/createCampaing', request).pipe(
+      .post('http://157.245.109.0:8080/microapp/goautodial/createCampaing', request).pipe(
       map(
         res => {
           return res;
@@ -54,7 +54,7 @@ export class CampaingService {
   }
   updateCampaingGroupMapping(request): Observable<any> {
     return this.http
-      .post('http://157.245.109.0:8080/microapp/microapp/goautodial/updateCampaingGroupMapping', request).pipe(
+      .post('http://157.245.109.0:8080/microapp/goautodial/updateCampaingGroupMapping', request).pipe(
       map(
         res => {
           return res;
@@ -90,7 +90,7 @@ export class CampaingService {
   }
   fetchCampaing(): Observable<any> {
     return this.http
-      .get('http://157.245.109.0:8080/microapp/microapp/goautodial/fetchcampaings').pipe(
+      .get('http://157.245.109.0:8080/microapp/goautodial/fetchcampaings').pipe(
       map(
         res => {
           return res;
