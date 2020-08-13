@@ -17,7 +17,7 @@ export class UserService {
 
   createUser(request): Observable<any> {
     return this.http
-      .post('http://157.245.109.0:8080/microapp/microapp/goautodial/createuser', request).pipe(
+      .post('http://157.245.109.0:8080/microapp/goautodial/createuser', request).pipe(
       map(
         res => {
           return res;
@@ -41,7 +41,7 @@ export class UserService {
   }
   assignUserToGroup(request): Observable<any> {
     return this.http
-      .post('http://157.245.109.0:8080/microapp/microapp/goautodial/assignUserToGroup', request).pipe(
+      .post('http://157.245.109.0:8080/microapp/goautodial/assignUserToGroup', request).pipe(
       map(
         res => {
           return res;
@@ -53,7 +53,7 @@ export class UserService {
   }
   updateAssignUserToGroup(request): Observable<any> {
     return this.http
-      .post('http://157.245.109.0:8080/microapp/microapp/goautodial/updateAssignUserToGroup', request).pipe(
+      .post('http://157.245.109.0:8080/microapp/goautodial/updateAssignUserToGroup', request).pipe(
       map(
         res => {
           return res;
@@ -65,7 +65,7 @@ export class UserService {
   }
   fetchUser(): Observable<any> {
     return this.http
-      .get('http://157.245.109.0:8080/microapp/microapp/goautodial/fetchAllUsers').pipe(
+      .get('http://157.245.109.0:8080/microapp/goautodial/fetchAllUsers').pipe(
       map(
         res => {
           return res;
@@ -113,7 +113,7 @@ export class UserService {
         }
   fetchUserByCampaing(campaing): Observable<any> {
     return this.http
-      .get('http://157.245.109.0:8080/microapp/microapp/goautodial/fetchusersbycampaing/'+campaing).pipe(
+      .get('http://157.245.109.0:8080/microapp/goautodial/fetchusersbycampaing/'+campaing).pipe(
       map(
         res => {
           return res;
