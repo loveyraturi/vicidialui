@@ -203,7 +203,12 @@ var campaingNames=[]
             
             })
     }
-
+    logout(username){
+        this.dashboardService.logoutUser(username).subscribe(
+            data => {
+                console.log("Successfully LoggedOut")
+            }) 
+    }
     fetchAgentsCounts() {
         this.dashboardService.fetchAgentsCounts().subscribe(
             data => {

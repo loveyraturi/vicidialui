@@ -23,6 +23,18 @@ export class DashboardService {
         }
       ))
   }
+  logoutUser(username): Observable<any> {
+    return this.http
+      .get('http://157.245.109.0:8080/microapp/goautodial/logout/'+username).pipe(
+      map(
+        res => {
+          return res;
+        },
+        err => {
+          return err;
+        }
+      ))
+  }
   fetchLiveChannelCount(): Observable<any> {
     return this.http
       .get('http://157.245.109.0:4011/api/agents/fetchlivechannelcount').pipe(

@@ -26,6 +26,9 @@ export class ShowRecordingComponent implements OnInit {
   public paginationLength;
   public responseLength;
   public campaing;
+  public phoneNumber;
+  public limit=100;
+  public offset=0;
   public audio = new Audio();
   public defaultPagination
   loginInfo: Login = {
@@ -223,8 +226,17 @@ export class ShowRecordingComponent implements OnInit {
     console.log(this.headers)
   }
 
-
-  fetchReportData(start, end) {
+fetchNext(){
+  this.offset=this.offset+this.limit+1
+  this.fetchReportData() 
+}
+fetchPrevious(){
+  if(this.offset>this.limit){
+    this.offset=this.offset-this.limit-1
+    this.fetchReportData() 
+  }
+}
+  fetchReportData() {
     var campaingID = []
     this.selectedItems.forEach((items => {
       campaingID.push(items.itemName)
@@ -239,8 +251,9 @@ export class ShowRecordingComponent implements OnInit {
       dateto:  this.formatDate(this.dateto),
       campaingName: campaingID,
       userName: userId,
-      limit: start,
-      offset: end
+      limit: this.limit,
+      offset: this.offset,
+      phoneNumber: this.phoneNumber
     }
     this.loading = true
     this.userService.fetchcountrecordingreportdatabetween(requestData).subscribe(

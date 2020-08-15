@@ -126,6 +126,7 @@
           <th>Name</th>
           <th>User Name</th>
           <th>Status</th>
+          <th>logout<th>
         </tr>
       </thead>
       <tbody>
@@ -133,6 +134,7 @@
           <td *ngIf="user.online==1">{{user.fullName}}</td>
           <td *ngIf="user.online==1">{{user.username}}</td>
           <td *ngIf="user.online==1">Online</td>
+          <td *ngIf="user.online==1"><i class="fa fa-sign-out" (click)="logout(user.username)"></i></td>
         </tr>
       </tbody>
     </table>

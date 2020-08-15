@@ -15,6 +15,7 @@ export class LeadsComponent implements OnInit {
   public registerform: any = FormGroup;
   public username;
   public fileName;
+  public visibility=false;
   fileToUpload: File = null;
   loginInfo: Login = {
     user_name: null,
@@ -60,6 +61,7 @@ this.router.navigateByUrl('/showleads');
     });
   }
   submit({ value }: any): void {
+    this.visibility=true;
     // console.log(value)
     // value.uploadedFile=this.fileToUpload;
     console.log(this.registerform.get('campaing').value)
@@ -72,6 +74,7 @@ this.router.navigateByUrl('/showleads');
     formData.append('duplicateField',this.registerform.get('duplicateField').value);
     console.log("############",formData)
     this.createUser(formData);
+    this.visibility=false;
     
   }
   handleFileInput(event) {

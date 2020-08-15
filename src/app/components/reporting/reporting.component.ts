@@ -23,6 +23,7 @@ export class ReportingComponent implements OnInit {
   public campaingList;
   public selectedCampaings = [];
   public users;
+  public phoneNumber="";
   public paginationLength;
   public status=[];
   public responseLength;
@@ -245,18 +246,18 @@ export class ReportingComponent implements OnInit {
       campaingName: campaingID,
       userName: userId,
       limit: start,
-      offset: end
+      offset: end,
+      phoneNumber: this.phoneNumber
     }
     this.loading = true
     this.status=[]
     this.campaingService.fetchStatus(campaingID).subscribe(resp=>{
-console.log(resp.statusFeedback.split(','));
-
-this.status.push("user")
-this.status.push("OCCUPIED")
-this.status=this.status.concat(resp.statusFeedback.split(',')).map(Function.prototype.call, String.prototype.trim)
-this.status.push("TOTAL")
-console.log("#########this.status########",this.status)
+      console.log(resp.statusFeedback.split(','));
+      this.status.push("user")
+      this.status.push("OCCUPIED")
+      this.status=this.status.concat(resp.statusFeedback.split(',')).map(Function.prototype.call, String.prototype.trim)
+      this.status.push("TOTAL")
+      console.log("#########this.status########",this.status)
     });
     
     this.userService.fetchCountReportDataBetween(requestData).subscribe(
@@ -370,7 +371,8 @@ console.log("#########this.status########",this.status)
       datefrom: this.formatDate(this.datefrom),
       dateto:  this.formatDate(this.dateto),
       campaingName: campaingID,
-      userName: userId
+      userName: userId,
+      phoneNumber: this.phoneNumber
     }
     this.userService.fetchReportDataBetween(requestData).subscribe(
       data => {
