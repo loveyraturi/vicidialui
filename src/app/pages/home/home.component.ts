@@ -6,7 +6,7 @@ import { Login } from "app/models/login";
 import { DashboardService } from "app/services/dashboard.service";
 import { CampaingService } from "app/services/campaing.service";
 import { UserService } from "app/services/user.service";
-
+// import { NotifierService } from "angular-notifier";
 @Component({
     selector: 'home',
     templateUrl: './home.component.html',
@@ -30,6 +30,7 @@ export class HomeComponent implements OnInit {
     public usersbycampaing;
     public usersbycampaingempty
     public group;
+    // private readonly notifier: NotifierService;
     public level;
     public totaluser=[];
     public countOfLiveChannels
@@ -39,7 +40,7 @@ export class HomeComponent implements OnInit {
         user_name: null,
     }
     constructor(private userService: UserService, private campaingService: CampaingService, private dashboardService: DashboardService) {
-
+        // this.notifier=notifierService
         //  this.openNewDialog();
         // this.phonenumber=localStorage.getItem("phone_number")
 
@@ -81,6 +82,9 @@ export class HomeComponent implements OnInit {
             this.fetchLiveChannel();  
         }
     }
+    // public showNotification( type: string, message: string ): void {
+	// 	// this.notifier.notify( 'success', 'Notification successfully opened.' );
+	// }
     fetchLiveChannelCount(){
         this.dashboardService.fetchLiveChannelCount().subscribe(resp=>{
             this.countOfLiveChannels=resp[0].count
@@ -207,6 +211,9 @@ var campaingNames=[]
         this.dashboardService.logoutUser(username).subscribe(
             data => {
                 console.log("Successfully LoggedOut")
+                this.usersbycampaing=this.usersbycampaing.filter(item=>{
+                    return item.username!=username
+                })
             }) 
     }
     fetchAgentsCounts() {

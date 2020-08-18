@@ -57,14 +57,23 @@
                 <angular4-multiselect [data]="dropdownUserList" (click)="populateUser()" [(ngModel)]="selectedUserItems"
                   [settings]="dropdownUserSettings"></angular4-multiselect>
               </div>
-              <div class="col-sm-1">
+              <div class="col-sm-3">
+                <angular4-multiselect [data]="statusArray" [(ngModel)]="selectedStatus"
+                  [settings]="dropdownStatusSettings"></angular4-multiselect>
+              </div>
+              <div class="col-sm-2">
                 OR
               </div>
-              <div class="col-sm-2">
-                <input class="form-control" type="text" placeholder="Enter Number" [(ngModel)]="phoneNumber">
-              </div>
-              <div class="col-sm-2">
-                <button class="btn btn-info add-new" (click)="fetchReportData()">Submit</button>
+              <div class="row" style="margin-top: 8%;">
+
+                <div class="col-sm-1"></div>
+                <div class="col-sm-3">Enter Mobile Number</div>
+                <div class="col-sm-3">
+                  <input class="form-control" type="text" placeholder="Enter Number" [(ngModel)]="phoneNumber">
+                </div>
+                <div class="col-sm-3">
+                  <button class="btn btn-info add-new" (click)="fetchReportData()">Submit</button>
+                </div>
               </div>
             </div>
           </div>
@@ -89,19 +98,19 @@
           </thead>
           <tbody>
             <tr *ngFor="let data of reportData;">
-              <td> {{data.USER}}</td>
-              <td> {{data.Phone_number}}</td>
-              <td> {{data.Status}}</td>
-              <td> {{data.Duration}}</td>
-              <td> {{data.callDate}}</td>
-              <td> {{data.CallEndDate}}</td>
-              <td> {{data.Phone_book}}</td>
+              <td style="word-wrap: break-word;"> {{data.USER}}</td>
+              <td style="word-wrap: break-word;"> {{data.Phone_number}}</td>
+              <td style="word-wrap: break-word;"> {{data.Status}}</td>
+              <td style="word-wrap: break-word;"> {{data.Duration}}</td>
+              <td style="word-wrap: break-word;"> {{data.callDate}}</td>
+              <td style="word-wrap: break-word;"> {{data.CallEndDate}}</td>
+              <td style="word-wrap: break-word;"> {{data.Phone_book}}</td>
               <td style="word-wrap: break-word;"> {{data.Recording_file}}</td>
-              <td><i (click)="downloadRecording(data.Recording_file)" class="glyphicon glyphicon-plus"></i></td>
+              <td ><i style="cursor: pointer;" (click)="downloadRecording(data.Recording_file)" class="glyphicon glyphicon-arrow-down"></i></td>
               <td>
                 <div class="col-lg-2">
-                  <i (click)="playPauseAudio(data.Recording_file,true)" class="glyphicon glyphicon-play"></i><i
-                    (click)="playPauseAudio(data.Recording_file.file,false)" class="glyphicon glyphicon-pause"></i>
+                  <i style="cursor: pointer;" (click)="playPauseAudio(data.Recording_file,true)" class="glyphicon glyphicon-play"></i><i
+                  style="cursor: pointer;" (click)="playPauseAudio(data.Recording_file.file,false)" class="glyphicon glyphicon-pause"></i>
                 </div>
               </td>
             </tr>
@@ -110,7 +119,8 @@
 
       </div>
       <div class="pagination">
-        <i class="glyphicon glyphicon-menu-left" (click)="fetchPrevious()"></i>......<i class="glyphicon glyphicon-menu-right" (click)="fetchNext()"></i>
+        <i class="glyphicon glyphicon-menu-left" (click)="fetchPrevious()"></i>......<i
+          class="glyphicon glyphicon-menu-right" (click)="fetchNext()"></i>
       </div>
     </div>
     <div class="footer">
