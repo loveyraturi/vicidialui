@@ -87,7 +87,7 @@ import { ShowRecordingComponent } from './components/show-recording/show-recordi
     HttpClientModule,
     UiSwitchModule,
     AngularMultiSelectModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes,{useHash: true})
   ],
   providers: [PlatformService,ExportService,AuthService,AgentService,UserService,GroupService,CampaingService, DashboardService],
   bootstrap: [AppComponent]
