@@ -25,6 +25,7 @@
             <tr>
               <th>Id</th>
               <th>Name</th>
+              <th>user_name</th>
               <th>Group</th>
               <th>Status</th>
               <th>Actions</th>
@@ -36,6 +37,7 @@
             <tr *ngFor="let user of users; let i = index">
               <td>{{i+1}}</td>
               <td>{{user.fullName}}</td>
+              <td>{{user.username}}</td>
               <td>{{user.usergroup}}</td>
               <td><ui-switch size="small" [(ngModel)]="user.enable" (change)="onChange($event,user.id)"></ui-switch></td>
               <td>
