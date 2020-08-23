@@ -153,10 +153,10 @@ export class HomeComponent implements OnInit {
 var campaingNames=[]
                 console.log(data,"############DATA",this.group)
                 this.campaings = data
-                if (this.level == 7) {
+                // if (this.level == 7) {
                     this.campaings = this.campaings.filter(item => {
-                      console.log(item.user_group == this.group)
-                      if (item.user_group == this.group) {
+                      console.log(item.name == this.group)
+                      if (item.name == this.group) {
                         return item
                       }
                     })
@@ -169,18 +169,18 @@ var campaingNames=[]
                       campaingNames.push(item.name)
                       return item
                     })
-                  }else{
-                this.campaings = this.campaings.map(item => {
-                    if (item.active == "Y") {
-                        item.enable = true
-                    } else {
-                        item.enable = false
-                    }
-                    campaingNames.push(item.name)
-                    return item
-                })
-                console.log()
-            }  
+            //       }else{
+            //     this.campaings = this.campaings.map(item => {
+            //         if (item.active == "Y") {
+            //             item.enable = true
+            //         } else {
+            //             item.enable = false
+            //         }
+            //         campaingNames.push(item.name)
+            //         return item
+            //     })
+            //     console.log()
+            // }  
             this.campaingService.fetchActiveUserByCampaingName(campaingNames).subscribe(
                 respp => {
                     console.log(respp,"######RERSRRS")
