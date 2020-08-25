@@ -68,6 +68,7 @@ export class ShowRecordingComponent implements OnInit {
       unSelectAllText: 'UnSelect All',
       enableSearchFilter: true,
       enableCheckAll: true,
+      badgeShowLimit: 5,
       classes: ""
     };
     this.dropdownUserSettings = {
@@ -76,6 +77,7 @@ export class ShowRecordingComponent implements OnInit {
       selectAllText: 'Select All',
       unSelectAllText: 'UnSelect All',
       enableSearchFilter: true,
+      badgeShowLimit: 5,
       enableCheckAll: true,
       classes: ""
     };

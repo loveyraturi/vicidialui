@@ -59,7 +59,9 @@ export class AttendanceComponent implements OnInit {
       selectAllText: 'Select All',
       unSelectAllText: 'UnSelect All',
       enableSearchFilter: true,
+      badgeShowLimit: 5,
       enableCheckAll: true,
+      
       classes: ""
     };
     this.dropdownUserSettings = {
@@ -68,6 +70,7 @@ export class AttendanceComponent implements OnInit {
       selectAllText: 'Select All',
       unSelectAllText: 'UnSelect All',
       enableSearchFilter: true,
+      badgeShowLimit: 5,
       enableCheckAll: true,
       classes: ""
     };

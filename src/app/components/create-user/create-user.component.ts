@@ -13,6 +13,10 @@ import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms'
 export class CreateUserComponent implements OnInit {
   public registerform: any = FormGroup;
   public username;
+  public password="1234"
+  public confpass="1234"
+  public level="1"
+  public status="Active"
   loginInfo: Login = {
     user_name: null,
   }

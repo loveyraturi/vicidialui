@@ -62,6 +62,7 @@ export class ReportingComponent implements OnInit {
       unSelectAllText: 'UnSelect All',
       enableSearchFilter: true,
       enableCheckAll: true,
+      badgeShowLimit: 5,
       classes: ""
     };
     this.dropdownUserSettings = {
@@ -71,6 +72,7 @@ export class ReportingComponent implements OnInit {
       unSelectAllText: 'UnSelect All',
       enableSearchFilter: true,
       enableCheckAll: true,
+      badgeShowLimit: 5,
       classes: ""
     };
   }
@@ -140,10 +142,10 @@ export class ReportingComponent implements OnInit {
     console.log(item, "################DeSelected##################", this.users)
   }
   onSelectAll(items: any) {
-    console.log(items, "################Selected1##################", this.users)
+    console.log(items, "################Selectedall##################", this.users)
   }
   onDeSelectAll(items: any) {
-    console.log(items, "################DeSelected1##################", this.users)
+    console.log(items, "################DeSelectedall##################", this.users)
   }
 
 
