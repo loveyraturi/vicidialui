@@ -16,12 +16,13 @@ export class LeadsComponent implements OnInit {
   public username;
   public fileName;
   public visibility=false;
+  private users;
   fileToUpload: File = null;
   loginInfo: Login = {
     user_name: null,
   }
   public campaings;
-  constructor(private campaingService: CampaingService, private groupService: GroupService, private router: Router, private formBuilder: FormBuilder) {
+  constructor(private userService: UserService,private campaingService: CampaingService, private groupService: GroupService, private router: Router, private formBuilder: FormBuilder) {
     this.fetchCampaings()
   }
   ngOnInit() {
@@ -41,7 +42,14 @@ this.router.navigateByUrl('/showleads');
    })
     
   }
-
+  campaingSelected(value){
+      console.log(value)
+      this.userService.fetchUserByCampaing(value).subscribe(
+        data => {
+          console.log(data)
+          this.users = data
+        })
+  }
   fetchCampaings() {
     this.campaingService.fetchActiveCampaing().subscribe(
       data => {
@@ -53,6 +61,7 @@ this.router.navigateByUrl('/showleads');
   private createForm(): void {
     this.registerform = this.formBuilder.group({
       campaing: new FormControl('', [Validators.required]),
+      user: new FormControl('', [Validators.required]),
       duplicateCheck: new FormControl('', Validators.required),
       duplicateField: new FormControl('', Validators.required),
       duplicateAction: new FormControl('', Validators.required),
@@ -69,6 +78,7 @@ this.router.navigateByUrl('/showleads');
     formData.append('file', this.registerform.get('file').value);
     formData.append('filename', this.fileName);
     formData.append('campaing',this.registerform.get('campaing').value);
+    formData.append('user',this.registerform.get('user').value);
     formData.append('duplicateAction',this.registerform.get('duplicateAction').value);
     formData.append('duplicateCheck',this.registerform.get('duplicateCheck').value);
     formData.append('duplicateField',this.registerform.get('duplicateField').value);

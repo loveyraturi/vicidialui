@@ -84,16 +84,16 @@
         <table class="table table-bordered ">
           <thead>
             <tr>
-              <td> USER</td>
-              <td> Phone_number</td>
-              <td> Status</td>
-              <td> Duration</td>
-              <td> Call Start Date</td>
-              <td> Call End Date</td>
-              <td> Phone_book</td>
-              <td> Recording_file</td>
-              <td> Download Recording</td>
-              <td> Play Recording</td>
+              <td style="word-wrap: break-word;"> USER</td>
+              <td style="word-wrap: break-word;"> Phone_number</td>
+              <td style="word-wrap: break-word;"> Status</td>
+              <td style="word-wrap: break-word;"> Duration</td>
+              <td style="word-wrap: break-word;"> Call Start Date</td>
+              <td style="word-wrap: break-word;"> Call End Date</td>
+              <td style="word-wrap: break-word;"> Phone_book</td>
+              <td style="word-wrap: break-word;"> Recording_file</td>
+              <!-- <td> Download Recording</td> -->
+              <td style="width: 35%;"> Play Recording</td>
             </tr>
           </thead>
           <tbody>
@@ -106,12 +106,20 @@
               <td style="word-wrap: break-word;"> {{data.CallEndDate}}</td>
               <td style="word-wrap: break-word;"> {{data.Phone_book}}</td>
               <td style="word-wrap: break-word;"> {{data.Recording_file}}</td>
-              <td ><i style="cursor: pointer;" (click)="downloadRecording(data.Recording_file)" class="glyphicon glyphicon-arrow-down"></i></td>
+              <!-- <td ><i style="cursor: pointer;" (click)="downloadRecording(data.Recording_file)" class="glyphicon glyphicon-arrow-down"></i></td>
               <td>
                 <div class="col-lg-2">
                   <i style="cursor: pointer;" (click)="playPauseAudio(data.Recording_file,true)" class="glyphicon glyphicon-play"></i><i
                   style="cursor: pointer;" (click)="playPauseAudio(data.Recording_file.file,false)" class="glyphicon glyphicon-pause"></i>
                 </div>
+              </td> -->
+              <td>
+                <audio controls>
+                  <source
+                    src="http://157.245.109.0:8080/microsmartui/dist/assets/recording/mp3/234968_TS97_TATASKY_ALPHA_9027967025_21082020_0936_5350543958888850614.mp3"
+                    type="audio/mpeg">
+                  Your browser does not support the audio element.
+                </audio>
               </td>
             </tr>
           </tbody>

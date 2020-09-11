@@ -77,7 +77,7 @@ export class ShowRecordingComponent implements OnInit {
       selectAllText: 'Select All',
       unSelectAllText: 'UnSelect All',
       enableSearchFilter: true,
-      badgeShowLimit: 5,
+      badgeShowLimit: 2,
       enableCheckAll: true,
       classes: ""
     };
@@ -86,6 +86,7 @@ export class ShowRecordingComponent implements OnInit {
       text: "Status",
       selectAllText: 'Select All',
       unSelectAllText: 'UnSelect All',
+      badgeShowLimit: 2,
       enableSearchFilter: true,
       enableCheckAll: true,
       classes: ""
