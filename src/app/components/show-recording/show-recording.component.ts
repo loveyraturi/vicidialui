@@ -302,6 +302,10 @@ fetchPrevious(){
         console.log(this.buttonDisabled)
         console.log(data, "####################33#####@@@$$$$$")
         this.loading = false;
+        this.reportData= data.map(item=>{
+          item.Recording_file=item.Recording_file.split('.').slice(0, -1).join('.')+".mp3"
+          return item;
+        })
         // var userData=[]
         // for(var key in data) {
         //   // alert("Key: " + key + " value: " + data[key]);
@@ -317,7 +321,7 @@ fetchPrevious(){
         // }
         // console.log(userData,"#################USERDATA###########");
         // this.defaultPagination = userData.length == 0 ? true : false
-        this.reportData = data
+        
       })
   }
   playPauseAudio(file, option) {
