@@ -30,6 +30,8 @@ export class HomeComponent implements OnInit {
     public usersbycampaing;
     public usersbycampaingempty
     public group;
+    public total;
+    public online;
     // private readonly notifier: NotifierService;
     public level;
     public totaluser=[];

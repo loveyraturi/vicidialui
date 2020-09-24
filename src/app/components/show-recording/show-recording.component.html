@@ -1,5 +1,5 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-<div id="wrapper">
+<div id="wrapper" style="background: #2f4050;">
   <navigation [loginInfo]="loginInfo" *ngIf="loginInfo"></navigation>
 
   <div id="page-wrapper" class="gray-bg">
@@ -81,17 +81,16 @@
         <div *ngIf="loading" class="loader"></div>
 
 
-        <table class="table table-bordered ">
+        <table class="table table-bordered" style="table-layout: auto !important;">
           <thead>
             <tr>
               <td style="word-wrap: break-word;"> USER</td>
               <td style="word-wrap: break-word;"> Phone_number</td>
               <td style="word-wrap: break-word;"> Status</td>
               <td style="word-wrap: break-word;"> Duration</td>
-              <td style="word-wrap: break-word;"> Call Start Date</td>
-              <td style="word-wrap: break-word;"> Call End Date</td>
+              <td style="word-wrap: break-word;"> Call_Start_Date</td>
+              <td style="word-wrap: break-word;"> Call_End_Date</td>
               <td style="word-wrap: break-word;"> Phone_book</td>
-              <td style="word-wrap: break-word;"> Recording_file</td>
               <!-- <td> Download Recording</td> -->
               <td style="width: 35%;"> Play Recording</td>
             </tr>
@@ -105,7 +104,6 @@
               <td style="word-wrap: break-word;"> {{data.callDate}}</td>
               <td style="word-wrap: break-word;"> {{data.CallEndDate}}</td>
               <td style="word-wrap: break-word;"> {{data.Phone_book}}</td>
-              <td style="word-wrap: break-word;"> {{data.Recording_file}}</td>
               <!-- <td ><i style="cursor: pointer;" (click)="downloadRecording(data.Recording_file)" class="glyphicon glyphicon-arrow-down"></i></td>
               <td>
                 <div class="col-lg-2">
