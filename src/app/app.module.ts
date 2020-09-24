@@ -45,6 +45,8 @@ import { ShowBreakTyoesComponent } from './components/show-breakTypes/show-break
 import { RecordingComponent } from './components/recording/recording.component';
 import { AttendanceComponent } from './components/attendance/attendance.component';
 import { ShowRecordingComponent } from './components/show-recording/show-recording.component';
+import { EditBreakTypeComponent } from './components/edit_breaktype/edit_breaktype.component';
+import { CloneBreakTypeComponent } from './components/clone_breaktype/clone_breaktype.component';
  
 
 @NgModule({
@@ -62,6 +64,8 @@ import { ShowRecordingComponent } from './components/show-recording/show-recordi
     DefaultComponent,
     UpdateUserComponent,
     CloneUserComponent,
+    EditBreakTypeComponent,
+    CloneBreakTypeComponent,
     CreateCampaingComponent,
     ShowCampaingComponent,
     UpdateCampaingComponent,

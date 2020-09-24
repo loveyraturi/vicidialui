@@ -38,7 +38,11 @@ export class ShowUsersComponent implements OnInit {
     console.log(this.username)
 
   }
-
+  deleteUser(userId){
+  this.userService.deleteUser(userId).subscribe(resp=>{
+    this.fetchUsers();
+  })
+  }
   fetchUsers() {
     this.userService.fetchUser().subscribe(
       data => {

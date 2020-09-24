@@ -187,7 +187,7 @@ export class CampaingService {
   }
   deleteCampaing(id): Observable<any> {
     return this.http
-      .get('http://157.245.109.0:4011/api/campaing/deletecampaing/' + id).pipe(
+      .get('http://157.245.109.0:8080/microapp/goautodial/deletecampaing/' + id).pipe(
       map(
         res => {
           return res;

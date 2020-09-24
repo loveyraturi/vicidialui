@@ -39,6 +39,30 @@ export class UserService {
         }
       ))
   }
+  cloneBreakType(request): Observable<any> {
+    return this.http
+      .post('http://157.245.109.0:8080/microapp/goautodial/cloneBreakType', request).pipe(
+      map(
+        res => {
+          return res;
+        },
+        err => {
+          return err;
+        }
+      ))
+  }
+  updateBreakType(request): Observable<any> {
+    return this.http
+      .post('http://157.245.109.0:8080/microapp/goautodial/updateBreakType', request).pipe(
+      map(
+        res => {
+          return res;
+        },
+        err => {
+          return err;
+        }
+      ))
+  }
   assignUserToGroup(request): Observable<any> {
     return this.http
       .post('http://157.245.109.0:8080/microapp/goautodial/assignUserToGroup', request).pipe(
@@ -271,7 +295,19 @@ export class UserService {
   }
   deleteUser(id): Observable<any> {
     return this.http
-      .get('http://157.245.109.0:4011/api/user/deleteuser/' + id).pipe(
+      .get('http://157.245.109.0:8080/microapp/goautodial/deleteUser/' + id).pipe(
+      map(
+        res => {
+          return res;
+        },
+        err => {
+          return err;
+        }
+      ))
+  }
+  deleteBreakType(id): Observable<any> {
+    return this.http
+      .get('http://157.245.109.0:8080/microapp/goautodial/deleteBreakType/' + id).pipe(
       map(
         res => {
           return res;

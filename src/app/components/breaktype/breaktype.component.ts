@@ -44,6 +44,7 @@ export class BreakTypeComponent implements OnInit {
     // });
     
   }
+
   fetchCampaing(){
     this.campaingService.fetchCampaing().subscribe(
       data => {

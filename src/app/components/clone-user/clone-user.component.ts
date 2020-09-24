@@ -38,7 +38,6 @@ export class CloneUserComponent implements OnInit {
     this.cloneForm()
   }
   public createUser(value: any): void {
-    
     this.userService.createUser(value).subscribe(
       data => {
         if (data.status) {
@@ -67,7 +66,8 @@ export class CloneUserComponent implements OnInit {
         console.log("DATATTAT####",user)
         // this.groupsById=data[0]
         // console.log(this.groupsById,"####################33")
-        this.name = user.username
+        this.name = user.fullName
+        this.username=user.username
         // this.phonenumber =this.groupsById.phone_login
         this.status =user.status
         this.level =user.level
@@ -80,9 +80,9 @@ export class CloneUserComponent implements OnInit {
 
   private cloneForm(): void {
     this.registerform = this.formBuilder.group({
-      name: new FormControl('', [Validators.required]),
-      group: new FormControl('', Validators.required),
-      // phonenumber: new FormControl('', Validators.required),
+      fullname: new FormControl('', [Validators.required]),
+      usergroup: new FormControl('', Validators.required),
+      username: new FormControl('', Validators.required),
       status: new FormControl('', Validators.required),
       password: new FormControl('', Validators.required),
       confpass: new FormControl('', Validators.required),

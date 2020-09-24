@@ -48,7 +48,7 @@
                     class="material-icons content_copy">&#xe14d;</i></a>
                 </td>
                 <td *ngIf="hasAccess">
-                <a class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
+                <a class="delete" title="Delete" (click)="deleteUser(user.id)" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
               </td>
             </tr>
           </tbody>
