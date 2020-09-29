@@ -161,6 +161,42 @@ export class CampaingService {
         }
       ))
   }
+  fetchTotalLeads(): Observable<any> {
+    return this.http
+      .get('http://157.245.109.0:8080/microapp/goautodial/fetchTotalLeads/').pipe(
+      map(
+        res => {
+          return res;
+        },
+        err => {
+          return err;
+        }
+      ))
+  }
+  fetchActiveLeads(): Observable<any> {
+    return this.http
+      .get('http://157.245.109.0:8080/microapp/goautodial/fetchActiveLeads/').pipe(
+      map(
+        res => {
+          return res;
+        },
+        err => {
+          return err;
+        }
+      ))
+  }
+  fetchLeadsCountAssignedToUser(campaingName): Observable<any> {
+    return this.http
+      .get('http://157.245.109.0:8080/microapp/goautodial/fetchLeadsCountAssignedToUser/'+campaingName).pipe(
+      map(
+        res => {
+          return res;
+        },
+        err => {
+          return err;
+        }
+      ))
+  }
   fetchActiveUserByCampaingName(userName): Observable<any> {
     return this.http
       .post('http://157.245.109.0:8080/microapp/goautodial/fetchactivecampaingwithusers',userName).pipe(

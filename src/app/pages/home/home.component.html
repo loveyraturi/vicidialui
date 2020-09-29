@@ -83,16 +83,20 @@
                         <th>Prefix</th>
                         <th>TotalUser</th>
                         <th>Online</th>
+                        <th>Total Leads</th>
+                        <th>Active leads</th>
                       </tr>
                     </thead>
                     <tbody>
                       <tr *ngFor="let campaing of campaings;  let i = index">
-                        <td><a (click)="modelClick(campaing.name)">{{i+1}}</a></td>
-                        <td><a (click)="modelClick(campaing.name)">{{campaing.name}}</a></td>
+                        <td><a style="cursor: pointer;" (click)="modelClick(campaing.name)">{{i+1}}</a></td>
+                        <td><a style="cursor: pointer;" (click)="modelClick(campaing.name)">{{campaing.name}}</a></td>
                         <td>{{campaing.localCallTime}}</td>
                         <td>{{campaing.dialPrefix}}</td>
-                        <td>{{campaing.count}}</td>
+                        <td style="cursor: pointer;" (click)="fetchActiveleadsPerUser(campaing.name)"><a>{{campaing.count}}</a></td>
                         <td>{{campaing.online}}</td>
+                        <td>{{campaing.totalLeads}}</td>
+                        <td>{{campaing.totalActiveLeads}}</td>
                       </tr>
                     </tbody>
                   </table>
@@ -167,6 +171,30 @@
       </tbody>
     </table>
     
+  </div>
+
+</div>
+<div id="myModal2" class="{{modelClass2}}">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="close" (click)="closeModal2()">&times;</span>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>id</th>
+          <th>User Name</th>
+          <th>Active Leads count</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of ActiveLeadsPerUser; let i = index">
+          <td >{{i+1}}</td>
+          <td>{{user.username}}</td>
+          <td>{{user.count}}</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 
 </div>
