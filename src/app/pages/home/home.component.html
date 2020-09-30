@@ -93,10 +93,10 @@
                         <td><a style="cursor: pointer;" (click)="modelClick(campaing.name)">{{campaing.name}}</a></td>
                         <td>{{campaing.localCallTime}}</td>
                         <td>{{campaing.dialPrefix}}</td>
-                        <td style="cursor: pointer;" (click)="fetchActiveleadsPerUser(campaing.name)"><a>{{campaing.count}}</a></td>
+                        <td >{{campaing.count}}</td>
                         <td>{{campaing.online}}</td>
                         <td>{{campaing.totalLeads}}</td>
-                        <td>{{campaing.totalActiveLeads}}</td>
+                        <td style="cursor: pointer;" (click)="fetchActiveleadsPerUser(campaing.name)"><a>{{campaing.totalActiveLeads}}</a></td>
                       </tr>
                     </tbody>
                   </table>
