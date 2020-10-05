@@ -12,6 +12,7 @@ import { CampaingService } from 'app/services/campaing.service';
   styleUrls: ['./leads.component.css']
 })
 export class LeadsComponent implements OnInit {
+
   public registerform: any = FormGroup;
   public username;
   public fileName;
@@ -38,6 +39,7 @@ export class LeadsComponent implements OnInit {
   public createUser(value: any): void {
    this.campaingService.loadCsvLeadData(value).subscribe(resp=>{
 console.log(resp,"@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
+this.visibility=false;
 this.router.navigateByUrl('/showleads');
    })
     
@@ -82,7 +84,6 @@ this.router.navigateByUrl('/showleads');
     formData.append('duplicateField',this.registerform.get('duplicateField').value);
     console.log("############",formData)
     this.createUser(formData);
-    this.visibility=false;
   }
   handleFileInput(event) {
     console.log(event.target)
