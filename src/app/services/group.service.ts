@@ -27,6 +27,55 @@ export class GroupService {
           }
         ))
   }
+  paymentSchedule(request): Observable<any> {
+    return this.http
+      .post('http://157.245.109.0:8080/microapp/goautodial/paymentSchedule', request).pipe(
+        map(
+          res => {
+            return res;
+          },
+          err => {
+            return err;
+          }
+        ))
+  }
+  setHourlyPrice(request): Observable<any> {
+    return this.http
+      .post('http://157.245.109.0:8080/microapp/goautodial/setHourlyPrice', request).pipe(
+        map(
+          res => {
+            return res;
+          },
+          err => {
+            return err;
+          }
+        ))
+  }
+  addBalance(request): Observable<any> {
+    return this.http
+      .post('http://157.245.109.0:8080/microapp/goautodial/addBalance', request).pipe(
+        map(
+          res => {
+            return res;
+          },
+          err => {
+            return err;
+          }
+        ))
+  }
+
+  fetchBalance(groupName): Observable<any> {
+    return this.http
+      .get('http://157.245.109.0:8080/microapp/goautodial/fetchBalance/'+groupName).pipe(
+        map(
+          res => {
+            return res;
+          },
+          err => {
+            return err;
+          }
+        ))
+  }
   fetchRecordings(): Observable<any> {
     return this.http
       .get('http://157.245.109.0:8080/microapp/goautodial/fetchRecordings').pipe(

@@ -47,6 +47,11 @@ import { AttendanceComponent } from './components/attendance/attendance.componen
 import { ShowRecordingComponent } from './components/show-recording/show-recording.component';
 import { EditBreakTypeComponent } from './components/edit_breaktype/edit_breaktype.component';
 import { CloneBreakTypeComponent } from './components/clone_breaktype/clone_breaktype.component';
+import { RechargeComponent } from './components/recharge/recharge.component';
+import { RechargingComponent } from './components/recharging/recharging.component';
+import { SetPricingComponent } from './components/setPricing/setPricing.component';
+import { ScheduleEmailComponent } from './components/scheduleEmail/scheduleEmail.component';
+import { EmailMessageComponent } from './components/emailMessage/emailMessage.component';
  
 
 @NgModule({
@@ -59,11 +64,16 @@ import { CloneBreakTypeComponent } from './components/clone_breaktype/clone_brea
     WhatsappComponent,
     LoginComponent,
     ReportingComponent,
+    ScheduleEmailComponent,
+    EmailMessageComponent,
     CreateUserComponent,
     ShowUsersComponent,
     DefaultComponent,
     UpdateUserComponent,
+    RechargingComponent,
     CloneUserComponent,
+    SetPricingComponent,
+    RechargeComponent,
     EditBreakTypeComponent,
     CloneBreakTypeComponent,
     CreateCampaingComponent,

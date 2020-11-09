@@ -270,6 +270,30 @@ export class CampaingService {
         }
       ))
   }
+  sendEmailBlast(request): Observable<any> {
+    return this.http
+      .post('http://157.245.109.0:8080/microapp/goautodial/sendEmailToCampaing', request).pipe(
+      map(
+        res => {
+          return res;
+        },
+        err => {
+          return err;
+        }
+      ))
+  }
+  scheduleCornJob(request): Observable<any> {
+    return this.http
+      .post('http://157.245.109.0:8080/microapp/goautodial/scheduleCornJob', request).pipe(
+      map(
+        res => {
+          return res;
+        },
+        err => {
+          return err;
+        }
+      ))
+  }
   updateSurvey(request): Observable<any> {
     return this.http
       .put('http://157.245.109.0:4011/api/campaing/updatesurvey', request).pipe(

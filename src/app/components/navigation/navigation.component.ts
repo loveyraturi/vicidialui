@@ -3,6 +3,7 @@
  */
 import {Component, OnInit, Input} from '@angular/core';
 import {Router} from "@angular/router";
+import { GroupService } from 'app/services/group.service';
 import {Login} from "../../models/login";
 
 @Component({
@@ -14,7 +15,7 @@ export class Navigation implements OnInit {
     public username;
     public level;
     public showGroup=true;
-    constructor( private router: Router) { }
+    constructor( private router: Router,private groupService:GroupService) { }
 
     ngOnInit() { 
         this.level = localStorage.getItem("level")
@@ -24,7 +25,9 @@ export class Navigation implements OnInit {
             this.showGroup=false
         }
       //  console.log(this.loginInfo)
+    //   this.fetchBalance()
     }
+
     activeRoute(routename: string): boolean{
         return this.router.url.indexOf(routename) > -1;
     }
