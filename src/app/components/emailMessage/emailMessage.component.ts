@@ -19,6 +19,8 @@ export class EmailMessageComponent implements OnInit {
   paymentAmount;
   private campaingName;
   private message;
+  private email;
+  private password;
   private popupMessage
   campaings=[];
   loginInfo: Login = {
@@ -58,7 +60,9 @@ export class EmailMessageComponent implements OnInit {
     console.log(this.campaingName)
     var sendEmail={
       campaingName: this.campaingName,
-      message: this.message
+      message: this.message,
+      email: this.email,
+      password:this.password
     }
     this.campaingService.sendEmailBlast(sendEmail).subscribe(resp=>{
       console.log(resp)
