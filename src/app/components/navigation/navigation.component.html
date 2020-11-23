@@ -69,7 +69,11 @@ background: #2f4050;" class="navbar-default navbar-static-side" role="navigation
                 </a>
                   
               </li>
-              
+              <li [ngClass]="{active: activeRoute('show_emails')}">
+                <a [routerLink]="['/show_emails']"><i class="fa fa-group"></i> <span class="nav-label">Emails</span>
+                </a>
+                  
+              </li>
               
             </ul>
           </div>
@@ -137,6 +141,14 @@ background: #2f4050;" class="navbar-default navbar-static-side" role="navigation
           <li *ngIf="level==10" [ngClass]="{active: activeRoute('emailMessage')}">
             <a [routerLink]="['/emailMessage']"><i class="fa fa-group"></i> <span class="nav-label">Email Blasting</span>
     
+            </a>
+          </li>
+          <li [ngClass]="{active: activeRoute('dnd')}">
+            <a [routerLink]="['/dnd']"><i class="fa fa-group"></i> <span class="nav-label">Filter DND</span>
+            </a>
+          </li>
+          <li [ngClass]="{active: activeRoute('emailUpload')}">
+            <a [routerLink]="['/emailUpload']"><i class="fa fa-group"></i> <span class="nav-label">Email Upload</span>
             </a>
           </li>
           <!-- <li [ngClass]="{active: activeRoute('createUser')}">

@@ -29,6 +29,10 @@ import { RechargingComponent } from "./components/recharging/recharging.componen
 import { SetPricingComponent } from "./components/setPricing/setPricing.component";
 import { ScheduleEmailComponent } from "./components/scheduleEmail/scheduleEmail.component";
 import { EmailMessageComponent } from "./components/emailMessage/emailMessage.component";
+import { DndFilterComponent } from "./components/dnd_filter/dnd_filter.component";
+import { EmailUploadComponent } from "./components/email_upload/email_upload.component";
+import { ShowEmailComponent } from "./components/show-email/show-email.component";
+import { ShowEmailDataComponent } from "./components/show_email_data/show_email_data.component";
 
 export const appRoutes=[
     {
@@ -39,6 +43,18 @@ export const appRoutes=[
     {
         path: 'home',
         component: HomeComponent
+    },
+    {
+        path: 'dnd',
+        component: DndFilterComponent
+    },
+    {
+        path: 'show_emails',
+        component: ShowEmailComponent
+    },
+    {
+        path: 'emailUpload',
+        component: EmailUploadComponent
     },
     {
         path: 'agent',
@@ -111,6 +127,10 @@ export const appRoutes=[
     {
         path: 'editbreaktype',
         component:  EditBreakTypeComponent
+    },
+    {
+        path: 'showEmailData',
+        component:  ShowEmailDataComponent
     },
     {
         path: 'clonebreaktype',

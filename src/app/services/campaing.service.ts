@@ -52,9 +52,45 @@ export class CampaingService {
         }
       ))
   }
+  filterDnd(request): Observable<any> {
+    return this.http
+      .post('http://157.245.109.0:8080/microapp/goautodial/filterDnd', request).pipe(
+      map(
+        res => {
+          return res;
+        },
+        err => {
+          return err;
+        }
+      ))
+  }  
+  uploadEmails(request): Observable<any> {
+    return this.http
+      .post('http://157.245.109.0:8080/microapp/goautodial/uploadEmails', request).pipe(
+      map(
+        res => {
+          return res;
+        },
+        err => {
+          return err;
+        }
+      ))
+  }  
   updateCampaingGroupMapping(request): Observable<any> {
     return this.http
       .post('http://157.245.109.0:8080/microapp/goautodial/updateCampaingGroupMapping', request).pipe(
+      map(
+        res => {
+          return res;
+        },
+        err => {
+          return err;
+        }
+      ))
+  }
+  showEmailDataByFileName(fileName): Observable<any> {
+    return this.http
+      .get('http://157.245.109.0:8080/microapp/goautodial/showEmailDataByFileName/'+fileName).pipe(
       map(
         res => {
           return res;
@@ -103,6 +139,18 @@ export class CampaingService {
   fetchLeadVersions(): Observable<any> {
     return this.http
       .get('http://157.245.109.0:8080/microapp/goautodial/fetchLeadVersions').pipe(
+      map(
+        res => {
+          return res;
+        },
+        err => {
+          return err;
+        }
+      ))
+  }
+  showUploadedEmailFiles(): Observable<any> {
+    return this.http
+      .get('http://157.245.109.0:8080/microapp/goautodial/showUploadedEmailFiles').pipe(
       map(
         res => {
           return res;
@@ -248,6 +296,18 @@ export class CampaingService {
   updateLeadStatus(id,status): Observable<any> {
     return this.http
       .get('http://157.245.109.0:8080/microapp/goautodial/updateleadstatus/'+id+'/'+status).pipe(
+      map(
+        res => {
+          return res;
+        },
+        err => {
+          return err;
+        }
+      ))
+  }
+  updateEmailStatus(id,status): Observable<any> {
+    return this.http
+      .get('http://157.245.109.0:8080/microapp/goautodial/updateEmailStatus/'+id+'/'+status).pipe(
       map(
         res => {
           return res;
