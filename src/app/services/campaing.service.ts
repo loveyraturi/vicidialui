@@ -76,6 +76,18 @@ export class CampaingService {
         }
       ))
   }  
+  uploadDND(request): Observable<any> {
+    return this.http
+      .post('http://157.245.109.0:8080/microapp/goautodial/uploadDND', request).pipe(
+      map(
+        res => {
+          return res;
+        },
+        err => {
+          return err;
+        }
+      ))
+  }  
   updateCampaingGroupMapping(request): Observable<any> {
     return this.http
       .post('http://157.245.109.0:8080/microapp/goautodial/updateCampaingGroupMapping', request).pipe(
