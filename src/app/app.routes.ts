@@ -33,6 +33,7 @@ import { DndFilterComponent } from "./components/dnd_filter/dnd_filter.component
 import { EmailUploadComponent } from "./components/email_upload/email_upload.component";
 import { ShowEmailComponent } from "./components/show-email/show-email.component";
 import { ShowEmailDataComponent } from "./components/show_email_data/show_email_data.component";
+import { DNDUploadComponent } from "./components/dnd_upload/dnd_upload.component";
 
 export const appRoutes=[
     {
@@ -47,6 +48,10 @@ export const appRoutes=[
     {
         path: 'dnd',
         component: DndFilterComponent
+    },
+    {
+        path: 'dndUpload',
+        component: DNDUploadComponent
     },
     {
         path: 'show_emails',

@@ -20,13 +20,6 @@
 
                         <div class="panel-body">
                             <div class="form-group">
-                                <label for="campaingName">Write Message</label>
-                                <div class="input-group">
-                                    <div class="input-group-addon"><i class="glyphicon glyphicon-level-up"></i></div>
-                                    <textarea style="width:100%;height:100px;" [(ngModel)]="message"></textarea>
-                                </div>
-                            </div>
-                            <div class="form-group">
                                 <label for="campaingName">Email (Only Gmail accepted)</label>
                                 <div class="input-group">
                                     <div class="input-group-addon"><i class="glyphicon glyphicon-level-up"></i></div>
@@ -48,6 +41,20 @@
                                         <option value="" disabled selected>Choose Camaping</option>
                                         <option *ngFor="let campaing of campaings" value="{{campaing.name}}">{{campaing.name}}</option>
                                       </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="campaingName">Subject</label>
+                                <div class="input-group">
+                                    <div class="input-group-addon"><i class="glyphicon glyphicon-level-up"></i></div>
+                                    <input type="text" class="form-control" [(ngModel)]="subject">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="campaingName">Write Message</label>
+                                <div class="input-group">
+                                    <div class="input-group-addon"><i class="glyphicon glyphicon-level-up"></i></div>
+                                    <textarea style="width:100%;height:100px;" [(ngModel)]="message"></textarea>
                                 </div>
                             </div>
                             <button type="submit" (click)="submit()" class="btn btn-block btn-success"

@@ -142,7 +142,7 @@ export class ShowEmailComponent implements OnInit {
     });
   }
   addNew() {
-    this.router.navigateByUrl("/leads")
+    this.router.navigateByUrl("/emailUpload")
   }
   submit({ value }: any): void {
     console.log(value, "RECHAIN#################");
