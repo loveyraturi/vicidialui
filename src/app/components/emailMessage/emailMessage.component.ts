@@ -68,6 +68,7 @@ export class EmailMessageComponent implements OnInit {
     }
     this.campaingService.sendEmailBlast(sendEmail).subscribe(resp=>{
       console.log(resp)
+      this.modelClick();
     })
     // var request={
     //   totalAmountPerHours: this.amount,
