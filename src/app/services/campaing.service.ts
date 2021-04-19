@@ -162,7 +162,7 @@ export class CampaingService {
   }
   fetchFileNameWithCount(): Observable<any> {
     return this.http
-      .get('http://localhost:6001/goautodial/fetchLeadVersionsWithCount').pipe(
+      .get('http://103.31.147.252:6001/microapp/goautodial/fetchLeadVersionsWithCount').pipe(
       map(
         res => {
           return res;
@@ -174,7 +174,7 @@ export class CampaingService {
   }
   rechain(fileName,status): Observable<any> {
     return this.http
-      .get('http://localhost:6001/goautodial/rechain/'+fileName+'/'+status).pipe(
+      .get('http://103.31.147.252:6001/microapp/goautodial/rechain/'+fileName+'/'+status).pipe(
       map(
         res => {
           return res;
