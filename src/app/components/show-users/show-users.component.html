@@ -33,8 +33,8 @@
               <th>user_name</th>
               <th>Group</th>
               <th>Status</th>
-              <th>Actions</th>
-              <th *ngIf="hasAccess">Delete</th>
+              <th *ngIf="level>=7">Actions</th>
+              <th *ngIf="level>=8">Delete</th>
 
             </tr>
           </thead>
@@ -45,14 +45,14 @@
               <td>{{user.username}}</td>
               <td>{{user.usergroup}}</td>
               <td><ui-switch size="small" [(ngModel)]="user.enable" (change)="onChange($event,user.id)"></ui-switch></td>
-              <td>
+              <td *ngIf="level>=7">
                 <a class="edit" (click)="updateUser(user.fullName)" title="Edit" data-toggle="tooltip"><i
                     class="material-icons">&#xE254;</i></a>
 
                 <a class="edit" (click)="cloneUser(user.fullName)" title="Edit" data-toggle="tooltip"><i
                     class="material-icons content_copy">&#xe14d;</i></a>
                 </td>
-                <td *ngIf="hasAccess">
+                <td *ngIf="level>=8">
                 <a class="delete" title="Delete" (click)="deleteUser(user.id)" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
               </td>
             </tr>

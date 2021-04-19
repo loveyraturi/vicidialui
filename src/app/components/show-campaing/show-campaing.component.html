@@ -28,8 +28,8 @@
               <th>Dial prefix</th>
               <th>Calling Time</th>
               <th>Status</th>
-              <th>Actions</th>
-              <th *ngIf="hasAccess">Delete</th>
+              <th *ngIf="level>=7">Actions</th>
+              <th *ngIf="level>=8">Delete</th>
             </tr>
           </thead>
           <tbody>
@@ -42,14 +42,14 @@
                 <ui-switch size="small" [(ngModel)]="campaing.enable" (change)="onChange($event,campaing.id)">
                 </ui-switch>
               </td>
-              <td>
+              <td *ngIf="level>=7">
                 <a class="edit" (click)="updateCampaing(campaing.name)" title="Edit" data-toggle="tooltip"><i
                     class="material-icons">&#xE254;</i></a>
 
                 <a class="edit" (click)="cloneCampaing(campaing.name)" title="Edit" data-toggle="tooltip"><i
                     class="material-icons content_copy">&#xe14d;</i></a>
               </td>
-              <td *ngIf="hasAccess">
+              <td *ngIf="level>=8">
                 <a class="delete" (click)="deleteCampaing(campaing.id)" title="Delete" data-toggle="tooltip"><i
                     class="material-icons">&#xE872;</i></a>
               </td>

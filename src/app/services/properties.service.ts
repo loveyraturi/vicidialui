@@ -17,7 +17,7 @@ export class PropertiesService {
 
   addProperties(request): Observable<any> {
     return this.http
-      .post('http://157.245.109.0:8080/microapp/goautodial/addProperties', request).pipe(
+      .post('http://103.31.147.252:6001/microapp/goautodial/addProperties', request).pipe(
       map(
         res => {
           return res;

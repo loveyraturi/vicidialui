@@ -20,13 +20,15 @@ export class ShowLeadsComponent implements OnInit {
   public hasAccess = false;
   public modelClass = "modal";
   public selectedleadname;
+  public numberOfItemsRechained
+  public processing=false
+  public fileCounter;
   loginInfo: Login = {
     user_name: null,
   }
   public leads;
   constructor(private formBuilder: FormBuilder, private campaingService: CampaingService, private groupService: GroupService, private router: Router) {
     this.fetchLeadVersions();
-
     // this.phonenumber=localStorage.getItem("phone_number")
 
   }
@@ -102,6 +104,12 @@ export class ShowLeadsComponent implements OnInit {
   modelClick(leadName) {
     this.selectedleadname = leadName
     console.log("model id is ", this.selectedleadname)
+    this.campaingService.fetchFileNameWithCount().subscribe(
+      data => {
+        console.log("#########@@@@@@@@@@@@@@@###########",leadName)
+        console.log(data)
+        this.fileCounter=data[leadName]
+      })
     // this.fetchLiveUserFromCampaing(id);
     //  this.usersbycampaing= this.userDetails[campaingName]
     //  console.log(this.usersbycampaing)
@@ -142,6 +150,12 @@ export class ShowLeadsComponent implements OnInit {
   }
   submit({ value }: any): void {
     console.log(value, "RECHAIN#################");
+    this.processing=true
+    this.campaingService.rechain(value.selectedleadname,value.status).subscribe(resp=>{
+      this.numberOfItemsRechained=resp.count
+      this.processing=false
+      this.fileCounter=0
+    })
   }
 
 }

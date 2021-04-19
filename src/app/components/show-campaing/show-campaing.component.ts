@@ -22,7 +22,6 @@ export class ShowCampaingComponent implements OnInit {
 public campaings;
   constructor(private campaingService: CampaingService, private groupService: GroupService, private router: Router) { 
     this.fetchCampaing();
-   
    // this.phonenumber=localStorage.getItem("phone_number")
     
   }

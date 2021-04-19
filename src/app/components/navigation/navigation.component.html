@@ -101,7 +101,7 @@ background: #2f4050;" class="navbar-default navbar-static-side" role="navigation
   
           </a>
         </li> -->
-        <li [ngClass]="{active: activeRoute('misReport')}">
+        <li *ngIf="level>=6" [ngClass]="{active: activeRoute('misReport')}">
             <a class="drops"><i class="fa fa-dashboard"></i> <span class="nav-label">Reporting</span><i
                 class="fa fa-caret-down" style="    margin-left: 36%;"></i>
               <div class="drop">
@@ -123,7 +123,7 @@ background: #2f4050;" class="navbar-default navbar-static-side" role="navigation
             </a>
           </li>
 
-          <li *ngIf="showGroup" [ngClass]="{active: activeRoute('showGroups')}">
+          <li *ngIf="level>=8" [ngClass]="{active: activeRoute('showGroups')}">
             <a [routerLink]="['/showleads']"><i class="fa fa-group"></i> <span class="nav-label">PhoneBook</span>
     
             </a>
@@ -138,16 +138,16 @@ background: #2f4050;" class="navbar-default navbar-static-side" role="navigation
     
             </a>
           </li>
-          <li *ngIf="level==10" [ngClass]="{active: activeRoute('emailMessage')}">
+          <li *ngIf="level>=5" [ngClass]="{active: activeRoute('emailMessage')}">
             <a [routerLink]="['/emailMessage']"><i class="fa fa-group"></i> <span class="nav-label">Email Blasting</span>
     
             </a>
           </li>
-          <li [ngClass]="{active: activeRoute('dnd')}">
+          <li *ngIf="level>=4"  [ngClass]="{active: activeRoute('dnd')}">
             <a [routerLink]="['/dnd']"><i class="fa fa-group"></i> <span class="nav-label">Filter DND</span>
             </a>
           </li>
-          <li [ngClass]="{active: activeRoute('dndUpload')}">
+          <li *ngIf="level>=7"  [ngClass]="{active: activeRoute('dndUpload')}">
             <a [routerLink]="['/dndUpload']"><i class="fa fa-group"></i> <span class="nav-label">DND Upload</span>
             </a>
           </li>
