@@ -1,4 +1,4 @@
-<div id="wrapper">
+<div id="wrapper" style="background: #2f4050;">
   <navigation [loginInfo]="loginInfo" *ngIf="loginInfo"></navigation>
 
   <div id="page-wrapper" class="gray-bg">
@@ -22,65 +22,79 @@
               <form [formGroup]="registerform" (submit)="submit(registerform)" method="POST">
 
                 <div class="form-group">
-                    <label for="level">Campaings</label>
-                    <div class="input-group">
-                      <div class="input-group-addon"><i class="glyphicon glyphicon-level-up"></i></div>
-                      <select class="mdb-select md-form form-control" formControlName="campaing">
-                        <option value="" disabled selected>Select campaing</option>
-                        <option *ngFor="let campaing of campaings" [value]="campaing.name">{{campaing.name}}</option>
-                      </select>
-                    </div>
+                  <label for="level">Campaings</label>
+                  <div class="input-group">
+                    <div class="input-group-addon"><i class="glyphicon glyphicon-level-up"></i></div>
+                    <select (change)="campaingSelected($event.target.value)" class="mdb-select md-form form-control" formControlName="campaing">
+                      <option value="" disabled selected>Select campaing</option>
+                      <option *ngFor="let campaing of campaings" [value]="campaing.name">{{campaing.name}}</option>
+                    </select>
                   </div>
+                </div>
+                <!-- <div class="form-group">
+                  <label for="level">User</label>
+                  <div class="input-group">
+                    <div class="input-group-addon"><i class="glyphicon glyphicon-level-up"></i></div>
+                    <select class="mdb-select md-form form-control" formControlName="user">
+                      <option value="" disabled selected>Select user</option>
+                      <option *ngFor="let user of users" [value]="user.name">{{user.name}}</option>
+                    </select>
+                  </div>
+                </div> -->
                 <div class="form-group">
                   <label for="duplicateCheck">Duplicate Check</label>
                   <div class="input-group">
                     <div class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></div>
                     <select class="mdb-select md-form form-control" formControlName="duplicateCheck">
-                        <option value="" disabled selected>Select Options</option>
-                        <option value="No">No</option>
-                        <option value="List">List</option>
-                        <option value="Campaing">Campaing</option>
-                        <option value="Global">Global</option>
-                      </select>
+                      <option value="" disabled selected>Select Options</option>
+                      <option value="No">No</option>
+                      <option value="List">List</option>
+                      <option value="Campaing">Campaing</option>
+                      <option value="Global">Global</option>
+                    </select>
                   </div>
                 </div>
                 <div class="form-group">
-                    <label for="duplicateField">Duplicate Field</label>
-                    <div class="input-group">
-                      <div class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></div>
-                      <select class="mdb-select md-form form-control" formControlName="duplicateField">
-                          <option value="" disabled selected>Select Options</option>
-                          <option value="phone_number">phone_number</option>
-                          <option value="unique_id">unique_id</option>
-                        </select>
-                    </div>
+                  <label for="duplicateField">Duplicate Field</label>
+                  <div class="input-group">
+                    <div class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></div>
+                    <select class="mdb-select md-form form-control" formControlName="duplicateField">
+                      <option value="" disabled selected>Select Options</option>
+                      <option value="phone_number">phone_number</option>
+                      <option value="unique_id">unique_id</option>
+                    </select>
                   </div>
-                  <div class="form-group">
-                      <label for="duplicateAction">Duplication action</label>
-                      <div class="input-group">
-                        <div class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></div>
-                        <select class="mdb-select md-form form-control" formControlName="duplicateAction">
-                            <option value="" disabled selected>Select Options</option>
-                            <option value="Discard">Discard</option>
-                            <!-- <option value="Update">Update</option> -->
-                          </select>
-                      </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="leadFile">File to upload</label>
-                        <div class="input-group">
-                          <div class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></div>
-                          <input type="file" formControlName="file" name="leadFile"
-                      id="file" class="form-control" (change)="handleFileInput($event)" placeholder="Enter file to upload" tabindex="1">
-                        </div>
-                      </div>
+                </div>
+                <div class="form-group">
+                  <label for="duplicateAction">Duplication action</label>
+                  <div class="input-group">
+                    <div class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></div>
+                    <select class="mdb-select md-form form-control" formControlName="duplicateAction">
+                      <option value="" disabled selected>Select Options</option>
+                      <option value="Discard">Discard</option>
+                      <!-- <option value="Update">Update</option> -->
+                    </select>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="leadFile">File to upload</label>
+                  <div class="input-group">
+                    <div class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></div>
+                    <input type="file" formControlName="file" name="leadFile" id="file" class="form-control"
+                      (change)="handleFileInput($event)" placeholder="Enter file to upload" tabindex="1">
+                  </div>
+                </div>
                 <button type="submit" class="btn btn-block btn-success" tabindex="5">Upload File</button>
               </form>
+              <div *ngIf="visibility">
+                <div class="loader visibilityshow"></div>
+              </div>
             </div>
           </div>
           <!--.panel-->
 
         </div>
+
       </div>
     </div>
     <div class="footer">

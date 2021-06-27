@@ -17,7 +17,7 @@ export class UserService {
 
   createUser(request): Observable<any> {
     return this.http
-      .post('http://103.31.147.252:6001/microapp//goautodial/createuser', request).pipe(
+      .post('http://103.31.147.252:6001/microapp/goautodial/createuser', request).pipe(
       map(
         res => {
           return res;
@@ -39,9 +39,33 @@ export class UserService {
         }
       ))
   }
+  cloneBreakType(request): Observable<any> {
+    return this.http
+      .post('http://103.31.147.252:6001/microapp/goautodial/cloneBreakType', request).pipe(
+      map(
+        res => {
+          return res;
+        },
+        err => {
+          return err;
+        }
+      ))
+  }
+  updateBreakType(request): Observable<any> {
+    return this.http
+      .post('http://103.31.147.252:6001/microapp/goautodial/updateBreakType', request).pipe(
+      map(
+        res => {
+          return res;
+        },
+        err => {
+          return err;
+        }
+      ))
+  }
   assignUserToGroup(request): Observable<any> {
     return this.http
-      .post('http://103.31.147.252:6001/microapp//goautodial/assignUserToGroup', request).pipe(
+      .post('http://103.31.147.252:6001/microapp/goautodial/assignUserToGroup', request).pipe(
       map(
         res => {
           return res;
@@ -53,7 +77,7 @@ export class UserService {
   }
   updateAssignUserToGroup(request): Observable<any> {
     return this.http
-      .post('http://103.31.147.252:6001/microapp//goautodial/updateAssignUserToGroup', request).pipe(
+      .post('http://103.31.147.252:6001/microapp/goautodial/updateAssignUserToGroup', request).pipe(
       map(
         res => {
           return res;
@@ -65,7 +89,7 @@ export class UserService {
   }
   fetchUser(): Observable<any> {
     return this.http
-      .get('http://103.31.147.252:6001/microapp//goautodial/fetchAllUsers').pipe(
+      .get('http://103.31.147.252:6001/microapp/goautodial/fetchAllUsers').pipe(
       map(
         res => {
           return res;
@@ -77,7 +101,7 @@ export class UserService {
   }
   openBrowser(): Observable<any> {
     return this.http
-      .get('http://103.31.147.252:4011/api/agents/openBrowser').pipe(
+      .get('http://157.245.109.0:4011/api/agents/openBrowser').pipe(
         map(
           res => {
             return res;
@@ -89,7 +113,7 @@ export class UserService {
     }
     initWhatsapp(number,message): Observable<any> {
       return this.http
-        .get('http://103.31.147.252:4011/api/agents/initwhatsapp/'+number+'/'+message).pipe(
+        .get('http://157.245.109.0:4011/api/agents/initwhatsapp/'+number+'/'+message).pipe(
           map(
             res => {
               return res;
@@ -101,7 +125,7 @@ export class UserService {
       }
       sendWhatsapp(): Observable<any> {
         return this.http
-          .get('http://103.31.147.252:4011/api/agents/sendwhatsapp').pipe(
+          .get('http://157.245.109.0:4011/api/agents/sendwhatsapp').pipe(
             map(
               res => {
                 return res;
@@ -113,7 +137,7 @@ export class UserService {
         }
   fetchUserByCampaing(campaing): Observable<any> {
     return this.http
-      .get('http://103.31.147.252:6001/microapp//goautodial/fetchusersbycampaing/'+campaing).pipe(
+      .get('http://103.31.147.252:6001/microapp/goautodial/fetchusersbycampaing/'+campaing).pipe(
       map(
         res => {
           return res;
@@ -125,7 +149,7 @@ export class UserService {
   }
   fetchCountOfReport(): Observable<any> {
     return this.http
-      .get('http://103.31.147.252:4011/api/user/fetchcountofreport').pipe(
+      .get('http://157.245.109.0:4011/api/user/fetchcountofreport').pipe(
       map(
         res => {
           return res;
@@ -137,7 +161,7 @@ export class UserService {
   }
   fetchReportData(limit,offset): Observable<any> {
     return this.http
-      .get('http://103.31.147.252:4011/api/user/fetchreportdata/'+limit+"/"+offset).pipe(
+      .get('http://157.245.109.0:4011/api/user/fetchreportdata/'+limit+"/"+offset).pipe(
       map(
         res => {
           return res;
@@ -150,7 +174,7 @@ export class UserService {
   
   createExcel(data): Observable<any> {
     return this.http
-      .post('http://103.31.147.252:4011/api/user/createexcel',data).pipe(
+      .post('http://157.245.109.0:4011/api/user/createexcel',data).pipe(
       map(
         res => {
           console.log(res,"##############$$$$$$$$$$$$$$$$$$$$")
@@ -247,7 +271,7 @@ export class UserService {
   }
   fetchUserCountByCampaing(id): Observable<any> {
     return this.http
-      .get('http://103.31.147.252:4011/api/user/fetchusercountbycampaing/'+id).pipe(
+      .get('http://157.245.109.0:4011/api/user/fetchusercountbycampaing/'+id).pipe(
       map(
         res => {
           return res;
@@ -259,7 +283,7 @@ export class UserService {
   }
   fetchUserFromCampaing(id): Observable<any> {
     return this.http
-      .get('http://103.31.147.252:4011/api/user/fetchuserfromcampaing/'+id).pipe(
+      .get('http://157.245.109.0:4011/api/user/fetchuserfromcampaing/'+id).pipe(
       map(
         res => {
           return res;
@@ -271,7 +295,19 @@ export class UserService {
   }
   deleteUser(id): Observable<any> {
     return this.http
-      .get('http://103.31.147.252:4011/api/user/deleteuser/' + id).pipe(
+      .get('http://103.31.147.252:6001/microapp/goautodial/deleteUser/' + id).pipe(
+      map(
+        res => {
+          return res;
+        },
+        err => {
+          return err;
+        }
+      ))
+  }
+  deleteBreakType(id): Observable<any> {
+    return this.http
+      .get('http://103.31.147.252:6001/microapp/goautodial/deleteBreakType/' + id).pipe(
       map(
         res => {
           return res;

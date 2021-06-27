@@ -1,5 +1,5 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-<div id="wrapper">
+<div id="wrapper" style="background: #2f4050;">
   <navigation [loginInfo]="loginInfo" *ngIf="loginInfo"></navigation>
 
   <div id="page-wrapper" class="gray-bg">
@@ -26,6 +26,8 @@
               <th style="width: 15%;">Id</th>
               <th style="width: 15%;">Break Name</th>
               <th style="width: 15%;">Campaing Name</th>
+              <th style="width: 15%;">Actions</th>
+              <th style="width: 15%;" *ngIf="hasAccess">Delete</th>
             </tr>
           </thead>
           <tbody>
@@ -33,7 +35,16 @@
               <td>{{i+1}}</td>
               <td>{{breakType.breakType}}</td>
               <td>{{breakType.campaingName}}</td>
-             
+              <td>
+                <a class="edit" (click)="updateBreak(breakType.id,breakType.breakType,breakType.campaingName)" title="Edit" data-toggle="tooltip"><i
+                    class="material-icons">&#xE254;</i></a>
+                <a class="edit" (click)="cloneBreak(breakType.id,breakType.breakType,breakType.campaingName)" title="Edit" data-toggle="tooltip"><i
+                    class="material-icons content_copy">&#xe14d;</i></a>
+              </td>
+              <td *ngIf="hasAccess">
+                <a class="delete" (click)="deleteBreakType(breakType.id)" title="Delete" data-toggle="tooltip"><i
+                    class="material-icons">&#xE872;</i></a>
+              </td>
             </tr>
           </tbody>
         </table>

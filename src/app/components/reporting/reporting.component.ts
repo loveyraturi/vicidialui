@@ -14,7 +14,6 @@ import * as FileSaver from 'file-saver';
 })
 export class ReportingComponent implements OnInit {
 
-
   title = 'angular-exportexcel-example';
   buttonDisabled = "disabled"
   customers: any = [];
@@ -24,7 +23,9 @@ export class ReportingComponent implements OnInit {
   public campaingList;
   public selectedCampaings = [];
   public users;
+  public phoneNumber="";
   public paginationLength;
+  public status=[];
   public responseLength;
   public defaultPagination
   loginInfo: Login = {
@@ -61,6 +62,7 @@ export class ReportingComponent implements OnInit {
       unSelectAllText: 'UnSelect All',
       enableSearchFilter: true,
       enableCheckAll: true,
+      badgeShowLimit: 5,
       classes: ""
     };
     this.dropdownUserSettings = {
@@ -70,6 +72,7 @@ export class ReportingComponent implements OnInit {
       unSelectAllText: 'UnSelect All',
       enableSearchFilter: true,
       enableCheckAll: true,
+      badgeShowLimit: 5,
       classes: ""
     };
   }
@@ -109,8 +112,9 @@ export class ReportingComponent implements OnInit {
     minutes = minutes < 10 ? '0'+minutes : minutes;
     var strTime = hours + ':' + minutes + ':00';
     var month= (date.getMonth()+1).toString().length==1?"0"+(date.getMonth()+1).toString():date.getMonth()+1
+    var day=(date.getDate()).toString().length==1?"0"+(date.getDate()).toString():date.getDate()
     console.log(month,"############month")
-    return (date.getFullYear()+"-"+month+ "-" + date.getDate() + " " + strTime);
+    return (date.getFullYear()+"-"+month+ "-" + day + " " + strTime);
   }
 
   fetchUsers() {
@@ -138,10 +142,10 @@ export class ReportingComponent implements OnInit {
     console.log(item, "################DeSelected##################", this.users)
   }
   onSelectAll(items: any) {
-    console.log(items, "################Selected1##################", this.users)
+    console.log(items, "################Selectedall##################", this.users)
   }
   onDeSelectAll(items: any) {
-    console.log(items, "################DeSelected1##################", this.users)
+    console.log(items, "################DeSelectedall##################", this.users)
   }
 
 
@@ -184,19 +188,25 @@ export class ReportingComponent implements OnInit {
   fetchCampaing() {
     this.campaingService.fetchCampaing().subscribe(
       data => {
-        console.log("#$$$$$$",data)
+        console.log(this.level,"#$$$$$$",data)
         this.campaingList = data.filter(item => {
           console.log(this.campaing)
+          if(this.level<9){
           if (item.name == this.campaing) {
             return item
           }
+        }else{
+          return item
+        }
         })
+        console.log(this.campaing,"########campaingList#######",this.campaingList)
         this.campaingList.forEach((item) => {
-
+          // if(item.name==this.campaing){
           var dropdownListLocal = {
             id: item.id,
             itemName: item.name
           }
+        // }
 
           this.dropdownList.push(dropdownListLocal)
         })
@@ -237,16 +247,27 @@ export class ReportingComponent implements OnInit {
     this.selectedUserItems.forEach((items => {
       userId.push(items.itemName)
     }))
-
+    this.reportData=[]
     var requestData = {
       datefrom: this.formatDate(this.datefrom),
       dateto:  this.formatDate(this.dateto),
       campaingName: campaingID,
       userName: userId,
       limit: start,
-      offset: end
+      offset: end,
+      phoneNumber: this.phoneNumber
     }
     this.loading = true
+    this.status=[]
+    this.campaingService.fetchStatus(campaingID).subscribe(resp=>{
+      console.log(resp.statusFeedback.split(','));
+      this.status.push("user")
+      this.status.push("OCCUPIED")
+      this.status=this.status.concat(resp.statusFeedback.split(',')).map(Function.prototype.call, String.prototype.trim)
+      this.status.push("TOTAL")
+      console.log("#########this.status########",this.status)
+    });
+    
     this.userService.fetchCountReportDataBetween(requestData).subscribe(
       data => {
 
@@ -258,18 +279,48 @@ export class ReportingComponent implements OnInit {
         for(var key in data) {
           // alert("Key: " + key + " value: " + data[key]);
           var datamap={}
+         
           data[key].forEach(element => {
-            console.log(key,element)
+            // console.log(key,element)
             for(var keyelement in element) {
-            datamap[keyelement]=element[keyelement];
+            datamap[keyelement.trim()]=element[keyelement.trim()];
             }
+           
           });
           datamap["user"]=key
           userData.push(datamap)
         }
+        userData.map(elem=>{
+          var total=0
+          this.status.forEach(itm => {
+            if(isNaN(elem[itm])){
+
+            }else{
+              total=total+parseInt(elem[itm],10)
+            }
+           
+          });
+          elem["TOTAL"]=total
+          // console.log(elem.user,"#################",elem.TOTAL);
+          return elem;
+          // console.log(total,"##########fffffffffffffffff#########")
+        })
         console.log(userData,"#################USERDATA###########");
         this.defaultPagination = userData.length == 0 ? true : false
         this.reportData = userData
+        // this.reportData.forEach(it => {
+                  
+        //   this.status.forEach(el => {
+        //     console.log(/\s/.test(el.trim()),el,"#$#$#$STATUS")
+        //     if(el.trim()=="CALLBACK"){
+        //       // if(it["user"]=="TS12"){
+        //         console.log(it["CALLBACK"],"$$$$$$")
+        //         console.log(el,"###",it[el.trim()])
+        //       // } 
+            
+        //     }
+        //   });
+        // });
       })
   }
 
@@ -291,6 +342,7 @@ export class ReportingComponent implements OnInit {
     var start = limit
     var end = offset
     console.log(start, end)
+    
     this.userService.fetchReportData(start, end).subscribe(
       data => {
         console.log(data.length, "##################")
@@ -327,7 +379,8 @@ export class ReportingComponent implements OnInit {
       datefrom: this.formatDate(this.datefrom),
       dateto:  this.formatDate(this.dateto),
       campaingName: campaingID,
-      userName: userId
+      userName: userId,
+      phoneNumber: this.phoneNumber
     }
     this.userService.fetchReportDataBetween(requestData).subscribe(
       data => {

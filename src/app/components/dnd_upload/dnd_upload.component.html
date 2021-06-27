@@ -1,0 +1,63 @@
+<div id="wrapper" style="background: #2f4050;">
+  <navigation [loginInfo]="loginInfo" *ngIf="loginInfo"></navigation>
+
+  <div id="page-wrapper" class="gray-bg">
+
+    <topnavbar></topnavbar>
+    <div class="container">
+      <div class="row">
+        <div
+          class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-3 col-md-5 col-md-offset-4 col-lg-4 col-lg-offset-4 createuser">
+
+          <h3>DND upload</h3>
+
+          <div class="panel panel-default box-shadow">
+            <div class="panel-heading">
+              <span class="text-primary">DND Upload</span>
+              <span class="text-muted pull-right today" title="Today"></span>
+            </div>
+            <!--.panel-heading-->
+
+            <div class="panel-body">
+              <form [formGroup]="registerform" (submit)="submit(registerform)" method="POST">
+                <!-- <div class="form-group">
+                  <label for="level">Campaings</label>
+                  <div class="input-group">
+                    <div class="input-group-addon"><i class="glyphicon glyphicon-level-up"></i></div>
+                    <select class="mdb-select md-form form-control" formControlName="campaing">
+                      <option value="" disabled selected>Select campaing</option>
+                      <option *ngFor="let campaing of campaings" [value]="campaing.name">{{campaing.name}}</option>
+                    </select>
+                  </div>
+                </div> -->
+                <div class="form-group">
+                  <label for="leadFile">File to upload</label>
+                  <div class="input-group">
+                    <div class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></div>
+                    <input type="file" formControlName="file" name="leadFile" id="file" class="form-control"
+                      (change)="handleFileInput($event)" placeholder="Enter file to upload" tabindex="1">
+                  </div>
+                </div>
+                <button type="submit" class="btn btn-block btn-success" tabindex="5">Upload</button>
+              </form>
+              <div *ngIf="response">
+                DND successfully uploaded
+              </div>
+              <div *ngIf="visibility">
+                <div class="loader visibilityshow"></div>
+              </div>
+            </div>
+          </div>
+          <!--.panel-->
+
+        </div>
+        
+      </div>
+    </div>
+    <div class="footer">
+      <div>
+        <strong>Copyright</strong> Microsmart &copy; 2020
+      </div>
+    </div>
+  </div>
+</div>

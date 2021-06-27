@@ -1,0 +1,86 @@
+<div id="wrapper" style="background: #2f4050;">
+    <navigation [loginInfo]="loginInfo" *ngIf="loginInfo"></navigation>
+
+    <div id="page-wrapper" class="gray-bg">
+
+        <topnavbar></topnavbar>
+        <div class="container">
+            <div class="row">
+                <div
+                    class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-3 col-md-5 col-md-offset-4 col-lg-4 col-lg-offset-4 createuser">
+
+                    <h3>Set Group Hourly Price</h3>
+
+                    <div class="panel panel-default box-shadow">
+                        <div class="panel-heading">
+                            <span class="text-primary">Set Price</span>
+                            <span class="text-muted pull-right today" title="Today"></span>
+                        </div>
+                        <!--.panel-heading-->
+
+                        <div class="panel-body">
+                            <div class="form-group">
+                                <label for="campaingName">Campaing Name</label>
+                                <div class="input-group">
+                                    <div class="input-group-addon"><i class="glyphicon glyphicon-level-up"></i></div>
+                                    <select class="mdb-select md-form form-control"  (change)="campaingEvent($event.target.value)" [(ngModel)]="campaingName">
+                                        <option value="" disabled selected>Choose your campaing</option>
+                                        <option *ngFor="let campaing of campaings" value="{{campaing.name}}">{{campaing.name}}</option>
+                                      </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="campaingName">Status</label>
+                                <div class="input-group">
+                                    <div class="input-group-addon"><i class="glyphicon glyphicon-level-up"></i></div>
+                                    <select class="mdb-select md-form form-control"  [(ngModel)]="statusValue">
+                                        <option value="" disabled selected>Choose your campaing</option>
+                                        <option *ngFor="let status of statuses" value="{{status}}">{{status}}</option>
+                                      </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="level">Email</label>
+                                <div class="input-group">
+                                    <div class="input-group-addon"><i class="glyphicon glyphicon-level-up"></i></div>
+                                    <input autofocus required type="text" [(ngModel)]="to"
+                                        class="form-control" tabindex="1">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="campaingName">Corn Job</label>
+                                <div class="input-group">
+                                    <div class="input-group-addon"><i class="glyphicon glyphicon-level-up"></i></div>
+                                    <select class="mdb-select md-form form-control"  [(ngModel)]="scheduleType">
+                                        <option value="" disabled selected>Choose your Scheduling</option>
+                                        <option  value="firstHalf">First Half</option>
+                                        <option  value="secondHalf">Second Half</option>
+                                      </select>
+                                </div>
+                            </div>
+                            <button type="submit" (click)="submit()" class="btn btn-block btn-success"
+                                tabindex="5">Set Price</button>
+                        </div>
+                    </div>
+                    <!--.panel-->
+
+                </div>
+            </div>
+        </div>
+        <div id="myModal" class="{{modelClass}}">
+
+            <!-- Modal content -->
+            <div class="modal-content">
+                <span class="close" (click)="closeModal()">&times;</span>
+                <h2> Thanks</h2>
+                <p> {{message}}</p>
+            </div>
+
+        </div>
+        <div class="footer">
+            <div>
+                <strong>Copyright</strong> Microsmart &copy; 2020
+            </div>
+        </div>
+    </div>
+</div>

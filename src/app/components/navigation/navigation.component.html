@@ -12,17 +12,19 @@
   }
 
 </style>
-<nav class="navbar-default navbar-static-side" role="navigation">
+<nav style="    bottom: 0;
+top: 0;
+background: #2f4050;" class="navbar-default navbar-static-side" role="navigation">
   <div class="sidebar-collapse">
     <ul class="nav metismenu" id="side-menu">
       <li class="nav-header" style="padding: 0px 0px;">
         <div class="dropdown profile-element" style="height: 42px;">
           <span>
-            <img alt="image" class="img-custom" height="60" src="./assets/img/logo.jpg" />
+            <img alt="image" class="img-custom" height="60" src="./assets/img/logo.jpeg" />
           </span>
         </div>
         <div class="logo-element">
-          VICI
+          MBS
         </div>
       </li>
       <li [ngClass]="{active: activeRoute('home')}" style="margin-top: 20px;">
@@ -67,7 +69,11 @@
                 </a>
                   
               </li>
-              
+              <li [ngClass]="{active: activeRoute('show_emails')}">
+                <a [routerLink]="['/show_emails']"><i class="fa fa-group"></i> <span class="nav-label">Emails</span>
+                </a>
+                  
+              </li>
               
             </ul>
           </div>
@@ -95,7 +101,7 @@
   
           </a>
         </li> -->
-        <li [ngClass]="{active: activeRoute('misReport')}">
+        <li *ngIf="level>=6" [ngClass]="{active: activeRoute('misReport')}">
             <a class="drops"><i class="fa fa-dashboard"></i> <span class="nav-label">Reporting</span><i
                 class="fa fa-caret-down" style="    margin-left: 36%;"></i>
               <div class="drop">
@@ -117,9 +123,32 @@
             </a>
           </li>
 
-          <li *ngIf="showGroup" [ngClass]="{active: activeRoute('showGroups')}">
+          <li *ngIf="level>=8" [ngClass]="{active: activeRoute('showGroups')}">
             <a [routerLink]="['/showleads']"><i class="fa fa-group"></i> <span class="nav-label">PhoneBook</span>
     
+            </a>
+          </li>
+          <li *ngIf="level==10" [ngClass]="{active: activeRoute('recharging')}">
+            <a [routerLink]="['/recharging']"><i class="fa fa-group"></i> <span class="nav-label">Recharge</span>
+    
+            </a>
+          </li>
+          <li *ngIf="level==10" [ngClass]="{active: activeRoute('setPricing')}">
+            <a [routerLink]="['/setPricing']"><i class="fa fa-group"></i> <span class="nav-label">Set Pricing</span>
+    
+            </a>
+          </li>
+          <li *ngIf="level>=5" [ngClass]="{active: activeRoute('emailMessage')}">
+            <a [routerLink]="['/emailMessage']"><i class="fa fa-group"></i> <span class="nav-label">Email Blasting</span>
+    
+            </a>
+          </li>
+          <li *ngIf="level>=4"  [ngClass]="{active: activeRoute('dnd')}">
+            <a [routerLink]="['/dnd']"><i class="fa fa-group"></i> <span class="nav-label">Filter DND</span>
+            </a>
+          </li>
+          <li *ngIf="level>=7"  [ngClass]="{active: activeRoute('dndUpload')}">
+            <a [routerLink]="['/dndUpload']"><i class="fa fa-group"></i> <span class="nav-label">DND Upload</span>
             </a>
           </li>
           <!-- <li [ngClass]="{active: activeRoute('createUser')}">

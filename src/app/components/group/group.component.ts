@@ -36,6 +36,11 @@ export class GroupComponent implements OnInit {
     console.log(this.username)
     this.fetchGroups();
   }
+  deleteGroup(name){
+    this.groupService.deleteGroup(name).subscribe(response=>{
+      this.fetchGroups();
+    })
+  }
   fetchGroups() {
     this.groupService.fetchGroupsWithCampaings().subscribe(
       data => {

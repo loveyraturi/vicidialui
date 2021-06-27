@@ -1,5 +1,5 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-<div id="wrapper">
+<div id="wrapper" style="background: #2f4050;">
   <navigation [loginInfo]="loginInfo" *ngIf="loginInfo"></navigation>
 
   <div id="page-wrapper" class="gray-bg">
@@ -20,7 +20,7 @@
             </div>
           </div>
         </div>
-        <table class="table table-bordered">
+        <table class="table table-bordered" style="table-layout: auto !important;">
           <thead>
             <tr>
               <th>Id</th>
@@ -40,7 +40,7 @@
                 </ui-switch>
               </td>
               <td>
-               <a class="reChaining" (click)="modelClick(lead.filename)" title="ReChaining" data-toggle="tooltip"><i
+               <a class="reChaining" (click)="modelClick(lead.filename,lead.campaingName)" title="ReChaining" data-toggle="tooltip"><i
                     class="material-icons content_copy">&#xe14d;</i></a>
               </td>
             </tr>
@@ -75,13 +75,25 @@
         <label for="duplicateCheck">Select Status</label>
         <div class="input-group">
           <div class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></div>
-          <select class="mdb-select md-form form-control" formControlName="status">
-              <option value="" disabled selected>Select Options</option>
-              <option value="BUSY">BUSY</option>
-              <option value="Leads">Leads</option>
-              <option value="OCCUPIED">OCCUPIED</option>
-              <option value="Switch Off">Switch Off</option>
-            </select>
+          <select  class="mdb-select md-form form-control" formControlName="status">
+              <option *ngFor="let statusCampaing of status;" value="statusCampaing">{{statusCampaing}}</option>
+          </select>
+        </div>
+      </div>
+      <!-- <div class="form-group">
+        <div class="input-group">
+          <div *ngIf=fileCounter class="input-group-addon">Number of leads available for rechained: {{fileCounter}} </div>
+         </div>
+      </div> -->
+      <div *ngIf=processing class="form-group">
+        <div class="input-group">
+          <div class="input-group-addon">Please wait while we are processing... </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="input-group">
+          
+          <div *ngIf=numberOfItemsRechained class="input-group-addon">Number of leads rechained: {{numberOfItemsRechained}} </div>
         </div>
       </div>
       <button type="submit" class="btn btn-block btn-success" tabindex="5">Rechain</button>

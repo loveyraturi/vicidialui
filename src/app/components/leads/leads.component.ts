@@ -12,15 +12,18 @@ import { CampaingService } from 'app/services/campaing.service';
   styleUrls: ['./leads.component.css']
 })
 export class LeadsComponent implements OnInit {
+
   public registerform: any = FormGroup;
   public username;
   public fileName;
+  public visibility=false;
+  private users;
   fileToUpload: File = null;
   loginInfo: Login = {
     user_name: null,
   }
   public campaings;
-  constructor(private campaingService: CampaingService, private groupService: GroupService, private router: Router, private formBuilder: FormBuilder) {
+  constructor(private userService: UserService,private campaingService: CampaingService, private groupService: GroupService, private router: Router, private formBuilder: FormBuilder) {
     this.fetchCampaings()
   }
   ngOnInit() {
@@ -36,11 +39,19 @@ export class LeadsComponent implements OnInit {
   public createUser(value: any): void {
    this.campaingService.loadCsvLeadData(value).subscribe(resp=>{
 console.log(resp,"@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
+this.visibility=false;
 this.router.navigateByUrl('/showleads');
    })
     
   }
-
+  campaingSelected(value){
+      console.log(value)
+      this.userService.fetchUserByCampaing(value).subscribe(
+        data => {
+          console.log(data)
+          this.users = data
+        })
+  }
   fetchCampaings() {
     this.campaingService.fetchActiveCampaing().subscribe(
       data => {
@@ -60,6 +71,7 @@ this.router.navigateByUrl('/showleads');
     });
   }
   submit({ value }: any): void {
+    this.visibility=true;
     // console.log(value)
     // value.uploadedFile=this.fileToUpload;
     console.log(this.registerform.get('campaing').value)
@@ -72,7 +84,6 @@ this.router.navigateByUrl('/showleads');
     formData.append('duplicateField',this.registerform.get('duplicateField').value);
     console.log("############",formData)
     this.createUser(formData);
-    
   }
   handleFileInput(event) {
     console.log(event.target)

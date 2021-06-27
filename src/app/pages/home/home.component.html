@@ -1,4 +1,4 @@
-<div id="wrapper">
+<div id="wrapper" style="background: #2f4050;">
   <navigation [loginInfo]="loginInfo" *ngIf="loginInfo"></navigation>
 
   <div id="page-wrapper" class="gray-bg">
@@ -7,55 +7,50 @@
     <div class="wrapper wrapper-content">
       <div class="row">
         <div class="col-lg-3">
-          <div class="ibox float-e-margins">
+          <div style="box-shadow: 4px 7px 9px 1px;" class="ibox float-e-margins">
             <div class="ibox-title">
-              <span class="label label-success pull-right">Agent(s)</span>
-              <h5>Agent(s) On call</h5>
+              <h5>Agent(s) LoggedIn</h5>
             </div>
-            <div class="ibox-content">
-              <h1 class="no-margins">{{holdagents}}</h1>
-              <div class="stat-percent font-bold text-success">98% <i class="fa fa-bolt"></i></div>
-              <small>Agents</small>
+            <div style="height:55px" class="ibox-content">
+              <div style="text-align: center;
+              font-size: 19px;
+              padding-right: 45%;" class="stat-percent font-bold text-success">{{campaings[0].online}} </div>
             </div>
           </div>
         </div>
         <div class="col-lg-3">
-          <div class="ibox float-e-margins">
+          <div style="box-shadow: 4px 7px 9px 1px;" class="ibox float-e-margins">
             <div class="ibox-title">
-              <span class="label label-info pull-right">Annual</span>
-              <h5>Agent(s) Wating</h5>
+              <h5>Agent(s) LoggedOut</h5>
             </div>
-            <div class="ibox-content">
-              <h1 class="no-margins">{{liveagents}}</h1>
-              <div class="stat-percent font-bold text-info">20% <i class="fa fa-level-up"></i></div>
-              <small>Agents</small>
+            <div style="height:55px" class="ibox-content">
+              <div style="text-align: center;
+              font-size: 19px;
+              padding-right: 42%;" class="stat-percent font-bold text-danger">{{(campaings[0].count-campaings[0].online)}} </div>
             </div>
           </div>
         </div>
         <div class="col-lg-3">
-          <div class="ibox float-e-margins">
+          <div style="box-shadow: 4px 7px 9px 1px;" class="ibox float-e-margins">
             <div class="ibox-title">
-              <span class="label label-primary pull-right">Today</span>
-              <h5>Agents on pause</h5>
+              <h5>Total Agent(s)</h5>
             </div>
-            <div class="ibox-content">
-              <h1 class="no-margins">{{pausedagents}}</h1>
-              <div class="stat-percent font-bold text-navy">44% <i class="fa fa-level-up"></i></div>
-              <small>Agents</small>
+            <div style="height:55px" class="ibox-content">
+              <div style="text-align: center;
+              font-size: 19px;
+              padding-right: 42%;" class="stat-percent font-bold text-navy">{{campaings[0].count}} </div>
             </div>
           </div>
         </div>
         <div class="col-lg-3">
-          <div class="ibox float-e-margins">
+          <div style="box-shadow: 4px 7px 9px 1px;" class="ibox float-e-margins">
             <div class="ibox-title">
-              <span class="label label-danger pull-right">users</span>
               <h5>Live Channels</h5>
             </div>
-            <div (click)="modelClick1()" class="ibox-content">
-                
-              <h1 class="no-margins">{{countOfLiveChannels}}</h1>
-              <div class="stat-percent font-bold text-danger">38% <i class="fa fa-level-down"></i></div>
-              <small>users</small>
+            <div style="height:55px" (click)="modelClick1()" class="ibox-content">
+                <div style="text-align: center;
+                font-size: 19px;
+                padding-right: 45%;"  class="stat-percent font-bold text-danger">0 </div>
             </div>
           </div>
         </div>
@@ -88,16 +83,20 @@
                         <th>Prefix</th>
                         <th>TotalUser</th>
                         <th>Online</th>
+                        <th>Total Leads</th>
+                        <th>Active leads</th>
                       </tr>
                     </thead>
                     <tbody>
                       <tr *ngFor="let campaing of campaings;  let i = index">
-                        <td><a (click)="modelClick(campaing.name)">{{i+1}}</a></td>
-                        <td><a (click)="modelClick(campaing.name)">{{campaing.name}}</a></td>
+                        <td><a style="cursor: pointer;" (click)="modelClick(campaing.name)">{{i+1}}</a></td>
+                        <td><a style="cursor: pointer;" (click)="modelClick(campaing.name)">{{campaing.name}}</a></td>
                         <td>{{campaing.localCallTime}}</td>
                         <td>{{campaing.dialPrefix}}</td>
-                        <td>{{campaing.count}}</td>
+                        <td >{{campaing.count}}</td>
                         <td>{{campaing.online}}</td>
+                        <td>{{campaing.totalLeads}}</td>
+                        <td style="cursor: pointer;" (click)="fetchActiveleadsPerUser(campaing.name)"><a>{{campaing.totalActiveLeads}}</a></td>
                       </tr>
                     </tbody>
                   </table>
@@ -126,6 +125,7 @@
           <th>Name</th>
           <th>User Name</th>
           <th>Status</th>
+          <th>logout<th>
         </tr>
       </thead>
       <tbody>
@@ -133,6 +133,7 @@
           <td *ngIf="user.online==1">{{user.fullName}}</td>
           <td *ngIf="user.online==1">{{user.username}}</td>
           <td *ngIf="user.online==1">Online</td>
+          <td *ngIf="user.online==1"><i class="fa fa-sign-out" (click)="logout(user.username)"></i></td>
         </tr>
       </tbody>
     </table>
@@ -170,6 +171,30 @@
       </tbody>
     </table>
     
+  </div>
+
+</div>
+<div id="myModal2" class="{{modelClass2}}">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="close" (click)="closeModal2()">&times;</span>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>id</th>
+          <th>User Name</th>
+          <th>Active Leads count</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of ActiveLeadsPerUser; let i = index">
+          <td >{{i+1}}</td>
+          <td>{{user.username}}</td>
+          <td>{{user.count}}</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 
 </div>

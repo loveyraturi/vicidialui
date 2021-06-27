@@ -32,6 +32,7 @@ export class UpdateGroupComponent implements OnInit {
   dropdownList = [];
   selectedItems = [];
   dropdownSettings = {};
+  private groupname;
   ngOnInit() {
     this.username = localStorage.getItem("user_name")
     this.loginInfo.user_name = this.username;
@@ -54,46 +55,59 @@ export class UpdateGroupComponent implements OnInit {
   fetchCampaing() {
     this.campaingService.fetchCampaing().subscribe(
       data => {
-
+        console.log(data)
         data.forEach((item) => {
           var dropdownListLocal = {
-            id: item.campaign_id,
-            itemName: item.campaign_name
+            id: item.name,
+            itemName: item.name
           }
           this.dropdownList.push(dropdownListLocal)
         });
-        this.dropdownlength =this.dropdownList.length;
+        this.dropdownlength = this.dropdownList.length;
         console.log(this.dropdownList, "#$@$#@$#")
         this.fetchGroupsByUser(localStorage.getItem("update_group_id"));
       })
 
   }
-  fetchGroupsByUser(user_group) {
-    this.groupService.fetchGroupsByUser(user_group).subscribe(
+  fetchGroupsByUser(name) {
+    this.groupService.fetchGroupByGroupName(name).subscribe(item => {
+      console.log(item, "#####")
+      this.groupName = item.name
+    })
+    this.groupService.fetchGroupsByUser(name).subscribe(
       data => {
+        console.log(data, "#####")
 
-        this.user_group = data[0].user_group
-        console.log("groupdata#######", data[0].user_group, data[0].group_name)
-        this.group_name = data[0].group_name
-        console.log(data[0].allowed_campaigns)
-        if (data[0].allowed_campaigns.includes("-ALL-CAMPAIGNS-")) {
-          console.log(this.dropdownList, "###################")
-          this.selectedItems = this.dropdownList
-        } else {
-          var groupObjects = [];
-          data[0].allowed_campaigns.split(" ").forEach((element, index) => {
-
-            if (element != "") {
-              if (element != "-") {
-                var groupObject = {
-                  id: index,
-                  itemName: element
-                }
-                this.selectedItems.push(groupObject)
-              }
-            }
-          });
+        for (var i = 0; i < data.length; i++) {
+          var dropdownListLocal = {
+            id: data[i].campaingname,
+            itemName: data[i].campaingname
+          }
+          this.selectedItems.push(dropdownListLocal)
         }
+        console.log(this, this.selectedItems)
+        // // this.user_group = data[0].user_group
+        // console.log("groupdata#######", data[0].user_group, data[0].group_name)
+        // this.group_name = data[0].group_name
+        // console.log(data[0].allowed_campaigns)
+        // if (data[0].allowed_campaigns.includes("-ALL-CAMPAIGNS-")) {
+        //   console.log(this.dropdownList, "###################")
+        //   this.selectedItems = this.dropdownList
+        // } else {
+        //   var groupObjects = [];
+        //   data[0].allowed_campaigns.split(" ").forEach((element, index) => {
+
+        //     if (element != "") {
+        //       if (element != "-") {
+        //         var groupObject = {
+        //           id: index,
+        //           itemName: element
+        //         }
+        //         this.selectedItems.push(groupObject)
+        //       }
+        //     }
+        //   });
+        // }
         console.log(this.selectedItems)
       })
   }
@@ -101,11 +115,8 @@ export class UpdateGroupComponent implements OnInit {
 
   private updategroupForm(): void {
     this.registerform = this.formBuilder.group({
-
       name: new FormControl('', [Validators.required]),
-      groupName: new FormControl('', Validators.required),
       allowed_campaigns: new FormControl('', Validators.required),
-
     });
   }
 
@@ -114,15 +125,18 @@ export class UpdateGroupComponent implements OnInit {
     var localvar = ""
     console.log("this.dropdownList.length", this.dropdownlength)
     console.log("value.allowed_campaigns.length", value.allowed_campaigns.length)
-    if (this.dropdownlength == value.allowed_campaigns.length) {
-      value.allowed_campaigns = "-ALL-CAMPAIGNS-"
-    } else {
+    // if (this.dropdownlength == value.allowed_campaigns.length) {
+    //   value.allowed_campaigns = "-ALL-CAMPAIGNS-"
+    // } else {
       value.allowed_campaigns.forEach(element => {
-        localvar = localvar + element.id + " "
-
+        if(localvar!=""){
+          localvar = localvar +","+ element.id
+        }else{
+          localvar = element.id 
+        }
       });
       value.allowed_campaigns = localvar;
-    }
+    // }
     this.update(value);
 
   }
@@ -132,8 +146,8 @@ export class UpdateGroupComponent implements OnInit {
     this.groupService.updateGroupByName(value).subscribe(
       data => {
         console.log(data)
-        if(data.status){
-        this.router.navigateByUrl("/showGroups")
+        if (data.status) {
+          this.router.navigateByUrl("/showGroups")
         }
 
 

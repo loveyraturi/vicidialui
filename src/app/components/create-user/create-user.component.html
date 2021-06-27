@@ -1,4 +1,4 @@
-<div id="wrapper">
+<div id="wrapper" style="background: #2f4050;">
   <navigation [loginInfo]="loginInfo" *ngIf="loginInfo"></navigation>
 
   <div id="page-wrapper" class="gray-bg">
@@ -21,20 +21,21 @@
             <div class="panel-body">
               <form [formGroup]="registerform" (submit)="submit(registerform)" method="POST">
 
-                <div class="form-group">
-                  <label for="email">Name</label>
-                  <div class="input-group">
-                    <div class="input-group-addon"><i class="glyphicon glyphicon-book"></i></div>
-                    <input autofocus required type="text" formControlName="name" name="name" id="name"
-                      class="form-control" placeholder="Your Name" tabindex="1">
-                  </div>
-                </div>
+
                 <div class="form-group">
                   <label for="email">Username</label>
                   <div class="input-group">
                     <div class="input-group-addon"><i class="glyphicon glyphicon-book"></i></div>
                     <input autofocus required type="text" formControlName="username" name="username" id="username"
                       class="form-control" placeholder="Your Username" tabindex="1">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="email">Name</label>
+                  <div class="input-group">
+                    <div class="input-group-addon"><i class="glyphicon glyphicon-book"></i></div>
+                    <input autofocus required type="text" formControlName="name" name="name" id="name"
+                      class="form-control" placeholder="Your Name" tabindex="1">
                   </div>
                 </div>
                 <div class="form-group">
@@ -51,10 +52,10 @@
                     <label for="level">User Level</label>
                     <div class="input-group">
                       <div class="input-group-addon"><i class="glyphicon glyphicon-level-up"></i></div>
-                      <select class="mdb-select md-form form-control" formControlName="level">
-                        <option value="" disabled selected>Choose user level</option>
+                      <select class="mdb-select md-form form-control" [(ngModel)]="level" formControlName="level">
+                        <option value="" disabled >Choose user level</option>
                         <option  value="0">0</option>
-                        <option  value="1">1</option>
+                        <option  value="1" selected>1</option>
                         <option  value="2">2</option>
                         <option  value="3">3</option>
                         <option  value="4">4</option>
@@ -78,7 +79,7 @@
                   <label for="email">Status</label>
                   <div class="input-group">
                     <div class="input-group-addon"><i class="glyphicon glyphicon-tasks"></i></div>
-                                        <select class="mdb-select md-form form-control" formControlName="status">
+                      <select class="mdb-select md-form form-control" [(ngModel)]="status" formControlName="status">
                         <option value="" disabled selected>Choose Status</option>
                         <option  value="Active">Active</option>
                         <option  value="Inactive">Inactive</option>
@@ -89,7 +90,7 @@
                   <label for="password">Password</label>
                   <div class="input-group">
                     <div class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></div>
-                    <input required type="text" formControlName="password" class="form-control"
+                    <input required type="text" [(ngModel)]="password" formControlName="password" value="1234" class="form-control"
                       placeholder="Your password" tabindex="2">
                   </div>
                 </div>
@@ -97,7 +98,7 @@
                   <label for="password">Retype Password</label>
                   <div class="input-group">
                     <div class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></div>
-                    <input required type="text" formControlName="confpass" class="form-control"
+                    <input required type="text" [(ngModel)]="confpass" formControlName="confpass" value="1234" class="form-control"
                       placeholder="Retype Your password" tabindex="2">
                   </div>
                 </div>

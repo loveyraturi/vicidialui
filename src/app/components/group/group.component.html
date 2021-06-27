@@ -1,5 +1,5 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-<div id="wrapper">
+<div id="wrapper" style="background: #2f4050;">
   <navigation [loginInfo]="loginInfo" *ngIf="loginInfo"></navigation>
 
   <div id="page-wrapper" class="gray-bg">
@@ -32,13 +32,13 @@
               <td>{{group.name}}</td>
               <td>{{group.campaings}}</td>
               <td>
-                <a class="edit" (click)="updateGroup(group.user_group)" title="Edit" data-toggle="tooltip"><i
+                <a class="edit" (click)="updateGroup(group.name)" title="Edit" data-toggle="tooltip"><i
                     class="material-icons">&#xE254;</i></a>
 
                
                 </td>
                 <td *ngIf="hasAccess">
-                <a class="delete" (click)="deleteGroup()" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
+                <a class="delete" (click)="deleteGroup(group.name)" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
               </td>
             </tr>
           </tbody>

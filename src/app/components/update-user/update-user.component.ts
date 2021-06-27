@@ -69,6 +69,7 @@ export class UpdateUserComponent implements OnInit {
             this.status =user.status
             this.level =user.level
             this.groupId=user.usergroup
+            this.password=user.password
             // console.log(this.name,this.phonenumber,this.status,this.level,this.groupId)
       })
   }

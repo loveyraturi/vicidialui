@@ -45,6 +45,18 @@ import { ShowBreakTyoesComponent } from './components/show-breakTypes/show-break
 import { RecordingComponent } from './components/recording/recording.component';
 import { AttendanceComponent } from './components/attendance/attendance.component';
 import { ShowRecordingComponent } from './components/show-recording/show-recording.component';
+import { EditBreakTypeComponent } from './components/edit_breaktype/edit_breaktype.component';
+import { CloneBreakTypeComponent } from './components/clone_breaktype/clone_breaktype.component';
+import { RechargeComponent } from './components/recharge/recharge.component';
+import { RechargingComponent } from './components/recharging/recharging.component';
+import { SetPricingComponent } from './components/setPricing/setPricing.component';
+import { ScheduleEmailComponent } from './components/scheduleEmail/scheduleEmail.component';
+import { EmailMessageComponent } from './components/emailMessage/emailMessage.component';
+import { DndFilterComponent } from './components/dnd_filter/dnd_filter.component';
+import { EmailUploadComponent } from './components/email_upload/email_upload.component';
+import { ShowEmailComponent } from './components/show-email/show-email.component';
+import { ShowEmailDataComponent } from './components/show_email_data/show_email_data.component';
+import { DNDUploadComponent } from './components/dnd_upload/dnd_upload.component';
  
 
 @NgModule({
@@ -57,11 +69,23 @@ import { ShowRecordingComponent } from './components/show-recording/show-recordi
     WhatsappComponent,
     LoginComponent,
     ReportingComponent,
+    ScheduleEmailComponent,
+    EmailMessageComponent,
+    DndFilterComponent,
     CreateUserComponent,
     ShowUsersComponent,
     DefaultComponent,
     UpdateUserComponent,
+    DNDUploadComponent,
+    RechargingComponent,
+    ShowEmailDataComponent,
+    EmailUploadComponent,
     CloneUserComponent,
+    SetPricingComponent,
+    ShowEmailComponent,
+    RechargeComponent,
+    EditBreakTypeComponent,
+    CloneBreakTypeComponent,
     CreateCampaingComponent,
     ShowCampaingComponent,
     UpdateCampaingComponent,
@@ -87,7 +111,7 @@ import { ShowRecordingComponent } from './components/show-recording/show-recordi
     HttpClientModule,
     UiSwitchModule,
     AngularMultiSelectModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes,{useHash: true})
   ],
   providers: [PlatformService,ExportService,AuthService,AgentService,UserService,GroupService,CampaingService, DashboardService],
   bootstrap: [AppComponent]

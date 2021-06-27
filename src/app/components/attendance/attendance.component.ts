@@ -59,7 +59,9 @@ export class AttendanceComponent implements OnInit {
       selectAllText: 'Select All',
       unSelectAllText: 'UnSelect All',
       enableSearchFilter: true,
+      badgeShowLimit: 5,
       enableCheckAll: true,
+      
       classes: ""
     };
     this.dropdownUserSettings = {
@@ -68,6 +70,7 @@ export class AttendanceComponent implements OnInit {
       selectAllText: 'Select All',
       unSelectAllText: 'UnSelect All',
       enableSearchFilter: true,
+      badgeShowLimit: 5,
       enableCheckAll: true,
       classes: ""
     };
@@ -108,8 +111,9 @@ export class AttendanceComponent implements OnInit {
     minutes = minutes < 10 ? '0'+minutes : minutes;
     var strTime = hours + ':' + minutes + ':00';
     var month= (date.getMonth()+1).toString().length==1?"0"+(date.getMonth()+1).toString():date.getMonth()+1
+    var day=(date.getDate()).toString().length==1?"0"+(date.getDate()).toString():date.getDate()
     console.log(month,"############month")
-    return (date.getFullYear()+"-"+month+ "-" + date.getDate() + " " + strTime);
+    return (date.getFullYear()+"-"+month+ "-" + day + " " + strTime);
   }
 
   fetchUsers() {
@@ -182,9 +186,13 @@ export class AttendanceComponent implements OnInit {
         console.log(data)
         this.campaingList = data.filter(item => {
           console.log(this.campaing)
+          if(this.level<9){
           if (item.name == this.campaing) {
             return item
           }
+        }else{
+          return item
+        }
         })
         this.campaingList.forEach((item) => {
 
@@ -249,6 +257,12 @@ export class AttendanceComponent implements OnInit {
         console.log(this.buttonDisabled)
         console.log(data, "####################33#####@@@$$$$$")
         this.loading = false;
+        var userAtt=[]
+         data.forEach(element => {
+          userAtt[element.username]=element
+          
+        });
+        console.log(userAtt, "####################userAtt#####@@@$$$$$")
         // var userData=[]
         // for(var key in data) {
         //   // alert("Key: " + key + " value: " + data[key]);
@@ -309,27 +323,8 @@ export class AttendanceComponent implements OnInit {
 
   // }
   export() {
-    var campaingID = []
-    this.selectedItems.forEach((items => {
-      campaingID.push(items.itemName)
-    }))
-    var userId = []
-    this.selectedUserItems.forEach((items => {
-      userId.push(items.itemName)
-    }))
-
-    var requestData = {
-      datefrom: this.formatDate(this.datefrom),
-      dateto:  this.formatDate(this.dateto),
-      campaingName: campaingID,
-      userName: userId
-    }
-    this.userService.fetchAttendanceReportDataBetween(requestData).subscribe(
-      data => {
-        console.log("############", data)
         // FileSaver.saveAs(data, "/assets/Filename.xlsx");
         window.open("./assets/AttendanceReport.xlsx");
-      })
+     
   }
-
 }

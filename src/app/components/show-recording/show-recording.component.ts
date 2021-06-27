@@ -26,6 +26,10 @@ export class ShowRecordingComponent implements OnInit {
   public paginationLength;
   public responseLength;
   public campaing;
+  public phoneNumber;
+  public limit=100;
+  public offset=0;
+  public status=[];
   public audio = new Audio();
   public defaultPagination
   loginInfo: Login = {
@@ -34,10 +38,13 @@ export class ShowRecordingComponent implements OnInit {
   public loading = false;
   dropdownList = [];
   dropdownUserList = []
+  statusArray;
   selectedItems = [];
   selectedUserItems = [];
+  selectedStatus=[];
   dropdownSettings = {};
   dropdownUserSettings = {};
+  dropdownStatusSettings = {};
   public headers;
   public level;
   public group;
@@ -61,6 +68,7 @@ export class ShowRecordingComponent implements OnInit {
       unSelectAllText: 'UnSelect All',
       enableSearchFilter: true,
       enableCheckAll: true,
+      badgeShowLimit: 5,
       classes: ""
     };
     this.dropdownUserSettings = {
@@ -68,6 +76,17 @@ export class ShowRecordingComponent implements OnInit {
       text: "User",
       selectAllText: 'Select All',
       unSelectAllText: 'UnSelect All',
+      enableSearchFilter: true,
+      badgeShowLimit: 2,
+      enableCheckAll: true,
+      classes: ""
+    };
+    this.dropdownStatusSettings = {
+      singleSelection: false,
+      text: "Status",
+      selectAllText: 'Select All',
+      unSelectAllText: 'UnSelect All',
+      badgeShowLimit: 2,
       enableSearchFilter: true,
       enableCheckAll: true,
       classes: ""
@@ -159,6 +178,7 @@ export class ShowRecordingComponent implements OnInit {
 
   populateUser() {
     this.dropdownUserList=[]
+    this.statusArray=[]
     console.log(this.selectedItems, "######################");
     this.selectedItems.forEach((elements) => {
       this.userService.fetchUserByCampaing(elements.itemName).subscribe(
@@ -173,6 +193,25 @@ export class ShowRecordingComponent implements OnInit {
 
           this.dropdownUserList.push(dropdownListLocal)
         })
+          this.campaingService.fetchStatus(elements.itemName).subscribe(resp=>{
+            this.status=this.status.concat(resp.statusFeedback.split(',')).map(Function.prototype.call, String.prototype.trim)
+            this.status.push("OCCUPIED")
+            this.statusArray=[]
+            var statusObject={}
+            this.status.forEach( itemm => {
+              
+              statusObject[itemm] = {
+                id: itemm,
+                itemName: itemm
+              }
+             
+            });
+            for(var key in statusObject) {
+              this.statusArray.push(statusObject[key])
+          }
+          //  this.statusArray=statusObject;
+            console.log("################$%^$%^$%^%$@#$@@",this.statusArray);
+          })
         })
     })
 
@@ -183,9 +222,13 @@ export class ShowRecordingComponent implements OnInit {
         console.log(data)
         this.campaingList = data.filter(item => {
           console.log(this.campaing)
+          if(this.level<9){
           if (item.name == this.campaing) {
             return item
           }
+        }else{
+          return item
+        }
         })
         this.campaingList.forEach((item) => {
 
@@ -223,8 +266,17 @@ export class ShowRecordingComponent implements OnInit {
     console.log(this.headers)
   }
 
-
-  fetchReportData(start, end) {
+fetchNext(){
+  this.offset=this.offset+this.limit+1
+  this.fetchReportData() 
+}
+fetchPrevious(){
+  if(this.offset>this.limit){
+    this.offset=this.offset-this.limit-1
+    this.fetchReportData() 
+  }
+}
+  fetchReportData() {
     var campaingID = []
     this.selectedItems.forEach((items => {
       campaingID.push(items.itemName)
@@ -233,14 +285,18 @@ export class ShowRecordingComponent implements OnInit {
     this.selectedUserItems.forEach((items => {
       userId.push(items.itemName)
     }))
-
+    var statusList=this.selectedStatus.map(itemms=>{
+      return itemms.itemName;
+    })
     var requestData = {
       datefrom: this.formatDate(this.datefrom),
       dateto:  this.formatDate(this.dateto),
       campaingName: campaingID,
       userName: userId,
-      limit: start,
-      offset: end
+      limit: this.limit,
+      offset: this.offset,
+      phoneNumber: this.phoneNumber,
+      status: statusList
     }
     this.loading = true
     this.userService.fetchcountrecordingreportdatabetween(requestData).subscribe(
@@ -250,6 +306,10 @@ export class ShowRecordingComponent implements OnInit {
         console.log(this.buttonDisabled)
         console.log(data, "####################33#####@@@$$$$$")
         this.loading = false;
+        this.reportData= data.map(item=>{
+          item.Recording_file=item.Recording_file.split('.').slice(0, -1).join('.')+".mp3"
+          return item;
+        })
         // var userData=[]
         // for(var key in data) {
         //   // alert("Key: " + key + " value: " + data[key]);
@@ -265,13 +325,13 @@ export class ShowRecordingComponent implements OnInit {
         // }
         // console.log(userData,"#################USERDATA###########");
         // this.defaultPagination = userData.length == 0 ? true : false
-        this.reportData = data
+        
       })
   }
   playPauseAudio(file, option) {
-    console.log("assets/" + file)
+    console.log("assets/recording/mp3/" + file.split('.').slice(0, -1).join('.')+".mp3")
     if (option == true) {
-      this.audio.src = "assets/" + file;
+      this.audio.src = "assets/recording/mp3/" + file.split('.').slice(0, -1).join('.')+".mp3";
       this.audio.load();
       this.audio.play();
     } else {
@@ -345,7 +405,7 @@ export class ShowRecordingComponent implements OnInit {
       })
   }
   downloadRecording(filename){
-    window.open("./assets/"+filename);
+    window.open("./assets/recording/mp3/"+filename.split('.').slice(0, -1).join('.')+".mp3");
   }
 
 }

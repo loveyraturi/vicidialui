@@ -1,0 +1,120 @@
+<div id="wrapper" style="background: #2f4050;">
+    <navigation [loginInfo]="loginInfo" *ngIf="loginInfo"></navigation>
+
+    <div id="page-wrapper" class="gray-bg">
+
+        <topnavbar></topnavbar>
+        <div id="invoice">
+
+            <div class="toolbar hidden-print">
+                <div class="text-right">
+                    <button id="printInvoice" class="btn btn-info"><i class="fa fa-print"></i> Print</button>
+                    <button class="btn btn-info"><i class="fa fa-file-pdf-o"></i> Export as PDF</button>
+                </div>
+                <hr>
+            </div>
+            <div class="invoice overflow-auto">
+                <div style="min-width: 600px">
+                    <header>
+                        <div class="row">
+                            <div class="col">
+                                <a href="#">
+                                    <img src="./assets/img/logo.jpeg" data-holder-rendered="true" />
+                                </a>
+                            </div>
+                            <div class="col company-details">
+                                <h2 class="name">
+                                    <a target="_blank" href="https://lobianijs.com">
+                                        MicroApp
+                                    </a>
+                                </h2>
+                                <div>Mumbai</div>
+                                <div>7710002221</div>
+                                <div>keshulohar879@gmail.com</div>
+                            </div>
+                        </div>
+                    </header>
+                    <main>
+                        <div class="row contacts">
+                            <div class="col invoice-to">
+                                <div class="text-gray-light">INVOICE TO:</div>
+                                <h2 class="to">{{userName}}</h2>
+                            </div>
+                            <div class="col invoice-details">
+                                <h1 class="invoice-id">INVOICE {{userName}}</h1>
+                                <div class="date">Date of Invoice: {{myDate}}</div>
+                            </div>
+                        </div>
+                        <table border="0" cellspacing="0" cellpadding="0">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th class="text-left">DESCRIPTION</th>
+                                    <th class="text-right">HOUR PRICE</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="no">01</td>
+                                    <td class="text-left">
+                                        <h3>
+                                            <a>
+                                                User Registration
+                                            </a>
+                                        </h3>
+                                        <a>
+                                            User Registation
+                                        </a>
+                                        to add any number of user for executing calls :)
+                                    </td>
+                                    <td class="unit">₹ 4.00</td>
+                                </tr>
+                                <tr>
+                                    <td class="no">02</td>
+                                    <td class="text-left">
+                                        <h3>User Calling</h3>App based calling system to start calling on the go
+                                    </td>
+                                    <td class="unit">₹ 13.50</td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td colspan="1">SUBTOTAL</td>
+                                    <td colspan="1"><input type="text"
+                                            style="border-top:none;border-left:none;border-right:none;width:110%;"
+                                            placeholder="Enter amount you wish to pay"></td>
+                                    <td><button class="btn btn-success" (click)="schedulePayment()"> Schedule
+                                            Payment</button></td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                        <div style="    font-size: 2em;                  ">Thank you!</div>
+                    </main>
+                    <footer>
+                        Invoice was created on a computer and is valid without the signature and seal.
+                    </footer>
+                    <div id="myModal" class="{{modelClass}}">
+
+                        <!-- Modal content -->
+                        <div class="modal-content">
+                            <span class="close" (click)="closeModal()">&times;</span>
+                            <h2> Thanks for contacting us</h2>
+                            <p> your request is recevied and registed with us</p>
+                            <p>One of our customer suport will contact you soon for receiving payment</p>
+                        </div>
+
+                    </div>
+                </div>
+                <!--DO NOT DELETE THIS div. IT is responsible for showing footer always at the bottom-->
+                <div></div>
+            </div>
+        </div>
+
+
+        <div class="footer">
+            <div>
+                <strong>Copyright</strong> Microsmart &copy; 2020
+            </div>
+        </div>
+    </div>
+</div>

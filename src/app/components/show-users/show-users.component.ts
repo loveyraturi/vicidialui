@@ -16,6 +16,7 @@ export class ShowUsersComponent implements OnInit {
   public hasAccess = false;
   public level;
   public group;
+  private amount;
   loginInfo: Login = {
     user_name: null,
   }
@@ -36,9 +37,21 @@ export class ShowUsersComponent implements OnInit {
     }
     this.loginInfo.user_name = this.username;
     console.log(this.username)
-
+    this.fetchBalance()
   }
-
+  fetchBalance() {
+    this.groupService.fetchBalance(localStorage.getItem("group")).subscribe(
+      response => {
+        console.log(response.amount, "#############MOEMMENEY########")
+        this.amount = response.amount;
+      }
+    )
+  }
+  deleteUser(userId) {
+    this.userService.deleteUser(userId).subscribe(resp => {
+      this.fetchUsers();
+    })
+  }
   fetchUsers() {
     this.userService.fetchUser().subscribe(
       data => {
@@ -84,8 +97,8 @@ export class ShowUsersComponent implements OnInit {
     } else {
       this.active = "Inactive"
     }
-  
-    this.userService.updateUserStatus(id,this.active).subscribe(
+
+    this.userService.updateUserStatus(id, this.active).subscribe(
       data => {
         this.fetchUsers()
       })

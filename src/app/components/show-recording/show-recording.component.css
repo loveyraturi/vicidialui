@@ -92,3 +92,10 @@ table.table td .add {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
   }
+  .pagination{
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    left: 50%;
+    cursor: pointer;
+  }

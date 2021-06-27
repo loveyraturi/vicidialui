@@ -22,6 +22,18 @@ import { ShowBreakTyoesComponent } from "./components/show-breakTypes/show-break
 import { RecordingComponent } from "./components/recording/recording.component";
 import { AttendanceComponent } from "./components/attendance/attendance.component";
 import { ShowRecordingComponent } from "./components/show-recording/show-recording.component";
+import { EditBreakTypeComponent } from "./components/edit_breaktype/edit_breaktype.component";
+import { CloneBreakTypeComponent } from "./components/clone_breaktype/clone_breaktype.component";
+import { RechargeComponent } from "./components/recharge/recharge.component";
+import { RechargingComponent } from "./components/recharging/recharging.component";
+import { SetPricingComponent } from "./components/setPricing/setPricing.component";
+import { ScheduleEmailComponent } from "./components/scheduleEmail/scheduleEmail.component";
+import { EmailMessageComponent } from "./components/emailMessage/emailMessage.component";
+import { DndFilterComponent } from "./components/dnd_filter/dnd_filter.component";
+import { EmailUploadComponent } from "./components/email_upload/email_upload.component";
+import { ShowEmailComponent } from "./components/show-email/show-email.component";
+import { ShowEmailDataComponent } from "./components/show_email_data/show_email_data.component";
+import { DNDUploadComponent } from "./components/dnd_upload/dnd_upload.component";
 
 export const appRoutes=[
     {
@@ -34,12 +46,48 @@ export const appRoutes=[
         component: HomeComponent
     },
     {
+        path: 'dnd',
+        component: DndFilterComponent
+    },
+    {
+        path: 'dndUpload',
+        component: DNDUploadComponent
+    },
+    {
+        path: 'show_emails',
+        component: ShowEmailComponent
+    },
+    {
+        path: 'emailUpload',
+        component: EmailUploadComponent
+    },
+    {
         path: 'agent',
         component: AgentComponent
     },
     {
+        path: 'emailMessage',
+        component: EmailMessageComponent
+    },
+    {
+        path: 'schedule',
+        component: ScheduleEmailComponent
+    },
+    {
+        path: 'recharging',
+        component: RechargingComponent
+    },
+    {
+        path: 'setPricing',
+        component: SetPricingComponent
+    },
+    {
         path: 'whatsapp',
         component: WhatsappComponent
+    },
+    {
+        path: 'recharge',
+        component: RechargeComponent
     },
     {
         path: 'login',
@@ -80,6 +128,18 @@ export const appRoutes=[
     {
         path: 'breaktype',
         component:  BreakTypeComponent
+    },
+    {
+        path: 'editbreaktype',
+        component:  EditBreakTypeComponent
+    },
+    {
+        path: 'showEmailData',
+        component:  ShowEmailDataComponent
+    },
+    {
+        path: 'clonebreaktype',
+        component:  CloneBreakTypeComponent
     },
     {
         path: 'showBreaktype',

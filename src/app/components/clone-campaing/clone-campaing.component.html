@@ -1,4 +1,4 @@
-<div id="wrapper">
+<div id="wrapper" style="background: #2f4050;">
     <navigation [loginInfo]="loginInfo" *ngIf="loginInfo"></navigation>
   
     <div id="page-wrapper" class="gray-bg">
@@ -240,14 +240,6 @@
                         </select>
                       </div>
                     </div>
-  
-                        <div *ngFor="let prop of fieldProps; let i = index;" class="form-group">
-                          <label contenteditable="true" (input)="prop.label = $event.target.innerText" for="{{prop.label}}">{{prop.label}}</label>
-                          <div class="input-group">
-                            <div class="input-group-addon"><i class="glyphicon glyphicon-level-up"></i></div>
-                            <input type="text" name="{{prop.label}}" class="form-control"   placeholder="Enter value" tabindex="1" [(ngModel)]="prop.field"> 
-                          </div>
-                        </div>
                     <div class="form-group">
                       <div class="input-group">
                         <div class="checkbox">

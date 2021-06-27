@@ -17,8 +17,8 @@
 }
 
 </style>
-
 <link rel="stylesheet" type="text/css" href="assets/css/creamycrm.css" />
+
 <div id="wrapper" >
   <!-- <div class="row border-bottom">
     <nav class="navbar navbar-static-top" style="background-color: #673bb7; margin-bottom: 0" role="navigation" >
@@ -35,8 +35,8 @@
 
      
       <div class="login-box-body" >
-        <p id="p1" style="" class="login-box-msg"><img
-          src="assets/img/logo.jpg"><p style="margin-top:4%">Sign in to start your session</p></p>
+        <p id="p1" style="" class="login-box-msg"><img height=100 width=250
+          src="assets/img/frontlogo.jpeg"></p>
         <form [formGroup]="registerform" (submit)="submit(registerform)">
           <div class="form-group has-feedback">
             <input type="text" style="border-radius: 20px;" class="form-control" formControlName="userName" required="required"
@@ -56,7 +56,7 @@
 
             <div class="form-group " style="padding-left: 5px; padding-right: 5px;">
               <button type="submit" class="btn btn-primary btn-lg btn-block"
-                [disabled]="!registerform.valid">Access</button>
+                [disabled]="!registerform.valid">LOGIN</button>
             </div><!-- /.col -->
             <div class="col-xs-3"></div>
           </div>
