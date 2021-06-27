@@ -57,10 +57,14 @@ export class ShowEmailComponent implements OnInit {
 
         console.log(this.leads, "###############$$$$$$")
         this.leads = this.leads.filter(item => {
+        if(this.level<9){
           console.log(item.campaingName == this.campaing)
           if (item.campaingName == this.campaing) {
             return item
           }
+        }else{
+          return item
+        }
         })
         if (this.level == 7) {
           //     this.leads = this.leads.filter(item => {

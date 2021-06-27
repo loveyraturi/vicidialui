@@ -67,9 +67,13 @@ public breakTypes;
       data => {
         this.breakTypes=data.breakType
         this.breakTypes = this.breakTypes.filter(item => {
+          if(this.level<9){
           if (item.campaingName == this.campaing) {
             return item
           }
+        }else{
+          return item
+        }
         })
         console.log(this.breakTypes)
 

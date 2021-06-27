@@ -23,6 +23,7 @@ export class ShowLeadsComponent implements OnInit {
   public numberOfItemsRechained
   public processing=false
   public fileCounter;
+  public status;
   loginInfo: Login = {
     user_name: null,
   }
@@ -53,16 +54,21 @@ export class ShowLeadsComponent implements OnInit {
     this.modelClass = "modal"
   }
   fetchLeadVersions() {
+    
     this.campaingService.fetchLeadVersions().subscribe(
       data => {
         this.leads = data
 
-        console.log(this.leads, "###############$$$$$$")
+        console.log(this.level, "###############$$$$$$")
         this.leads = this.leads.filter(item => {
           console.log(item.campaingName == this.campaing)
+          if(this.level<9){
           if (item.campaingName == this.campaing) {
             return item
           }
+        }else{
+          return item
+        }
         })
         if (this.level == 7) {
           //     this.leads = this.leads.filter(item => {
@@ -101,15 +107,25 @@ export class ShowLeadsComponent implements OnInit {
     localStorage.setItem("update_campaing_name", name);
     this.router.navigateByUrl("/updateCampaing")
   }
-  modelClick(leadName) {
+  modelClick(leadName,campaingName) {
+    this.status=[]
+    console.log("#@@@@@",campaingName)
+    this.campaingService.fetchStatus(campaingName).subscribe(resp=>{
+      console.log(resp)
+      console.log(resp.statusFeedback.split(','));
+      this.status.push("OCCUPIED")
+      this.status=this.status.concat(resp.statusFeedback.split(',')).map(Function.prototype.call, String.prototype.trim)
+      console.log("#########this.status########",this.status)
+    
     this.selectedleadname = leadName
-    console.log("model id is ", this.selectedleadname)
+    console.log(campaingName+"model id is ", this.selectedleadname)
     this.campaingService.fetchFileNameWithCount().subscribe(
       data => {
         console.log("#########@@@@@@@@@@@@@@@###########",leadName)
         console.log(data)
         this.fileCounter=data[leadName]
       })
+    });
     // this.fetchLiveUserFromCampaing(id);
     //  this.usersbycampaing= this.userDetails[campaingName]
     //  console.log(this.usersbycampaing)

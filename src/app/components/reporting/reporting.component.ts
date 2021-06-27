@@ -188,19 +188,25 @@ export class ReportingComponent implements OnInit {
   fetchCampaing() {
     this.campaingService.fetchCampaing().subscribe(
       data => {
-        console.log("#$$$$$$",data)
+        console.log(this.level,"#$$$$$$",data)
         this.campaingList = data.filter(item => {
           console.log(this.campaing)
+          if(this.level<9){
           if (item.name == this.campaing) {
             return item
           }
+        }else{
+          return item
+        }
         })
+        console.log(this.campaing,"########campaingList#######",this.campaingList)
         this.campaingList.forEach((item) => {
-
+          // if(item.name==this.campaing){
           var dropdownListLocal = {
             id: item.id,
             itemName: item.name
           }
+        // }
 
           this.dropdownList.push(dropdownListLocal)
         })

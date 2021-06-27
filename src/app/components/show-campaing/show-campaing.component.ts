@@ -46,9 +46,13 @@ public campaings;
         this.campaings=data
         this.campaings = this.campaings.filter(item => {
           console.log(item.user_group == this.group)
+          if(this.level<9){
           if (item.name == this.campaing) {
             return item
           }
+        }else{
+          return item
+        }
         })
         if (this.level == 7) { 
           this.campaings = this.campaings.map(item => {

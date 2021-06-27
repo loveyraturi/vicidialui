@@ -222,9 +222,13 @@ export class ShowRecordingComponent implements OnInit {
         console.log(data)
         this.campaingList = data.filter(item => {
           console.log(this.campaing)
+          if(this.level<9){
           if (item.name == this.campaing) {
             return item
           }
+        }else{
+          return item
+        }
         })
         this.campaingList.forEach((item) => {
 

@@ -40,7 +40,7 @@
                 </ui-switch>
               </td>
               <td>
-               <a class="reChaining" (click)="modelClick(lead.filename)" title="ReChaining" data-toggle="tooltip"><i
+               <a class="reChaining" (click)="modelClick(lead.filename,lead.campaingName)" title="ReChaining" data-toggle="tooltip"><i
                     class="material-icons content_copy">&#xe14d;</i></a>
               </td>
             </tr>
@@ -75,13 +75,9 @@
         <label for="duplicateCheck">Select Status</label>
         <div class="input-group">
           <div class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></div>
-          <select class="mdb-select md-form form-control" formControlName="status">
-              <option value="" disabled selected>Select Options</option>
-              <option value="BUSY">BUSY</option>
-              <option value="Leads">Leads</option>
-              <option value="OCCUPIED">OCCUPIED</option>
-              <option value="Switch Off">Switch Off</option>
-            </select>
+          <select  class="mdb-select md-form form-control" formControlName="status">
+              <option *ngFor="let statusCampaing of status;" value="statusCampaing">{{statusCampaing}}</option>
+          </select>
         </div>
       </div>
       <!-- <div class="form-group">
