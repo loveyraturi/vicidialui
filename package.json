@@ -42,7 +42,7 @@
     "selenium-webdriver": "^4.0.0-alpha.7",
     "simple-keyboard": "^2.28.26",
     "web-animations-js": "2.3.1",
-    "xlsx": "^0.15.4",
+    "xlsx": "^0.17.0",
     "zone.js": "^0.8.4"
   },
   "devDependencies": {
