@@ -28,6 +28,7 @@
               <th>campaing</th>
               <th>Status</th>
               <th>ReChaining</th>
+              <th *ngIf="level>=8">Delete</th>
             </tr>
           </thead>
           <tbody>
@@ -42,6 +43,10 @@
               <td>
                <a class="reChaining" (click)="modelClick(lead.filename,lead.campaingName)" title="ReChaining" data-toggle="tooltip"><i
                     class="material-icons content_copy">&#xe14d;</i></a>
+              </td>
+              <td *ngIf="level>=8">
+                <a class="delete" (click)="deleteLeads(lead.id)" title="Delete" data-toggle="tooltip"><i
+                    class="material-icons">&#xE872;</i></a>
               </td>
             </tr>
           </tbody>
@@ -76,7 +81,7 @@
         <div class="input-group">
           <div class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></div>
           <select  class="mdb-select md-form form-control" formControlName="status">
-              <option *ngFor="let statusCampaing of status;" value="statusCampaing">{{statusCampaing}}</option>
+              <option *ngFor="let statusCampaing of status;" [ngValue]="statusCampaing">{{statusCampaing}}</option>
           </select>
         </div>
       </div>

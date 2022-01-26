@@ -28,7 +28,7 @@ export class GroupComponent implements OnInit {
     this.campaing=localStorage.getItem("campaing")
     this.group=localStorage.getItem("group")
     console.log(this.level,"$#$%$")
-    if (this.level == 9) {
+    if (this.level == 9 || this.level == 8) {
         this.hasAccess=true;
     }
     this.username = localStorage.getItem("user_name")
@@ -65,7 +65,7 @@ export class GroupComponent implements OnInit {
             return item
           }
         })
-        console.log(this.groups)
+        console.log(this.groups,"#@#$@$#@$#@$#@$#@$#@$#")
 
       })
   }

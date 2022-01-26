@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import {map} from 'rxjs/operators';
+import { environment } from '../../../environment';
 
 
 const httpOptions = {
@@ -9,11 +10,12 @@ const httpOptions = {
 };
 @Injectable()
 export class DashboardService {
+  backendUrl = environment.BACKEND_URL;
 
   constructor(private http: HttpClient) { }
   fetchAgentsCounts(): Observable<any> {
     return this.http
-      .get('http://103.31.147.252:6001/microapp/goautodial/fetchAllUsers').pipe(
+      .get('http://'+this.backendUrl+'/goautodial/fetchAllUsers').pipe(
       map(
         res => {
           return res;
@@ -25,7 +27,7 @@ export class DashboardService {
   }
   logoutUser(username): Observable<any> {
     return this.http
-      .get('http://103.31.147.252:6001/microapp/goautodial/logout/'+username).pipe(
+      .get('http://'+this.backendUrl+'/goautodial/logout/'+username).pipe(
       map(
         res => {
           return res;

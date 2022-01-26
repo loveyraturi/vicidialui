@@ -42,7 +42,7 @@ export class ShowLeadsComponent implements OnInit {
     this.level = localStorage.getItem("level")
     this.group = localStorage.getItem("group")
     this.campaing = localStorage.getItem("campaing")
-    if (this.level == 9) {
+    if (this.level == 9 || this.level == 8) {
       this.hasAccess = true;
     }
     this.username = localStorage.getItem("user_name")
@@ -148,11 +148,11 @@ export class ShowLeadsComponent implements OnInit {
       })
 
   }
-  deleteCampaing(id) {
-    this.campaingService.deleteCampaing(id).subscribe(
+  deleteLeads(id) {
+    this.campaingService.deleteLeads(id).subscribe(
       data => {
         console.log(data)
-
+        this.fetchLeadVersions()
       })
   }
   private createForm(): void {
@@ -168,6 +168,7 @@ export class ShowLeadsComponent implements OnInit {
     console.log(value, "RECHAIN#################");
     this.processing=true
     this.campaingService.rechain(value.selectedleadname,value.status).subscribe(resp=>{
+      console.log("resp############",resp)
       this.numberOfItemsRechained=resp.count
       this.processing=false
       this.fileCounter=0

@@ -2,7 +2,7 @@
 import {map} from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-
+import { environment } from '../../../environment';
 
 import { Observable } from 'rxjs';
 
@@ -14,10 +14,11 @@ const httpOptions = {
 export class UserService {
 
   constructor(private http: HttpClient) { }
+  backendUrl = environment.BACKEND_URL;
 
   createUser(request): Observable<any> {
     return this.http
-      .post('http://103.31.147.252:6001/microapp/goautodial/createuser', request).pipe(
+      .post('http://'+this.backendUrl+'/goautodial/createuser', request).pipe(
       map(
         res => {
           return res;
@@ -29,7 +30,7 @@ export class UserService {
   }
   updateUserStatus(id,status): Observable<any> {
     return this.http
-      .get('http://103.31.147.252:6001/microapp/goautodial/updateuserstatus/'+id+'/'+status).pipe(
+      .get('http://'+this.backendUrl+'/goautodial/updateuserstatus/'+id+'/'+status).pipe(
       map(
         res => {
           return res;
@@ -41,7 +42,7 @@ export class UserService {
   }
   cloneBreakType(request): Observable<any> {
     return this.http
-      .post('http://103.31.147.252:6001/microapp/goautodial/cloneBreakType', request).pipe(
+      .post('http://'+this.backendUrl+'/goautodial/cloneBreakType', request).pipe(
       map(
         res => {
           return res;
@@ -53,7 +54,7 @@ export class UserService {
   }
   updateBreakType(request): Observable<any> {
     return this.http
-      .post('http://103.31.147.252:6001/microapp/goautodial/updateBreakType', request).pipe(
+      .post('http://'+this.backendUrl+'/goautodial/updateBreakType', request).pipe(
       map(
         res => {
           return res;
@@ -65,7 +66,7 @@ export class UserService {
   }
   assignUserToGroup(request): Observable<any> {
     return this.http
-      .post('http://103.31.147.252:6001/microapp/goautodial/assignUserToGroup', request).pipe(
+      .post('http://'+this.backendUrl+'/goautodial/assignUserToGroup', request).pipe(
       map(
         res => {
           return res;
@@ -77,7 +78,7 @@ export class UserService {
   }
   updateAssignUserToGroup(request): Observable<any> {
     return this.http
-      .post('http://103.31.147.252:6001/microapp/goautodial/updateAssignUserToGroup', request).pipe(
+      .post('http://'+this.backendUrl+'/goautodial/updateAssignUserToGroup', request).pipe(
       map(
         res => {
           return res;
@@ -89,7 +90,7 @@ export class UserService {
   }
   fetchUser(): Observable<any> {
     return this.http
-      .get('http://103.31.147.252:6001/microapp/goautodial/fetchAllUsers').pipe(
+      .get('http://'+this.backendUrl+'/goautodial/fetchAllUsers').pipe(
       map(
         res => {
           return res;
@@ -137,7 +138,7 @@ export class UserService {
         }
   fetchUserByCampaing(campaing): Observable<any> {
     return this.http
-      .get('http://103.31.147.252:6001/microapp/goautodial/fetchusersbycampaing/'+campaing).pipe(
+      .get('http://'+this.backendUrl+'/goautodial/fetchusersbycampaing/'+campaing).pipe(
       map(
         res => {
           return res;
@@ -188,7 +189,7 @@ export class UserService {
 
   fetchCountReportDataBetween(data): Observable<any> {
     return this.http
-      .post('http://103.31.147.252:6001/microapp/goautodial/fetchcountreportdatabetween',data,{
+      .post('http://'+this.backendUrl+'/goautodial/fetchcountreportdatabetween',data,{
         headers: new HttpHeaders({ 'Content-Type': 'application/json' })
       }).pipe(
       map(
@@ -202,7 +203,7 @@ export class UserService {
   }
   fetchcountrecordingreportdatabetween(data): Observable<any> {
     return this.http
-      .post('http://103.31.147.252:6001/microapp/goautodial/fetchcountrecordingreportdatabetween',data,{
+      .post('http://'+this.backendUrl+'/goautodial/fetchcountrecordingreportdatabetween',data,{
         headers: new HttpHeaders({ 'Content-Type': 'application/json' })
       }).pipe(
       map(
@@ -216,7 +217,7 @@ export class UserService {
   }
   fetchCountAttendanceReportDataBetween(data): Observable<any> {
     return this.http
-      .post('http://103.31.147.252:6001/microapp/goautodial/fetchcountattendancereportdatabetween',data,{
+      .post('http://'+this.backendUrl+'/goautodial/fetchcountattendancereportdatabetween',data,{
         headers: new HttpHeaders({ 'Content-Type': 'application/json' })
       }).pipe(
       map(
@@ -231,7 +232,7 @@ export class UserService {
   
   fetchReportDataBetween(data): Observable<any> {
     return this.http
-      .post('http://103.31.147.252:6001/microapp/goautodial/fetchreportdatabetween',data,{
+      .post('http://'+this.backendUrl+'/goautodial/fetchreportdatabetween',data,{
         headers: new HttpHeaders({ 'Content-Type': 'application/json' })
       }).pipe(
       map(
@@ -245,7 +246,7 @@ export class UserService {
   }
   fetchAttendanceReportDataBetween(data): Observable<any> {
     return this.http
-      .post('http://103.31.147.252:6001/microapp/goautodial/fetchattendancereportdatabetween',data,{
+      .post('http://'+this.backendUrl+'/goautodial/fetchattendancereportdatabetween',data,{
         headers: new HttpHeaders({ 'Content-Type': 'application/json' })
       }).pipe(
       map(
@@ -259,7 +260,7 @@ export class UserService {
   }
   fetchusersByName(name): Observable<any> {
     return this.http
-      .get('http://103.31.147.252:6001/microapp/goautodial/fetchusersByName/'+name).pipe(
+      .get('http://'+this.backendUrl+'/goautodial/fetchusersByName/'+name).pipe(
       map(
         res => {
           return res;
@@ -295,7 +296,7 @@ export class UserService {
   }
   deleteUser(id): Observable<any> {
     return this.http
-      .get('http://103.31.147.252:6001/microapp/goautodial/deleteUser/' + id).pipe(
+      .get('http://'+this.backendUrl+'/goautodial/deleteUser/' + id).pipe(
       map(
         res => {
           return res;
@@ -307,7 +308,7 @@ export class UserService {
   }
   deleteBreakType(id): Observable<any> {
     return this.http
-      .get('http://103.31.147.252:6001/microapp/goautodial/deleteBreakType/' + id).pipe(
+      .get('http://'+this.backendUrl+'/goautodial/deleteBreakType/' + id).pipe(
       map(
         res => {
           return res;
@@ -320,7 +321,7 @@ export class UserService {
 
   updateUser(request): Observable<any> {
     return this.http
-      .post('http://103.31.147.252:6001/microapp/goautodial/updateUser', request).pipe(
+      .post('http://'+this.backendUrl+'/goautodial/updateUser', request).pipe(
       map(
         res => {
           return res;

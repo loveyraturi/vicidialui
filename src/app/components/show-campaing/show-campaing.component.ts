@@ -111,7 +111,7 @@ public campaings;
     this.campaingService.deleteCampaing(id).subscribe(
       data => {
         console.log(data)
-
+        this.fetchCampaing()
       })
   }
   addNew(){

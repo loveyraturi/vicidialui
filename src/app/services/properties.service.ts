@@ -2,6 +2,7 @@
 import {map} from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { environment } from '../../../environment';
 
 
 import { Observable } from 'rxjs';
@@ -14,10 +15,11 @@ const httpOptions = {
 export class PropertiesService {
 
   constructor(private http: HttpClient) { }
+  backendUrl = environment.BACKEND_URL;
 
   addProperties(request): Observable<any> {
     return this.http
-      .post('http://103.31.147.252:6001/microapp/goautodial/addProperties', request).pipe(
+      .post('http://'+this.backendUrl+'/goautodial/addProperties', request).pipe(
       map(
         res => {
           return res;
